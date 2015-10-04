@@ -20,6 +20,8 @@
     <UnityVersion>5.2.1f1</UnityVersion>
     <RootNamespace>
     </RootNamespace>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
