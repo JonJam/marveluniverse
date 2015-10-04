@@ -47,8 +47,11 @@
         /// Performs a get request.
         /// </summary>
         /// <param name="requestUri">The request URI.</param>
+        /// <param name="callback">The callback action.</param>
         /// <returns>An enumerator.</returns>
-        public IEnumerator PerformGetRequest(string requestUri)
+        public IEnumerator PerformGetRequest(
+            string requestUri,
+            Action<WWW> callback)
         {
             double timestamp = this.GetTimestamp();
 
@@ -64,7 +67,9 @@
             
             WWW webRequest = new WWW(completeRequestUri);
 
-            yield return webRequest; 
+            yield return webRequest;
+
+            callback(webRequest);
         }
 
         /// <summary>
