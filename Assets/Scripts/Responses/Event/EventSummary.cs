@@ -8,10 +8,10 @@
     public class EventSummary
     {
         /// <summary>
-        /// Gets or sets the resource URI.
+        /// Gets or sets the resource URI. This is a string but using object as some responses return JSON object incorrectly.
         /// </summary>
         [JsonProperty("resourceURI")]
-        public string ResourceURI { get; set; }
+        public object ResourceURI { get; set; }
 
         /// <summary>
         /// Gets or sets the name.

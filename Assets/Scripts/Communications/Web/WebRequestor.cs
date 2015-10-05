@@ -8,7 +8,7 @@
     /// <summary>
     /// The web requestor class.
     /// </summary>
-    public class WebRequestor
+    public class WebRequestor : IWebRequestor
     {
         /// <summary>
         /// The public key.
@@ -33,28 +33,34 @@
         /// <summary>
         /// The encryption service.
         /// </summary>
-        private readonly EncryptionService encryptionService;
+        private readonly IEncryptionService encryptionService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WebRequestor"/> class.
         /// </summary>
-        public WebRequestor()
+        public WebRequestor() : this(new EncryptionService())
         {
-            this.encryptionService = new EncryptionService();   
         }
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WebRequestor"/> class.
+        /// </summary>
+        /// <param name="encryptionService">A encryption service.</param>
+        public WebRequestor(IEncryptionService encryptionService)
+        {
+            this.encryptionService = encryptionService;
+        }
+
         /// <summary>
         /// Performs a get request.
         /// </summary>
         /// <param name="requestUri">The request URI.</param>
-        /// <param name="callback">The callback action.</param>
         /// <returns>An enumerator.</returns>
-        public IEnumerator PerformGetRequest(
-            string requestUri,
-            Action<WWW> callback)
+        public WWW PerformGetRequest(
+            string requestUri)
         {
             double timestamp = this.GetTimestamp();
-
+            
             string hash = string.Concat(timestamp, WebRequestor.PrivateKey, WebRequestor.PublicKey);
             hash = this.encryptionService.MD5Hash(hash);
 
@@ -65,11 +71,7 @@
                     WebRequestor.PublicKey,
                     hash));
             
-            WWW webRequest = new WWW(completeRequestUri);
-
-            yield return webRequest;
-
-            callback(webRequest);
+            return new WWW(completeRequestUri);
         }
 
         /// <summary>

@@ -7,7 +7,7 @@
     /// <summary>
     /// The encryption service.
     /// </summary>
-    public class EncryptionService
+    public class EncryptionService : IEncryptionService
     {
         /// <summary>
         /// Creates a MD5 hash of the string passed.
