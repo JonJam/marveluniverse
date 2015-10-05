@@ -1,11 +1,11 @@
-﻿namespace MarvelUniverse.Responses.Comic
+﻿namespace MarvelUniverse.Model.Comic
 {
     using Newtonsoft.Json;
 
     /// <summary>
-    /// A comic date.
+    /// A comic price.
     /// </summary>
-    public class ComicDate
+    public class ComicPrice
     {
         /// <summary>
         /// Gets or sets the type.
@@ -14,9 +14,9 @@
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or sets the date.
+        /// Gets or sets the price.
         /// </summary>
-        [JsonProperty("date")]
-        public string Date { get; set; }
+        [JsonProperty("price")]
+        public string Price { get; set; }
     }
 }

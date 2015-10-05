@@ -1,17 +1,22 @@
-﻿namespace MarvelUniverse.Responses.Story
+﻿//-----------------------------------------------------------------------
+// <copyright file="Character.cs" company="">
+// Copyright (c) 2015 Microsoft Corporation. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace MarvelUniverse.Model.Character
 {
     using System;
-    using Character;
     using Comic;
-    using Creator;
     using Event;
     using Newtonsoft.Json;
     using Series;
+    using Story;
 
     /// <summary>
-    /// A story.
+    /// A character
     /// </summary>
-    public class Story
+    public class Character
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -20,10 +25,10 @@
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the title.
+        /// Gets or sets the name.
         /// </summary>
-        [JsonProperty("title")]
-        public string Title { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
@@ -32,22 +37,22 @@
         public string Description { get; set; }
 
         /// <summary>
+        /// Gets or sets the modified date time.
+        /// </summary>
+        [JsonProperty("modified")]
+        public DateTime Modified { get; set; }
+
+        /// <summary>
         /// Gets or sets the resource URI.
         /// </summary>
         [JsonProperty("resourceURI")]
         public string ResourceURI { get; set; }
 
         /// <summary>
-        /// Gets or sets the type.
+        /// Gets or sets the URLs.
         /// </summary>
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-        /// <summary>
-        /// Gets or sets the modified date time.
-        /// </summary>
-        [JsonProperty("modified")]
-        public DateTime Modified { get; set; }
+        [JsonProperty("urls")]
+        public Url[] Urls { get; set; }
 
         /// <summary>
         /// Gets or sets the thumbnail.
@@ -62,10 +67,10 @@
         public DataList<ComicSummary> Comics { get; set; }
 
         /// <summary>
-        /// Gets or sets the series.
+        /// Gets or sets the stories.
         /// </summary>
-        [JsonProperty("series")]
-        public DataList<SeriesSummary> Series { get; set; }
+        [JsonProperty("stories")]
+        public DataList<StorySummary> Stories { get; set; }
 
         /// <summary>
         /// Gets or sets the events.
@@ -74,21 +79,9 @@
         public DataList<EventSummary> Events { get; set; }
 
         /// <summary>
-        /// Gets or sets the characters.
+        /// Gets or sets the series.
         /// </summary>
-        [JsonProperty("characters")]
-        public DataList<CharacterSummary> Characters { get; set; }
-
-        /// <summary>
-        /// Gets or sets the creators.
-        /// </summary>
-        [JsonProperty("creators")]
-        public DataList<CreatorSummary> Creators { get; set; }
-
-        /// <summary>
-        /// Gets or sets the original issue.
-        /// </summary>
-        [JsonProperty("originalissue")]
-        public ComicSummary Originalissue { get; set; }
+        [JsonProperty("series")]
+        public DataList<SeriesSummary> Series { get; set; }
     }
 }

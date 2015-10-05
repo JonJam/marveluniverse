@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Communications;
     using Communications.Result;
-    using Responses.Character;
+    using Model.Character;
     using UnityEngine;
     using UnityEngine.UI;
 

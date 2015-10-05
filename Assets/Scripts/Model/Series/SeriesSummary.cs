@@ -1,17 +1,17 @@
-﻿namespace MarvelUniverse.Responses.Event
+﻿namespace MarvelUniverse.Model.Series
 {
     using Newtonsoft.Json;
-
+    
     /// <summary>
-    /// An event summary.
+    /// A series summary
     /// </summary>
-    public class EventSummary
+    public class SeriesSummary
     {
         /// <summary>
-        /// Gets or sets the resource URI. This is a string but using object as some responses return JSON object incorrectly.
+        /// Gets or sets the resource URI.
         /// </summary>
         [JsonProperty("resourceURI")]
-        public object ResourceURI { get; set; }
+        public string ResourceURI { get; set; }
 
         /// <summary>
         /// Gets or sets the name.

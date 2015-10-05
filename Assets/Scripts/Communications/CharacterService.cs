@@ -6,8 +6,8 @@
     using MarvelUniverse.Communications.Result;
     using MarvelUniverse.Communications.Serialization;
     using MarvelUniverse.Communications.Web;
-    using MarvelUniverse.Responses;
-    using MarvelUniverse.Responses.Character;
+    using MarvelUniverse.Model;
+    using MarvelUniverse.Model.Character;
     using UnityEngine;
 
     /// <summary>

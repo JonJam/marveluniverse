@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Responses.Series
+﻿namespace MarvelUniverse.Model.Series
 {
     using System;
     using Character;

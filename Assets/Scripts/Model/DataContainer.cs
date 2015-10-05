@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Responses
+﻿namespace MarvelUniverse.Model
 {
     using Newtonsoft.Json;
 
