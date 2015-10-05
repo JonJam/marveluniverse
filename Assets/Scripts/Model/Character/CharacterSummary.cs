@@ -1,11 +1,11 @@
-﻿namespace MarvelUniverse.Responses.Creator
+﻿namespace MarvelUniverse.Model.Character
 {
     using Newtonsoft.Json;
 
     /// <summary>
-    /// A creator summary.
+    /// A character summary.
     /// </summary>
-    public class CreatorSummary
+    public class CharacterSummary
     {
         /// <summary>
         /// Gets or sets the resource URI.

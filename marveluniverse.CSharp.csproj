@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -81,26 +83,26 @@
     <Compile Include="Assets\Scripts\Communications\Serialization\JsonSerializer.cs" />
     <Compile Include="Assets\Scripts\Communications\Web\IWebRequestor.cs" />
     <Compile Include="Assets\Scripts\Communications\Web\WebRequestor.cs" />
-    <Compile Include="Assets\Scripts\Responses\Character\Character.cs" />
-    <Compile Include="Assets\Scripts\Responses\Character\CharacterSummary.cs" />
-    <Compile Include="Assets\Scripts\Responses\Comic\Comic.cs" />
-    <Compile Include="Assets\Scripts\Responses\Comic\ComicDate.cs" />
-    <Compile Include="Assets\Scripts\Responses\Comic\ComicPrice.cs" />
-    <Compile Include="Assets\Scripts\Responses\Comic\ComicSummary.cs" />
-    <Compile Include="Assets\Scripts\Responses\Comic\TextObject.cs" />
-    <Compile Include="Assets\Scripts\Responses\Creator\Creator.cs" />
-    <Compile Include="Assets\Scripts\Responses\Creator\CreatorSummary.cs" />
-    <Compile Include="Assets\Scripts\Responses\DataContainer.cs" />
-    <Compile Include="Assets\Scripts\Responses\DataList.cs" />
-    <Compile Include="Assets\Scripts\Responses\DataWrapper.cs" />
-    <Compile Include="Assets\Scripts\Responses\Event\Event.cs" />
-    <Compile Include="Assets\Scripts\Responses\Event\EventSummary.cs" />
-    <Compile Include="Assets\Scripts\Responses\Image.cs" />
-    <Compile Include="Assets\Scripts\Responses\Series\Series.cs" />
-    <Compile Include="Assets\Scripts\Responses\Series\SeriesSummary.cs" />
-    <Compile Include="Assets\Scripts\Responses\Story\Story.cs" />
-    <Compile Include="Assets\Scripts\Responses\Story\StorySummary.cs" />
-    <Compile Include="Assets\Scripts\Responses\Url.cs" />
+    <Compile Include="Assets\Scripts\Model\Character\Character.cs" />
+    <Compile Include="Assets\Scripts\Model\Character\CharacterSummary.cs" />
+    <Compile Include="Assets\Scripts\Model\Comic\Comic.cs" />
+    <Compile Include="Assets\Scripts\Model\Comic\ComicDate.cs" />
+    <Compile Include="Assets\Scripts\Model\Comic\ComicPrice.cs" />
+    <Compile Include="Assets\Scripts\Model\Comic\ComicSummary.cs" />
+    <Compile Include="Assets\Scripts\Model\Comic\TextObject.cs" />
+    <Compile Include="Assets\Scripts\Model\Creator\Creator.cs" />
+    <Compile Include="Assets\Scripts\Model\Creator\CreatorSummary.cs" />
+    <Compile Include="Assets\Scripts\Model\DataContainer.cs" />
+    <Compile Include="Assets\Scripts\Model\DataList.cs" />
+    <Compile Include="Assets\Scripts\Model\DataWrapper.cs" />
+    <Compile Include="Assets\Scripts\Model\Event\Event.cs" />
+    <Compile Include="Assets\Scripts\Model\Event\EventSummary.cs" />
+    <Compile Include="Assets\Scripts\Model\Image.cs" />
+    <Compile Include="Assets\Scripts\Model\Series\Series.cs" />
+    <Compile Include="Assets\Scripts\Model\Series\SeriesSummary.cs" />
+    <Compile Include="Assets\Scripts\Model\Story\Story.cs" />
+    <Compile Include="Assets\Scripts\Model\Story\StorySummary.cs" />
+    <Compile Include="Assets\Scripts\Model\Url.cs" />
     <Compile Include="Assets\Scripts\Search.cs" />
   </ItemGroup>
   <ItemGroup>

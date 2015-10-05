@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Responses.Creator
+﻿namespace MarvelUniverse.Model.Creator
 {
     using System;
     using Comic;

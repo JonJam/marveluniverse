@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Responses.Event
+﻿namespace MarvelUniverse.Model.Event
 {
     using System;
     using Character;

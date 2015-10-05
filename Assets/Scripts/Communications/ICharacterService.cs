@@ -4,7 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using MarvelUniverse.Communications.Result;
-    using MarvelUniverse.Responses.Character;
+    using MarvelUniverse.Model.Character;
 
     /// <summary>
     /// Interface for a character service.

@@ -1,11 +1,11 @@
-﻿namespace MarvelUniverse.Responses.Character
+﻿namespace MarvelUniverse.Model.Story
 {
     using Newtonsoft.Json;
 
     /// <summary>
-    /// A character summary.
+    /// A story summary.
     /// </summary>
-    public class CharacterSummary
+    public class StorySummary
     {
         /// <summary>
         /// Gets or sets the resource URI.
@@ -20,9 +20,9 @@
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the role.
+        /// Gets or sets the type.
         /// </summary>
-        [JsonProperty("role")]
-        public string Role { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
     }
 }
