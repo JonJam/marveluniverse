@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using Communications;
     using Communications.Result;
+    using Loading;
     using Model.Character;
     using UnityEngine;
     using UnityEngine.UI;
@@ -12,6 +13,21 @@
     /// </summary>
     public class Search : MonoBehaviour
     {
+        /// <summary>
+        /// The character service.
+        /// </summary>
+        private ICharacterService characterService;
+
+        /// <summary>
+        /// The loading manager.
+        /// </summary>
+        private LoadingManager loadingManager;
+
+        /// <summary>
+        /// The canvas group.
+        /// </summary>
+        private CanvasGroup canvasGroup;
+
         /// <summary>
         /// The search button.
         /// </summary>
@@ -26,17 +42,24 @@
         /// The search text input field.
         /// </summary>
         public InputField SearchTextInputField;
-
-        /// <summary>
-        /// The character service.
-        /// </summary>
-        private ICharacterService characterService;
         
+        private void Awake()
+        {
+            this.characterService = new CharacterService();
+
+            this.canvasGroup = this.GetComponent<CanvasGroup>();
+
+            GameObject gameController = GameObject.FindGameObjectWithTag(Tags.GameController);
+            this.loadingManager = gameController.GetComponent<LoadingManager>();
+        }
+
         /// <summary>
         /// Handles the search clicked event.
         /// </summary>
-        public void OnSearchButtonClicked()
+        private void OnSearchButtonClicked()
         {
+            this.loadingManager.IncrementRunningOperationCount();
+
             string searchTerms = this.SearchTextInputField.text;
             string selectedSearchType = this.SearchTypeDropdown.options[this.SearchTypeDropdown.value].text;
 
@@ -62,7 +85,7 @@
         /// Handles the search text input field value changed event.
         /// </summary>
         /// <param name="newValue">The new value.</param>
-        public void OnSearchTextInputFieldValueChanged(string newValue)
+        private void OnSearchTextInputFieldValueChanged(string newValue)
         {
             newValue = newValue.Trim();
 
@@ -77,11 +100,12 @@
         }
 
         /// <summary>
-        /// Handles the start event.
+        /// Handles the loading event.
         /// </summary>
-        private void Start()
+        /// <param name="isLoading">A value indicating whether is loading.</param>
+        private void HandleLoading(bool isLoading)
         {
-            this.characterService = new CharacterService();
+            this.canvasGroup.interactable = !isLoading;
         }
 
         /// <summary>
@@ -90,6 +114,7 @@
         /// <param name="result">The result.</param>
         private void CharacterSearchCompleted(IResult<IList<Character>> result)
         {
+            this.loadingManager.DecrementRunningOperationCount();
         }
     }
 }
