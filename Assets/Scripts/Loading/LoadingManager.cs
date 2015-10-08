@@ -1,12 +1,11 @@
 ﻿namespace MarvelUniverse.Loading
 {
     using System.Threading;
-    using UnityEngine;
 
     /// <summary>
     /// The loading manager.
     /// </summary>
-    public class LoadingManager : MonoBehaviour
+    public class LoadingManager
     {
         /// <summary>
         /// The running operation count.
@@ -16,8 +15,15 @@
         /// <summary>
         /// The loading event.
         /// </summary>
-        [SerializeField]
         public LoadingEvent Loading;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoadingManager"/> class.
+        /// </summary>
+        public LoadingManager()
+        {
+            this.Loading = new LoadingEvent();
+        }
 
         /// <summary>
         /// Increments the operation count.

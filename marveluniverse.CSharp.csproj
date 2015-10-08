@@ -26,7 +26,7 @@
     <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_2_1;UNITY_5_2;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_REFLECTION_BUFFERS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;UNITY_METRO;UNITY_METRO_API;UNITY_WINRT;ENABLE_WINRT_PINVOKE;ENABLE_TEXTUREID_MAP;ENABLE_LAZY_METHOD_CACHING;ENABLE_MOVIES;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_EVENT_QUEUE;ENABLE_NETWORK;UNITY_WSA;ENABLE_PROFILER;UNITY_METRO_8_0;UNITY_WSA_8_0;UNITY_WINRT_8_0;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_2_1;UNITY_5_2;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_REFLECTION_BUFFERS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;UNITY_METRO;UNITY_METRO_API;UNITY_WINRT;ENABLE_WINRT_PINVOKE;ENABLE_TEXTUREID_MAP;ENABLE_LAZY_METHOD_CACHING;ENABLE_MOVIES;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_EVENT_QUEUE;ENABLE_NETWORK;UNITY_WSA;ENABLE_PROFILER;UNITY_METRO_8_1;UNITY_WSA_8_1;UNITY_WINRT_8_1;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -36,7 +36,7 @@
     <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>TRACE;UNITY_5_2_1;UNITY_5_2;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_REFLECTION_BUFFERS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;UNITY_METRO;UNITY_METRO_API;UNITY_WINRT;ENABLE_WINRT_PINVOKE;ENABLE_TEXTUREID_MAP;ENABLE_LAZY_METHOD_CACHING;ENABLE_MOVIES;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_EVENT_QUEUE;ENABLE_NETWORK;UNITY_WSA;ENABLE_PROFILER;UNITY_METRO_8_0;UNITY_WSA_8_0;UNITY_WINRT_8_0;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
+    <DefineConstants>TRACE;UNITY_5_2_1;UNITY_5_2;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_REFLECTION_BUFFERS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;UNITY_METRO;UNITY_METRO_API;UNITY_WINRT;ENABLE_WINRT_PINVOKE;ENABLE_TEXTUREID_MAP;ENABLE_LAZY_METHOD_CACHING;ENABLE_MOVIES;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_EVENT_QUEUE;ENABLE_NETWORK;UNITY_WSA;ENABLE_PROFILER;UNITY_METRO_8_1;UNITY_WSA_8_1;UNITY_WINRT_8_1;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
@@ -71,6 +71,100 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DownloadedAssets\Zenject\Internal\Assert.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Internal\Func.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Internal\LinqExtensions.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Internal\Log.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Internal\MiscExtensions.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Internal\ProfileBlock.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Internal\ReflectionUtil.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Internal\Tuple.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Internal\TypeExtensions.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Binders\BindScope.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Binders\Binder.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Binders\BinderGeneric.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Binders\BinderUntyped.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Binders\BindingConditionSetter.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Binders\IFactoryBinder.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Binders\IFactoryUntypedBinder.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Binders\InjectContext.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Exceptions\ZenjectException.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\Factory.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\FactoryMethod.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\FactoryMethodUntyped.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\FactoryNested.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\FactoryUntyped.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\GameObjectFactory.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\GameObjectInstantiator.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\IFactory.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\IFactoryUntyped.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\IValidatable.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\IValidatableFactory.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\InstantiateUtil.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\KeyedFactory.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\ListFactory.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Factories\PrefabFactory.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Injection\InjectableInfo.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Injection\TypeAnalyzer.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Injection\ZenjectTypeInfo.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\BindingId.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\BindingValidator.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\CompositionRoot.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\CompositionRootHelper.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\DiContainer.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\GlobalCompositionRoot.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\GlobalInstallerConfig.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\IBinder.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\IInstaller.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\IInstantiator.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\IResolver.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\Installer.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\MonoInstaller.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Main\SceneCompositionRoot.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\DisposableManager.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\DisposablePrioritiesInstaller.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\FixedTickablePrioritiesInstaller.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\IDependencyRoot.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\IInitializable.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\ITickable.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\InitializableManager.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\InitializablePrioritiesInstaller.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\KernelUtil.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\LateTickablePrioritiesInstaller.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\SingletonInstanceHelper.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\StandardUnityInstaller.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\TaskUpdater.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\TickableManager.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\TickablePrioritiesInstaller.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\UnityDependencyRoot.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\UnityEventManager.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Misc\ZenUtil.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\DiContainerProvider.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\GameObjectSingletonProvider.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\GameObjectTransientProviderFromPrefab.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\GameObjectTransientProviderFromPrefabResource.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\InstanceProvider.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\MethodProvider.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\MethodProviderUntyped.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\MonoBehaviourSingletonProvider.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\PrefabSingletonId.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\PrefabSingletonLazyCreator.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\PrefabSingletonProvider.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\PrefabSingletonProviderMap.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\ProviderBase.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\ResourceProvider.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\SingletonId.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\SingletonLazyCreator.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\SingletonProvider.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\SingletonProviderMap.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Providers\TransientProvider.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Usage\InjectAttribute.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Usage\InjectOptionalAttribute.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Usage\PostInjectAttribute.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\AutoBindInstaller.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\DecoratorInstaller.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\SceneDecoratorCompositionRoot.cs" />
+    <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\UnityUtil.cs" />
     <Compile Include="Assets\Scripts\Communications\CharacterService.cs" />
     <Compile Include="Assets\Scripts\Communications\Encryption\EncryptionService.cs" />
     <Compile Include="Assets\Scripts\Communications\Encryption\IEncryptionService.cs" />
@@ -81,9 +175,9 @@
     <Compile Include="Assets\Scripts\Communications\Serialization\JsonSerializer.cs" />
     <Compile Include="Assets\Scripts\Communications\Web\IWebRequestor.cs" />
     <Compile Include="Assets\Scripts\Communications\Web\WebRequestor.cs" />
+    <Compile Include="Assets\Scripts\Installer.cs" />
     <Compile Include="Assets\Scripts\Loading\LoadingEvent.cs" />
     <Compile Include="Assets\Scripts\Loading\LoadingManager.cs" />
-    <Compile Include="Assets\Scripts\LoadingIndicator.cs" />
     <Compile Include="Assets\Scripts\Model\Character\Character.cs" />
     <Compile Include="Assets\Scripts\Model\Character\CharacterSummary.cs" />
     <Compile Include="Assets\Scripts\Model\Comic\Comic.cs" />
@@ -104,8 +198,9 @@
     <Compile Include="Assets\Scripts\Model\Story\Story.cs" />
     <Compile Include="Assets\Scripts\Model\Story\StorySummary.cs" />
     <Compile Include="Assets\Scripts\Model\Url.cs" />
-    <Compile Include="Assets\Scripts\Search.cs" />
     <Compile Include="Assets\Scripts\Tags.cs" />
+    <Compile Include="Assets\Scripts\UI\LoadingIndicator.cs" />
+    <Compile Include="Assets\Scripts\UI\Search.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\GemShader\diamond shader.shader" />

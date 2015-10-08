@@ -1,6 +1,8 @@
-﻿namespace MarvelUniverse
+﻿namespace MarvelUniverse.UI
 {
+    using Loading;
     using UnityEngine;
+    using Zenject;
 
     /// <summary>
     /// The loading indicator.
@@ -28,12 +30,38 @@
         public MeshRenderer[] stones;
 
         /// <summary>
+        /// The loading manager.
+        /// </summary>
+        private LoadingManager loadingManager;
+
+        /// <summary>
+        /// Injection initialization.
+        /// </summary>
+        /// <param name="loadingManager">The loading mana
+        [PostInject]
+        private void Test(
+            LoadingManager loadingManager)
+        {
+            this.loadingManager = loadingManager;
+
+            this.loadingManager.Loading.AddListener(this.HandleLoading);
+        }
+
+        /// <summary>
         /// Handles the awake event.
         /// </summary>
         private void Awake()
         {
             this.animator = this.GetComponent<Animator>();
             this.isLoadingAnimatorParameterId = Animator.StringToHash(LoadingIndicator.IsLoadingAnimatorParameterName);
+        }
+
+        /// <summary>
+        /// Handles the on destroy event.
+        /// </summary>
+        private void OnDestroy()
+        {
+            this.loadingManager.Loading.RemoveListener(this.HandleLoading);
         }
 
         /// <summary>
