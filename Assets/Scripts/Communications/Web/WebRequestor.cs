@@ -38,13 +38,6 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="WebRequestor"/> class.
         /// </summary>
-        public WebRequestor() : this(new EncryptionService())
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WebRequestor"/> class.
-        /// </summary>
         /// <param name="encryptionService">A encryption service.</param>
         public WebRequestor(IEncryptionService encryptionService)
         {

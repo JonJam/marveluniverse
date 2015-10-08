@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse
+﻿namespace MarvelUniverse.UI
 {
     using System.Collections.Generic;
     using Communications;
@@ -7,6 +7,7 @@
     using Model.Character;
     using UnityEngine;
     using UnityEngine.UI;
+    using Zenject;
 
     /// <summary>
     /// Search.
@@ -42,15 +43,37 @@
         /// The search text input field.
         /// </summary>
         public InputField SearchTextInputField;
+
+        /// <summary>
+        /// Injection initialization.
+        /// </summary>
+        /// <param name="characterService">The character service.</param>
+        /// <param name="loadingManager">The loading manager.</param>
+        [PostInject]
+        private void InjectionInitialize(
+            ICharacterService characterService,
+            LoadingManager loadingManager)
+        {
+            this.characterService = characterService;
+            this.loadingManager = loadingManager;
+
+            this.loadingManager.Loading.AddListener(this.HandleLoading);
+        }
         
+        /// <summary>
+        /// Handles the awake event.
+        /// </summary>
         private void Awake()
         {
-            this.characterService = new CharacterService();
-
             this.canvasGroup = this.GetComponent<CanvasGroup>();
+        }
 
-            GameObject gameController = GameObject.FindGameObjectWithTag(Tags.GameController);
-            this.loadingManager = gameController.GetComponent<LoadingManager>();
+        /// <summary>
+        /// Handles the on destroy event.
+        /// </summary>
+        private void OnDestroy()
+        {
+            this.loadingManager.Loading.RemoveListener(this.HandleLoading);
         }
 
         /// <summary>

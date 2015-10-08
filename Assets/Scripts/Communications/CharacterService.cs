@@ -33,13 +33,6 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CharacterService"/> class.
         /// </summary>
-        public CharacterService() : this(new WebRequestor(), new JsonSerializer())
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CharacterService"/> class.
-        /// </summary>
         /// <param name="webRequestor">The web requestor.</param>
         /// <param name="jsonSerializer">The JSON serializer.</param>
         public CharacterService(
