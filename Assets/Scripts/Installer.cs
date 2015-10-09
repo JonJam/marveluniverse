@@ -38,7 +38,7 @@
         /// </summary>
         private void InstallUIBindings()
         {
-            this.Container.Bind<LoadingManager>().ToSingle();
+            this.Container.Bind<ILoadingManager>().ToSingle<LoadingManager>();
         }
     }
 }

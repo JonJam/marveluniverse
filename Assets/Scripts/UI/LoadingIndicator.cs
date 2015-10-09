@@ -32,15 +32,15 @@
         /// <summary>
         /// The loading manager.
         /// </summary>
-        private LoadingManager loadingManager;
+        private ILoadingManager loadingManager;
 
         /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <param name="loadingManager">The loading mana
+        /// <param name="loadingManager">The loading mananger</param>
         [PostInject]
-        private void Test(
-            LoadingManager loadingManager)
+        private void InjectionInitialize(
+            ILoadingManager loadingManager)
         {
             this.loadingManager = loadingManager;
 
