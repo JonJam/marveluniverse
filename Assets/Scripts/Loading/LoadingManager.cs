@@ -5,7 +5,7 @@
     /// <summary>
     /// The loading manager.
     /// </summary>
-    public class LoadingManager
+    public class LoadingManager : ILoadingManager
     {
         /// <summary>
         /// The running operation count.
@@ -15,14 +15,25 @@
         /// <summary>
         /// The loading event.
         /// </summary>
-        public LoadingEvent Loading;
+        private readonly LoadingEvent loading;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoadingManager"/> class.
         /// </summary>
         public LoadingManager()
         {
-            this.Loading = new LoadingEvent();
+            this.loading = new LoadingEvent();
+        }
+
+        /// <summary>
+        /// The loading event.
+        /// </summary>
+        public LoadingEvent Loading
+        {
+            get
+            {
+                return this.loading;
+            }
         }
 
         /// <summary>

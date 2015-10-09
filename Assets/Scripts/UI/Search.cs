@@ -22,7 +22,7 @@
         /// <summary>
         /// The loading manager.
         /// </summary>
-        private LoadingManager loadingManager;
+        private ILoadingManager loadingManager;
 
         /// <summary>
         /// The canvas group.
@@ -52,7 +52,7 @@
         [PostInject]
         private void InjectionInitialize(
             ICharacterService characterService,
-            LoadingManager loadingManager)
+            ILoadingManager loadingManager)
         {
             this.characterService = characterService;
             this.loadingManager = loadingManager;
