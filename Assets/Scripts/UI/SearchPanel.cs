@@ -1,9 +1,11 @@
 ﻿namespace MarvelUniverse.UI
 {
     using System.Collections.Generic;
-    using Communications;
+    using System.Linq;
+    using Communications.Interfaces;
     using Communications.Result;
     using Loading;
+    using ViewModel;
     using Model.Character;
     using UnityEngine;
     using UnityEngine.UI;
@@ -12,7 +14,7 @@
     /// <summary>
     /// Search.
     /// </summary>
-    public class Search : MonoBehaviour
+    public class SearchPanel : MonoBehaviour
     {
         /// <summary>
         /// The character service.
@@ -45,6 +47,11 @@
         public InputField SearchTextInputField;
 
         /// <summary>
+        /// The search results panel.
+        /// </summary>
+        public SearchResultsPanel searchResultsPanel;
+
+        /// <summary>
         /// Injection initialization.
         /// </summary>
         /// <param name="characterService">The character service.</param>
@@ -59,7 +66,7 @@
 
             this.loadingManager.Loading.AddListener(this.HandleLoading);
         }
-        
+
         /// <summary>
         /// Handles the awake event.
         /// </summary>
@@ -137,6 +144,15 @@
         /// <param name="result">The result.</param>
         private void CharacterSearchCompleted(IResult<IList<Character>> result)
         {
+            if (result.IsSuccess)
+            {
+                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(c.Name, c.Thumbnail.Extension, c.Thumbnail.Path)).ToList());
+            }
+            else
+            {
+                // TODO HANDLE Failure
+            }
+
             this.loadingManager.DecrementRunningOperationCount();
         }
     }

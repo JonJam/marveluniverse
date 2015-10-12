@@ -1,7 +1,6 @@
 ﻿namespace MarvelUniverse.Communications.Web
 {
     using System;
-    using System.Collections;
     using MarvelUniverse.Communications.Encryption;
     using UnityEngine;
 
@@ -45,11 +44,11 @@
         }
 
         /// <summary>
-        /// Performs a get request.
+        /// Performs an authorized get request.
         /// </summary>
         /// <param name="requestUri">The request URI.</param>
         /// <returns>An enumerator.</returns>
-        public WWW PerformGetRequest(
+        public WWW PerformAuthorizedGetRequest(
             string requestUri)
         {
             double timestamp = this.GetTimestamp();
@@ -65,6 +64,17 @@
                     hash));
             
             return new WWW(completeRequestUri);
+        }
+
+        /// <summary>
+        /// Performs a get request.
+        /// </summary>
+        /// <param name="requestUri">The request URI.</param>
+        /// <returns>An enumerator.</returns>
+        public WWW PerformGetRequest(
+            string requestUri)
+        {
+            return new WWW(requestUri);
         }
 
         /// <summary>

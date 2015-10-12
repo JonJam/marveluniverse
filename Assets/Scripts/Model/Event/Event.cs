@@ -4,6 +4,7 @@
     using Character;
     using Comic;
     using Creator;
+    using Image;
     using Newtonsoft.Json;
     using Series;
     using Story;

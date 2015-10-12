@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Model
+﻿namespace MarvelUniverse.Model.Image
 {
     using Newtonsoft.Json;
 

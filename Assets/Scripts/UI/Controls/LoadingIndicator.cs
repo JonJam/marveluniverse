@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.UI
+﻿namespace MarvelUniverse.UI.Controls
 {
     using Loading;
     using UnityEngine;

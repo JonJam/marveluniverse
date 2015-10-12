@@ -9,6 +9,7 @@ namespace MarvelUniverse.Model.Character
     using System;
     using Comic;
     using Event;
+    using Image;
     using Newtonsoft.Json;
     using Series;
     using Story;

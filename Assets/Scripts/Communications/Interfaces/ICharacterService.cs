@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Communications
+﻿namespace MarvelUniverse.Communications.Interfaces
 {
     using System;
     using System.Collections;

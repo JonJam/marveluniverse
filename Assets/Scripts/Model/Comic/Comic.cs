@@ -4,6 +4,7 @@
     using Character;
     using Creator;
     using Event;
+    using Image;
     using Newtonsoft.Json;
     using Series;
     using Story;
