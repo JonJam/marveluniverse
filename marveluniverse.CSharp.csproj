@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -170,7 +168,9 @@
     <Compile Include="Assets\Scripts\Communications\CharacterService.cs" />
     <Compile Include="Assets\Scripts\Communications\Encryption\EncryptionService.cs" />
     <Compile Include="Assets\Scripts\Communications\Encryption\IEncryptionService.cs" />
-    <Compile Include="Assets\Scripts\Communications\ICharacterService.cs" />
+    <Compile Include="Assets\Scripts\Communications\ImageService.cs" />
+    <Compile Include="Assets\Scripts\Communications\Interfaces\ICharacterService.cs" />
+    <Compile Include="Assets\Scripts\Communications\Interfaces\IImageService.cs" />
     <Compile Include="Assets\Scripts\Communications\Result\IResult.cs" />
     <Compile Include="Assets\Scripts\Communications\Result\Result.cs" />
     <Compile Include="Assets\Scripts\Communications\Serialization\IJsonSerializer.cs" />
@@ -195,15 +195,21 @@
     <Compile Include="Assets\Scripts\Model\DataWrapper.cs" />
     <Compile Include="Assets\Scripts\Model\Event\Event.cs" />
     <Compile Include="Assets\Scripts\Model\Event\EventSummary.cs" />
-    <Compile Include="Assets\Scripts\Model\Image.cs" />
+    <Compile Include="Assets\Scripts\Model\Image\Image.cs" />
+    <Compile Include="Assets\Scripts\Model\Image\ImageSize.cs" />
     <Compile Include="Assets\Scripts\Model\Series\Series.cs" />
     <Compile Include="Assets\Scripts\Model\Series\SeriesSummary.cs" />
     <Compile Include="Assets\Scripts\Model\Story\Story.cs" />
     <Compile Include="Assets\Scripts\Model\Story\StorySummary.cs" />
     <Compile Include="Assets\Scripts\Model\Url.cs" />
     <Compile Include="Assets\Scripts\Tags.cs" />
-    <Compile Include="Assets\Scripts\UI\LoadingIndicator.cs" />
-    <Compile Include="Assets\Scripts\UI\Search.cs" />
+    <Compile Include="Assets\Scripts\UI\Controls\ListView.cs" />
+    <Compile Include="Assets\Scripts\UI\Controls\LoadingIndicator.cs" />
+    <Compile Include="Assets\Scripts\UI\SearchPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\SearchResultsPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Templates\IItemTemplate.cs" />
+    <Compile Include="Assets\Scripts\UI\Templates\SearchResultItemTemplate.cs" />
+    <Compile Include="Assets\Scripts\ViewModel\SearchResultViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\GemShader\diamond shader.shader" />

@@ -5,6 +5,7 @@
     using Comic;
     using Creator;
     using Event;
+    using Image;
     using Newtonsoft.Json;
     using Story;
 

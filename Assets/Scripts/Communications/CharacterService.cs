@@ -3,6 +3,7 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
+    using Interfaces;
     using MarvelUniverse.Communications.Result;
     using MarvelUniverse.Communications.Serialization;
     using MarvelUniverse.Communications.Web;
@@ -55,13 +56,14 @@
         {
             string searchRequestUrl = string.Format(CharacterService.CharacterSearchRequestUrl, searchTerms);
 
-            WWW request = this.webRequestor.PerformGetRequest(searchRequestUrl);
+            WWW request = this.webRequestor.PerformAuthorizedGetRequest(searchRequestUrl);
 
             yield return request;
 
             IResult<IList<Character>> result = null;
 
-            if (string.IsNullOrEmpty(request.error))
+            if (request != null &&
+                string.IsNullOrEmpty(request.error))
             {
                 result = this.CreateSuccessfulSearchResult(request.text);
             }

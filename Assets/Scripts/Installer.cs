@@ -2,6 +2,7 @@
 {
     using MarvelUniverse.Communications;
     using MarvelUniverse.Communications.Encryption;
+    using Communications.Interfaces;
     using MarvelUniverse.Communications.Serialization;
     using MarvelUniverse.Communications.Web;
     using MarvelUniverse.Loading;
@@ -31,6 +32,7 @@
             this.Container.Bind<IWebRequestor>().ToSingle<WebRequestor>();
 
             this.Container.Bind<ICharacterService>().ToSingle<CharacterService>();
+            this.Container.Bind<IImageService>().ToSingle<ImageService>();
         }
 
         /// <summary>
