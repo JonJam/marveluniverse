@@ -2,15 +2,22 @@
 {
     using System.Collections.Generic;
     using Controls;
+    using Screen;
     using UnityEngine;
     using UnityEngine.UI;
     using ViewModel;
+    using Zenject;
 
     /// <summary>
     /// The search results panel.
     /// </summary>
     public class SearchResultsPanel : MonoBehaviour
     {
+        /// <summary>
+        /// The screen manager.
+        /// </summary>
+        private IScreenManager screenManager;
+
         /// <summary>
         /// The search results list view.
         /// </summary>
@@ -42,6 +49,27 @@
         public void ClearSearchResults()
         {
             this.SearchResultsListView.ClearItems();            
+        }
+
+        /// <summary>
+        /// Injection initialization.
+        /// </summary>
+        /// <param name="screenManager">The screen manaager.</param>
+        [PostInject]
+        private void InjectionInitialize(
+            IScreenManager screenManager)
+        {
+            this.screenManager = screenManager;
+        }
+
+        /// <summary>
+        /// Handles the on back button clicked event.
+        /// </summary>
+        public void OnBackButtonClicked()
+        {
+            this.screenManager.GoBack();
+
+            this.SearchResultsListView.ClearItems();
         }
     }
 }

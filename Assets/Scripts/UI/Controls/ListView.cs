@@ -16,6 +16,11 @@
         private IInstantiator instantiator;
 
         /// <summary>
+        /// The list view items.
+        /// </summary>
+        private IList<GameObject> listViewItems;
+
+        /// <summary>
         /// The content panel.
         /// </summary>
         public Transform ContentPanel;
@@ -42,6 +47,8 @@
                 itemTemplate.Hookup(itemToDisplay);
 
                 listItem.transform.SetParent(this.ContentPanel, false);
+
+                this.listViewItems.Add(listItem);
             }
         }
 
@@ -50,7 +57,12 @@
         /// </summary>
         public void ClearItems()
         {
-            this.ContentPanel.DetachChildren();
+            foreach (GameObject listItem in this.listViewItems)
+            {
+                GameObject.Destroy(listItem);
+            }            
+
+            this.listViewItems = new List<GameObject>();                
         }
 
         /// <summary>
@@ -62,6 +74,14 @@
             IInstantiator instantiator)
         {
             this.instantiator = instantiator;
+        }
+
+        /// <summary>
+        /// Handles the awake event.
+        /// </summary>
+        private void Awake()
+        {
+            this.listViewItems = new List<GameObject>();
         }
     }
 }

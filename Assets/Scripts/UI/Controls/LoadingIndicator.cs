@@ -25,11 +25,6 @@
         private int isLoadingAnimatorParameterId;
 
         /// <summary>
-        /// The list of stone mesh renderers.
-        /// </summary>
-        public MeshRenderer[] stones;
-
-        /// <summary>
         /// The loading manager.
         /// </summary>
         private ILoadingManager loadingManager;
@@ -53,9 +48,9 @@
         private void Awake()
         {
             this.animator = this.GetComponent<Animator>();
-            this.isLoadingAnimatorParameterId = Animator.StringToHash(LoadingIndicator.IsLoadingAnimatorParameterName);
+            this.isLoadingAnimatorParameterId = Animator.StringToHash(LoadingIndicator.IsLoadingAnimatorParameterName);            
         }
-
+        
         /// <summary>
         /// Handles the on destroy event.
         /// </summary>
@@ -70,10 +65,7 @@
         /// <param name="isLoading">A value indicating whether is loading.</param>
         private void HandleLoading(bool isLoading)
         {
-            foreach (MeshRenderer meshRenderer in this.stones)
-            {
-                meshRenderer.enabled = isLoading;
-            }
+            this.gameObject.SetActive(isLoading);
 
             this.animator.SetBool(this.isLoadingAnimatorParameterId, isLoading);
         }

@@ -10,6 +10,7 @@
     using UnityEngine;
     using UnityEngine.UI;
     using Zenject;
+    using Screen;
 
     /// <summary>
     /// Search.
@@ -25,6 +26,11 @@
         /// The loading manager.
         /// </summary>
         private ILoadingManager loadingManager;
+
+        /// <summary>
+        /// The screen manager.
+        /// </summary>
+        private IScreenManager screenManager;
 
         /// <summary>
         /// The canvas group.
@@ -56,37 +62,24 @@
         /// </summary>
         /// <param name="characterService">The character service.</param>
         /// <param name="loadingManager">The loading manager.</param>
+        /// <param name="screenManager">The screen manaager.</param>
         [PostInject]
         private void InjectionInitialize(
             ICharacterService characterService,
-            ILoadingManager loadingManager)
+            ILoadingManager loadingManager,
+            IScreenManager screenManager)
         {
             this.characterService = characterService;
             this.loadingManager = loadingManager;
+            this.screenManager = screenManager;
 
             this.loadingManager.Loading.AddListener(this.HandleLoading);
         }
 
         /// <summary>
-        /// Handles the awake event.
-        /// </summary>
-        private void Awake()
-        {
-            this.canvasGroup = this.GetComponent<CanvasGroup>();
-        }
-
-        /// <summary>
-        /// Handles the on destroy event.
-        /// </summary>
-        private void OnDestroy()
-        {
-            this.loadingManager.Loading.RemoveListener(this.HandleLoading);
-        }
-
-        /// <summary>
         /// Handles the search clicked event.
         /// </summary>
-        private void OnSearchButtonClicked()
+        public void OnSearchButtonClicked()
         {
             this.loadingManager.IncrementRunningOperationCount();
 
@@ -115,7 +108,7 @@
         /// Handles the search text input field value changed event.
         /// </summary>
         /// <param name="newValue">The new value.</param>
-        private void OnSearchTextInputFieldValueChanged(string newValue)
+        public void OnSearchTextInputFieldValueChanged(string newValue)
         {
             newValue = newValue.Trim();
 
@@ -127,6 +120,22 @@
             {
                 this.SearchButton.interactable = false;
             }
+        }
+
+        /// <summary>
+        /// Handles the awake event.
+        /// </summary>
+        private void Awake()
+        {
+            this.canvasGroup = this.GetComponent<CanvasGroup>();
+        }
+
+        /// <summary>
+        /// Handles the on destroy event.
+        /// </summary>
+        private void OnDestroy()
+        {
+            this.loadingManager.Loading.RemoveListener(this.HandleLoading);
         }
 
         /// <summary>
@@ -144,14 +153,27 @@
         /// <param name="result">The result.</param>
         private void CharacterSearchCompleted(IResult<IList<Character>> result)
         {
-            if (result.IsSuccess)
+            List<SearchResultViewModel> test = new List<SearchResultViewModel>()
             {
-                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(c.Name, c.Thumbnail.Extension, c.Thumbnail.Path)).ToList());
-            }
-            else
-            {
-                // TODO HANDLE Failure
-            }
+                new SearchResultViewModel("Spiderman", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
+                new SearchResultViewModel("Captain America", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
+                new SearchResultViewModel("The Incredible Hulk", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
+                new SearchResultViewModel("Invinicble Iron Man", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
+                new SearchResultViewModel("The Vision", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg")
+            };
+
+            this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
+            this.searchResultsPanel.DisplaySearchResults(test);
+
+            //if (result.IsSuccess)
+            //{
+            //    this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(c.Name, c.Thumbnail.Extension, c.Thumbnail.Path)).ToList());
+            //    this.screenManager.OpenPanel(this.searchResultsPanelAnimator);
+            //}
+            //else
+            //{
+            //    // TODO HANDLE Failure
+            //}
 
             this.loadingManager.DecrementRunningOperationCount();
         }

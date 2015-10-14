@@ -17,6 +17,16 @@
         /// The image service.
         /// </summary>
         private IImageService imageService;
+        
+        /// <summary>
+        /// The search result.
+        /// </summary>
+        private SearchResultViewModel searchResult;
+
+        /// <summary>
+        /// A value indicating whether this attempted to load image.
+        /// </summary>
+        private bool attemptedToLoadImage;
 
         /// <summary>
         /// The name text.
@@ -39,12 +49,12 @@
         /// <param name="item">The item to display.</param>
         public void Hookup(SearchResultViewModel item)
         {
+            this.searchResult = item;
+
             this.Name.text = item.Name;
             this.Button.onClick.AddListener(item.SearchResultClicked);
+        }        
 
-            this.StartCoroutine(this.imageService.DownloadImage(item.ImagePath, item.ImageExtension, ImageSize.StandardXLarge, this.DownloadImageCompleted));
-        }
-        
         /// <summary>
         /// Injection initialization.
         /// </summary>
@@ -54,6 +64,20 @@
             IImageService imageService)
         {
             this.imageService = imageService;
+        }
+
+        /// <summary>
+        /// Handles the update event.
+        /// </summary>
+        private void Update()
+        {
+            if (this.Image.texture == null &&
+                !this.attemptedToLoadImage)
+            {
+                this.attemptedToLoadImage = true;
+
+                this.StartCoroutine(this.imageService.DownloadImage(searchResult.ImagePath, searchResult.ImageExtension, ImageSize.StandardXLarge, this.DownloadImageCompleted));
+            }
         }
 
         /// <summary>
