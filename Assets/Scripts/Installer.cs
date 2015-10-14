@@ -1,11 +1,12 @@
 ﻿namespace MarvelUniverse
 {
+    using Communications.Interfaces;
     using MarvelUniverse.Communications;
     using MarvelUniverse.Communications.Encryption;
-    using Communications.Interfaces;
     using MarvelUniverse.Communications.Serialization;
     using MarvelUniverse.Communications.Web;
     using MarvelUniverse.Loading;
+    using Screen;
 
     /// <summary>
     /// The installer.
@@ -41,6 +42,7 @@
         private void InstallUIBindings()
         {
             this.Container.Bind<ILoadingManager>().ToSingle<LoadingManager>();
+            this.Container.Bind<IScreenManager>().ToSingle<ScreenManager>();
         }
     }
 }
