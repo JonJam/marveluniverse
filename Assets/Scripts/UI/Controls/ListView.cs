@@ -18,7 +18,7 @@
         /// <summary>
         /// The list view items.
         /// </summary>
-        private IList<GameObject> listViewItems;
+        private IList<GameObject> listViewItems = new List<GameObject>();
 
         /// <summary>
         /// The content panel.
@@ -74,14 +74,6 @@
             IInstantiator instantiator)
         {
             this.instantiator = instantiator;
-        }
-
-        /// <summary>
-        /// Handles the awake event.
-        /// </summary>
-        private void Awake()
-        {
-            this.listViewItems = new List<GameObject>();
         }
     }
 }
