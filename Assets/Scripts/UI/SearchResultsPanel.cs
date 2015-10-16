@@ -39,7 +39,12 @@
             if (searchResults != null &&
                 searchResults.Count > 0)
             {
+                this.SearchResultsListView.gameObject.SetActive(true);
                 this.SearchResultsListView.DisplayItems(searchResults);
+            }
+            else
+            {
+                this.NoSearchResultsText.gameObject.SetActive(true);
             }
         }
 
@@ -48,6 +53,9 @@
         /// </summary>
         public void ClearSearchResults()
         {
+            this.SearchResultsListView.gameObject.SetActive(false);
+            this.NoSearchResultsText.gameObject.SetActive(false);
+
             this.SearchResultsListView.ClearItems();            
         }
 
@@ -69,7 +77,7 @@
         {
             this.screenManager.GoBack();
 
-            this.SearchResultsListView.ClearItems();
+            this.ClearSearchResults();
         }
     }
 }
