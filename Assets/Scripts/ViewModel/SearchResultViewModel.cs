@@ -11,6 +11,11 @@
         private readonly string name;
 
         /// <summary>
+        /// The description.
+        /// </summary>
+        private readonly string description;
+
+        /// <summary>
         /// The image path.
         /// </summary>
         private readonly string imagePath;
@@ -24,14 +29,17 @@
         /// Initializes a new instance of the <see cref="SearchResultViewModel"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
+        /// <param name="description">The description.</param>
         /// <param name="imagePath">The image path.</param>
         /// <param name="imageExtension">The image extension.</param>
         public SearchResultViewModel(
             string name, 
+            string description,
             string imagePath,
             string imageExtension)
         {
             this.name = name;
+            this.description = description;
             this.imagePath = imagePath;
             this.imageExtension = imageExtension;
         }
@@ -44,6 +52,17 @@
             get
             {
                 return this.name;
+            }
+        }
+
+        /// <summary>
+        /// Gets the description.
+        /// </summary>
+        public string Description
+        {
+            get
+            {
+                return this.description;
             }
         }
 

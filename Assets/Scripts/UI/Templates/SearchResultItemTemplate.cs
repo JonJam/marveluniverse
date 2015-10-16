@@ -29,9 +29,14 @@
         private bool attemptedToLoadImage;
 
         /// <summary>
-        /// The name text.
+        /// The name.
         /// </summary>
         public Text Name;
+
+        /// <summary>
+        /// The description.
+        /// </summary>
+        public Text Description;
 
         /// <summary>
         /// The image.
@@ -52,6 +57,7 @@
             this.searchResult = item;
 
             this.Name.text = item.Name;
+            this.Description.text = item.Description;
             this.Button.onClick.AddListener(item.SearchResultClicked);
         }        
 
