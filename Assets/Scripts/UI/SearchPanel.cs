@@ -33,6 +33,11 @@
         private IScreenManager screenManager;
 
         /// <summary>
+        /// The search view model.
+        /// </summary>
+        private SearchViewModel searchViewModel;
+
+        /// <summary>
         /// The canvas group.
         /// </summary>
         private CanvasGroup canvasGroup;
@@ -63,15 +68,18 @@
         /// <param name="characterService">The character service.</param>
         /// <param name="loadingManager">The loading manager.</param>
         /// <param name="screenManager">The screen manaager.</param>
+        /// <param name="searchViewModel">The search view model.</param>
         [PostInject]
         private void InjectionInitialize(
             ICharacterService characterService,
             ILoadingManager loadingManager,
-            IScreenManager screenManager)
+            IScreenManager screenManager,
+            SearchViewModel searchViewModel)
         {
             this.characterService = characterService;
             this.loadingManager = loadingManager;
             this.screenManager = screenManager;
+            this.searchViewModel = searchViewModel;
 
             this.loadingManager.Loading.AddListener(this.HandleLoading);
         }
@@ -83,13 +91,15 @@
         {
             this.loadingManager.IncrementRunningOperationCount();
 
-            string searchTerms = this.SearchTextInputField.text;
-            string selectedSearchType = this.SearchTypeDropdown.options[this.SearchTypeDropdown.value].text;
+            this.searchViewModel.SearchTerms = this.SearchTextInputField.text;
+            this.searchViewModel.SearchTypeIndex = this.SearchTypeDropdown.value;
+
+            string selectedSearchType = this.SearchTypeDropdown.options[this.searchViewModel.SearchTypeIndex].text;
 
             switch (selectedSearchType)
             {
                 case "Character":
-                    this.StartCoroutine(this.characterService.Search(searchTerms, CharacterSearchCompleted));
+                    this.StartCoroutine(this.characterService.Search(this.searchViewModel.SearchTerms, CharacterSearchCompleted));
                     break;
                 case "Comic":
                     break;
@@ -107,12 +117,11 @@
         /// <summary>
         /// Handles the search text input field value changed event.
         /// </summary>
-        /// <param name="newValue">The new value.</param>
-        public void OnSearchTextInputFieldValueChanged(string newValue)
+        public void OnSearchTextInputFieldValueChanged()
         {
-            newValue = newValue.Trim();
+            this.searchViewModel.SearchTerms = this.SearchTextInputField.text.Trim();
 
-            if (!string.IsNullOrEmpty(newValue))
+            if (!string.IsNullOrEmpty(this.searchViewModel.SearchTerms))
             {
                 this.SearchButton.interactable = true;
             }
@@ -123,11 +132,28 @@
         }
 
         /// <summary>
+        /// Handles the search type dropdown value changed event.
+        /// </summary>
+        public void OnSearchTypeDropdownValueChanged()
+        {
+            this.searchViewModel.SearchTypeIndex = this.SearchTypeDropdown.value;
+        }
+
+        /// <summary>
         /// Handles the awake event.
         /// </summary>
         private void Awake()
         {
             this.canvasGroup = this.GetComponent<CanvasGroup>();
+        }
+
+        /// <summary>
+        /// Handles the on enable event.
+        /// </summary>
+        private void OnEnable()
+        {
+            this.SearchTypeDropdown.value = this.searchViewModel.SearchTypeIndex;
+            this.SearchTextInputField.text = this.searchViewModel.SearchTerms;
         }
 
         /// <summary>
@@ -144,7 +170,10 @@
         /// <param name="isLoading">A value indicating whether is loading.</param>
         private void HandleLoading(bool isLoading)
         {
-            this.canvasGroup.interactable = !isLoading;
+            if (this.canvasGroup != null)
+            {
+                this.canvasGroup.interactable = !isLoading;
+            }
         }
 
         /// <summary>
