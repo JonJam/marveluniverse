@@ -182,27 +182,27 @@
         /// <param name="result">The result.</param>
         private void CharacterSearchCompleted(IResult<IList<Character>> result)
         {
-            List<SearchResultViewModel> test = new List<SearchResultViewModel>()
+            //List<SearchResultViewModel> test = new List<SearchResultViewModel>()
+            //{
+            //    new SearchResultViewModel("Spiderman", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
+            //    new SearchResultViewModel("Captain America", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
+            //    new SearchResultViewModel("The Incredible Hulk", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
+            //    new SearchResultViewModel("Invinicble Iron Man", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
+            //    new SearchResultViewModel("The Vision", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg")
+            //};
+
+            //this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
+            //this.searchResultsPanel.DisplaySearchResults(test);
+
+            if (result.IsSuccess)
             {
-                new SearchResultViewModel("Spiderman", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
-                new SearchResultViewModel("Captain America", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
-                new SearchResultViewModel("The Incredible Hulk", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
-                new SearchResultViewModel("Invinicble Iron Man", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
-                new SearchResultViewModel("The Vision", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg")
-            };
-
-            this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
-            this.searchResultsPanel.DisplaySearchResults(test);
-
-            //if (result.IsSuccess)
-            //{
-            //    this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(c.Name, c.Thumbnail.Extension, c.Thumbnail.Path)).ToList());
-            //    this.screenManager.OpenPanel(this.searchResultsPanelAnimator);
-            //}
-            //else
-            //{
-            //    // TODO HANDLE Failure
-            //}
+                this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
+                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(c.Name, c.Description, c.Thumbnail.Path, c.Thumbnail.Extension)).ToList());
+            }
+            else
+            {
+                // TODO HANDLE Failure
+            }
 
             this.loadingManager.DecrementRunningOperationCount();
         }
