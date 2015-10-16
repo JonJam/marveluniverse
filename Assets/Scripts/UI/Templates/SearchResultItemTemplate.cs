@@ -96,10 +96,6 @@
             {
                 this.Image.texture = result.Data;
             }
-            else
-            {
-                // TODO HANDLE Failure
-            }
         }
     }
 }
