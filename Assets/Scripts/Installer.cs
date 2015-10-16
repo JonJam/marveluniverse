@@ -7,6 +7,7 @@
     using MarvelUniverse.Communications.Web;
     using MarvelUniverse.Loading;
     using Screen;
+    using ViewModel;
 
     /// <summary>
     /// The installer.
@@ -21,6 +22,8 @@
             this.InstallCommunicationBindings();
 
             this.InstallUIBindings();
+
+            this.InstallViewModels();            
         }
 
         /// <summary>
@@ -43,6 +46,14 @@
         {
             this.Container.Bind<ILoadingManager>().ToSingle<LoadingManager>();
             this.Container.Bind<IScreenManager>().ToSingle<ScreenManager>();
+        }
+
+        /// <summary>
+        /// Install view models.
+        /// </summary>
+        private void InstallViewModels()
+        {
+            this.Container.Bind<SearchViewModel>().ToSingle();
         }
     }
 }
