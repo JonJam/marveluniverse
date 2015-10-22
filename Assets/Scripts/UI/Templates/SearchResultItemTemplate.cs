@@ -94,6 +94,7 @@
         {
             if (result.IsSuccess)
             {
+                this.Image.color = Color.white;
                 this.Image.texture = result.Data;
             }
         }
