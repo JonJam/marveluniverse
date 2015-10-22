@@ -21,6 +21,15 @@
         /// Initializes a new instance of the <see cref="EventButtonDetails"/> class.
         /// </summary>
         /// <param name="buttonTitle">The button title.</param>
+        public EventButtonDetails(
+            string buttonTitle) : this(buttonTitle, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventButtonDetails"/> class.
+        /// </summary>
+        /// <param name="buttonTitle">The button title.</param>
         /// <param name="buttonAction">The button action.</param>
         public EventButtonDetails(
             string buttonTitle,

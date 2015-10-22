@@ -4,6 +4,7 @@
     using Events;
     using MarvelUniverse.Communications;
     using MarvelUniverse.Communications.Encryption;
+    using Communications.Result;
     using MarvelUniverse.Communications.Serialization;
     using MarvelUniverse.Communications.Web;
     using MarvelUniverse.Loading;
@@ -37,6 +38,8 @@
             this.Container.Bind<IEncryptionService>().ToSingle<EncryptionService>();
             this.Container.Bind<IJsonSerializer>().ToSingle<JsonSerializer>();
             this.Container.Bind<IWebRequestor>().ToSingle<WebRequestor>();
+            
+            this.Container.Bind<IResultProcessor>().ToSingle<ResultProcessor>();
 
             this.Container.Bind<ICharacterService>().ToSingle<CharacterService>();
             this.Container.Bind<IImageService>().ToSingle<ImageService>();
