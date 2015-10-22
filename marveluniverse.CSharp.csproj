@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -167,7 +165,6 @@
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\DecoratorInstaller.cs" />
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\SceneDecoratorCompositionRoot.cs" />
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\UnityUtil.cs" />
-    <Compile Include="Assets\Scripts\BringToFront.cs" />
     <Compile Include="Assets\Scripts\Communications\CharacterService.cs" />
     <Compile Include="Assets\Scripts\Communications\Encryption\EncryptionService.cs" />
     <Compile Include="Assets\Scripts\Communications\Encryption\IEncryptionService.cs" />
@@ -180,12 +177,12 @@
     <Compile Include="Assets\Scripts\Communications\Serialization\JsonSerializer.cs" />
     <Compile Include="Assets\Scripts\Communications\Web\IWebRequestor.cs" />
     <Compile Include="Assets\Scripts\Communications\Web\WebRequestor.cs" />
-    <Compile Include="Assets\Scripts\DisplayManager.cs" />
+    <Compile Include="Assets\Scripts\Events\EventManager.cs" />
+    <Compile Include="Assets\Scripts\Events\IEventManager.cs" />
     <Compile Include="Assets\Scripts\Installer.cs" />
     <Compile Include="Assets\Scripts\Loading\ILoadingManager.cs" />
     <Compile Include="Assets\Scripts\Loading\LoadingEvent.cs" />
     <Compile Include="Assets\Scripts\Loading\LoadingManager.cs" />
-    <Compile Include="Assets\Scripts\ModalPanel.cs" />
     <Compile Include="Assets\Scripts\Model\Character\Character.cs" />
     <Compile Include="Assets\Scripts\Model\Character\CharacterSummary.cs" />
     <Compile Include="Assets\Scripts\Model\Comic\Comic.cs" />
@@ -209,10 +206,13 @@
     <Compile Include="Assets\Scripts\Model\Url.cs" />
     <Compile Include="Assets\Scripts\Screen\IScreenManager.cs" />
     <Compile Include="Assets\Scripts\Screen\ScreenManager.cs" />
-    <Compile Include="Assets\Scripts\Tags.cs" />
-    <Compile Include="Assets\Scripts\TestModalWindow.cs" />
+    <Compile Include="Assets\Scripts\UI\Controls\BringToFront.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\ListView.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\LoadingIndicator.cs" />
+    <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\EventButtonDetails.cs" />
+    <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\MessageDialogDetails.cs" />
+    <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\MessagePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\ShowMessageDialogEvent.cs" />
     <Compile Include="Assets\Scripts\UI\SearchPanel.cs" />
     <Compile Include="Assets\Scripts\UI\SearchResultsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Templates\IItemTemplate.cs" />
@@ -224,9 +224,6 @@
     <None Include="Assets\Materials\GemShader\diamond shader.shader" />
     <None Include="Assets\VS\ReferencedAssemblies\Newtonsoft.Json\Newtonsoft.Json.dll.CodeAnalysisLog.xml" />
     <None Include="Assets\VS\ReferencedAssemblies\Newtonsoft.Json\Newtonsoft.Json.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Scripts\UI\Controls\MessageDialog\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

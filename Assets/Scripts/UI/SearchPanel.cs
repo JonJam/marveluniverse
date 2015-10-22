@@ -11,6 +11,7 @@
     using UnityEngine.UI;
     using Zenject;
     using Screen;
+    using Events;
 
     /// <summary>
     /// Search.
@@ -31,6 +32,11 @@
         /// The screen manager.
         /// </summary>
         private IScreenManager screenManager;
+
+        /// <summary>
+        /// The event manager.
+        /// </summary>
+        private IEventManager eventManager;
 
         /// <summary>
         /// The search view model.
@@ -74,14 +80,17 @@
             ICharacterService characterService,
             ILoadingManager loadingManager,
             IScreenManager screenManager,
+            IEventManager eventManager,
             SearchViewModel searchViewModel)
         {
             this.characterService = characterService;
             this.loadingManager = loadingManager;
             this.screenManager = screenManager;
+            this.eventManager = eventManager;
+
             this.searchViewModel = searchViewModel;
 
-            this.loadingManager.Loading.AddListener(this.HandleLoading);
+            this.eventManager.GetEvent<LoadingEvent>().AddListener(this.HandleLoading);
         }
 
         /// <summary>
@@ -161,7 +170,7 @@
         /// </summary>
         private void OnDestroy()
         {
-            this.loadingManager.Loading.RemoveListener(this.HandleLoading);
+            this.eventManager.GetEvent<LoadingEvent>().RemoveListener(this.HandleLoading);
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿namespace MarvelUniverse.Loading
 {
     using System.Threading;
+    using Events;
 
     /// <summary>
     /// The loading manager.
@@ -8,32 +9,21 @@
     public class LoadingManager : ILoadingManager
     {
         /// <summary>
+        /// The event manager.
+        /// </summary>
+        private readonly IEventManager eventManager;
+
+        /// <summary>
         /// The running operation count.
         /// </summary>
         private int runningOperationCount;
 
         /// <summary>
-        /// The loading event.
-        /// </summary>
-        private readonly LoadingEvent loading;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="LoadingManager"/> class.
         /// </summary>
-        public LoadingManager()
+        public LoadingManager(IEventManager eventManager)
         {
-            this.loading = new LoadingEvent();
-        }
-
-        /// <summary>
-        /// The loading event.
-        /// </summary>
-        public LoadingEvent Loading
-        {
-            get
-            {
-                return this.loading;
-            }
+            this.eventManager = eventManager;  
         }
 
         /// <summary>
@@ -43,7 +33,7 @@
         {
             Interlocked.Increment(ref this.runningOperationCount);
             
-            this.Loading.Invoke(true);
+            this.eventManager.GetEvent<LoadingEvent>().Invoke(true);
         }
 
         /// <summary>
@@ -55,7 +45,7 @@
 
             if (newCount == 0)
             {
-                this.Loading.Invoke(false);
+                this.eventManager.GetEvent<LoadingEvent>().Invoke(false);
             }
         }
     }

@@ -6,7 +6,7 @@
     using Zenject;
 
     /// <summary>
-    ///  A list view.
+    /// A list view.
     /// </summary>
     public class ListView : MonoBehaviour
     {

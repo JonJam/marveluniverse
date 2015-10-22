@@ -1,6 +1,7 @@
 ﻿namespace MarvelUniverse
 {
     using Communications.Interfaces;
+    using Events;
     using MarvelUniverse.Communications;
     using MarvelUniverse.Communications.Encryption;
     using MarvelUniverse.Communications.Serialization;
@@ -21,6 +22,8 @@
         {
             this.InstallCommunicationBindings();
 
+            this.InstallInfrastructureBindings();
+
             this.InstallUIBindings();
 
             this.InstallViewModels();            
@@ -37,6 +40,14 @@
 
             this.Container.Bind<ICharacterService>().ToSingle<CharacterService>();
             this.Container.Bind<IImageService>().ToSingle<ImageService>();
+        }
+
+        /// <summary>
+        /// Install infrastructure bindings.
+        /// </summary>
+        private void InstallInfrastructureBindings()
+        {
+            this.Container.Bind<IEventManager>().ToSingle<EventManager>();
         }
 
         /// <summary>

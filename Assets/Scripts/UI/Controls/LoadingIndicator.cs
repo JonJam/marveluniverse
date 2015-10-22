@@ -1,6 +1,7 @@
 ﻿namespace MarvelUniverse.UI.Controls
 {
     using Loading;
+    using Events;
     using UnityEngine;
     using Zenject;
 
@@ -13,6 +14,11 @@
         /// The is loading animator parameter name.
         /// </summary>
         private const string IsLoadingAnimatorParameterName = "IsLoading";
+        
+        /// <summary>
+        /// The event manager.
+        /// </summary>
+        private IEventManager eventManager;
 
         /// <summary>
         /// The animator.
@@ -25,21 +31,16 @@
         private int isLoadingAnimatorParameterId;
 
         /// <summary>
-        /// The loading manager.
-        /// </summary>
-        private ILoadingManager loadingManager;
-
-        /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <param name="loadingManager">The loading mananger</param>
+        /// <param name="eventManager">The event mananger</param>
         [PostInject]
         private void InjectionInitialize(
-            ILoadingManager loadingManager)
+            IEventManager eventManager)
         {
-            this.loadingManager = loadingManager;
+            this.eventManager = eventManager;
 
-            this.loadingManager.Loading.AddListener(this.HandleLoading);
+            this.eventManager.GetEvent<LoadingEvent>().AddListener(this.HandleLoading);
         }
 
         /// <summary>
@@ -56,7 +57,7 @@
         /// </summary>
         private void OnDestroy()
         {
-            this.loadingManager.Loading.RemoveListener(this.HandleLoading);
+            this.eventManager.GetEvent<LoadingEvent>().RemoveListener(this.HandleLoading);
         }
 
         /// <summary>
