@@ -39,6 +39,11 @@
         private IEventManager eventManager;
 
         /// <summary>
+        /// The result processor.
+        /// </summary>
+        private IResultProcessor resultProcessor;
+
+        /// <summary>
         /// The search view model.
         /// </summary>
         private SearchViewModel searchViewModel;
@@ -74,6 +79,8 @@
         /// <param name="characterService">The character service.</param>
         /// <param name="loadingManager">The loading manager.</param>
         /// <param name="screenManager">The screen manaager.</param>
+        /// <param name="eventManager">The event manager.</param>
+        /// <param name="resultProcessor">The result processor.</param>
         /// <param name="searchViewModel">The search view model.</param>
         [PostInject]
         private void InjectionInitialize(
@@ -81,12 +88,14 @@
             ILoadingManager loadingManager,
             IScreenManager screenManager,
             IEventManager eventManager,
+            IResultProcessor resultProcessor,
             SearchViewModel searchViewModel)
         {
             this.characterService = characterService;
             this.loadingManager = loadingManager;
             this.screenManager = screenManager;
             this.eventManager = eventManager;
+            this.resultProcessor = resultProcessor;
 
             this.searchViewModel = searchViewModel;
 
@@ -203,14 +212,10 @@
             //this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
             //this.searchResultsPanel.DisplaySearchResults(test);
 
-            if (result.IsSuccess)
+            if (this.resultProcessor.ProcessResult(result))
             {
                 this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
                 this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(c.Name, c.Description, c.Thumbnail.Path, c.Thumbnail.Extension)).ToList());
-            }
-            else
-            {
-                // TODO HANDLE Failure
             }
 
             this.loadingManager.DecrementRunningOperationCount();

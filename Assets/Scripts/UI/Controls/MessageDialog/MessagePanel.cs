@@ -87,7 +87,12 @@
 
             this.RestoreDefault();
 
-            this.Title.text = details.Title;
+            if (!string.IsNullOrEmpty(details.Title))
+            {
+                this.Title.gameObject.SetActive(true);
+                this.Title.text = details.Title;
+            }
+                       
             this.Message.text = details.Message;
 
             this.SetupButton(
@@ -111,6 +116,8 @@
         /// </summary>
         private void RestoreDefault()
         {
+            this.Title.gameObject.SetActive(false);
+
             this.Button1.gameObject.SetActive(false);
             this.Button2.gameObject.SetActive(false);
             this.Button3.gameObject.SetActive(false);
@@ -135,7 +142,11 @@
             {
                 buttonTextToSetup.text = buttonDetails.ButtonTitle;
 
-                buttonToSetup.onClick.AddListener(buttonDetails.ButtonAction);
+                if (buttonDetails.ButtonAction != null)
+                {
+                    buttonToSetup.onClick.AddListener(buttonDetails.ButtonAction);
+                }
+
                 buttonToSetup.onClick.AddListener(this.ClosePanel);
 
                 buttonToSetup.gameObject.SetActive(true);
