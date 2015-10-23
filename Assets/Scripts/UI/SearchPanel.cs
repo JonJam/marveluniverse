@@ -4,14 +4,18 @@
     using System.Linq;
     using Communications.Interfaces;
     using Communications.Result;
+    using Events;
     using Loading;
-    using ViewModel;
     using Model.Character;
+    using Model.Comic;
+    using Model.Creator;
+    using Model.Series;
+    using Screen;
     using UnityEngine;
     using UnityEngine.UI;
+    using ViewModel;
     using Zenject;
-    using Screen;
-    using Events;
+    using Event = MarvelUniverse.Model.Event.Event;
 
     /// <summary>
     /// Search.
@@ -22,6 +26,26 @@
         /// The character service.
         /// </summary>
         private ICharacterService characterService;
+
+        /// <summary>
+        /// The comic service.
+        /// </summary>
+        private IComicService comicService;
+
+        /// <summary>
+        /// The creator service.
+        /// </summary>
+        private ICreatorService creatorService;
+
+        /// <summary>
+        /// The series service.
+        /// </summary>
+        private ISeriesService seriesService;
+
+        /// <summary>
+        /// The event service.
+        /// </summary>
+        private IEventService eventService;
 
         /// <summary>
         /// The loading manager.
@@ -77,6 +101,10 @@
         /// Injection initialization.
         /// </summary>
         /// <param name="characterService">The character service.</param>
+        /// <param name="comicService">The comic service.</param>
+        /// <param name="creatorService">The creator service.</param>
+        /// <param name="seriesService">The series service.</param>
+        /// <param name="eventService">The event service.</param>
         /// <param name="loadingManager">The loading manager.</param>
         /// <param name="screenManager">The screen manaager.</param>
         /// <param name="eventManager">The event manager.</param>
@@ -85,6 +113,10 @@
         [PostInject]
         private void InjectionInitialize(
             ICharacterService characterService,
+            IComicService comicService,
+            ICreatorService creatorService,
+            ISeriesService seriesService,
+            IEventService eventService,
             ILoadingManager loadingManager,
             IScreenManager screenManager,
             IEventManager eventManager,
@@ -92,6 +124,11 @@
             SearchViewModel searchViewModel)
         {
             this.characterService = characterService;
+            this.comicService = comicService;
+            this.creatorService = creatorService;
+            this.seriesService = seriesService;
+            this.eventService = eventService;
+
             this.loadingManager = loadingManager;
             this.screenManager = screenManager;
             this.eventManager = eventManager;
@@ -117,17 +154,19 @@
             switch (selectedSearchType)
             {
                 case "Character":
-                    this.StartCoroutine(this.characterService.Search(this.searchViewModel.SearchTerms, CharacterSearchCompleted));
+                    this.StartCoroutine(this.characterService.Search(this.searchViewModel.SearchTerms, this.CharacterSearchCompleted));
                     break;
                 case "Comic":
+                    this.StartCoroutine(this.comicService.Search(this.searchViewModel.SearchTerms, this.ComicSearchCompleted));
                     break;
                 case "Creator":
+                    this.StartCoroutine(this.creatorService.Search(this.searchViewModel.SearchTerms, this.CreatorSearchCompleted));
                     break;
                 case "Event":
+                    this.StartCoroutine(this.eventService.Search(this.searchViewModel.SearchTerms, this.EventSearchCompleted));
                     break;
                 case "Series":
-                    break;
-                case "Story":
+                    this.StartCoroutine(this.seriesService.Search(this.searchViewModel.SearchTerms, this.SeriesSearchCompleted));
                     break;
             }
         }
@@ -200,22 +239,70 @@
         /// <param name="result">The result.</param>
         private void CharacterSearchCompleted(IResult<IList<Character>> result)
         {
-            //List<SearchResultViewModel> test = new List<SearchResultViewModel>()
-            //{
-            //    new SearchResultViewModel("Spiderman", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
-            //    new SearchResultViewModel("Captain America", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
-            //    new SearchResultViewModel("The Incredible Hulk", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
-            //    new SearchResultViewModel("Invinicble Iron Man", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg"),
-            //    new SearchResultViewModel("The Vision", "Bitten by a radioactive spider, high school student Peter Parker gained the speed, strength and powers of a spider. Adopting the name Spider-Man, Peter hoped to start a career using his new abilities. Taught that with great power comes great responsibility, Spidey has vowed to use his powers to help people.", "http://i.annihil.us/u/prod/marvel/i/mg/3/50/526548a343e4b", "jpg")
-            //};
-
-            //this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
-            //this.searchResultsPanel.DisplaySearchResults(test);
-
             if (this.resultProcessor.ProcessResult(result))
             {
                 this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
                 this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(c.Name, c.Description, c.Thumbnail.Path, c.Thumbnail.Extension)).ToList());
+            }
+
+            this.loadingManager.DecrementRunningOperationCount();
+        }
+
+        /// <summary>
+        /// Handles the completion of the comic search. 
+        /// </summary>
+        /// <param name="result">The result.</param>
+        private void ComicSearchCompleted(IResult<IList<Comic>> result)
+        {
+            if (this.resultProcessor.ProcessResult(result))
+            {
+                this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
+                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(c.Title, c.Description, c.Thumbnail.Path, c.Thumbnail.Extension)).ToList());
+            }
+
+            this.loadingManager.DecrementRunningOperationCount();
+        }
+
+        /// <summary>
+        /// Handles the completion of the creator search. 
+        /// </summary>
+        /// <param name="result">The result.</param>
+        private void CreatorSearchCompleted(IResult<IList<Creator>> result)
+        {
+            if (this.resultProcessor.ProcessResult(result))
+            {
+                this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
+                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(c.FullName, null, c.Thumbnail.Path, c.Thumbnail.Extension)).ToList());
+            }
+
+            this.loadingManager.DecrementRunningOperationCount();
+        }
+
+        /// <summary>
+        /// Handles the completion of the character series. 
+        /// </summary>
+        /// <param name="result">The result.</param>
+        private void SeriesSearchCompleted(IResult<IList<Series>> result)
+        {
+            if (this.resultProcessor.ProcessResult(result))
+            {
+                this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
+                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(s => new SearchResultViewModel(s.Title, s.Description, s.Thumbnail.Path, s.Thumbnail.Extension)).ToList());
+            }
+
+            this.loadingManager.DecrementRunningOperationCount();
+        }
+
+        /// <summary>
+        /// Handles the completion of the event search. 
+        /// </summary>
+        /// <param name="result">The result.</param>
+        private void EventSearchCompleted(IResult<IList<Event>> result)
+        {
+            if (this.resultProcessor.ProcessResult(result))
+            {
+                this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
+                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(e => new SearchResultViewModel(e.Title, e.Description, e.Thumbnail.Path, e.Thumbnail.Extension)).ToList());
             }
 
             this.loadingManager.DecrementRunningOperationCount();

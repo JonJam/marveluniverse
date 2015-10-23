@@ -8,30 +8,30 @@
     using MarvelUniverse.Communications.Serialization;
     using MarvelUniverse.Communications.Web;
     using MarvelUniverse.Model;
-    using MarvelUniverse.Model.Character;
+    using Model.Creator;
     using UnityEngine;
 
     /// <summary>
-    /// A character service.
+    /// A creator service.
     /// </summary>
-    public class CharacterService : BaseService, ICharacterService
+    public class CreatorService : BaseService, ICreatorService
     {
         /// <summary>
-        /// The character search request URL.
+        /// The creator search request URL.
         /// </summary>
-        private const string CharacterSearchRequestUrl = "http://gateway.marvel.com:80/v1/public/characters?nameStartsWith={0}";
+        private const string CreatorSearchRequestUrl = "http://gateway.marvel.com:80/v1/public/creators?nameStartsWith={0}";
 
         /// <summary>
         /// The web requestor.
         /// </summary>
         private readonly IWebRequestor webRequestor;
-
+        
         /// <summary>
-        /// Initializes a new instance of the <see cref="CharacterService"/> class.
+        /// Initializes a new instance of the <see cref="CreatorService"/> class.
         /// </summary>
         /// <param name="webRequestor">The web requestor.</param>
         /// <param name="jsonSerializer">The JSON serializer.</param>
-        public CharacterService(
+        public CreatorService(
             IWebRequestor webRequestor,
             IJsonSerializer jsonSerializer) : base(jsonSerializer)
         {
@@ -39,33 +39,33 @@
         }
 
         /// <summary>
-        /// Performs a character search.
+        /// Performs a creator search.
         /// </summary>
         /// <param name="searchTerms">The search terms.</param>
         /// <param name="callback">The callback.</param>
         /// <returns>A coroutine.</returns>
         public IEnumerator Search(
             string searchTerms,
-            Action<IResult<IList<Character>>> callback)
+            Action<IResult<IList<Creator>>> callback)
         {
             searchTerms = WWW.EscapeURL(searchTerms);
 
-            string searchRequestUrl = string.Format(CharacterService.CharacterSearchRequestUrl, searchTerms);
+            string searchRequestUrl = string.Format(CreatorService.CreatorSearchRequestUrl, searchTerms);
 
             WWW request = this.webRequestor.PerformAuthorizedGetRequest(searchRequestUrl);
 
             yield return request;
 
-            IResult<IList<Character>> result = null;
+            IResult<IList<Creator>> result = null;
 
             if (request != null &&
                 string.IsNullOrEmpty(request.error))
             {
-                result = this.CreateSuccessfulSearchResult<Character>(request.text);
+                result = this.CreateSuccessfulSearchResult<Creator>(request.text);
             }
             else
             {
-                result = new Result<IList<Character>>(request.error);
+                result = new Result<IList<Creator>>(request.error);
             }           
 
             callback(result);
