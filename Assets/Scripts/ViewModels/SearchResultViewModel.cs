@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.ViewModel
+﻿namespace MarvelUniverse.ViewModels
 {
     /// <summary>
     /// The search results view model.

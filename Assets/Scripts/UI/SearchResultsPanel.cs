@@ -5,7 +5,7 @@
     using Screen;
     using UnityEngine;
     using UnityEngine.UI;
-    using ViewModel;
+    using ViewModels;
     using Zenject;
 
     /// <summary>

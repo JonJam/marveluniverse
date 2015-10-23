@@ -3,7 +3,7 @@
     using MarvelUniverse.Communications.Interfaces;
     using MarvelUniverse.Communications.Result;
     using MarvelUniverse.Model.Image;
-    using MarvelUniverse.ViewModel;
+    using MarvelUniverse.ViewModels;
     using UnityEngine;
     using UnityEngine.UI;
     using Zenject;
