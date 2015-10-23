@@ -17,5 +17,10 @@
         /// Goes back to the previous screen.
         /// </summary>
         void GoBack();
+
+        /// <summary>
+        /// Close the currently open screen and reverting the selected element.
+        /// </summary>
+        void CloseCurrent();
     }
 }
