@@ -9,6 +9,7 @@
     using MarvelUniverse.Communications.Web;
     using MarvelUniverse.Loading;
     using Screen;
+    using Spawner;
     using ViewModels;
 
     /// <summary>
@@ -16,6 +17,11 @@
     /// </summary>
     public class Installer : Zenject.MonoInstaller
     {
+        /// <summary>
+        /// The scene settings.
+        /// </summary>
+        public SceneSettings SceneSettings;
+
         /// <summary>
         /// Install bindings.
         /// </summary>
@@ -25,9 +31,9 @@
 
             this.InstallInfrastructureBindings();
 
-            this.InstallUIBindings();
+            this.InstallViewModels();
 
-            this.InstallViewModels();            
+            this.InstallUIBindings();                        
         }
 
         /// <summary>
@@ -56,6 +62,14 @@
         private void InstallInfrastructureBindings()
         {
             this.Container.Bind<IEventManager>().ToSingle<EventManager>();
+            this.Container.Bind<IPlanetSystemSpawner>().ToInstance(new PlanetSystemSpawner(
+                this.SceneSettings.InitialPlanetSystemPosition,
+                this.SceneSettings.CharacterPlanetSystemPrefab,
+                this.SceneSettings.ComicPlanetSystemPrefab,
+                this.SceneSettings.CreatorPlanetSystemPrefab,
+                this.SceneSettings.EventPlanetSystemPrefab,
+                this.SceneSettings.SeriesPlanetSystemPrefab,
+                this.SceneSettings.StoryPlanetSystemPrefab));
         }
 
         /// <summary>

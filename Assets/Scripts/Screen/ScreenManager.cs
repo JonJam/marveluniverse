@@ -82,7 +82,7 @@
         /// <summary>
         /// Close the currently open screen and reverting the selected element.
         /// </summary>
-        private void CloseCurrent()
+        public void CloseCurrent()
         {
             if (this.currentlyOpenScreen != null)
             {

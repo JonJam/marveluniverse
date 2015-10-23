@@ -1,10 +1,19 @@
 ﻿namespace MarvelUniverse.ViewModels
 {
+    using System;
+    using Screen;
+    using MarvelUniverse.Spawner;
+
     /// <summary>
     /// The search results view model.
     /// </summary>
     public class SearchResultViewModel
     {
+        /// <summary>
+        /// The screen manager.
+        /// </summary>
+        private readonly IScreenManager screenManager;
+
         /// <summary>
         /// The name.
         /// </summary>
@@ -24,6 +33,11 @@
         /// The image extension.
         /// </summary>
         private readonly string imageExtension;
+                
+        /// <summary>
+        /// The spawn action.
+        /// </summary>
+        private readonly Action spawnAction;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchResultViewModel"/> class.
@@ -33,15 +47,21 @@
         /// <param name="imagePath">The image path.</param>
         /// <param name="imageExtension">The image extension.</param>
         public SearchResultViewModel(
+            IScreenManager screenManager,
             string name, 
             string description,
             string imagePath,
-            string imageExtension)
+            string imageExtension,
+            Action spawnAction)
         {
+            this.screenManager = screenManager;
+
             this.name = name;
             this.description = description;
             this.imagePath = imagePath;
             this.imageExtension = imageExtension;
+
+            this.spawnAction = spawnAction;
         }
 
         /// <summary>
@@ -93,7 +113,9 @@
         /// </summary>
         public void SearchResultClicked()
         {
-            // TODO Implement
+            this.screenManager.CloseCurrent();
+
+            this.spawnAction();
         }
     }
 }

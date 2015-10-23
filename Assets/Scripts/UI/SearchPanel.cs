@@ -6,6 +6,7 @@
     using Communications.Result;
     using Events;
     using Loading;
+    using Spawner;
     using Model.Character;
     using Model.Comic;
     using Model.Creator;
@@ -68,6 +69,11 @@
         private IResultProcessor resultProcessor;
 
         /// <summary>
+        /// The planet system spawner.
+        /// </summary>
+        private IPlanetSystemSpawner planetSystemSpawner;
+
+        /// <summary>
         /// The search view model.
         /// </summary>
         private SearchViewModel searchViewModel;
@@ -109,6 +115,7 @@
         /// <param name="screenManager">The screen manaager.</param>
         /// <param name="eventManager">The event manager.</param>
         /// <param name="resultProcessor">The result processor.</param>
+        /// <param name="planetSystemSpawner">The planet system spawner.</param>
         /// <param name="searchViewModel">The search view model.</param>
         [PostInject]
         private void InjectionInitialize(
@@ -121,6 +128,7 @@
             IScreenManager screenManager,
             IEventManager eventManager,
             IResultProcessor resultProcessor,
+            IPlanetSystemSpawner planetSystemSpawner,
             SearchViewModel searchViewModel)
         {
             this.characterService = characterService;
@@ -133,6 +141,7 @@
             this.screenManager = screenManager;
             this.eventManager = eventManager;
             this.resultProcessor = resultProcessor;
+            this.planetSystemSpawner = planetSystemSpawner;
 
             this.searchViewModel = searchViewModel;
 
@@ -242,7 +251,13 @@
             if (this.resultProcessor.ProcessResult(result))
             {
                 this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
-                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(c.Name, c.Description, c.Thumbnail.Path, c.Thumbnail.Extension)).ToList());
+                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(
+                    this.screenManager,
+                    c.Name, 
+                    c.Description, 
+                    c.Thumbnail.Path,
+                    c.Thumbnail.Extension,
+                    () => this.planetSystemSpawner.Instantiate(c))).ToList());
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -257,7 +272,13 @@
             if (this.resultProcessor.ProcessResult(result))
             {
                 this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
-                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(c.Title, c.Description, c.Thumbnail.Path, c.Thumbnail.Extension)).ToList());
+                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(
+                    this.screenManager,
+                    c.Title, 
+                    c.Description, 
+                    c.Thumbnail.Path, 
+                    c.Thumbnail.Extension,
+                    () => this.planetSystemSpawner.Instantiate(c))).ToList());
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -272,7 +293,13 @@
             if (this.resultProcessor.ProcessResult(result))
             {
                 this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
-                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(c.FullName, null, c.Thumbnail.Path, c.Thumbnail.Extension)).ToList());
+                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(
+                    this.screenManager,
+                    c.FullName, 
+                    null, 
+                    c.Thumbnail.Path,
+                    c.Thumbnail.Extension,
+                    () => this.planetSystemSpawner.Instantiate(c))).ToList());
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -287,7 +314,13 @@
             if (this.resultProcessor.ProcessResult(result))
             {
                 this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
-                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(s => new SearchResultViewModel(s.Title, s.Description, s.Thumbnail.Path, s.Thumbnail.Extension)).ToList());
+                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(s => new SearchResultViewModel(
+                    this.screenManager,
+                    s.Title, 
+                    s.Description, 
+                    s.Thumbnail.Path, 
+                    s.Thumbnail.Extension,
+                    () => this.planetSystemSpawner.Instantiate(s))).ToList());
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -302,7 +335,13 @@
             if (this.resultProcessor.ProcessResult(result))
             {
                 this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
-                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(e => new SearchResultViewModel(e.Title, e.Description, e.Thumbnail.Path, e.Thumbnail.Extension)).ToList());
+                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(e => new SearchResultViewModel(
+                    this.screenManager,
+                    e.Title, 
+                    e.Description, 
+                    e.Thumbnail.Path, 
+                    e.Thumbnail.Extension,
+                    () => this.planetSystemSpawner.Instantiate(e))).ToList());
             }
 
             this.loadingManager.DecrementRunningOperationCount();
