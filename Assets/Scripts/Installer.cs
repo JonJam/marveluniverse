@@ -9,7 +9,7 @@
     using MarvelUniverse.Communications.Web;
     using MarvelUniverse.Loading;
     using Screen;
-    using ViewModel;
+    using ViewModels;
 
     /// <summary>
     /// The installer.
