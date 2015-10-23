@@ -66,7 +66,7 @@
         /// Gets or sets the modified date time.
         /// </summary>
         [JsonProperty("modified")]
-        public DateTime Modified { get; set; }
+        public string Modified { get; set; }
 
         /// <summary>
         /// Gets or sets the thumbnail.

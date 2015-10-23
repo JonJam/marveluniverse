@@ -1,10 +1,10 @@
 ﻿namespace MarvelUniverse
 {
     using Communications.Interfaces;
+    using Communications.Result;
     using Events;
     using MarvelUniverse.Communications;
     using MarvelUniverse.Communications.Encryption;
-    using Communications.Result;
     using MarvelUniverse.Communications.Serialization;
     using MarvelUniverse.Communications.Web;
     using MarvelUniverse.Loading;
@@ -42,6 +42,11 @@
             this.Container.Bind<IResultProcessor>().ToSingle<ResultProcessor>();
 
             this.Container.Bind<ICharacterService>().ToSingle<CharacterService>();
+            this.Container.Bind<IComicService>().ToSingle<ComicService>();
+            this.Container.Bind<ICreatorService>().ToSingle<CreatorService>();
+            this.Container.Bind<ISeriesService>().ToSingle<SeriesService>();
+            this.Container.Bind<IEventService>().ToSingle<EventService>();
+
             this.Container.Bind<IImageService>().ToSingle<ImageService>();
         }
 
