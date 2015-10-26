@@ -43,5 +43,25 @@
         /// The story planet system prefab.
         /// </summary>
         public GameObject StoryPlanetSystemPrefab;
+
+        /// <summary>
+        /// The spawn sphere radius.
+        /// </summary>
+        public int SpawmSphereRadius;
+
+        /// <summary>
+        /// The planet system size.
+        /// </summary>
+        public float PlanetSystemSize;
+
+        /// <summary>
+        /// The planet size.
+        /// </summary>
+        public float PlanetSize;
+
+        /// <summary>
+        /// The main camera.
+        /// </summary>
+        public Camera MainCamera;
     }
 }
