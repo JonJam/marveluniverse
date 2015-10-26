@@ -33,7 +33,7 @@
 
             this.InstallViewModels();
 
-            this.InstallUIBindings();                        
+            this.InstallUIBindings();            
         }
 
         /// <summary>
@@ -69,7 +69,11 @@
                 this.SceneSettings.CreatorPlanetSystemPrefab,
                 this.SceneSettings.EventPlanetSystemPrefab,
                 this.SceneSettings.SeriesPlanetSystemPrefab,
-                this.SceneSettings.StoryPlanetSystemPrefab));
+                this.SceneSettings.StoryPlanetSystemPrefab,
+                this.SceneSettings.SpawmSphereRadius,
+                this.SceneSettings.PlanetSystemSize,
+                this.SceneSettings.PlanetSize,
+                this.SceneSettings.MainCamera));
         }
 
         /// <summary>
