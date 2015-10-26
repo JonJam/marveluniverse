@@ -253,6 +253,7 @@
                 this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
                 this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(
                     this.screenManager,
+                    this.eventManager,
                     c.Name, 
                     c.Description, 
                     c.Thumbnail.Path,
@@ -274,6 +275,7 @@
                 this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
                 this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(
                     this.screenManager,
+                    this.eventManager,
                     c.Title, 
                     c.Description, 
                     c.Thumbnail.Path, 
@@ -295,6 +297,7 @@
                 this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
                 this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(
                     this.screenManager,
+                    this.eventManager,
                     c.FullName, 
                     null, 
                     c.Thumbnail.Path,
@@ -316,6 +319,7 @@
                 this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
                 this.searchResultsPanel.DisplaySearchResults(result.Data.Select(s => new SearchResultViewModel(
                     this.screenManager,
+                    this.eventManager,
                     s.Title, 
                     s.Description, 
                     s.Thumbnail.Path, 
@@ -337,6 +341,7 @@
                 this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
                 this.searchResultsPanel.DisplaySearchResults(result.Data.Select(e => new SearchResultViewModel(
                     this.screenManager,
+                    this.eventManager,
                     e.Title, 
                     e.Description, 
                     e.Thumbnail.Path, 

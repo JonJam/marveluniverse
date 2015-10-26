@@ -1,8 +1,9 @@
 ﻿namespace MarvelUniverse.ViewModels
 {
     using System;
+    using Behaviours.Camera;
+    using Events;
     using Screen;
-    using MarvelUniverse.Spawner;
 
     /// <summary>
     /// The search results view model.
@@ -13,6 +14,11 @@
         /// The screen manager.
         /// </summary>
         private readonly IScreenManager screenManager;
+
+        /// <summary>
+        /// The event manager.
+        /// </summary>
+        private readonly IEventManager eventManager;
 
         /// <summary>
         /// The name.
@@ -42,12 +48,16 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchResultViewModel"/> class.
         /// </summary>
+        /// <param name="screenManager">The screen manager.</param>
+        /// <param name="eventManager">The event manager.</param>
         /// <param name="name">The name.</param>
         /// <param name="description">The description.</param>
         /// <param name="imagePath">The image path.</param>
         /// <param name="imageExtension">The image extension.</param>
+        /// <param name="spawnAction">The spawn action.</param>
         public SearchResultViewModel(
             IScreenManager screenManager,
+            IEventManager eventManager,
             string name, 
             string description,
             string imagePath,
@@ -55,6 +65,7 @@
             Action spawnAction)
         {
             this.screenManager = screenManager;
+            this.eventManager = eventManager;
 
             this.name = name;
             this.description = description;
@@ -116,6 +127,8 @@
             this.screenManager.CloseCurrent();
 
             this.spawnAction();
+
+            this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(true);
         }
     }
 }
