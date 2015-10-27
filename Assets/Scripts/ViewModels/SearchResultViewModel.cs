@@ -4,6 +4,7 @@
     using Behaviours.Camera;
     using Events;
     using Screen;
+    using UnityEngine;
 
     /// <summary>
     /// The search results view model.
@@ -41,9 +42,9 @@
         private readonly string imageExtension;
                 
         /// <summary>
-        /// The spawn action.
+        /// The spawn function.
         /// </summary>
-        private readonly Action spawnAction;
+        private readonly Func<Vector3> spawnFunction;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchResultViewModel"/> class.
@@ -54,7 +55,7 @@
         /// <param name="description">The description.</param>
         /// <param name="imagePath">The image path.</param>
         /// <param name="imageExtension">The image extension.</param>
-        /// <param name="spawnAction">The spawn action.</param>
+        /// <param name="spawnFunction">The spawn function.</param>
         public SearchResultViewModel(
             IScreenManager screenManager,
             IEventManager eventManager,
@@ -62,7 +63,7 @@
             string description,
             string imagePath,
             string imageExtension,
-            Action spawnAction)
+            Func<Vector3> spawnFunction)
         {
             this.screenManager = screenManager;
             this.eventManager = eventManager;
@@ -72,7 +73,7 @@
             this.imagePath = imagePath;
             this.imageExtension = imageExtension;
 
-            this.spawnAction = spawnAction;
+            this.spawnFunction = spawnFunction;
         }
 
         /// <summary>
@@ -126,9 +127,11 @@
         {
             this.screenManager.CloseCurrent();
 
-            this.spawnAction();
+            Vector3 spawnPosition = this.spawnFunction();
 
             this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(true);
+
+            this.eventManager.GetEvent<CameraFocusEvent>().Invoke(spawnPosition);
         }
     }
 }

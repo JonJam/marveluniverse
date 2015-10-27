@@ -65,7 +65,7 @@
         {
             this.eventManager = eventManager;
 
-            this.eventManager.GetEvent<ShowMessageDialogEvent>().AddListener(this.HandleShowMessageDialogEvent);
+            this.eventManager.GetEvent<ShowMessageDialogEvent>().AddListener(this.OnShowMessageDialog);
         }
 
         /// <summary>
@@ -73,14 +73,14 @@
         /// </summary>
         private void OnDestroy()
         {
-            this.eventManager.GetEvent<ShowMessageDialogEvent>().RemoveListener(this.HandleShowMessageDialogEvent);
+            this.eventManager.GetEvent<ShowMessageDialogEvent>().RemoveListener(this.OnShowMessageDialog);
         }
 
         /// <summary>
         /// Handles the show message dialog event.
         /// </summary>
         /// <param name="details">The message dialog details.</param>
-        private void HandleShowMessageDialogEvent(
+        private void OnShowMessageDialog(
             MessageDialogDetails details)
         {
             this.gameObject.SetActive(true);

@@ -40,7 +40,7 @@
         {
             this.eventManager = eventManager;
 
-            this.eventManager.GetEvent<LoadingEvent>().AddListener(this.HandleLoading);
+            this.eventManager.GetEvent<LoadingEvent>().AddListener(this.OnLoading);
         }
 
         /// <summary>
@@ -57,14 +57,14 @@
         /// </summary>
         private void OnDestroy()
         {
-            this.eventManager.GetEvent<LoadingEvent>().RemoveListener(this.HandleLoading);
+            this.eventManager.GetEvent<LoadingEvent>().RemoveListener(this.OnLoading);
         }
 
         /// <summary>
         /// Handles the loading event.
         /// </summary>
         /// <param name="isLoading">A value indicating whether is loading.</param>
-        private void HandleLoading(bool isLoading)
+        private void OnLoading(bool isLoading)
         {
             this.gameObject.SetActive(isLoading);
 

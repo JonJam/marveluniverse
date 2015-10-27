@@ -11,6 +11,7 @@
     using Screen;
     using Spawner;
     using ViewModels;
+    using Zenject;
 
     /// <summary>
     /// The installer.
@@ -63,6 +64,7 @@
         {
             this.Container.Bind<IEventManager>().ToSingle<EventManager>();
             this.Container.Bind<IPlanetSystemSpawner>().ToInstance(new PlanetSystemSpawner(
+                this.Container.Resolve<IInstantiator>(),
                 this.SceneSettings.InitialPlanetSystemPosition,
                 this.SceneSettings.CharacterPlanetSystemPrefab,
                 this.SceneSettings.ComicPlanetSystemPrefab,
