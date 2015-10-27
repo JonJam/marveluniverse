@@ -47,7 +47,7 @@
             WWW request = this.webRequestor.PerformGetRequest(requestUri);
 
             yield return request;
-
+            
             IResult<Texture2D> result = null;
 
             if (request != null &&

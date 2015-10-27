@@ -63,5 +63,10 @@
         /// The main camera.
         /// </summary>
         public Camera MainCamera;
+
+        /// <summary>
+        /// The main camera transform.
+        /// </summary>
+        public Transform MainCameraTransform;
     }
 }
