@@ -145,7 +145,7 @@
 
             this.searchViewModel = searchViewModel;
 
-            this.eventManager.GetEvent<LoadingEvent>().AddListener(this.HandleLoading);
+            this.eventManager.GetEvent<LoadingEvent>().AddListener(this.OnLoading);
         }
 
         /// <summary>
@@ -227,14 +227,14 @@
         /// </summary>
         private void OnDestroy()
         {
-            this.eventManager.GetEvent<LoadingEvent>().RemoveListener(this.HandleLoading);
+            this.eventManager.GetEvent<LoadingEvent>().RemoveListener(this.OnLoading);
         }
 
         /// <summary>
         /// Handles the loading event.
         /// </summary>
         /// <param name="isLoading">A value indicating whether is loading.</param>
-        private void HandleLoading(bool isLoading)
+        private void OnLoading(bool isLoading)
         {
             if (this.canvasGroup != null)
             {
@@ -254,11 +254,11 @@
                 this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
-                    c.Name, 
-                    c.Description, 
+                    c.Name,
+                    c.Description,
                     c.Thumbnail.Path,
                     c.Thumbnail.Extension,
-                    () => this.planetSystemSpawner.Instantiate(c))).ToList());
+                    () => { return this.planetSystemSpawner.Instantiate(c); })).ToList());
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -276,11 +276,11 @@
                 this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
-                    c.Title, 
-                    c.Description, 
-                    c.Thumbnail.Path, 
+                    c.Title,
+                    c.Description,
+                    c.Thumbnail.Path,
                     c.Thumbnail.Extension,
-                    () => this.planetSystemSpawner.Instantiate(c))).ToList());
+                    () => { return this.planetSystemSpawner.Instantiate(c); })).ToList());
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -298,11 +298,11 @@
                 this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
-                    c.FullName, 
-                    null, 
+                    c.FullName,
+                    null,
                     c.Thumbnail.Path,
                     c.Thumbnail.Extension,
-                    () => this.planetSystemSpawner.Instantiate(c))).ToList());
+                    () => { return this.planetSystemSpawner.Instantiate(c); })).ToList());
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -320,11 +320,11 @@
                 this.searchResultsPanel.DisplaySearchResults(result.Data.Select(s => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
-                    s.Title, 
-                    s.Description, 
-                    s.Thumbnail.Path, 
+                    s.Title,
+                    s.Description,
+                    s.Thumbnail.Path,
                     s.Thumbnail.Extension,
-                    () => this.planetSystemSpawner.Instantiate(s))).ToList());
+                    () => { return this.planetSystemSpawner.Instantiate(s); })).ToList());
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -342,11 +342,11 @@
                 this.searchResultsPanel.DisplaySearchResults(result.Data.Select(e => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
-                    e.Title, 
-                    e.Description, 
-                    e.Thumbnail.Path, 
+                    e.Title,
+                    e.Description,
+                    e.Thumbnail.Path,
                     e.Thumbnail.Extension,
-                    () => this.planetSystemSpawner.Instantiate(e))).ToList());
+                    () => { return this.planetSystemSpawner.Instantiate(e); })).ToList());
             }
 
             this.loadingManager.DecrementRunningOperationCount();

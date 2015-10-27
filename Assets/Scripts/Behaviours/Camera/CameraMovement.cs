@@ -17,7 +17,7 @@
         /// <summary>
         /// The look speed.
         /// </summary>
-        public float LookSpeed = 100f;
+        public float LookSpeed = 10f;
 
         /// <summary>
         /// The movement speed.
@@ -30,9 +30,29 @@
         public bool InverseVertical = true;
 
         /// <summary>
-        /// A value indicating whether is movement enabled.
+        /// The camera rest position.
+        /// </summary>
+        public Vector3 CameraRestPosition;
+
+        /// <summary>
+        /// A value indicating whether movement is enabled.
         /// </summary>
         private bool isMovementEnabled;
+
+        /// <summary>
+        /// A value indicating whether this instance is focusing on an object.
+        /// </summary>
+        private bool isFocusing;
+
+        /// <summary>
+        /// The focused game object's position to move to.
+        /// </summary>
+        private Vector3 focusPositionToMoveTo;
+
+        /// <summary>
+        /// The focused game object's position to look at.
+        /// </summary>
+        private Vector3 focusPositionToLookAt;
 
         /// <summary>
         /// Injection initialization.
@@ -44,7 +64,8 @@
         {
             this.eventManager = eventManager;
 
-            this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().AddListener(this.HandleIsCameraMovementEnabledEvent);
+            this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().AddListener(this.OnIsCameraMovementEnabled);
+            this.eventManager.GetEvent<CameraFocusEvent>().AddListener(this.OnCameraFocus);
         }
 
         /// <summary>
@@ -52,7 +73,11 @@
         /// </summary>
         private void Update()
         {
-            if (this.isMovementEnabled)
+            if (this.isFocusing)
+            {
+                this.FocusOn();
+            }
+            else if (this.isMovementEnabled)
             {
                 this.Rotate();
 
@@ -65,16 +90,69 @@
         /// </summary>
         private void OnDestory()
         {
-            this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().RemoveListener(this.HandleIsCameraMovementEnabledEvent);
+            this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().RemoveListener(this.OnIsCameraMovementEnabled);
+            this.eventManager.GetEvent<CameraFocusEvent>().RemoveListener(this.OnCameraFocus);
         }
-        
+
         /// <summary>
         /// Handles the is camera movement enabled event.
         /// </summary>
         /// <param name="isMovementEnabled">A value indicating whether movement is enabled.</param>
-        private void HandleIsCameraMovementEnabledEvent(bool isMovementEnabled)
+        private void OnIsCameraMovementEnabled(bool isMovementEnabled)
         {
             this.isMovementEnabled = isMovementEnabled;
+        }
+
+        /// <summary>
+        /// Handles the camera focus event.
+        /// </summary>
+        /// <param name="positionToFocusOn">The position to focus on.</param>
+        private void OnCameraFocus(Vector3 positionToFocusOn)
+        {
+            this.isMovementEnabled = false;
+            this.isFocusing = true;
+            this.focusPositionToLookAt = positionToFocusOn;
+            this.focusPositionToMoveTo = positionToFocusOn + this.CameraRestPosition;
+        }
+        
+        /// <summary>
+        /// Focus on the specified game object.
+        /// </summary>
+        private void FocusOn()
+        {
+            if (this.transform.position == this.focusPositionToMoveTo)
+            {
+                this.isFocusing = false;
+                this.isMovementEnabled = true;
+                this.focusPositionToMoveTo = new Vector3();
+                this.focusPositionToLookAt = new Vector3();
+            }
+            else
+            {
+                this.MoveTowardsFocusedPosition();
+
+                this.RotateTowardsFocusedPosition();
+            }
+        }
+
+        /// <summary>
+        /// Move towards the focused position.
+        /// </summary>
+        private void MoveTowardsFocusedPosition()
+        {
+            this.transform.position = Vector3.MoveTowards(this.transform.position, this.focusPositionToMoveTo, this.MovementSpeed * Time.deltaTime);
+        }
+
+        /// <summary>
+        /// Rotate towards the focused position.
+        /// </summary>
+        private void RotateTowardsFocusedPosition()
+        {
+            Vector3 lookDirection = this.focusPositionToLookAt - this.transform.position;
+
+            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+
+            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this.LookSpeed * Time.deltaTime);
         }
 
         /// <summary>

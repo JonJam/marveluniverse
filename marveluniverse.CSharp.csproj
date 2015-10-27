@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -166,7 +168,9 @@
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\SceneDecoratorCompositionRoot.cs" />
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\UnityUtil.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Camera\CameraFocusEvent.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\IsCameraMovementEnabledEvent.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Planet.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite.cs" />
     <Compile Include="Assets\Scripts\Communications\BaseService.cs" />
     <Compile Include="Assets\Scripts\Communications\CharacterService.cs" />

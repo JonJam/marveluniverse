@@ -10,7 +10,7 @@
         /// <summary>
         /// The planet transform.
         /// </summary>
-        public Transform PlantTransform;
+        public Transform PlanetTransform;
 
         /// <summary>
         /// The orbit radius.
@@ -30,11 +30,11 @@
         /// <summary>
         /// Handles the awake event.
         /// </summary>
-        private void Awake()
+        private void Start()
         {
-            this.transform.position = this.PlantTransform.position + (Random.onUnitSphere * this.OrbitRadius);
+            this.transform.position = this.PlanetTransform.position + (Random.onUnitSphere * this.OrbitRadius);
 
-            this.rotationAxis = Vector3.Cross(this.PlantTransform.position, this.transform.position);
+            this.rotationAxis = Vector3.Cross(this.PlanetTransform.position, this.transform.position);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@
         /// </summary>
         private void Update()
         {
-            this.transform.RotateAround(this.PlantTransform.position, this.rotationAxis, this.RotationSpeed * Time.deltaTime);
+            this.transform.RotateAround(this.PlanetTransform.position, this.rotationAxis, this.RotationSpeed * Time.deltaTime);
         }
     }
 }
