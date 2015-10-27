@@ -12,12 +12,12 @@
         /// <summary>
         /// The public key.
         /// </summary>
-        private const string PublicKey = "";
+        private const string PublicKey = "***REMOVED***";
 
         /// <summary>
         /// The private key.
         /// </summary>
-        private const string PrivateKey = "";
+        private const string PrivateKey = "***REMOVED***";
 
         /// <summary>
         /// The authentication query parameters.

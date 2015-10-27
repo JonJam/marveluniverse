@@ -3,6 +3,7 @@
     using Communications.Interfaces;
     using Communications.Result;
     using Events;
+    using Behaviours;
     using MarvelUniverse.Communications;
     using MarvelUniverse.Communications.Encryption;
     using MarvelUniverse.Communications.Serialization;
@@ -10,6 +11,7 @@
     using MarvelUniverse.Loading;
     using Screen;
     using Spawner;
+    using UnityEngine;
     using ViewModels;
     using Zenject;
 
@@ -76,6 +78,8 @@
                 this.SceneSettings.PlanetSystemSize,
                 this.SceneSettings.PlanetSize,
                 this.SceneSettings.MainCamera));
+
+            this.Container.Bind<Transform>().ToInstance(this.SceneSettings.MainCameraTransform).WhenInjectedInto<Planet>();
         }
 
         /// <summary>

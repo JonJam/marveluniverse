@@ -167,10 +167,11 @@
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\DecoratorInstaller.cs" />
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\SceneDecoratorCompositionRoot.cs" />
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\UnityUtil.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Camera\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraFocusEvent.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Camera\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\IsCameraMovementEnabledEvent.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Planet.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\CharacterPlanet.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite.cs" />
     <Compile Include="Assets\Scripts\Communications\BaseService.cs" />
     <Compile Include="Assets\Scripts\Communications\CharacterService.cs" />

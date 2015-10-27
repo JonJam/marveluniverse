@@ -1,5 +1,6 @@
 ﻿namespace MarvelUniverse.Spawner
 {
+    using Behaviours;
     using MarvelUniverse.Model.Character;
     using MarvelUniverse.Model.Comic;
     using MarvelUniverse.Model.Creator;
@@ -13,6 +14,9 @@
     /// </summary>
     public class PlanetSystemSpawner : IPlanetSystemSpawner
     {
+        /// <summary>
+        /// The instantiator.
+        /// </summary>
         private readonly IInstantiator instantiator;
 
         /// <summary>
@@ -122,7 +126,13 @@
         /// <returns>The position of the instantiated object.</returns>
         public Vector3 Instantiate(Character character)
         {
-            return this.Instantiate(this.characterPlanetSystemPrefab, this.initialPlanetSystemPosition);
+            GameObject objectInstaniated = this.Instantiate(this.characterPlanetSystemPrefab, this.initialPlanetSystemPosition);
+
+            CharacterPlanet characterPlanet = objectInstaniated.GetComponentInChildren<CharacterPlanet>();
+
+            characterPlanet.HookUp(character);
+
+            return objectInstaniated.transform.position;
         }
 
         /// <summary>
@@ -135,7 +145,9 @@
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
-            return this.Instantiate(this.characterPlanetSystemPrefab, randomSpawnPosition);            
+            GameObject objectInstaniated = this.Instantiate(this.characterPlanetSystemPrefab, randomSpawnPosition);
+            
+            return objectInstaniated.transform.position;
         }
 
         /// <summary>
@@ -145,7 +157,9 @@
         /// <returns>The position of the instantiated object.</returns>
         public Vector3 Instantiate(Comic comic)
         {
-            return this.Instantiate(this.comicPlanetSystemPrefab, this.initialPlanetSystemPosition);
+            GameObject objectInstaniated = this.Instantiate(this.comicPlanetSystemPrefab, this.initialPlanetSystemPosition);
+
+            return objectInstaniated.transform.position;
         }
 
         /// <summary>
@@ -158,7 +172,9 @@
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
-            return this.Instantiate(this.comicPlanetSystemPrefab, randomSpawnPosition);
+            GameObject objectInstaniated = this.Instantiate(this.comicPlanetSystemPrefab, randomSpawnPosition);
+
+            return objectInstaniated.transform.position;
         }
 
         /// <summary>
@@ -168,7 +184,9 @@
         /// <returns>The position of the instantiated object.</returns>
         public Vector3 Instantiate(Creator creator)
         {
-            return this.Instantiate(this.creatorPlanetSystemPrefab, this.initialPlanetSystemPosition);
+            GameObject objectInstaniated = this.Instantiate(this.creatorPlanetSystemPrefab, this.initialPlanetSystemPosition);
+
+            return objectInstaniated.transform.position;
         }
 
         /// <summary>
@@ -181,7 +199,9 @@
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
-            return this.Instantiate(this.creatorPlanetSystemPrefab, randomSpawnPosition);
+            GameObject objectInstaniated = this.Instantiate(this.creatorPlanetSystemPrefab, randomSpawnPosition);
+
+            return objectInstaniated.transform.position;
         }
 
         /// <summary>
@@ -191,7 +211,9 @@
         /// <returns>The position of the instantiated object.</returns>
         public Vector3 Instantiate(MarvelUniverse.Model.Event.Event comicEvent)
         {
-            return this.Instantiate(this.eventPlanetSystemPrefab, this.initialPlanetSystemPosition);
+            GameObject objectInstaniated = this.Instantiate(this.eventPlanetSystemPrefab, this.initialPlanetSystemPosition);
+
+            return objectInstaniated.transform.position;
         }
 
         /// <summary>
@@ -204,7 +226,9 @@
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
-            return this.Instantiate(this.eventPlanetSystemPrefab, randomSpawnPosition);
+            GameObject objectInstaniated = this.Instantiate(this.eventPlanetSystemPrefab, randomSpawnPosition);
+
+            return objectInstaniated.transform.position;
         }
 
         /// <summary>
@@ -214,7 +238,9 @@
         /// <returns>The position of the instantiated object.</returns>
         public Vector3 Instantiate(Series series)
         {
-            return this.Instantiate(this.seriesPlanetSystemPrefab, this.initialPlanetSystemPosition);
+            GameObject objectInstaniated = this.Instantiate(this.seriesPlanetSystemPrefab, this.initialPlanetSystemPosition);
+
+            return objectInstaniated.transform.position;
         }
 
         /// <summary>
@@ -227,7 +253,9 @@
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
-            return this.Instantiate(this.seriesPlanetSystemPrefab, randomSpawnPosition);
+            GameObject objectInstaniated = this.Instantiate(this.seriesPlanetSystemPrefab, randomSpawnPosition);
+
+            return objectInstaniated.transform.position;
         }
 
         /// <summary>
@@ -237,7 +265,9 @@
         /// <returns>The position of the instantiated object.</returns>
         public Vector3 Instantiate(Story story)
         {
-            return this.Instantiate(this.storyPlanetSystemPrefab, this.initialPlanetSystemPosition);
+            GameObject objectInstaniated = this.Instantiate(this.storyPlanetSystemPrefab, this.initialPlanetSystemPosition);
+
+            return objectInstaniated.transform.position;
         }
 
         /// <summary>
@@ -249,7 +279,9 @@
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
-            return this.Instantiate(this.storyPlanetSystemPrefab, randomSpawnPosition);
+            GameObject objectInstaniated = this.Instantiate(this.storyPlanetSystemPrefab, randomSpawnPosition);
+
+            return objectInstaniated.transform.position;
         }
 
         /// <summary>
@@ -258,13 +290,13 @@
         /// <param name="planetSystemPrefab">The planet system prefab.</param>
         /// <param name="spawnPosition">The spawn position.</param>
         /// <returns>The position of the instantiated object.</returns>
-        private Vector3 Instantiate(GameObject planetSystemPrefab, Vector3 spawnPosition)
+        private GameObject Instantiate(GameObject planetSystemPrefab, Vector3 spawnPosition)
         {
             GameObject planetSystem = this.instantiator.InstantiatePrefab(planetSystemPrefab) as GameObject;
 
             planetSystem.transform.position = spawnPosition;
 
-            return planetSystem.transform.position;
+            return planetSystem;
         }
 
         /// <summary>
