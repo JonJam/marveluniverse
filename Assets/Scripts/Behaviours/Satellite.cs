@@ -15,7 +15,7 @@
         /// <summary>
         /// The orbit radius.
         /// </summary>
-        public int OrbitRadius = 5;
+        public float OrbitRadius = 14.5f;
 
         /// <summary>
         /// The rotation speed.

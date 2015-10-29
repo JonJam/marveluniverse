@@ -14,6 +14,7 @@
     using UnityEngine;
     using ViewModels;
     using Zenject;
+    using Behaviours.Planet;
 
     /// <summary>
     /// The installer.
@@ -79,7 +80,7 @@
                 this.SceneSettings.PlanetSize,
                 this.SceneSettings.MainCamera));
 
-            this.Container.Bind<Transform>().ToInstance(this.SceneSettings.MainCameraTransform).WhenInjectedInto<Planet>();
+            this.Container.Bind<Transform>().ToInstance(this.SceneSettings.MainCameraTransform).WhenInjectedInto<BasePlanet>();
         }
 
         /// <summary>
