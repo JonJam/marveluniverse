@@ -12,12 +12,12 @@
         /// <summary>
         /// The public key.
         /// </summary>
-        private const string PublicKey = "5ff86f408975ab22d353443f2cbfce71";
+        private const string PublicKey = "";
 
         /// <summary>
         /// The private key.
         /// </summary>
-        private const string PrivateKey = "ab025fda05fcc2f9ac87f78f5754e89c5f9ae1d1";
+        private const string PrivateKey = "";
 
         /// <summary>
         /// The authentication query parameters.
