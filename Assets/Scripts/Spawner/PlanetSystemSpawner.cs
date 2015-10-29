@@ -1,6 +1,6 @@
 ﻿namespace MarvelUniverse.Spawner
 {
-    using Behaviours;
+    using Behaviours.Planet;
     using MarvelUniverse.Model.Character;
     using MarvelUniverse.Model.Comic;
     using MarvelUniverse.Model.Creator;
@@ -67,7 +67,7 @@
         /// <summary>
         /// The planet size.
         /// </summary>
-        private readonly float planetSize;
+        private readonly Vector3 planetSize;
 
         /// <summary>
         /// The main camera.
@@ -99,7 +99,7 @@
             GameObject storyPlanetSystemPrefab,            
             int spawnSphereRadius,
             float planetSystemSize,
-            float planetSize,
+            Vector3 planetSize,
             Camera mainCamera)
         {
             this.instantiator = instantiator;
@@ -129,7 +129,6 @@
             GameObject objectInstaniated = this.Instantiate(this.characterPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
             CharacterPlanet characterPlanet = objectInstaniated.GetComponentInChildren<CharacterPlanet>();
-
             characterPlanet.HookUp(character);
 
             return objectInstaniated.transform.position;
@@ -146,7 +145,10 @@
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
             GameObject objectInstaniated = this.Instantiate(this.characterPlanetSystemPrefab, randomSpawnPosition);
-            
+
+            CharacterPlanet characterPlanet = objectInstaniated.GetComponentInChildren<CharacterPlanet>();
+            characterPlanet.HookUp(character);
+
             return objectInstaniated.transform.position;
         }
 
@@ -158,6 +160,9 @@
         public Vector3 Instantiate(Comic comic)
         {
             GameObject objectInstaniated = this.Instantiate(this.comicPlanetSystemPrefab, this.initialPlanetSystemPosition);
+
+            ComicPlanet comicPlanet = objectInstaniated.GetComponentInChildren<ComicPlanet>();
+            comicPlanet.HookUp(comic);
 
             return objectInstaniated.transform.position;
         }
@@ -174,6 +179,9 @@
 
             GameObject objectInstaniated = this.Instantiate(this.comicPlanetSystemPrefab, randomSpawnPosition);
 
+            ComicPlanet comicPlanet = objectInstaniated.GetComponentInChildren<ComicPlanet>();
+            comicPlanet.HookUp(comic);
+
             return objectInstaniated.transform.position;
         }
 
@@ -185,6 +193,9 @@
         public Vector3 Instantiate(Creator creator)
         {
             GameObject objectInstaniated = this.Instantiate(this.creatorPlanetSystemPrefab, this.initialPlanetSystemPosition);
+
+            CreatorPlanet creatorPlanet = objectInstaniated.GetComponentInChildren<CreatorPlanet>();
+            creatorPlanet.HookUp(creator);
 
             return objectInstaniated.transform.position;
         }
@@ -201,6 +212,9 @@
 
             GameObject objectInstaniated = this.Instantiate(this.creatorPlanetSystemPrefab, randomSpawnPosition);
 
+            CreatorPlanet creatorPlanet = objectInstaniated.GetComponentInChildren<CreatorPlanet>();
+            creatorPlanet.HookUp(creator);
+
             return objectInstaniated.transform.position;
         }
 
@@ -212,6 +226,9 @@
         public Vector3 Instantiate(MarvelUniverse.Model.Event.Event comicEvent)
         {
             GameObject objectInstaniated = this.Instantiate(this.eventPlanetSystemPrefab, this.initialPlanetSystemPosition);
+
+            EventPlanet eventPlanet = objectInstaniated.GetComponentInChildren<EventPlanet>();
+            eventPlanet.HookUp(comicEvent);
 
             return objectInstaniated.transform.position;
         }
@@ -228,6 +245,9 @@
 
             GameObject objectInstaniated = this.Instantiate(this.eventPlanetSystemPrefab, randomSpawnPosition);
 
+            EventPlanet eventPlanet = objectInstaniated.GetComponentInChildren<EventPlanet>();
+            eventPlanet.HookUp(comicEvent);
+
             return objectInstaniated.transform.position;
         }
 
@@ -239,6 +259,9 @@
         public Vector3 Instantiate(Series series)
         {
             GameObject objectInstaniated = this.Instantiate(this.seriesPlanetSystemPrefab, this.initialPlanetSystemPosition);
+
+            SeriesPlanet seriesPlanet = objectInstaniated.GetComponentInChildren<SeriesPlanet>();
+            seriesPlanet.HookUp(series);
 
             return objectInstaniated.transform.position;
         }
@@ -255,6 +278,9 @@
 
             GameObject objectInstaniated = this.Instantiate(this.seriesPlanetSystemPrefab, randomSpawnPosition);
 
+            SeriesPlanet seriesPlanet = objectInstaniated.GetComponentInChildren<SeriesPlanet>();
+            seriesPlanet.HookUp(series);
+
             return objectInstaniated.transform.position;
         }
 
@@ -266,6 +292,9 @@
         public Vector3 Instantiate(Story story)
         {
             GameObject objectInstaniated = this.Instantiate(this.storyPlanetSystemPrefab, this.initialPlanetSystemPosition);
+
+            StoryPlanet storyPlanet = objectInstaniated.GetComponentInChildren<StoryPlanet>();
+            storyPlanet.HookUp(story);
 
             return objectInstaniated.transform.position;
         }
@@ -280,6 +309,9 @@
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
             GameObject objectInstaniated = this.Instantiate(this.storyPlanetSystemPrefab, randomSpawnPosition);
+            
+            StoryPlanet storyPlanet = objectInstaniated.GetComponentInChildren<StoryPlanet>();
+            storyPlanet.HookUp(story);
 
             return objectInstaniated.transform.position;
         }
@@ -317,7 +349,7 @@
                 isCollision = Physics.CheckSphere(spawnPosition, this.planetSystemSize);
 
                 Plane[] planes = GeometryUtility.CalculateFrustumPlanes(this.mainCamera);
-                isViewable = GeometryUtility.TestPlanesAABB(planes, new Bounds(spawnPosition, new Vector3(this.planetSize, this.planetSize, this.planetSize)));
+                isViewable = GeometryUtility.TestPlanesAABB(planes, new Bounds(spawnPosition, this.planetSize));
             }
             while (isCollision || !isViewable);
 

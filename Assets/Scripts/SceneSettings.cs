@@ -57,7 +57,7 @@
         /// <summary>
         /// The planet size.
         /// </summary>
-        public float PlanetSize;
+        public Vector3 PlanetSize;
 
         /// <summary>
         /// The main camera.
