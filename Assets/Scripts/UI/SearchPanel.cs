@@ -223,6 +223,19 @@
         }
 
         /// <summary>
+        /// Handles the update event.
+        /// </summary>
+        private void Update()
+        {
+            if (this.SearchTextInputField.isFocused && 
+                this.SearchButton.interactable &&
+                Input.GetKey(KeyCode.Return))
+            {
+                this.OnSearchButtonClicked();
+            }
+        }
+
+        /// <summary>
         /// Handles the on destroy event.
         /// </summary>
         private void OnDestroy()
