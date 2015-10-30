@@ -1,6 +1,7 @@
 ﻿namespace MarvelUniverse
 {
     using System;
+    using UI;
     using UnityEngine;
 
     /// <summary>
@@ -9,6 +10,12 @@
     [Serializable]
     public class SceneSettings
     {
+        public SearchPanel SearchPanel;
+
+        public SearchResultsPanel SearchResultsPanel;
+
+        public InfoPanel InfoPanel;
+
         /// <summary>
         /// The initial planet system position.
         /// </summary>

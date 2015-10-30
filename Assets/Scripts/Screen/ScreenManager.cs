@@ -1,9 +1,12 @@
 ﻿namespace MarvelUniverse.Screen
 {
     using System.Linq;
+    using ViewModels;
     using UnityEngine;
     using UnityEngine.EventSystems;
     using UnityEngine.UI;
+    using System.Collections.Generic;
+    using UI;
 
     /// <summary>
     /// Screen manager. Based upon <see cref="http://docs.unity3d.com/Manual/HOWTO-UIScreenTransition.html"/>.
@@ -15,21 +18,51 @@
         /// </summary>
         private GameObject currentlyOpenScreen;
 
-        /// <summary>
-        /// Previously open screen.
-        /// </summary>
-        private GameObject previouslyOpenScreen;
+        ///// <summary>
+        ///// Previously open screen.
+        ///// </summary>
+        //private GameObject previouslyOpenScreen;
 
-        /// <summary>
-        /// The GameObject Selected before we opened the current Screen. Used when closing a Screen, so we can go back to the button that opened it.
-        /// </summary>
-        private GameObject previouslySelected;
+        ///// <summary>
+        ///// The GameObject Selected before we opened the current Screen. Used when closing a Screen, so we can go back to the button that opened it.
+        ///// </summary>
+        //private GameObject previouslySelected;
+
+        private SearchPanel searchPanel;
+        private SearchResultsPanel searchResultsPanel;
+        private InfoPanel infoPanel;
+
+        public ScreenManager(
+            SearchPanel searchPanel,
+            SearchResultsPanel searchResultsPanel,
+            InfoPanel infoPanel)
+        {
+            this.searchPanel = searchPanel;
+            this.searchResultsPanel = searchResultsPanel;
+            this.infoPanel = infoPanel;
+        }
+
+        public void OpenSearchPanel()
+        {
+            this.OpenPanel(this.searchPanel.gameObject);
+        }
         
+        public void OpenSearchResults(IList<SearchResultViewModel> searchResults)
+        {
+            this.OpenPanel(this.searchResultsPanel.gameObject);
+            this.searchResultsPanel.DisplaySearchResults(searchResults);
+        }
+
+        public void OpenInfoPanel()
+        {
+            this.OpenPanel(this.infoPanel.gameObject);
+        }
+
         /// <summary>
         /// Open the specified panel, closing the previous and setting the new selected element.
         /// </summary>
         /// <param name="newScreen">The new screen.</param>
-        public void OpenPanel(GameObject newScreen)
+        private void OpenPanel(GameObject newScreen)
         {
             if (this.currentlyOpenScreen != newScreen)
             {
@@ -50,8 +83,8 @@
 
                 this.CloseCurrent();
 
-                this.previouslyOpenScreen = this.currentlyOpenScreen;
-                this.previouslySelected = newPreviouslySelected;
+                //this.previouslyOpenScreen = this.currentlyOpenScreen;
+                //this.previouslySelected = newPreviouslySelected;
 
                 //Set the new Screen as then open one.
                 this.currentlyOpenScreen = newScreen;
@@ -62,22 +95,22 @@
             }
         }
 
-        /// <summary>
-        /// Goes back to the previous screen.
-        /// </summary>
-        public void GoBack()
-        {
-            if (this.previouslyOpenScreen != null)
-            {
-                this.CloseCurrent();
+        ///// <summary>
+        ///// Goes back to the previous screen.
+        ///// </summary>
+        //public void GoBack()
+        //{
+        //    if (this.previouslyOpenScreen != null)
+        //    {
+        //        this.CloseCurrent();
 
-                this.previouslyOpenScreen.SetActive(true);
+        //        this.previouslyOpenScreen.SetActive(true);
 
-                this.currentlyOpenScreen = this.previouslyOpenScreen;
+        //        this.currentlyOpenScreen = this.previouslyOpenScreen;
 
-                this.previouslyOpenScreen = null;
-            }
-        }
+        //        this.previouslyOpenScreen = null;
+        //    }
+        //}
         
         /// <summary>
         /// Close the currently open screen and reverting the selected element.
@@ -86,7 +119,7 @@
         {
             if (this.currentlyOpenScreen != null)
             {
-                this.SetSelected(previouslySelected);
+                //this.SetSelected(previouslySelected);
 
                 this.currentlyOpenScreen.SetActive(false);
             }

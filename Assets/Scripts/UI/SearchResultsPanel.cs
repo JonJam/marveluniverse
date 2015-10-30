@@ -75,7 +75,7 @@
         /// </summary>
         public void OnBackButtonClicked()
         {
-            this.screenManager.GoBack();
+            this.screenManager.OpenSearchPanel();
 
             this.ClearSearchResults();
         }

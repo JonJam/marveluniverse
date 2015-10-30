@@ -89,7 +89,11 @@
         private void InstallUIBindings()
         {
             this.Container.Bind<ILoadingManager>().ToSingle<LoadingManager>();
-            this.Container.Bind<IScreenManager>().ToSingle<ScreenManager>();
+
+            this.Container.Bind<IScreenManager>().ToInstance(new ScreenManager(
+                this.SceneSettings.SearchPanel,
+                this.SceneSettings.SearchResultsPanel,
+                this.SceneSettings.InfoPanel));                
         }
 
         /// <summary>

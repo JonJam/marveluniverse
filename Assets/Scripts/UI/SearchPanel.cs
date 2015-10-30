@@ -99,11 +99,6 @@
         public InputField SearchTextInputField;
 
         /// <summary>
-        /// The search results panel.
-        /// </summary>
-        public SearchResultsPanel searchResultsPanel;
-
-        /// <summary>
         /// Injection initialization.
         /// </summary>
         /// <param name="characterService">The character service.</param>
@@ -227,7 +222,7 @@
         /// </summary>
         private void Update()
         {
-            if (this.SearchTextInputField.isFocused && 
+            if (this.SearchTextInputField.isFocused &&
                 this.SearchButton.interactable &&
                 Input.GetKey(KeyCode.Return))
             {
@@ -263,8 +258,7 @@
         {
             if (this.resultProcessor.ProcessResult(result))
             {
-                this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
-                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(
+                this.screenManager.OpenSearchResults(result.Data.Select(c => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
                     c.Name,
@@ -285,8 +279,7 @@
         {
             if (this.resultProcessor.ProcessResult(result))
             {
-                this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
-                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(
+                this.screenManager.OpenSearchResults(result.Data.Select(c => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
                     c.Title,
@@ -307,8 +300,7 @@
         {
             if (this.resultProcessor.ProcessResult(result))
             {
-                this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
-                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(c => new SearchResultViewModel(
+                this.screenManager.OpenSearchResults(result.Data.Select(c => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
                     c.FullName,
@@ -329,8 +321,7 @@
         {
             if (this.resultProcessor.ProcessResult(result))
             {
-                this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
-                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(s => new SearchResultViewModel(
+                this.screenManager.OpenSearchResults(result.Data.Select(s => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
                     s.Title,
@@ -351,8 +342,7 @@
         {
             if (this.resultProcessor.ProcessResult(result))
             {
-                this.screenManager.OpenPanel(this.searchResultsPanel.gameObject);
-                this.searchResultsPanel.DisplaySearchResults(result.Data.Select(e => new SearchResultViewModel(
+                this.screenManager.OpenSearchResults(result.Data.Select(e => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
                     e.Title,

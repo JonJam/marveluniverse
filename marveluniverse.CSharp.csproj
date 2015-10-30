@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -240,6 +242,7 @@
     <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\MessageDialogDetails.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\MessagePanel.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\ShowMessageDialogEvent.cs" />
+    <Compile Include="Assets\Scripts\UI\InfoPanel.cs" />
     <Compile Include="Assets\Scripts\UI\SearchPanel.cs" />
     <Compile Include="Assets\Scripts\UI\SearchResultsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Templates\IItemTemplate.cs" />
