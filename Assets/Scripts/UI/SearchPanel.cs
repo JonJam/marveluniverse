@@ -223,6 +223,7 @@
         private void Update()
         {
             if (this.SearchTextInputField.isFocused &&
+                this.canvasGroup.interactable &&
                 this.SearchButton.interactable &&
                 Input.GetKey(KeyCode.Return))
             {

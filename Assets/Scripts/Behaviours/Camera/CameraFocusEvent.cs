@@ -6,7 +6,7 @@
     /// <summary>
     /// The camera focus event.
     /// </summary>
-    public class CameraFocusEvent : UnityEvent<Vector3>
+    public class CameraFocusEvent : UnityEvent<GameObject>
     {
     }
 }

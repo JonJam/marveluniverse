@@ -44,7 +44,7 @@
         /// <summary>
         /// The spawn function.
         /// </summary>
-        private readonly Func<Vector3> spawnFunction;
+        private readonly Func<GameObject> spawnFunction;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchResultViewModel"/> class.
@@ -63,7 +63,7 @@
             string description,
             string imagePath,
             string imageExtension,
-            Func<Vector3> spawnFunction)
+            Func<GameObject> spawnFunction)
         {
             this.screenManager = screenManager;
             this.eventManager = eventManager;
@@ -127,11 +127,11 @@
         {
             this.screenManager.CloseCurrent();
 
-            Vector3 spawnPosition = this.spawnFunction();
+            GameObject spawnedObject = this.spawnFunction();
 
             this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(true);
 
-            this.eventManager.GetEvent<CameraFocusEvent>().Invoke(spawnPosition);
+            this.eventManager.GetEvent<CameraFocusEvent>().Invoke(spawnedObject);
         }
     }
 }

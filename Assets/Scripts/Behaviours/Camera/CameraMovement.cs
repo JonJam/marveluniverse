@@ -106,13 +106,13 @@
         /// <summary>
         /// Handles the camera focus event.
         /// </summary>
-        /// <param name="positionToFocusOn">The position to focus on.</param>
-        private void OnCameraFocus(Vector3 positionToFocusOn)
+        /// <param name="objectToFocusOn">The object to focus on.</param>
+        private void OnCameraFocus(GameObject objectToFocusOn)
         {
             this.isMovementEnabled = false;
             this.isFocusing = true;
-            this.focusPositionToLookAt = positionToFocusOn;
-            this.focusPositionToMoveTo = positionToFocusOn + this.CameraRestPosition;
+            this.focusPositionToLookAt = objectToFocusOn.transform.position;
+            this.focusPositionToMoveTo = this.focusPositionToLookAt + this.CameraRestPosition;
         }
         
         /// <summary>

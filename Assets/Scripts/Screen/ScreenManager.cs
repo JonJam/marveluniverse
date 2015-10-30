@@ -18,20 +18,27 @@
         /// </summary>
         private GameObject currentlyOpenScreen;
 
-        ///// <summary>
-        ///// Previously open screen.
-        ///// </summary>
-        //private GameObject previouslyOpenScreen;
-
-        ///// <summary>
-        ///// The GameObject Selected before we opened the current Screen. Used when closing a Screen, so we can go back to the button that opened it.
-        ///// </summary>
-        //private GameObject previouslySelected;
-
+        /// <summary>
+        /// The search panel.
+        /// </summary>
         private SearchPanel searchPanel;
+
+        /// <summary>
+        /// The search results panel.
+        /// </summary>
         private SearchResultsPanel searchResultsPanel;
+
+        /// <summary>
+        /// The info panel.
+        /// </summary>
         private InfoPanel infoPanel;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScreenManager"/>
+        /// </summary>
+        /// <param name="searchPanel">The search panel.</param>
+        /// <param name="searchResultsPanel">The search results panel.</param>
+        /// <param name="infoPanel">The info panel.</param>
         public ScreenManager(
             SearchPanel searchPanel,
             SearchResultsPanel searchResultsPanel,
@@ -42,17 +49,27 @@
             this.infoPanel = infoPanel;
         }
 
+        /// <summary>
+        /// Opens the search panel.
+        /// </summary>
         public void OpenSearchPanel()
         {
             this.OpenPanel(this.searchPanel.gameObject);
         }
         
+        /// <summary>
+        /// Opens the search results.
+        /// </summary>
+        /// <param name="searchResults">The search results.</param>
         public void OpenSearchResults(IList<SearchResultViewModel> searchResults)
         {
             this.OpenPanel(this.searchResultsPanel.gameObject);
             this.searchResultsPanel.DisplaySearchResults(searchResults);
         }
 
+        /// <summary>
+        /// Open the info panel.
+        /// </summary>
         public void OpenInfoPanel()
         {
             this.OpenPanel(this.infoPanel.gameObject);
@@ -82,10 +99,7 @@
                 newScreen.transform.SetAsLastSibling();
 
                 this.CloseCurrent();
-
-                //this.previouslyOpenScreen = this.currentlyOpenScreen;
-                //this.previouslySelected = newPreviouslySelected;
-
+                
                 //Set the new Screen as then open one.
                 this.currentlyOpenScreen = newScreen;
 
@@ -94,23 +108,6 @@
                 this.SetSelected(newSelectedGameObject);
             }
         }
-
-        ///// <summary>
-        ///// Goes back to the previous screen.
-        ///// </summary>
-        //public void GoBack()
-        //{
-        //    if (this.previouslyOpenScreen != null)
-        //    {
-        //        this.CloseCurrent();
-
-        //        this.previouslyOpenScreen.SetActive(true);
-
-        //        this.currentlyOpenScreen = this.previouslyOpenScreen;
-
-        //        this.previouslyOpenScreen = null;
-        //    }
-        //}
         
         /// <summary>
         /// Close the currently open screen and reverting the selected element.
@@ -119,8 +116,6 @@
         {
             if (this.currentlyOpenScreen != null)
             {
-                //this.SetSelected(previouslySelected);
-
                 this.currentlyOpenScreen.SetActive(false);
             }
         }
