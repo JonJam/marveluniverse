@@ -247,6 +247,7 @@
     <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\MessageDialogDetails.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\MessagePanel.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\ShowMessageDialogEvent.cs" />
+    <Compile Include="Assets\Scripts\UI\EventDetailsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\InfoPanel.cs" />
     <Compile Include="Assets\Scripts\UI\SearchPanel.cs" />
     <Compile Include="Assets\Scripts\UI\SearchResultsPanel.cs" />

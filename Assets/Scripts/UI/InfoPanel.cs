@@ -21,7 +21,9 @@
         public CharacterDetailsPanel CharacterDetailsPanel;
 
         public ComicDetailsPanel ComicDetailsPanel;
-        
+
+        public EventDetailsPanel EventDetailsPanel;
+
         /// <summary>
         /// The image service.
         /// </summary>
@@ -45,6 +47,15 @@
             this.SetImage(comic.Thumbnail.Path, comic.Thumbnail.Extension);
 
             this.ComicDetailsPanel.HookUp(comic);
+        }
+
+        public void DisplayInformation(Model.Event.Event comicEvent)
+        {
+            this.EventDetailsPanel.gameObject.SetActive(true);
+
+            this.SetImage(comicEvent.Thumbnail.Path, comicEvent.Thumbnail.Extension);
+
+            this.EventDetailsPanel.HookUp(comicEvent);
         }
 
         public void Close()

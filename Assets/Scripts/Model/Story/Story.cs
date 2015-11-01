@@ -50,7 +50,7 @@
         /// Gets or sets the modified date time.
         /// </summary>
         [DataMember(Name = "modified")]
-        public DateTime Modified { get; set; }
+        public string Modified { get; set; }
 
         /// <summary>
         /// Gets or sets the thumbnail.
@@ -103,6 +103,6 @@
             {
                 return this.Description.Clean();
             }
-        }
+        }        
     }
 }

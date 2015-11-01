@@ -34,6 +34,12 @@
         void OpenInfoPanel(Comic comic);
 
         /// <summary>
+        /// Open the info panel.
+        /// </summary>
+        /// <param name="comicEvent">The event.</param>
+        void OpenInfoPanel(Model.Event.Event comicEvent);
+
+        /// <summary>
         /// Close the currently open screen and reverting the selected element.
         /// </summary>
         void CloseCurrent();

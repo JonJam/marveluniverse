@@ -50,19 +50,19 @@
         /// Gets or sets the modified date time.
         /// </summary>
         [DataMember(Name = "modified")]
-        public DateTime Modified { get; set; }
+        public string Modified { get; set; }
 
         /// <summary>
         /// Gets or sets the start date.
         /// </summary>
         [DataMember(Name = "start")]
-        public DateTime Start { get; set; }
+        public string Start { get; set; }
 
         /// <summary>
         /// Gets or sets the end date.
         /// </summary>
         [DataMember(Name = "end")]
-        public DateTime End { get; set; }
+        public string End { get; set; }
 
         /// <summary>
         /// Gets or sets the thumbnail.
@@ -120,6 +120,22 @@
             get
             { 
                 return this.Description.Clean();
+            }
+        }
+                
+        public string DisplayStartDate
+        {
+            get
+            {
+                return this.Start.ToDisplayDate();
+            }
+        }
+        
+        public string DisplayEndDate
+        {
+            get
+            {
+                return this.End.ToDisplayDate();
             }
         }
     }

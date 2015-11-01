@@ -1,5 +1,6 @@
 ﻿namespace MarvelUniverse.Extensions
 {
+    using System;
     using System.Text.RegularExpressions;
     using System.Web;
 
@@ -34,6 +35,21 @@
             }
 
             return cleanedString;
+        }
+
+        public static string ToDisplayDate(this string dateString)
+        {
+            DateTime date = DateTime.MinValue;
+
+            string displayDate = null;
+
+            if (!string.IsNullOrEmpty(dateString) &&
+                DateTime.TryParse(dateString, out date))
+            {
+                displayDate = date.ToShortDateString();
+            }
+
+            return displayDate;
         }
     }
 }

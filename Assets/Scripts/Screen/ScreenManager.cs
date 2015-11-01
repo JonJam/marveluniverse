@@ -90,6 +90,16 @@
         }
 
         /// <summary>
+        /// Open the info panel.
+        /// </summary>
+        /// <param name="comicEvent">The event.</param>
+        public void OpenInfoPanel(Model.Event.Event comicEvent)
+        {
+            this.OpenPanel(this.infoPanel.gameObject);
+            this.infoPanel.DisplayInformation(comicEvent);
+        }
+
+        /// <summary>
         /// Close the currently open screen and reverting the selected element.
         /// </summary>
         public void CloseCurrent()
