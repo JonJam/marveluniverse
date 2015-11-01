@@ -11,6 +11,7 @@
     using Model.Comic;
     using Model.Creator;
     using Model.Story;
+    using Model.Series;
 
     /// <summary>
     /// Screen manager. Based upon <see cref="http://docs.unity3d.com/Manual/HOWTO-UIScreenTransition.html"/>.
@@ -119,6 +120,16 @@
         {
             this.OpenPanel(this.infoPanel.gameObject);
             this.infoPanel.DisplayInformation(story);
+        }
+
+        /// <summary>
+        /// Open the info panel.
+        /// </summary>
+        /// <param name="series">The series.</param>
+        public void OpenInfoPanel(Series series)
+        {
+            this.OpenPanel(this.infoPanel.gameObject);
+            this.infoPanel.DisplayInformation(series);
         }
 
         /// <summary>

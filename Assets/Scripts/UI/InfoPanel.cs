@@ -10,6 +10,7 @@
     using Model.Comic;
     using Model.Creator;
     using Model.Story;
+    using Model.Series;
 
     public class InfoPanel : MonoBehaviour
     {
@@ -29,6 +30,8 @@
         public CreatorDetailsPanel CreatorDetailsPanel;
 
         public StoryDetailsPanel StoryDetailsPanel;
+        
+        public SeriesDetailsPanel SeriesDetailsPanel;
 
         /// <summary>
         /// The image service.
@@ -82,6 +85,15 @@
             this.StoryDetailsPanel.HookUp(story);
         }
 
+        public void DisplayInformation(Series series)
+        {
+            this.SeriesDetailsPanel.gameObject.SetActive(true);
+
+            this.SetImage(series.Thumbnail);
+
+            this.SeriesDetailsPanel.HookUp(series);
+        }
+
         public void Close()
         {
             if (this.imageDownloadCoroutine != null)
@@ -111,6 +123,8 @@
             this.Image.texture = null;
 
             this.CharacterDetailsPanel.gameObject.SetActive(false);
+
+            // TODO Add all panels here
         }
 
         /// <summary>

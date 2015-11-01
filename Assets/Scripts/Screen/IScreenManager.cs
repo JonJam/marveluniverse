@@ -6,6 +6,7 @@
     using ViewModels;
     using Model.Creator;
     using Model.Story;
+    using Model.Series;
 
     /// <summary>
     /// Interface for a screen manager.
@@ -52,6 +53,12 @@
         /// </summary>
         /// <param name="story">The story.</param>
         void OpenInfoPanel(Story story);
+
+        /// <summary>
+        /// Open the info panel.
+        /// </summary>
+        /// <param name="series">The series.</param>
+        void OpenInfoPanel(Series series);
 
         /// <summary>
         /// Close the currently open screen and reverting the selected element.

@@ -6,7 +6,6 @@
     using Communications.Result;
     using Events;
     using Loading;
-    using Communications.Serialization;
     using Model.Character;
     using Model.Comic;
     using Model.Creator;
@@ -18,8 +17,6 @@
     using ViewModels;
     using Zenject;
     using Event = MarvelUniverse.Model.Event.Event;
-    using Model.Story;
-    using Model;
 
     /// <summary>
     /// Search.
@@ -151,36 +148,31 @@
         /// </summary>
         public void OnSearchButtonClicked()
         {
-            //this.loadingManager.IncrementRunningOperationCount();
+            this.loadingManager.IncrementRunningOperationCount();
 
             this.searchViewModel.SearchTerms = this.SearchTextInputField.text;
             this.searchViewModel.SearchTypeIndex = this.SearchTypeDropdown.value;
 
             string selectedSearchType = this.SearchTypeDropdown.options[this.searchViewModel.SearchTypeIndex].text;
 
-            //switch (selectedSearchType)
-            //{
-            //    case "Character":
-            //        this.StartCoroutine(this.characterService.Search(this.searchViewModel.SearchTerms, this.CharacterSearchCompleted));
-            //        break;
-            //    case "Comic":
-            //        this.StartCoroutine(this.comicService.Search(this.searchViewModel.SearchTerms, this.ComicSearchCompleted));
-            //        break;
-            //    case "Creator":
-            //        this.StartCoroutine(this.creatorService.Search(this.searchViewModel.SearchTerms, this.CreatorSearchCompleted));
-            //        break;
-            //    case "Event":
-            //        this.StartCoroutine(this.eventService.Search(this.searchViewModel.SearchTerms, this.EventSearchCompleted));
-            //        break;
-            //    case "Series":
-            //        this.StartCoroutine(this.seriesService.Search(this.searchViewModel.SearchTerms, this.SeriesSearchCompleted));
-            //        break;
-            //}
-
-            JsonSerializer test = new JsonSerializer();
-            DataWrapper<Story> test2 = test.Deserialize<DataWrapper<Story>>("{   \"code\": 200,   \"status\": \"Ok\",   \"copyright\": \"© 2015 MARVEL\",   \"attributionText\": \"Data provided by Marvel. © 2015 MARVEL\",   \"attributionHTML\": \"\",   \"etag\": \"e786157a502734d640ef9a80855e26d8278f864f\",   \"data\": {     \"offset\": 0,     \"limit\": 20,     \"total\": 1,     \"count\": 1,     \"results\": [       {         \"id\": 5873,         \"title\": \"1 of 7 - 7XLS\",         \"description\": \"\",         \"resourceURI\": \"http://gateway.marvel.com/v1/public/stories/5873\",         \"type\": \"story\",         \"modified\": \"1969-12-31T19:00:00-0500\",         \"thumbnail\": null,         \"creators\": {           \"available\": 5,           \"collectionURI\": \"http://gateway.marvel.com/v1/public/stories/5873/creators\",           \"items\": [             {               \"resourceURI\": \"http://gateway.marvel.com/v1/public/creators/452\",               \"name\": \"Chris Eliopoulos\",               \"role\": \"letterer\"             },             {               \"resourceURI\": \"http://gateway.marvel.com/v1/public/creators/774\",               \"name\": \"Morry Hollowell\",               \"role\": \"colorist\"             },             {               \"resourceURI\": \"http://gateway.marvel.com/v1/public/creators/9484\",               \"name\": \"Steve McNiven\",               \"role\": \"penciller\"             },             {               \"resourceURI\": \"http://gateway.marvel.com/v1/public/creators/88\",               \"name\": \"Mark Millar\",               \"role\": \"writer\"             },             {               \"resourceURI\": \"http://gateway.marvel.com/v1/public/creators/471\",               \"name\": \"Dexter Vines\",               \"role\": \"inker\"             }           ],           \"returned\": 5         },         \"characters\": {           \"available\": 0,           \"collectionURI\": \"http://gateway.marvel.com/v1/public/stories/5873/characters\",           \"items\": [],           \"returned\": 0         },         \"series\": {           \"available\": 2,           \"collectionURI\": \"http://gateway.marvel.com/v1/public/stories/5873/series\",           \"items\": [             {               \"resourceURI\": \"http://gateway.marvel.com/v1/public/series/1893\",               \"name\": \"Civil War (2007)\"             },             {               \"resourceURI\": \"http://gateway.marvel.com/v1/public/series/1067\",               \"name\": \"Civil War (2006 - 2007)\"             }           ],           \"returned\": 2         },         \"comics\": {           \"available\": 3,           \"collectionURI\": \"http://gateway.marvel.com/v1/public/stories/5873/comics\",           \"items\": [             {               \"resourceURI\": \"http://gateway.marvel.com/v1/public/comics/6415\",               \"name\": \"Civil War (Trade Paperback)\"             },             {               \"resourceURI\": \"http://gateway.marvel.com/v1/public/comics/6133\",               \"name\": \"Civil War (Trade Paperback)\"             },             {               \"resourceURI\": \"http://gateway.marvel.com/v1/public/comics/4216\",               \"name\": \"Civil War (2006) #1\"             }           ],           \"returned\": 3         },         \"events\": {           \"available\": 1,           \"collectionURI\": \"http://gateway.marvel.com/v1/public/stories/5873/events\",           \"items\": [             {               \"resourceURI\": \"http://gateway.marvel.com/v1/public/events/238\",               \"name\": \"Civil War\"             }           ],           \"returned\": 1         },         \"originalIssue\": {           \"resourceURI\": \"http://gateway.marvel.com/v1/public/comics/4216\",           \"name\": \"Civil War (2006) #1\"         }       }     ]   } }");
-
-            screenManager.OpenInfoPanel(test2.Data.Results[0]);
+            switch (selectedSearchType)
+            {
+                case "Character":
+                    this.StartCoroutine(this.characterService.Search(this.searchViewModel.SearchTerms, this.CharacterSearchCompleted));
+                    break;
+                case "Comic":
+                    this.StartCoroutine(this.comicService.Search(this.searchViewModel.SearchTerms, this.ComicSearchCompleted));
+                    break;
+                case "Creator":
+                    this.StartCoroutine(this.creatorService.Search(this.searchViewModel.SearchTerms, this.CreatorSearchCompleted));
+                    break;
+                case "Event":
+                    this.StartCoroutine(this.eventService.Search(this.searchViewModel.SearchTerms, this.EventSearchCompleted));
+                    break;
+                case "Series":
+                    this.StartCoroutine(this.seriesService.Search(this.searchViewModel.SearchTerms, this.SeriesSearchCompleted));
+                    break;
+            }
         }
 
         /// <summary>
