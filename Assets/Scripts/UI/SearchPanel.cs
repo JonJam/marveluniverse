@@ -6,12 +6,12 @@
     using Communications.Result;
     using Events;
     using Loading;
-    using Spawner;
     using Model.Character;
     using Model.Comic;
     using Model.Creator;
     using Model.Series;
     using Screen;
+    using Spawner;
     using UnityEngine;
     using UnityEngine.UI;
     using ViewModels;
@@ -263,7 +263,7 @@
                     this.screenManager,
                     this.eventManager,
                     c.Name,
-                    c.Description,
+                    c.CleanDescription,
                     c.Thumbnail.Path,
                     c.Thumbnail.Extension,
                     () => { return this.planetSystemSpawner.Instantiate(c); })).ToList());
@@ -284,7 +284,7 @@
                     this.screenManager,
                     this.eventManager,
                     c.Title,
-                    c.Description,
+                    c.CleanDescription,
                     c.Thumbnail.Path,
                     c.Thumbnail.Extension,
                     () => { return this.planetSystemSpawner.Instantiate(c); })).ToList());
@@ -326,7 +326,7 @@
                     this.screenManager,
                     this.eventManager,
                     s.Title,
-                    s.Description,
+                    s.CleanDescription,
                     s.Thumbnail.Path,
                     s.Thumbnail.Extension,
                     () => { return this.planetSystemSpawner.Instantiate(s); })).ToList());
@@ -347,7 +347,7 @@
                     this.screenManager,
                     this.eventManager,
                     e.Title,
-                    e.Description,
+                    e.CleanDescription,
                     e.Thumbnail.Path,
                     e.Thumbnail.Extension,
                     () => { return this.planetSystemSpawner.Instantiate(e); })).ToList());

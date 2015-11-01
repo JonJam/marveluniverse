@@ -1,10 +1,10 @@
 ﻿namespace MarvelUniverse.Model.Series
 {
-    using System;
     using Character;
     using Comic;
     using Creator;
     using Event;
+    using Extensions;
     using Image;
     using Newtonsoft.Json;
     using Story;
@@ -115,5 +115,16 @@
         /// </summary>
         [JsonProperty("previous")]
         public SeriesSummary Previous { get; set; }
+
+        /// <summary>
+        /// Gets the clean description.
+        /// </summary>
+        public string CleanDescription
+        {
+            get
+            {
+                return this.Description.Clean();
+            }
+        }
     }
 }

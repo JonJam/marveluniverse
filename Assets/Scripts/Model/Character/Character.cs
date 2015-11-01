@@ -9,6 +9,7 @@ namespace MarvelUniverse.Model.Character
     using System;
     using Comic;
     using Event;
+    using Extensions;
     using Image;
     using Newtonsoft.Json;
     using Series;
@@ -84,5 +85,16 @@ namespace MarvelUniverse.Model.Character
         /// </summary>
         [JsonProperty("series")]
         public DataList<SeriesSummary> Series { get; set; }
+
+        /// <summary>
+        /// Gets the clean description.
+        /// </summary>
+        public string CleanDescription
+        {
+            get
+            {
+                return this.Description.Clean();
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@
     using Character;
     using Creator;
     using Event;
+    using Extensions;
     using Image;
     using Newtonsoft.Json;
     using Series;
@@ -187,5 +188,16 @@
         /// </summary>
         [JsonProperty("events")]
         public DataList<EventSummary> Events { get; set; }
+
+        /// <summary>
+        /// Gets the clean description.
+        /// </summary>
+        public string CleanDescription
+        {
+            get
+            {
+                return this.Description.Clean();
+            }
+        }
     }
 }

@@ -114,6 +114,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Assets\VS\ReferencedAssemblies\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web">
+      <HintPath>Assets\VS\ReferencedAssemblies\System.Web.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="marveluniverse.CSharp.csproj">

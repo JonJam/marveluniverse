@@ -5,6 +5,7 @@
     using Comic;
     using Creator;
     using Event;
+    using Extensions;
     using Image;
     using Newtonsoft.Json;
     using Series;
@@ -91,5 +92,16 @@
         /// </summary>
         [JsonProperty("originalissue")]
         public ComicSummary Originalissue { get; set; }
+
+        /// <summary>
+        /// Gets the clean description.
+        /// </summary>
+        public string CleanDescription
+        {
+            get
+            {
+                return this.Description.Clean();
+            }
+        }
     }
 }
