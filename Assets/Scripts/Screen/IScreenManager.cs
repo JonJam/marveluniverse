@@ -4,6 +4,7 @@
     using Model.Comic;
     using Model.Character;
     using ViewModels;
+    using Model.Creator;
 
     /// <summary>
     /// Interface for a screen manager.
@@ -38,6 +39,12 @@
         /// </summary>
         /// <param name="comicEvent">The event.</param>
         void OpenInfoPanel(Model.Event.Event comicEvent);
+
+        /// <summary>
+        /// Open the info panel.
+        /// </summary>
+        /// <param name="creator">The creator.</param>
+        void OpenInfoPanel(Creator creator);
 
         /// <summary>
         /// Close the currently open screen and reverting the selected element.

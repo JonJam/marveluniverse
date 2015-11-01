@@ -8,6 +8,7 @@
     using Zenject;
     using Communications.Result;
     using Model.Comic;
+    using Model.Creator;
 
     public class InfoPanel : MonoBehaviour
     {
@@ -23,6 +24,8 @@
         public ComicDetailsPanel ComicDetailsPanel;
 
         public EventDetailsPanel EventDetailsPanel;
+
+        public CreatorDetailsPanel CreatorDetailsPanel;
 
         /// <summary>
         /// The image service.
@@ -56,6 +59,15 @@
             this.SetImage(comicEvent.Thumbnail.Path, comicEvent.Thumbnail.Extension);
 
             this.EventDetailsPanel.HookUp(comicEvent);
+        }
+
+        public void DisplayInformation(Creator creator)
+        {
+            this.CreatorDetailsPanel.gameObject.SetActive(true);
+
+            this.SetImage(creator.Thumbnail.Path, creator.Thumbnail.Extension);
+
+            this.CreatorDetailsPanel.HookUp(creator);
         }
 
         public void Close()
