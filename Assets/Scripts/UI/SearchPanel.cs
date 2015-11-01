@@ -222,7 +222,13 @@
         /// </summary>
         private void Update()
         {
-            if (this.SearchTextInputField.isFocused &&
+            // The isFocused property on this.SearchTextInputField isn't reliable. Below check fixes this.
+            // When interacting with input field, isFocused not set to true until Return key is pressed once; therefore user has to press twice.
+            GameObject focusedGameObject = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+
+            bool isSearchTextInputFieldFocused = focusedGameObject != null ? focusedGameObject == this.SearchTextInputField.gameObject : false;            
+
+            if (isSearchTextInputFieldFocused &&
                 this.canvasGroup.interactable &&
                 this.SearchButton.interactable &&
                 Input.GetKey(KeyCode.Return))
