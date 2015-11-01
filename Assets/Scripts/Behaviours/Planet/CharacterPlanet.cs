@@ -21,7 +21,7 @@
             this.character = character;
 
             this.SetName(this.character.Name);
-            this.SetImage(this.character.Thumbnail.Path, this.character.Thumbnail.Extension);
+            this.SetImage(this.character.Thumbnail);
         }
 
         /// <summary>

@@ -3,6 +3,7 @@
     using System;
     using Camera;
     using Events;
+    using Model.Image;
     using Screen;
     using UnityEngine;
     using Zenject;
@@ -65,11 +66,10 @@
         /// <summary>
         /// Sets the image.
         /// </summary>
-        /// <param name="imagePath">The image path.</param>
-        /// <param name="imageExtension">The image extension.</param>
-        protected void SetImage(string imagePath, string imageExtension)
+        /// <param name="image">The image.</param>
+        protected void SetImage(Image image)
         {
-            this.planetImage.SetImage(imagePath, imageExtension);
+            this.planetImage.SetImage(image);
         }
 
         /// <summary>

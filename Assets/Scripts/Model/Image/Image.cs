@@ -19,5 +19,14 @@
         /// </summary>
         [DataMember(Name = "extension")]
         public string Extension { get; set; }
+
+        public bool HasData
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(this.Path) &&
+                    !string.IsNullOrEmpty(this.Extension);
+            }
+        }
     }
 }

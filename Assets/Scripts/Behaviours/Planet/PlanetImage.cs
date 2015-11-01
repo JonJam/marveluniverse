@@ -29,17 +29,18 @@
         /// <summary>
         /// Set image.
         /// </summary>
-        /// <param name="imagePath">The image path.</param>
-        /// <param name="imageExtension">The image extension.</param>
-        public void SetImage(string imagePath, string imageExtension)
+        /// <param name="image">The image.</param>
+        public void SetImage(Image image)
         {
-            if (!this.attemptedToLoadImage)
+            if (!this.attemptedToLoadImage &&
+                image != null &&
+                image.HasData)
             {
                 this.attemptedToLoadImage = true;
 
                 this.StartCoroutine(this.imageService.DownloadImage(
-                    imagePath,
-                    imageExtension,
+                    image.Path,
+                    image.Extension,
                     ImageSize.StandardFantastic, 
                     this.DownloadImageCompleted));
             }

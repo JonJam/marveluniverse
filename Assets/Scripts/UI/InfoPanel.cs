@@ -9,6 +9,7 @@
     using Communications.Result;
     using Model.Comic;
     using Model.Creator;
+    using Model.Story;
 
     public class InfoPanel : MonoBehaviour
     {
@@ -27,6 +28,8 @@
 
         public CreatorDetailsPanel CreatorDetailsPanel;
 
+        public StoryDetailsPanel StoryDetailsPanel;
+
         /// <summary>
         /// The image service.
         /// </summary>
@@ -38,7 +41,7 @@
         {
             this.CharacterDetailsPanel.gameObject.SetActive(true);
 
-            this.SetImage(character.Thumbnail.Path, character.Thumbnail.Extension);
+            this.SetImage(character.Thumbnail);
 
             this.CharacterDetailsPanel.HookUp(character);
         }
@@ -47,7 +50,7 @@
         {
             this.ComicDetailsPanel.gameObject.SetActive(true);
 
-            this.SetImage(comic.Thumbnail.Path, comic.Thumbnail.Extension);
+            this.SetImage(comic.Thumbnail);
 
             this.ComicDetailsPanel.HookUp(comic);
         }
@@ -56,7 +59,7 @@
         {
             this.EventDetailsPanel.gameObject.SetActive(true);
 
-            this.SetImage(comicEvent.Thumbnail.Path, comicEvent.Thumbnail.Extension);
+            this.SetImage(comicEvent.Thumbnail);
 
             this.EventDetailsPanel.HookUp(comicEvent);
         }
@@ -65,9 +68,18 @@
         {
             this.CreatorDetailsPanel.gameObject.SetActive(true);
 
-            this.SetImage(creator.Thumbnail.Path, creator.Thumbnail.Extension);
+            this.SetImage(creator.Thumbnail);
 
             this.CreatorDetailsPanel.HookUp(creator);
+        }
+
+        public void DisplayInformation(Story story)
+        {
+            this.StoryDetailsPanel.gameObject.SetActive(true);
+
+            this.SetImage(story.Thumbnail);
+
+            this.StoryDetailsPanel.HookUp(story);
         }
 
         public void Close()
@@ -99,20 +111,23 @@
             this.Image.texture = null;
 
             this.CharacterDetailsPanel.gameObject.SetActive(false);
-        }       
-        
+        }
+
         /// <summary>
         /// Set image.
         /// </summary>
-        /// <param name="imagePath">The image path.</param>
-        /// <param name="imageExtension">The image extension.</param>
-        private void SetImage(string imagePath, string imageExtension)
+        /// <param name="image">The image.</param>
+        private void SetImage(Model.Image.Image image)
         {
-            this.imageDownloadCoroutine = this.StartCoroutine(this.imageService.DownloadImage(
-                    imagePath,
-                    imageExtension,
-                    ImageSize.PortaitUncanny,
-                    this.DownloadImageCompleted));
+            if (image != null &&
+                image.HasData)
+            {
+                this.imageDownloadCoroutine = this.StartCoroutine(this.imageService.DownloadImage(
+                        image.Path,
+                        image.Extension,
+                        ImageSize.PortaitUncanny,
+                        this.DownloadImageCompleted));
+            }
         }        
 
         /// <summary>

@@ -21,7 +21,7 @@
             this.comic = comic;
 
             this.SetName(this.comic.Title);
-            this.SetImage(this.comic.Thumbnail.Path, this.comic.Thumbnail.Extension);
+            this.SetImage(this.comic.Thumbnail);
         }
 
         /// <summary>

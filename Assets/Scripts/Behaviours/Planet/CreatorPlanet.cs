@@ -21,7 +21,7 @@
             this.creator = creator;
 
             this.SetName(this.creator.FullName);
-            this.SetImage(this.creator.Thumbnail.Path, this.creator.Thumbnail.Extension);
+            this.SetImage(this.creator.Thumbnail);
         }
 
         /// <summary>

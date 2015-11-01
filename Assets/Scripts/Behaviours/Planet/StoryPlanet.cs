@@ -21,7 +21,7 @@
             this.story = story;
 
             this.SetName(this.story.Title);
-            this.SetImage(this.story.Thumbnail.Path, this.story.Thumbnail.Extension);
+            this.SetImage(this.story.Thumbnail);
         }
 
         /// <summary>
@@ -29,7 +29,7 @@
         /// </summary>
         protected override void DisplayInformation()
         {
-            // TODO implement
+            this.ScreenManager.OpenInfoPanel(this.story);
         }
     }
 }

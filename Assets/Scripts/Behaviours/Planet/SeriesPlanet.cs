@@ -21,7 +21,7 @@
             this.series = series;
 
             this.SetName(this.series.Title);
-            this.SetImage(this.series.Thumbnail.Path, this.series.Thumbnail.Extension);
+            this.SetImage(this.series.Thumbnail);
         }
 
         /// <summary>

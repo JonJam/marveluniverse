@@ -91,8 +91,8 @@
         /// <summary>
         /// Gets or sets the original issue.
         /// </summary>
-        [DataMember(Name = "originalissue")]
-        public ComicSummary Originalissue { get; set; }
+        [DataMember(Name = "originalIssue")]
+        public ComicSummary OriginalIssue { get; set; }
 
         /// <summary>
         /// Gets the clean description.
@@ -103,6 +103,26 @@
             {
                 return this.Description.Clean();
             }
-        }        
+        }
+
+        public string DisplayType
+        {
+            get
+            {
+                string displayType = null;
+
+                switch (this.Type)
+                {
+                    case "story":
+                        displayType = "Story";
+                        break;
+                    default:
+                        displayType = this.Type;
+                        break;
+                }
+
+                return displayType;
+            }
+        }
     }
 }
