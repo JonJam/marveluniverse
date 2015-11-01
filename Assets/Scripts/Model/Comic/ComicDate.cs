@@ -19,5 +19,28 @@
         /// </summary>
         [DataMember(Name = "date")]
         public string Date { get; set; }
+
+        public string DisplayType
+        {
+            get
+            {
+                string displayType = null;
+
+                switch (this.Type)
+                {
+                    case "onsaleDate":
+                        displayType = "On Sale Date";
+                        break;
+                    case "focDate":
+                        displayType = "Final Order Cut-off Date";
+                        break;
+                    default:
+                        displayType = this.Type;
+                        break;
+                }
+
+                return displayType;
+            }
+        }
     }
 }
