@@ -22,7 +22,7 @@
         {
             string cleanedString = null;
 
-            if (string.IsNullOrEmpty(stringToClean))
+            if (!string.IsNullOrEmpty(stringToClean))
             {
                 cleanedString = HttpUtility.HtmlDecode(stringToClean);
 

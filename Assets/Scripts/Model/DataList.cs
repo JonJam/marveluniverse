@@ -1,35 +1,36 @@
 ﻿namespace MarvelUniverse.Model
 {
-    using Newtonsoft.Json;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// A data list.
     /// </summary>
     /// <typeparam name="T">The type of the data contained.</typeparam>
+    [DataContract]
     public class DataList<T>
     {
         /// <summary>
         /// Gets or sets the amount of items available.
         /// </summary>
-        [JsonProperty("available")]
+        [DataMember(Name = "available")]
         public int Available { get; set; }
 
         /// <summary>
         /// Gets or sets the amount of items returned.
         /// </summary>
-        [JsonProperty("returned")]
+        [DataMember(Name = "returned")]
         public int Returned { get; set; }
 
         /// <summary>
         /// Gets or sets the collection URI.
         /// </summary>
-        [JsonProperty("collectionURI")]
+        [DataMember(Name = "collectionURI")]
         public string CollectionURI { get; set; }
 
         /// <summary>
         /// Gets or sets the items.
         /// </summary>
-        [JsonProperty("items")]
+        [DataMember(Name = "items")]
         public T[] Items { get; set; }
     }
 }

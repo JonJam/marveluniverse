@@ -1,28 +1,29 @@
 ﻿namespace MarvelUniverse.Model.Comic
 {
-    using Newtonsoft.Json;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// A text object.
     /// </summary>
+    [DataContract]
     public class TextObject
     {
         /// <summary>
         /// Gets or sets the type.
         /// </summary>
-        [JsonProperty("type")]
+        [DataMember(Name = "type")]
         public string Type { get; set; }
 
         /// <summary>
         /// Gets or sets the language.
         /// </summary>
-        [JsonProperty("language")]
+        [DataMember(Name = "language")]
         public string Language { get; set; }
 
         /// <summary>
         /// Gets or sets the text.
         /// </summary>
-        [JsonProperty("text")]
+        [DataMember(Name = "text")]
         public string Text { get; set; }
     }
 }

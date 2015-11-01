@@ -1,192 +1,193 @@
 ﻿namespace MarvelUniverse.Model.Comic
 {
     using System;
+    using System.Runtime.Serialization;
     using Character;
     using Creator;
     using Event;
     using Extensions;
     using Image;
-    using Newtonsoft.Json;
     using Series;
     using Story;
 
     /// <summary>
     /// A comic.
     /// </summary>
+    [DataContract]
     public class Comic
     {
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
-        [JsonProperty("id")]
+        [DataMember(Name = "id")]
         public int Id { get; set; }
         
         /// <summary>
         /// Gets or sets the digital identifier.
         /// </summary>
-        [JsonProperty("digitalId")]
+        [DataMember(Name = "digitalId")]
         public int DigitalId { get; set; }
 
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
-        [JsonProperty("title")]
+        [DataMember(Name = "title")]
         public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets the issue number.
         /// </summary>
-        [JsonProperty("issueNumber")]
+        [DataMember(Name = "issueNumber")]
         public double IssueNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the variant description.
         /// </summary>
-        [JsonProperty("variantDescription")]
+        [DataMember(Name = "variantDescription")]
         public string VariantDescription { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
-        [JsonProperty("description")]
+        [DataMember(Name = "description")]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets the modified date time.
         /// </summary>
-        [JsonProperty("modified")]
+        [DataMember(Name = "modified")]
         public DateTime Modified { get; set; }
 
         /// <summary>
         /// Gets or sets the ISBN.
         /// </summary>
-        [JsonProperty("isbn")]
+        [DataMember(Name = "isbn")]
         public string Isbn { get; set; }
 
         /// <summary>
         /// Gets or sets the UPC.
         /// </summary>
-        [JsonProperty("upc")]
+        [DataMember(Name = "upc")]
         public string Upc { get; set; }
 
         /// <summary>
         /// Gets or sets the diamond code.
         /// </summary>
-        [JsonProperty("diamondCode")]
+        [DataMember(Name = "diamondCode")]
         public string DiamondCode { get; set; }
         
         /// <summary>
         /// Gets or sets the EAN.
         /// </summary>
-        [JsonProperty("ean")]
+        [DataMember(Name = "ean")]
         public string Ean { get; set; }
         
         /// <summary>
         /// Gets or sets the ISSN.
         /// </summary>
-        [JsonProperty("issn")]
+        [DataMember(Name = "issn")]
         public string Issn { get; set; }
 
         /// <summary>
         /// Gets or sets the Format.
         /// </summary>
-        [JsonProperty("format")]
+        [DataMember(Name = "format")]
         public string Format { get; set; }
 
         /// <summary>
         /// Gets or sets the page count.
         /// </summary>
-        [JsonProperty("pageCount")]
+        [DataMember(Name = "pageCount")]
         public int PageCount { get; set; }
 
         /// <summary>
         /// Gets or sets the text objects.
         /// </summary>
-        [JsonProperty("textObjects")]
+        [DataMember(Name = "textObjects")]
         public TextObject[] TextObjects { get; set; }
 
         /// <summary>
         /// Gets or sets the resource URI.
         /// </summary>
-        [JsonProperty("resourceURI")]
+        [DataMember(Name = "resourceURI")]
         public string ResourceURI { get; set; }
 
         /// <summary>
         /// Gets or sets the URLs.
         /// </summary>
-        [JsonProperty("urls")]
+        [DataMember(Name = "urls")]
         public Url[] Urls { get; set; }
 
         /// <summary>
         /// Gets or sets the series.
         /// </summary>
-        [JsonProperty("series")]
+        [DataMember(Name = "series")]
         public SeriesSummary Series { get; set; }
 
         /// <summary>
         /// Gets or sets the variants.
         /// </summary>
-        [JsonProperty("variants")]
+        [DataMember(Name = "variants")]
         public ComicSummary[] Variants { get; set; }
 
         /// <summary>
         /// Gets or sets the collections.
         /// </summary>
-        [JsonProperty("collections")]
+        [DataMember(Name = "collections")]
         public ComicSummary[] Collections { get; set; }
 
         /// <summary>
         /// Gets or sets the collected issues.
         /// </summary>
-        [JsonProperty("collectedIssues")]
+        [DataMember(Name = "collectedIssues")]
         public ComicSummary[] CollectedIssues { get; set; }
 
         /// <summary>
         /// Gets or sets the dates.
         /// </summary>
-        [JsonProperty("dates")]
+        [DataMember(Name = "dates")]
         public ComicDate[] Dates { get; set; }
 
         /// <summary>
         /// Gets or sets the prices.
         /// </summary>
-        [JsonProperty("prices")]
+        [DataMember(Name = "prices")]
         public ComicPrice[] Prices { get; set; }
 
         /// <summary>
         /// Gets or sets the thumbnail.
         /// </summary>
-        [JsonProperty("thumbnail")]
+        [DataMember(Name = "thumbnail")]
         public Image Thumbnail { get; set; }
 
         /// <summary>
         /// Gets or sets the images.
         /// </summary>
-        [JsonProperty("images")]
+        [DataMember(Name = "images")]
         public Image[] Images { get; set; }
 
         /// <summary>
         /// Gets or sets the creators.
         /// </summary>
-        [JsonProperty("creators")]
+        [DataMember(Name = "creators")]
         public DataList<CreatorSummary> Creators { get; set; }
 
         /// <summary>
         /// Gets or sets the characters.
         /// </summary>
-        [JsonProperty("characters")]
+        [DataMember(Name = "characters")]
         public DataList<CharacterSummary> Characters { get; set; }
 
         /// <summary>
         /// Gets or sets the stories.
         /// </summary>
-        [JsonProperty("stories")]
+        [DataMember(Name = "stories")]
         public DataList<StorySummary> Stories { get; set; }
 
         /// <summary>
         /// Gets or sets the events.
         /// </summary>
-        [JsonProperty("events")]
+        [DataMember(Name = "events")]
         public DataList<EventSummary> Events { get; set; }
 
         /// <summary>

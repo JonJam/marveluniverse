@@ -1,7 +1,8 @@
 ﻿namespace MarvelUniverse.Communications.Serialization
 {
-    using Newtonsoft.Json;
-    using UnityEngine;
+    using System.IO;
+    using System.Runtime.Serialization.Json;
+    using System.Text;
 
     /// <summary>
     /// JSON serializer.
@@ -20,7 +21,12 @@
             
             if (!string.IsNullOrEmpty(json))
             {
-                returnValue = JsonConvert.DeserializeObject<T>(json);
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
+
+                using (MemoryStream memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
+                {
+                    returnValue = (T)serializer.ReadObject(memoryStream);
+                }
             }
 
             return returnValue;

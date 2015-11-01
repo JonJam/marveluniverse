@@ -1,114 +1,115 @@
 ﻿namespace MarvelUniverse.Model.Event
 {
     using System;
+    using System.Runtime.Serialization;
     using Character;
     using Comic;
     using Creator;
     using Extensions;
     using Image;
-    using Newtonsoft.Json;
     using Series;
     using Story;
 
     /// <summary>
     /// An event.
     /// </summary>
+    [DataContract]
     public class Event
     {
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
-        [JsonProperty("id")]
+        [DataMember(Name = "id")]
         public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
-        [JsonProperty("title")]
+        [DataMember(Name = "title")]
         public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
-        [JsonProperty("description")]
+        [DataMember(Name = "description")]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets the resource URI.
         /// </summary>
-        [JsonProperty("resourceURI")]
+        [DataMember(Name = "resourceURI")]
         public string ResourceURI { get; set; }
 
         /// <summary>
         /// Gets or sets the URLs.
         /// </summary>
-        [JsonProperty("urls")]
+        [DataMember(Name = "urls")]
         public Url[] Urls { get; set; }
 
         /// <summary>
         /// Gets or sets the modified date time.
         /// </summary>
-        [JsonProperty("modified")]
+        [DataMember(Name = "modified")]
         public DateTime Modified { get; set; }
 
         /// <summary>
         /// Gets or sets the start date.
         /// </summary>
-        [JsonProperty("start")]
+        [DataMember(Name = "start")]
         public DateTime Start { get; set; }
 
         /// <summary>
         /// Gets or sets the end date.
         /// </summary>
-        [JsonProperty("end")]
+        [DataMember(Name = "end")]
         public DateTime End { get; set; }
 
         /// <summary>
         /// Gets or sets the thumbnail.
         /// </summary>
-        [JsonProperty("thumbnail")]
+        [DataMember(Name = "thumbnail")]
         public Image Thumbnail { get; set; }
 
         /// <summary>
         /// Gets or sets the comics.
         /// </summary>
-        [JsonProperty("comics")]
+        [DataMember(Name = "comics")]
         public DataList<ComicSummary> Comics { get; set; }
 
         /// <summary>
         /// Gets or sets the stories.
         /// </summary>
-        [JsonProperty("stories")]
+        [DataMember(Name = "stories")]
         public DataList<StorySummary> Stories { get; set; }
 
         /// <summary>
         /// Gets or sets the series.
         /// </summary>
-        [JsonProperty("series")]
+        [DataMember(Name = "series")]
         public DataList<SeriesSummary> Series { get; set; }
 
         /// <summary>
         /// Gets or sets the characters.
         /// </summary>
-        [JsonProperty("characters")]
+        [DataMember(Name = "characters")]
         public DataList<CharacterSummary> Characters { get; set; }
 
         /// <summary>
         /// Gets or sets the creators.
         /// </summary>
-        [JsonProperty("creators")]
+        [DataMember(Name = "creators")]
         public DataList<CreatorSummary> Creators { get; set; }
 
         /// <summary>
         /// Gets or sets a summary of the next event.
         /// </summary>
-        [JsonProperty("next")]
+        [DataMember(Name = "next")]
         public EventSummary Next { get; set; }
 
         /// <summary>
         /// Gets or sets a summary of the previous event.
         /// </summary>
-        [JsonProperty("previous")]
+        [DataMember(Name = "previous")]
         public EventSummary Previous { get; set; }
 
         /// <summary>

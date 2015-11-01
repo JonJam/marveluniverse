@@ -1,119 +1,120 @@
 ﻿namespace MarvelUniverse.Model.Series
 {
+    using System.Runtime.Serialization;
     using Character;
     using Comic;
     using Creator;
     using Event;
     using Extensions;
     using Image;
-    using Newtonsoft.Json;
     using Story;
 
     /// <summary>
     /// A series.
     /// </summary>
+    [DataContract]
     public class Series
     {
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
-        [JsonProperty("id")]
+        [DataMember(Name = "id")]
         public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
-        [JsonProperty("title")]
+        [DataMember(Name = "title")]
         public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
-        [JsonProperty("description")]
+        [DataMember(Name = "description")]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets the resource URI.
         /// </summary>
-        [JsonProperty("resourceURI")]
+        [DataMember(Name = "resourceURI")]
         public string ResourceURI { get; set; }
 
         /// <summary>
         /// Gets or sets the URLs.
         /// </summary>
-        [JsonProperty("urls")]
+        [DataMember(Name = "urls")]
         public Url[] Urls { get; set; }
 
         /// <summary>
         /// Gets or sets the start year.
         /// </summary>
-        [JsonProperty("startYear")]
+        [DataMember(Name = "startYear")]
         public int StartYear { get; set; }
 
         /// <summary>
         /// Gets or sets the end year.
         /// </summary>
-        [JsonProperty("endYear")]
+        [DataMember(Name = "endYear")]
         public int EndYear { get; set; }
 
         /// <summary>
         /// Gets or sets the rating.
         /// </summary>
-        [JsonProperty("rating")]
+        [DataMember(Name = "rating")]
         public string Rating { get; set; }
 
         /// <summary>
         /// Gets or sets the modified date time.
         /// </summary>
-        [JsonProperty("modified")]
+        [DataMember(Name = "modified")]
         public string Modified { get; set; }
 
         /// <summary>
         /// Gets or sets the thumbnail.
         /// </summary>
-        [JsonProperty("thumbnail")]
+        [DataMember(Name = "thumbnail")]
         public Image Thumbnail { get; set; }
 
         /// <summary>
         /// Gets or sets the comics.
         /// </summary>
-        [JsonProperty("comics")]
+        [DataMember(Name = "comics")]
         public DataList<ComicSummary> Comics { get; set; }
 
         /// <summary>
         /// Gets or sets the stories.
         /// </summary>
-        [JsonProperty("stories")]
+        [DataMember(Name = "stories")]
         public DataList<StorySummary> Stories { get; set; }
 
         /// <summary>
         /// Gets or sets the events.
         /// </summary>
-        [JsonProperty("events")]
+        [DataMember(Name = "events")]
         public DataList<EventSummary> Events { get; set; }
 
         /// <summary>
         /// Gets or sets the characters.
         /// </summary>
-        [JsonProperty("characters")]
+        [DataMember(Name = "characters")]
         public DataList<CharacterSummary> Characters { get; set; }
 
         /// <summary>
         /// Gets or sets the creators.
         /// </summary>
-        [JsonProperty("creators")]
+        [DataMember(Name = "creators")]
         public DataList<CreatorSummary> Creators { get; set; }
 
         /// <summary>
         /// Gets or sets the next series.
         /// </summary>
-        [JsonProperty("next")]
+        [DataMember(Name = "next")]
         public SeriesSummary Next { get; set; }
 
         /// <summary>
         /// Gets or sets the previous series.
         /// </summary>
-        [JsonProperty("previous")]
+        [DataMember(Name = "previous")]
         public SeriesSummary Previous { get; set; }
 
         /// <summary>

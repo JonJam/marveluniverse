@@ -1,100 +1,101 @@
 ﻿namespace MarvelUniverse.Model.Creator
 {
     using System;
+    using System.Runtime.Serialization;
     using Comic;
     using Event;
     using Image;
-    using Newtonsoft.Json;
     using Series;
     using Story;
 
     /// <summary>
     /// A creator.
     /// </summary>
+    [DataContract]
     public class Creator
     {
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
-        [JsonProperty("id")]
+        [DataMember(Name = "id")]
         public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the first name.
         /// </summary>
-        [JsonProperty("firstName")]
+        [DataMember(Name = "firstName")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// Gets or sets the middle name.
         /// </summary>
-        [JsonProperty("middleName")]
+        [DataMember(Name = "middleName")]
         public string MiddleName { get; set; }
 
         /// <summary>
         /// Gets or sets the last name.
         /// </summary>
-        [JsonProperty("lastName")]
+        [DataMember(Name = "lastName")]
         public string LastName { get; set; }
 
         /// <summary>
         /// Gets or sets the suffix.
         /// </summary>
-        [JsonProperty("suffix")]
+        [DataMember(Name = "suffix")]
         public string Suffix { get; set; }
 
         /// <summary>
         /// Gets or sets the full name.
         /// </summary>
-        [JsonProperty("fullName")]
+        [DataMember(Name = "fullName")]
         public string FullName { get; set; }
 
         /// <summary>
         /// Gets or sets the modified date time.
         /// </summary>
-        [JsonProperty("modified")]
+        [DataMember(Name = "modified")]
         public DateTime Modified { get; set; }
 
         /// <summary>
         /// Gets or sets the resource URI.
         /// </summary>
-        [JsonProperty("resourceURI")]
+        [DataMember(Name = "resourceURI")]
         public string ResourceURI { get; set; }
 
         /// <summary>
         /// Gets or sets the URLs.
         /// </summary>
-        [JsonProperty("urls")]
+        [DataMember(Name = "urls")]
         public Url[] Urls { get; set; }
 
         /// <summary>
         /// Gets or sets the thumbnail.
         /// </summary>
-        [JsonProperty("thumbnail")]
+        [DataMember(Name = "thumbnail")]
         public Image Thumbnail { get; set; }
 
         /// <summary>
         /// Gets or sets the series.
         /// </summary>
-        [JsonProperty("series")]
+        [DataMember(Name = "series")]
         public DataList<SeriesSummary> Series { get; set; }
 
         /// <summary>
         /// Gets or sets the stories.
         /// </summary>
-        [JsonProperty("stories")]
+        [DataMember(Name = "stories")]
         public DataList<StorySummary> Stories { get; set; }
 
         /// <summary>
         /// Gets or sets the comics.
         /// </summary>
-        [JsonProperty("comics")]
+        [DataMember(Name = "comics")]
         public DataList<ComicSummary> Comics { get; set; }
 
         /// <summary>
         /// Gets or sets the events.
         /// </summary>
-        [JsonProperty("events")]
+        [DataMember(Name = "events")]
         public DataList<EventSummary> Events { get; set; }
     }
 }

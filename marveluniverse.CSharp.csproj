@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -68,8 +66,8 @@
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Assets\VS\ReferencedAssemblies\Newtonsoft.Json\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="System.ServiceModel.Web">
+      <HintPath>Assets\VS\ReferencedAssemblies\System.ServiceModel.Web.dll</HintPath>
     </Reference>
     <Reference Include="System.Web">
       <HintPath>Assets\VS\ReferencedAssemblies\System.Web.dll</HintPath>
@@ -256,8 +254,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\GemShader\diamond shader.shader" />
-    <None Include="Assets\VS\ReferencedAssemblies\Newtonsoft.Json\Newtonsoft.Json.dll.CodeAnalysisLog.xml" />
-    <None Include="Assets\VS\ReferencedAssemblies\Newtonsoft.Json\Newtonsoft.Json.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

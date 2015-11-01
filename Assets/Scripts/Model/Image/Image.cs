@@ -1,22 +1,23 @@
 ﻿namespace MarvelUniverse.Model.Image
 {
-    using Newtonsoft.Json;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// An image.
     /// </summary>
+    [DataContract]
     public class Image
     {
         /// <summary>
         /// Gets or sets the path.
         /// </summary>
-        [JsonProperty("path")]
+        [DataMember(Name = "path")]
         public string Path { get; set; }
 
         /// <summary>
         /// Gets or sets the extension.
         /// </summary>
-        [JsonProperty("extension")]
+        [DataMember(Name = "extension")]
         public string Extension { get; set; }
     }
 }

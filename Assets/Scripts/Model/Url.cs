@@ -1,22 +1,23 @@
 ﻿namespace MarvelUniverse.Model
 {
-    using Newtonsoft.Json;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// A URL.
     /// </summary>
+    [DataContract]
     public class Url
     {
         /// <summary>
         /// Gets or sets the type.
         /// </summary>
-        [JsonProperty("type")]
+        [DataMember(Name = "type")]
         public string Type { get; set; }
 
         /// <summary>
         /// Gets or sets the value.
         /// </summary>
-        [JsonProperty("url")]
+        [DataMember(Name = "url")]
         public string Value { get; set; }
     }
 }

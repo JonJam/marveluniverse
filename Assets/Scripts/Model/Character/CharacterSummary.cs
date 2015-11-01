@@ -1,28 +1,29 @@
 ﻿namespace MarvelUniverse.Model.Character
 {
-    using Newtonsoft.Json;
+    using System.Runtime.Serialization;
 
     /// <summary>
     /// A character summary.
     /// </summary>
+    [DataContract]
     public class CharacterSummary
     {
         /// <summary>
         /// Gets or sets the resource URI.
         /// </summary>
-        [JsonProperty("resourceURI")]
+        [DataMember(Name = "resourceURI")]
         public string ResourceURI { get; set; }
 
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
-        [JsonProperty("name")]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the role.
         /// </summary>
-        [JsonProperty("role")]
+        [DataMember(Name = "role")]
         public string Role { get; set; }
     }
 }
