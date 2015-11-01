@@ -19,5 +19,26 @@
         /// </summary>
         [DataMember(Name = "price")]
         public string Price { get; set; }
+                
+
+        public string DisplayType
+        {
+            get
+            {
+                string displayType = null;
+
+                switch (this.Type)
+                {
+                    case "printPrice":
+                        displayType = "Print Price";
+                        break;
+                    default:
+                        displayType = this.Type;
+                        break;
+                }
+
+                return displayType;
+            }
+        }
     }
 }

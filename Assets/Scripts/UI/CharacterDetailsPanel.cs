@@ -12,7 +12,7 @@
 
         public Text Description;
 
-        public ListView UrlsListView;
+        public ListView UrlListView;
 
         public void HookUp(Character character)
         {
@@ -24,13 +24,13 @@
                 if (character.Urls != null &&
                     character.Urls.Count() > 0)
                 {
-                    this.UrlsListView.gameObject.SetActive(true);
+                    this.UrlListView.gameObject.SetActive(true);
 
-                    this.UrlsListView.DisplayItems(character.Urls.OrderBy(u => u.DisplayText));
+                    this.UrlListView.DisplayItems(character.Urls.OrderBy(u => u.DisplayText));
                 }
                 else
                 {
-                    this.UrlsListView.gameObject.SetActive(false);
+                    this.UrlListView.gameObject.SetActive(false);
                 }
             }
         }
