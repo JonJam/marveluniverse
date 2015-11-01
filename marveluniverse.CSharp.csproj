@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -240,7 +238,9 @@
     <Compile Include="Assets\Scripts\Spawner\IPlanetSystemSpawner.cs" />
     <Compile Include="Assets\Scripts\Spawner\PlanetSystemSpawner.cs" />
     <Compile Include="Assets\Scripts\UI\CharacterDetailsPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\ComicDetailsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\BringToFront.cs" />
+    <Compile Include="Assets\Scripts\UI\Controls\Hyperlink.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\ListView.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\LoadingIndicator.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\EventButtonDetails.cs" />
@@ -252,6 +252,7 @@
     <Compile Include="Assets\Scripts\UI\SearchResultsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Templates\IItemTemplate.cs" />
     <Compile Include="Assets\Scripts\UI\Templates\SearchResultItemTemplate.cs" />
+    <Compile Include="Assets\Scripts\UI\Templates\UrlItemTemplate.cs" />
     <Compile Include="Assets\Scripts\ViewModels\SearchResultViewModel.cs" />
     <Compile Include="Assets\Scripts\ViewModels\SearchViewModel.cs" />
   </ItemGroup>

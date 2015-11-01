@@ -19,5 +19,31 @@
         /// </summary>
         [DataMember(Name = "url")]
         public string Value { get; set; }
+
+        public string DisplayText
+        {
+            get
+            {
+                string displayText = null;
+
+                switch (this.Type)
+                {
+                    case "comiclink":
+                        displayText = "Comic link";
+                        break;
+                    case "wiki":
+                        displayText = "Wiki link";
+                        break;
+                    case "detail":
+                        displayText = "Detail link";
+                        break;
+                    default:
+                        displayText = this.Type;
+                        break;
+                }
+
+                return displayText;
+            }
+        }
     }
 }

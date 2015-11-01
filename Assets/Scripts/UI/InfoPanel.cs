@@ -7,6 +7,7 @@
     using UnityEngine.UI;
     using Zenject;
     using Communications.Result;
+    using Model.Comic;
 
     public class InfoPanel : MonoBehaviour
     {
@@ -15,9 +16,11 @@
         /// </summary>
         public RawImage Image;
 
+        public Color DefaultImageColor;
+
         public CharacterDetailsPanel CharacterDetailsPanel;
 
-        public Color DefaultImageColor;
+        public ComicDetailsPanel ComicDetailsPanel;
         
         /// <summary>
         /// The image service.
@@ -33,6 +36,15 @@
             this.SetImage(character.Thumbnail.Path, character.Thumbnail.Extension);
 
             this.CharacterDetailsPanel.HookUp(character);
+        }
+
+        public void DisplayInformation(Comic comic)
+        {
+            this.ComicDetailsPanel.gameObject.SetActive(true);
+
+            this.SetImage(comic.Thumbnail.Path, comic.Thumbnail.Extension);
+
+            this.ComicDetailsPanel.HookUp(comic);
         }
 
         public void Close()
