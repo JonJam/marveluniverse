@@ -1,36 +1,34 @@
 ﻿namespace MarvelUniverse.Screen
 {
-    using ViewModels;
-    using UnityEngine;
     using System.Collections.Generic;
+    using Model.Character;
+    using ViewModels;
 
     /// <summary>
     /// Interface for a screen manager.
     /// </summary>
     public interface IScreenManager
     {
-        ///// <summary>
-        ///// Open the specified panel, closing the previous and setting the new selected element.
-        ///// </summary>
-        ///// <param name="newScreen">The new screen.</param>
-        //void OpenPanel(GameObject newScreen);
-
-        ///// <summary>
-        ///// Goes back to the previous screen.
-        ///// </summary>
-        //void GoBack();
-
-        ///// <summary>
-        ///// Close the currently open screen and reverting the selected element.
-        ///// </summary>
-        //void CloseCurrent();
-
+        /// <summary>
+        /// Opens the search panel.
+        /// </summary>
         void OpenSearchPanel();
 
+        /// <summary>
+        /// Opens the search results.
+        /// </summary>
+        /// <param name="searchResults">The search results.</param>
         void OpenSearchResults(IList<SearchResultViewModel> searchResults);
 
-        void OpenInfoPanel();
+        /// <summary>
+        /// Open the info panel.
+        /// </summary>
+        /// <param name="character">The character.</param>
+        void OpenInfoPanel(Character character);
 
+        /// <summary>
+        /// Close the currently open screen and reverting the selected element.
+        /// </summary>
         void CloseCurrent();
     }
 }

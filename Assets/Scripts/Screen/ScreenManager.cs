@@ -7,6 +7,7 @@
     using UnityEngine.UI;
     using System.Collections.Generic;
     using UI;
+    using Model.Character;
 
     /// <summary>
     /// Screen manager. Based upon <see cref="http://docs.unity3d.com/Manual/HOWTO-UIScreenTransition.html"/>.
@@ -70,9 +71,22 @@
         /// <summary>
         /// Open the info panel.
         /// </summary>
-        public void OpenInfoPanel()
+        /// <param name="character">The character.</param>
+        public void OpenInfoPanel(Character character)
         {
             this.OpenPanel(this.infoPanel.gameObject);
+            this.infoPanel.DisplayInformation(character);
+        }
+
+        /// <summary>
+        /// Close the currently open screen and reverting the selected element.
+        /// </summary>
+        public void CloseCurrent()
+        {
+            if (this.currentlyOpenScreen != null)
+            {
+                this.currentlyOpenScreen.SetActive(false);
+            }
         }
 
         /// <summary>
@@ -106,17 +120,6 @@
                 //Set an element in the new screen as the new Selected one.
                 GameObject newSelectedGameObject = this.FindFirstEnabledSelectable(newScreen);
                 this.SetSelected(newSelectedGameObject);
-            }
-        }
-        
-        /// <summary>
-        /// Close the currently open screen and reverting the selected element.
-        /// </summary>
-        public void CloseCurrent()
-        {
-            if (this.currentlyOpenScreen != null)
-            {
-                this.currentlyOpenScreen.SetActive(false);
             }
         }
 

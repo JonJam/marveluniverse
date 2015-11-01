@@ -3,6 +3,7 @@
     using System;
     using Events;
     using UI.Controls.MessageDialog;
+    using UnityEngine;
 
     /// <summary>
     /// Result processor.
@@ -13,6 +14,11 @@
         /// The WWW object no network error.
         /// </summary>
         private const string WWWNoNetworkError = "Host not found";
+
+        /// <summary>
+        /// The WWW object unauthorized error.
+        /// </summary>
+        private const string WWWUnauthorizedError = "401 Unauthorized\r";
 
         /// <summary>
         /// The event manager.
@@ -64,6 +70,15 @@
                     new EventButtonDetails("OK", null));
 
                 this.eventManager.GetEvent<ShowMessageDialogEvent>().Invoke(noNetworkMessageDetails);
+            }
+            else if (error.Contains(ResultProcessor.WWWUnauthorizedError) &&
+                Debug.isDebugBuild)
+            {
+                MessageDialogDetails notAuthorizedMessageDetails = new MessageDialogDetails(
+                    "Please check the access tokens in the Web Requestor class.",
+                    new EventButtonDetails("OK", null));
+
+                this.eventManager.GetEvent<ShowMessageDialogEvent>().Invoke(notAuthorizedMessageDetails);
             }
             else
             {

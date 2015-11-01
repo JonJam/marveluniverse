@@ -23,5 +23,13 @@
             this.SetName(this.character.Name);
             this.SetImage(this.character.Thumbnail.Path, this.character.Thumbnail.Extension);
         }
+
+        /// <summary>
+        /// Display information for this planet system.
+        /// </summary>
+        protected override void DisplayInformation()
+        {
+            this.ScreenManager.OpenInfoPanel(this.character);
+        }
     }
 }

@@ -41,6 +41,17 @@
         /// A value indicating whether the camera is focused on this instance.
         /// </summary>
         private bool isCameraFocusedOn;
+
+        /// <summary>
+        /// Gets the screen manager.
+        /// </summary>
+        protected IScreenManager ScreenManager
+        {
+            get
+            {
+                return this.screenManager;
+            }
+        }
         
         /// <summary>
         /// Sets the name.
@@ -60,6 +71,11 @@
         {
             this.planetImage.SetImage(imagePath, imageExtension);
         }
+
+        /// <summary>
+        /// Display information for this planet system.
+        /// </summary>
+        protected abstract void DisplayInformation();
 
         /// <summary>
         /// Injection initialization.
@@ -113,7 +129,7 @@
         {
             if (this.isCameraFocusedOn)
             {
-                this.screenManager.OpenInfoPanel();
+                this.DisplayInformation();
                 this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(false);
             }
             else
