@@ -105,6 +105,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets the type to display.
+        /// </summary>
         public string DisplayType
         {
             get

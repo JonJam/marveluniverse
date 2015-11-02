@@ -37,6 +37,11 @@
             return cleanedString;
         }
 
+        /// <summary>
+        /// Converts a string representing a DateTime object to a formatted date.
+        /// </summary>
+        /// <param name="dateString">A string representing a DateTime object.</param>
+        /// <returns>A formatted date.</returns>
         public static string ToDisplayDate(this string dateString)
         {
             DateTime date = DateTime.MinValue;

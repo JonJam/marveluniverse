@@ -123,6 +123,9 @@
             }
         }
                 
+        /// <summary>
+        /// Gets the start date to display.
+        /// </summary>
         public string DisplayStartDate
         {
             get
@@ -131,6 +134,9 @@
             }
         }
         
+        /// <summary>
+        /// Gets the end date to display.
+        /// </summary>
         public string DisplayEndDate
         {
             get

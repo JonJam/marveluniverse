@@ -1,17 +1,17 @@
 ﻿namespace MarvelUniverse.Screen
 {
-    using System.Linq;
-    using ViewModels;
-    using UnityEngine;
-    using UnityEngine.EventSystems;
-    using UnityEngine.UI;
     using System.Collections.Generic;
-    using UI;
+    using System.Linq;
     using Model.Character;
     using Model.Comic;
     using Model.Creator;
-    using Model.Story;
     using Model.Series;
+    using Model.Story;
+    using UI.Screens;
+    using UnityEngine;
+    using UnityEngine.EventSystems;
+    using UnityEngine.UI;
+    using ViewModels;
 
     /// <summary>
     /// Screen manager. Based upon <see cref="http://docs.unity3d.com/Manual/HOWTO-UIScreenTransition.html"/>.

@@ -1,8 +1,6 @@
 ﻿namespace MarvelUniverse.UI.Templates
 {
-    using Controls;
     using Model.Comic;
-    using Model;
     using UnityEngine;
     using UnityEngine.UI;
 
@@ -12,10 +10,13 @@
     public class ComicPriceItemTemplate : MonoBehaviour, IItemTemplate<ComicPrice>
     {        
         /// <summary>
-        /// The price type.
+        /// The price type text.
         /// </summary>
         public Text PriceType;
 
+        /// <summary>
+        /// The price text.
+        /// </summary>
         public Text Price;
         
         /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.UI
+﻿namespace MarvelUniverse.UI.Screens
 {
     using System.Collections.Generic;
     using Controls;

@@ -1,17 +1,21 @@
-﻿namespace MarvelUniverse.UI
+﻿namespace MarvelUniverse.UI.Screens
 {
     using Communications.Interfaces;
-    using Model.Image;
+    using Communications.Result;
+    using DetailsPanel;
     using Model.Character;
+    using Model.Comic;
+    using Model.Creator;
+    using Model.Image;
+    using Model.Series;
+    using Model.Story;
     using UnityEngine;
     using UnityEngine.UI;
     using Zenject;
-    using Communications.Result;
-    using Model.Comic;
-    using Model.Creator;
-    using Model.Story;
-    using Model.Series;
 
+    /// <summary>
+    /// The information panel.
+    /// </summary>
     public class InfoPanel : MonoBehaviour
     {
         /// <summary>
@@ -19,18 +23,39 @@
         /// </summary>
         public RawImage Image;
 
+        /// <summary>
+        /// The default image color.
+        /// </summary>
         public Color DefaultImageColor;
 
+        /// <summary>
+        /// The character details panel.
+        /// </summary>
         public CharacterDetailsPanel CharacterDetailsPanel;
 
+        /// <summary>
+        /// The comic details panel.
+        /// </summary>
         public ComicDetailsPanel ComicDetailsPanel;
 
+        /// <summary>
+        /// The event details panel.
+        /// </summary>
         public EventDetailsPanel EventDetailsPanel;
 
+        /// <summary>
+        /// The creator details panel.
+        /// </summary>
         public CreatorDetailsPanel CreatorDetailsPanel;
 
+        /// <summary>
+        /// The story details panel.
+        /// </summary>
         public StoryDetailsPanel StoryDetailsPanel;
         
+        /// <summary>
+        /// The series details panel.
+        /// </summary>
         public SeriesDetailsPanel SeriesDetailsPanel;
 
         /// <summary>
@@ -38,10 +63,19 @@
         /// </summary>
         private IImageService imageService;
 
+        /// <summary>
+        /// The image download coroutine.
+        /// </summary>
         private Coroutine imageDownloadCoroutine;
         
+        /// <summary>
+        /// Display information for the specified character.
+        /// </summary>
+        /// <param name="character">The character.</param>
         public void DisplayInformation(Character character)
         {
+            this.Reset();
+
             this.CharacterDetailsPanel.gameObject.SetActive(true);
 
             this.SetImage(character.Thumbnail);
@@ -49,8 +83,14 @@
             this.CharacterDetailsPanel.HookUp(character);
         }
 
+        /// <summary>
+        /// Display information for the specified comic.
+        /// </summary>
+        /// <param name="comic">The comic.</param>
         public void DisplayInformation(Comic comic)
         {
+            this.Reset();
+
             this.ComicDetailsPanel.gameObject.SetActive(true);
 
             this.SetImage(comic.Thumbnail);
@@ -58,8 +98,14 @@
             this.ComicDetailsPanel.HookUp(comic);
         }
 
+        /// <summary>
+        /// Display information for the specified event.
+        /// </summary>
+        /// <param name="comicEvent">The comic event.</param>
         public void DisplayInformation(Model.Event.Event comicEvent)
         {
+            this.Reset();
+
             this.EventDetailsPanel.gameObject.SetActive(true);
 
             this.SetImage(comicEvent.Thumbnail);
@@ -67,8 +113,14 @@
             this.EventDetailsPanel.HookUp(comicEvent);
         }
 
+        /// <summary>
+        /// Display information for the specified event.
+        /// </summary>
+        /// <param name="creator">The creator.</param>
         public void DisplayInformation(Creator creator)
         {
+            this.Reset();
+
             this.CreatorDetailsPanel.gameObject.SetActive(true);
 
             this.SetImage(creator.Thumbnail);
@@ -76,8 +128,14 @@
             this.CreatorDetailsPanel.HookUp(creator);
         }
 
+        /// <summary>
+        /// Display information for the specified story.
+        /// </summary>
+        /// <param name="story">The story.</param>
         public void DisplayInformation(Story story)
         {
+            this.Reset();
+
             this.StoryDetailsPanel.gameObject.SetActive(true);
 
             this.SetImage(story.Thumbnail);
@@ -85,8 +143,14 @@
             this.StoryDetailsPanel.HookUp(story);
         }
 
+        /// <summary>
+        /// Display information for the specified series.
+        /// </summary>
+        /// <param name="series">The series.</param>
         public void DisplayInformation(Series series)
         {
+            this.Reset();
+
             this.SeriesDetailsPanel.gameObject.SetActive(true);
 
             this.SetImage(series.Thumbnail);
@@ -94,6 +158,9 @@
             this.SeriesDetailsPanel.HookUp(series);
         }
 
+        /// <summary>
+        /// Close this panel.
+        /// </summary>
         public void Close()
         {
             if (this.imageDownloadCoroutine != null)
@@ -116,15 +183,20 @@
             this.imageService = imageService;
         }
 
-        
+        /// <summary>
+        /// Resets the panel.
+        /// </summary>
         private void Reset()
         {
             this.Image.color = this.DefaultImageColor;
             this.Image.texture = null;
 
             this.CharacterDetailsPanel.gameObject.SetActive(false);
-
-            // TODO Add all panels here
+            this.ComicDetailsPanel.gameObject.SetActive(false);
+            this.CreatorDetailsPanel.gameObject.SetActive(false);
+            this.EventDetailsPanel.gameObject.SetActive(false);
+            this.SeriesDetailsPanel.gameObject.SetActive(false);
+            this.StoryDetailsPanel.gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -137,10 +209,10 @@
                 image.HasData)
             {
                 this.imageDownloadCoroutine = this.StartCoroutine(this.imageService.DownloadImage(
-                        image.Path,
-                        image.Extension,
-                        ImageSize.PortaitUncanny,
-                        this.DownloadImageCompleted));
+                    image.Path,
+                    image.Extension,
+                    ImageSize.PortaitUncanny,
+                    this.DownloadImageCompleted));
             }
         }        
 

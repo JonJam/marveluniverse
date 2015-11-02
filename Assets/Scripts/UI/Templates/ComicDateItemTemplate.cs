@@ -1,8 +1,6 @@
 ﻿namespace MarvelUniverse.UI.Templates
 {
-    using Controls;
     using Model.Comic;
-    using Model;
     using UnityEngine;
     using UnityEngine.UI;
 
@@ -12,10 +10,13 @@
     public class ComicDateItemTemplate : MonoBehaviour, IItemTemplate<ComicDate>
     {        
         /// <summary>
-        /// The date type.
+        /// The date type text.
         /// </summary>
         public Text DateType;
 
+        /// <summary>
+        /// The date text.
+        /// </summary>
         public Text Date;
         
         /// <summary>

@@ -20,7 +20,9 @@
         [DataMember(Name = "price")]
         public string Price { get; set; }
                 
-
+        /// <summary>
+        /// Gets the type to display.
+        /// </summary>
         public string DisplayType
         {
             get

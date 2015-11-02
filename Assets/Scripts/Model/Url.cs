@@ -20,7 +20,10 @@
         [DataMember(Name = "url")]
         public string Value { get; set; }
 
-        public string DisplayText
+        /// <summary>
+        /// Get the type to display.
+        /// </summary>
+        public string DisplayType
         {
             get
             {

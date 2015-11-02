@@ -1,7 +1,7 @@
 ﻿namespace MarvelUniverse
 {
     using System;
-    using UI;
+    using UI.Screens;
     using UnityEngine;
 
     /// <summary>
@@ -10,10 +10,19 @@
     [Serializable]
     public class SceneSettings
     {
+        /// <summary>
+        /// The search panel.
+        /// </summary>
         public SearchPanel SearchPanel;
 
+        /// <summary>
+        /// The search results panel.
+        /// </summary>
         public SearchResultsPanel SearchResultsPanel;
 
+        /// <summary>
+        /// The information panel.
+        /// </summary>
         public InfoPanel InfoPanel;
 
         /// <summary>

@@ -20,6 +20,9 @@
         [DataMember(Name = "extension")]
         public string Extension { get; set; }
 
+        /// <summary>
+        /// Gets a value indicating whether has data.
+        /// </summary>
         public bool HasData
         {
             get

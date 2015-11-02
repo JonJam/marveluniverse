@@ -20,6 +20,9 @@
         [DataMember(Name = "date")]
         public string Date { get; set; }
 
+        /// <summary>
+        /// Gets the type to display.
+        /// </summary>
         public string DisplayType
         {
             get
