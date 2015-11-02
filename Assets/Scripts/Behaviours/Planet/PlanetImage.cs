@@ -10,7 +10,7 @@
     /// The planet image.
     /// </summary>
     public class PlanetImage : MonoBehaviour
-    {   
+    {
         /// <summary>
         /// The image service.
         /// </summary>
@@ -22,26 +22,18 @@
         private MeshRenderer meshRenderer;
 
         /// <summary>
-        /// A value indicating whether this attempted to load image.
-        /// </summary>
-        private bool attemptedToLoadImage;
-
-        /// <summary>
         /// Set image.
         /// </summary>
         /// <param name="image">The image.</param>
         public void SetImage(Image image)
         {
-            if (!this.attemptedToLoadImage &&
-                image != null &&
+            if (image != null &&
                 image.HasData)
             {
-                this.attemptedToLoadImage = true;
-
                 this.StartCoroutine(this.imageService.DownloadImage(
                     image.Path,
                     image.Extension,
-                    ImageSize.StandardFantastic, 
+                    ImageSize.StandardFantastic,
                     this.DownloadImageCompleted));
             }
         }
@@ -64,7 +56,7 @@
         {
             this.meshRenderer = this.GetComponent<MeshRenderer>();
         }
-        
+
         /// <summary>
         /// Handles the download image completed event.
         /// </summary>

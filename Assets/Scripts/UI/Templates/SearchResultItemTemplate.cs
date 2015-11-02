@@ -24,11 +24,6 @@
         private SearchResultViewModel searchResult;
 
         /// <summary>
-        /// A value indicating whether this attempted to load image.
-        /// </summary>
-        private bool attemptedToLoadImage;
-
-        /// <summary>
         /// The name.
         /// </summary>
         public Text Name;
@@ -59,6 +54,8 @@
             this.Name.text = item.Name;
             this.Description.text = item.Description;
             this.Button.onClick.AddListener(item.SearchResultClicked);
+
+            this.StartCoroutine(this.imageService.DownloadImage(searchResult.ImagePath, searchResult.ImageExtension, ImageSize.StandardXLarge, this.DownloadImageCompleted));
         }        
 
         /// <summary>
@@ -70,20 +67,6 @@
             IImageService imageService)
         {
             this.imageService = imageService;
-        }
-
-        /// <summary>
-        /// Handles the update event.
-        /// </summary>
-        private void Update()
-        {
-            if (this.Image.texture == null &&
-                !this.attemptedToLoadImage)
-            {
-                this.attemptedToLoadImage = true;
-
-                this.StartCoroutine(this.imageService.DownloadImage(searchResult.ImagePath, searchResult.ImageExtension, ImageSize.StandardXLarge, this.DownloadImageCompleted));
-            }
         }
 
         /// <summary>
