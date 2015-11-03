@@ -21,7 +21,7 @@
     /// <summary>
     /// Search.
     /// </summary>
-    public class SearchPanel : MonoBehaviour
+    public class SearchPanel : MonoBehaviour, IScreen
     {
         /// <summary>
         /// The character service.
@@ -97,50 +97,16 @@
         /// The search text input field.
         /// </summary>
         public InputField SearchTextInputField;
-
+        
         /// <summary>
-        /// Injection initialization.
+        /// Gets the game object.
         /// </summary>
-        /// <param name="characterService">The character service.</param>
-        /// <param name="comicService">The comic service.</param>
-        /// <param name="creatorService">The creator service.</param>
-        /// <param name="seriesService">The series service.</param>
-        /// <param name="eventService">The event service.</param>
-        /// <param name="loadingManager">The loading manager.</param>
-        /// <param name="screenManager">The screen manaager.</param>
-        /// <param name="eventManager">The event manager.</param>
-        /// <param name="resultProcessor">The result processor.</param>
-        /// <param name="planetSystemSpawner">The planet system spawner.</param>
-        /// <param name="searchViewModel">The search view model.</param>
-        [PostInject]
-        private void InjectionInitialize(
-            ICharacterService characterService,
-            IComicService comicService,
-            ICreatorService creatorService,
-            ISeriesService seriesService,
-            IEventService eventService,
-            ILoadingManager loadingManager,
-            IScreenManager screenManager,
-            IEventManager eventManager,
-            IResultProcessor resultProcessor,
-            IPlanetSystemSpawner planetSystemSpawner,
-            SearchViewModel searchViewModel)
+        public GameObject GameObject
         {
-            this.characterService = characterService;
-            this.comicService = comicService;
-            this.creatorService = creatorService;
-            this.seriesService = seriesService;
-            this.eventService = eventService;
-
-            this.loadingManager = loadingManager;
-            this.screenManager = screenManager;
-            this.eventManager = eventManager;
-            this.resultProcessor = resultProcessor;
-            this.planetSystemSpawner = planetSystemSpawner;
-
-            this.searchViewModel = searchViewModel;
-
-            this.eventManager.GetEvent<LoadingEvent>().AddListener(this.OnLoading);
+            get
+            {
+                return this.gameObject;
+            }
         }
 
         /// <summary>
@@ -200,6 +166,66 @@
             this.searchViewModel.SearchTypeIndex = this.SearchTypeDropdown.value;
         }
 
+        /// <summary>
+        /// Called upon screen open.
+        /// </summary>
+        /// <param name="openParameter">The open parameter.</param>
+        public void OnOpen(object openParameter)
+        {
+        }
+
+        /// <summary>
+        /// Called upon the screen being closed.
+        /// </summary>
+        public void OnClosing()
+        {
+        }
+
+        /// <summary>
+        /// Injection initialization.
+        /// </summary>
+        /// <param name="characterService">The character service.</param>
+        /// <param name="comicService">The comic service.</param>
+        /// <param name="creatorService">The creator service.</param>
+        /// <param name="seriesService">The series service.</param>
+        /// <param name="eventService">The event service.</param>
+        /// <param name="loadingManager">The loading manager.</param>
+        /// <param name="screenManager">The screen manaager.</param>
+        /// <param name="eventManager">The event manager.</param>
+        /// <param name="resultProcessor">The result processor.</param>
+        /// <param name="planetSystemSpawner">The planet system spawner.</param>
+        /// <param name="searchViewModel">The search view model.</param>
+        [PostInject]
+        private void InjectionInitialize(
+            ICharacterService characterService,
+            IComicService comicService,
+            ICreatorService creatorService,
+            ISeriesService seriesService,
+            IEventService eventService,
+            ILoadingManager loadingManager,
+            IScreenManager screenManager,
+            IEventManager eventManager,
+            IResultProcessor resultProcessor,
+            IPlanetSystemSpawner planetSystemSpawner,
+            SearchViewModel searchViewModel)
+        {
+            this.characterService = characterService;
+            this.comicService = comicService;
+            this.creatorService = creatorService;
+            this.seriesService = seriesService;
+            this.eventService = eventService;
+
+            this.loadingManager = loadingManager;
+            this.screenManager = screenManager;
+            this.eventManager = eventManager;
+            this.resultProcessor = resultProcessor;
+            this.planetSystemSpawner = planetSystemSpawner;
+
+            this.searchViewModel = searchViewModel;
+
+            this.eventManager.GetEvent<LoadingEvent>().AddListener(this.OnLoading);
+        }
+        
         /// <summary>
         /// Handles the awake event.
         /// </summary>

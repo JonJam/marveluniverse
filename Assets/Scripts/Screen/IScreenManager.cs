@@ -27,38 +27,8 @@
         /// <summary>
         /// Open the info panel.
         /// </summary>
-        /// <param name="character">The character.</param>
-        void OpenInfoPanel(Character character);
-
-        /// <summary>
-        /// Open the info panel.
-        /// </summary>
-        /// <param name="comic">The comic.</param>
-        void OpenInfoPanel(Comic comic);
-
-        /// <summary>
-        /// Open the info panel.
-        /// </summary>
-        /// <param name="comicEvent">The event.</param>
-        void OpenInfoPanel(Model.Event.Event comicEvent);
-
-        /// <summary>
-        /// Open the info panel.
-        /// </summary>
-        /// <param name="creator">The creator.</param>
-        void OpenInfoPanel(Creator creator);
-
-        /// <summary>
-        /// Open the info panel.
-        /// </summary>
-        /// <param name="story">The story.</param>
-        void OpenInfoPanel(Story story);
-
-        /// <summary>
-        /// Open the info panel.
-        /// </summary>
-        /// <param name="series">The series.</param>
-        void OpenInfoPanel(Series series);
+        /// <param name="openParameter">The open parameter.</param>
+        void OpenInfoPanel(object openParameter);
 
         /// <summary>
         /// Close the currently open screen and reverting the selected element.

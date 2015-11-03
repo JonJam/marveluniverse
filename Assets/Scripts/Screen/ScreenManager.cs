@@ -26,17 +26,17 @@
         /// <summary>
         /// The search panel.
         /// </summary>
-        private SearchPanel searchPanel;
+        private IScreen searchPanel;
 
         /// <summary>
         /// The search results panel.
         /// </summary>
-        private SearchResultsPanel searchResultsPanel;
+        private IScreen searchResultsPanel;
 
         /// <summary>
         /// The info panel.
         /// </summary>
-        private InfoPanel infoPanel;
+        private IScreen infoPanel;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ScreenManager"/>
@@ -45,9 +45,9 @@
         /// <param name="searchResultsPanel">The search results panel.</param>
         /// <param name="infoPanel">The info panel.</param>
         public ScreenManager(
-            SearchPanel searchPanel,
-            SearchResultsPanel searchResultsPanel,
-            InfoPanel infoPanel)
+            IScreen searchPanel,
+            IScreen searchResultsPanel,
+            IScreen infoPanel)
         {
             this.searchPanel = searchPanel;
             this.searchResultsPanel = searchResultsPanel;
@@ -59,7 +59,7 @@
         /// </summary>
         public void OpenSearchPanel()
         {
-            this.OpenPanel(this.searchPanel.gameObject);
+            this.OpenPanel(this.searchPanel.GameObject);
         }
         
         /// <summary>
@@ -68,68 +68,18 @@
         /// <param name="searchResults">The search results.</param>
         public void OpenSearchResults(IList<SearchResultViewModel> searchResults)
         {
-            this.OpenPanel(this.searchResultsPanel.gameObject);
-            this.searchResultsPanel.DisplaySearchResults(searchResults);
+            this.OpenPanel(this.searchResultsPanel.GameObject);
+            this.searchResultsPanel.OnOpen(searchResults);
         }
 
         /// <summary>
         /// Open the info panel.
         /// </summary>
-        /// <param name="character">The character.</param>
-        public void OpenInfoPanel(Character character)
+        /// <param name="openParameter">The open parameter.</param>
+        public void OpenInfoPanel(object openParameter)
         {
-            this.OpenPanel(this.infoPanel.gameObject);
-            this.infoPanel.DisplayInformation(character);
-        }
-
-        /// <summary>
-        /// Open the info panel.
-        /// </summary>
-        /// <param name="comic">The comic.</param>
-        public void OpenInfoPanel(Comic comic)
-        {
-            this.OpenPanel(this.infoPanel.gameObject);
-            this.infoPanel.DisplayInformation(comic);
-        }
-
-        /// <summary>
-        /// Open the info panel.
-        /// </summary>
-        /// <param name="comicEvent">The event.</param>
-        public void OpenInfoPanel(Model.Event.Event comicEvent)
-        {
-            this.OpenPanel(this.infoPanel.gameObject);
-            this.infoPanel.DisplayInformation(comicEvent);
-        }
-
-        /// <summary>
-        /// Open the info panel.
-        /// </summary>
-        /// <param name="creator">The creator.</param>
-        public void OpenInfoPanel(Creator creator)
-        {
-            this.OpenPanel(this.infoPanel.gameObject);
-            this.infoPanel.DisplayInformation(creator);
-        }
-
-        /// <summary>
-        /// Open the info panel.
-        /// </summary>
-        /// <param name="story">The story.</param>
-        public void OpenInfoPanel(Story story)
-        {
-            this.OpenPanel(this.infoPanel.gameObject);
-            this.infoPanel.DisplayInformation(story);
-        }
-
-        /// <summary>
-        /// Open the info panel.
-        /// </summary>
-        /// <param name="series">The series.</param>
-        public void OpenInfoPanel(Series series)
-        {
-            this.OpenPanel(this.infoPanel.gameObject);
-            this.infoPanel.DisplayInformation(series);
+            this.OpenPanel(this.infoPanel.GameObject);
+            this.infoPanel.OnOpen(openParameter);
         }
 
         /// <summary>
@@ -139,6 +89,13 @@
         {
             if (this.currentlyOpenScreen != null)
             {
+                IScreen screen = this.currentlyOpenScreen.GetComponent<IScreen>();
+
+                if (screen != null)
+                {
+                    screen.OnClosing();
+                }
+
                 this.currentlyOpenScreen.SetActive(false);
             }
         }

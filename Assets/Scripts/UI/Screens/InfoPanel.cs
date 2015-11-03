@@ -16,7 +16,7 @@
     /// <summary>
     /// The information panel.
     /// </summary>
-    public class InfoPanel : MonoBehaviour
+    public class InfoPanel : MonoBehaviour, IScreen
     {
         /// <summary>
         /// The image.
@@ -67,101 +67,54 @@
         /// The image download coroutine.
         /// </summary>
         private Coroutine imageDownloadCoroutine;
-        
+
         /// <summary>
-        /// Display information for the specified character.
+        /// Gets the game object.
         /// </summary>
-        /// <param name="character">The character.</param>
-        public void DisplayInformation(Character character)
+        public GameObject GameObject
         {
-            this.Reset();
-
-            this.CharacterDetailsPanel.gameObject.SetActive(true);
-
-            this.SetImage(character.Thumbnail);
-
-            this.CharacterDetailsPanel.HookUp(character);
+            get
+            {
+                return this.gameObject;
+            }
         }
 
         /// <summary>
-        /// Display information for the specified comic.
+        /// Called upon screen open.
         /// </summary>
-        /// <param name="comic">The comic.</param>
-        public void DisplayInformation(Comic comic)
+        /// <param name="openParameter">The open parameter.</param>
+        public void OnOpen(object openParameter)
         {
-            this.Reset();
-
-            this.ComicDetailsPanel.gameObject.SetActive(true);
-
-            this.SetImage(comic.Thumbnail);
-
-            this.ComicDetailsPanel.HookUp(comic);
+            if (openParameter is Character)
+            {
+                this.DisplayInformation((Character)openParameter);
+            }
+            else if (openParameter is Comic)
+            {
+                this.DisplayInformation((Comic)openParameter);
+            }
+            else if (openParameter is Model.Event.Event)
+            {
+                this.DisplayInformation((Model.Event.Event)openParameter);
+            }
+            else if (openParameter is Creator)
+            {
+                this.DisplayInformation((Creator)openParameter);
+            }
+            else if (openParameter is Story)
+            {
+                this.DisplayInformation((Story)openParameter);
+            }
+            else if (openParameter is Series)
+            {
+                this.DisplayInformation((Series)openParameter);
+            }
         }
 
         /// <summary>
-        /// Display information for the specified event.
+        /// Called upon the screen being closed.
         /// </summary>
-        /// <param name="comicEvent">The comic event.</param>
-        public void DisplayInformation(Model.Event.Event comicEvent)
-        {
-            this.Reset();
-
-            this.EventDetailsPanel.gameObject.SetActive(true);
-
-            this.SetImage(comicEvent.Thumbnail);
-
-            this.EventDetailsPanel.HookUp(comicEvent);
-        }
-
-        /// <summary>
-        /// Display information for the specified event.
-        /// </summary>
-        /// <param name="creator">The creator.</param>
-        public void DisplayInformation(Creator creator)
-        {
-            this.Reset();
-
-            this.CreatorDetailsPanel.gameObject.SetActive(true);
-
-            this.SetImage(creator.Thumbnail);
-
-            this.CreatorDetailsPanel.HookUp(creator);
-        }
-
-        /// <summary>
-        /// Display information for the specified story.
-        /// </summary>
-        /// <param name="story">The story.</param>
-        public void DisplayInformation(Story story)
-        {
-            this.Reset();
-
-            this.StoryDetailsPanel.gameObject.SetActive(true);
-
-            this.SetImage(story.Thumbnail);
-
-            this.StoryDetailsPanel.HookUp(story);
-        }
-
-        /// <summary>
-        /// Display information for the specified series.
-        /// </summary>
-        /// <param name="series">The series.</param>
-        public void DisplayInformation(Series series)
-        {
-            this.Reset();
-
-            this.SeriesDetailsPanel.gameObject.SetActive(true);
-
-            this.SetImage(series.Thumbnail);
-
-            this.SeriesDetailsPanel.HookUp(series);
-        }
-
-        /// <summary>
-        /// Close this panel.
-        /// </summary>
-        public void Close()
+        public void OnClosing()
         {
             if (this.imageDownloadCoroutine != null)
             {
@@ -181,6 +134,96 @@
             IImageService imageService)
         {
             this.imageService = imageService;
+        }
+
+        /// <summary>
+        /// Display information for the specified character.
+        /// </summary>
+        /// <param name="character">The character.</param>
+        private void DisplayInformation(Character character)
+        {
+            this.Reset();
+
+            this.CharacterDetailsPanel.gameObject.SetActive(true);
+
+            this.SetImage(character.Thumbnail);
+
+            this.CharacterDetailsPanel.HookUp(character);
+        }
+
+        /// <summary>
+        /// Display information for the specified comic.
+        /// </summary>
+        /// <param name="comic">The comic.</param>
+        private void DisplayInformation(Comic comic)
+        {
+            this.Reset();
+
+            this.ComicDetailsPanel.gameObject.SetActive(true);
+
+            this.SetImage(comic.Thumbnail);
+
+            this.ComicDetailsPanel.HookUp(comic);
+        }
+
+        /// <summary>
+        /// Display information for the specified event.
+        /// </summary>
+        /// <param name="comicEvent">The comic event.</param>
+        private void DisplayInformation(Model.Event.Event comicEvent)
+        {
+            this.Reset();
+
+            this.EventDetailsPanel.gameObject.SetActive(true);
+
+            this.SetImage(comicEvent.Thumbnail);
+
+            this.EventDetailsPanel.HookUp(comicEvent);
+        }
+
+        /// <summary>
+        /// Display information for the specified event.
+        /// </summary>
+        /// <param name="creator">The creator.</param>
+        private void DisplayInformation(Creator creator)
+        {
+            this.Reset();
+
+            this.CreatorDetailsPanel.gameObject.SetActive(true);
+
+            this.SetImage(creator.Thumbnail);
+
+            this.CreatorDetailsPanel.HookUp(creator);
+        }
+
+        /// <summary>
+        /// Display information for the specified story.
+        /// </summary>
+        /// <param name="story">The story.</param>
+        private void DisplayInformation(Story story)
+        {
+            this.Reset();
+
+            this.StoryDetailsPanel.gameObject.SetActive(true);
+
+            this.SetImage(story.Thumbnail);
+
+            this.StoryDetailsPanel.HookUp(story);
+        }
+
+        /// <summary>
+        /// Display information for the specified series.
+        /// </summary>
+        /// <param name="series">The series.</param>
+        private void DisplayInformation(Series series)
+        {
+            this.Reset();
+
+            this.SeriesDetailsPanel.gameObject.SetActive(true);
+
+            this.SetImage(series.Thumbnail);
+
+            this.SeriesDetailsPanel.HookUp(series);
         }
 
         /// <summary>
