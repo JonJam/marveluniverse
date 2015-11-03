@@ -69,6 +69,11 @@
         private Coroutine imageDownloadCoroutine;
 
         /// <summary>
+        /// The previous openParameter.
+        /// </summary>
+        private object previousOpenParameter;
+
+        /// <summary>
         /// Gets the game object.
         /// </summary>
         public GameObject GameObject
@@ -85,29 +90,34 @@
         /// <param name="openParameter">The open parameter.</param>
         public void OnOpen(object openParameter)
         {
-            if (openParameter is Character)
+            if (previousOpenParameter != openParameter)
             {
-                this.DisplayInformation((Character)openParameter);
-            }
-            else if (openParameter is Comic)
-            {
-                this.DisplayInformation((Comic)openParameter);
-            }
-            else if (openParameter is Model.Event.Event)
-            {
-                this.DisplayInformation((Model.Event.Event)openParameter);
-            }
-            else if (openParameter is Creator)
-            {
-                this.DisplayInformation((Creator)openParameter);
-            }
-            else if (openParameter is Story)
-            {
-                this.DisplayInformation((Story)openParameter);
-            }
-            else if (openParameter is Series)
-            {
-                this.DisplayInformation((Series)openParameter);
+                if (openParameter is Character)
+                {
+                    this.DisplayInformation((Character)openParameter);
+                }
+                else if (openParameter is Comic)
+                {
+                    this.DisplayInformation((Comic)openParameter);
+                }
+                else if (openParameter is Model.Event.Event)
+                {
+                    this.DisplayInformation((Model.Event.Event)openParameter);
+                }
+                else if (openParameter is Creator)
+                {
+                    this.DisplayInformation((Creator)openParameter);
+                }
+                else if (openParameter is Story)
+                {
+                    this.DisplayInformation((Story)openParameter);
+                }
+                else if (openParameter is Series)
+                {
+                    this.DisplayInformation((Series)openParameter);
+                }
+
+                this.previousOpenParameter = openParameter;
             }
         }
 
