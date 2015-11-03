@@ -44,8 +44,8 @@
             {
                 this.SetTextToDisplay(this.Title, comicEvent.Title);
                 this.SetTextToDisplay(this.Description, comicEvent.CleanDescription);
-                this.SetTextToDisplay(this.StartDate, comicEvent.DisplayStartDate);
-                this.SetTextToDisplay(this.EndDate, comicEvent.DisplayEndDate);
+                this.SetTextToDisplay(this.StartDate, comicEvent.DisplayStartDate, this.StartDate.transform.parent.gameObject);
+                this.SetTextToDisplay(this.EndDate, comicEvent.DisplayEndDate, this.EndDate.transform.parent.gameObject);
 
                 this.SetListItems(this.UrlListView, comicEvent.Urls != null ? comicEvent.Urls.OrderBy(u => u.DisplayType) : null);
             }
