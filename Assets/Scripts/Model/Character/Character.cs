@@ -94,7 +94,7 @@ namespace MarvelUniverse.Model.Character
         {
             get
             {
-                return this.Description.Clean();
+                return !string.IsNullOrEmpty(this.Description) ? this.Description.Clean() : null;
             }
         }
     }

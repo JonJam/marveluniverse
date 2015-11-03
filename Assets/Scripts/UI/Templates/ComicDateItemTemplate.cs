@@ -26,7 +26,7 @@
         public void Hookup(ComicDate item)
         {
             this.DateType.text = item.DisplayType;
-            this.Date.text = item.Date;
+            this.Date.text = item.DisplayDate;
         }        
     }
 }

@@ -1,6 +1,8 @@
 ﻿namespace MarvelUniverse.Model.Comic
 {
+    using Extensions;
     using System.Runtime.Serialization;
+    using System;
 
     /// <summary>
     /// A comic date.
@@ -21,6 +23,20 @@
         public string Date { get; set; }
 
         /// <summary>
+        /// Gets a value indicating whether has data.
+        /// </summary>
+        public bool HasData
+        {
+            get
+            {
+                DateTime date = DateTime.MinValue;
+
+                return !string.IsNullOrEmpty(this.Date) &&
+                    DateTime.TryParse(this.Date, out date);
+            }
+        }
+
+        /// <summary>
         /// Gets the type to display.
         /// </summary>
         public string DisplayType
@@ -32,10 +48,10 @@
                 switch (this.Type)
                 {
                     case "onsaleDate":
-                        displayType = "On Sale Date";
+                        displayType = "On Sale";
                         break;
                     case "focDate":
-                        displayType = "Final Order Cut-off Date";
+                        displayType = "Final Order Cut-off";
                         break;
                     default:
                         displayType = this.Type;
@@ -43,6 +59,17 @@
                 }
 
                 return displayType;
+            }
+        }
+
+        /// <summary>
+        /// Gets the display date.
+        /// </summary>
+        public string DisplayDate
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(this.Date) ? this.Date.ToDisplayDate() : null;
             }
         }
     }

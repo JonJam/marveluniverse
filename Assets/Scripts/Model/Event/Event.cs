@@ -119,7 +119,7 @@
         {
             get
             { 
-                return this.Description.Clean();
+                return !string.IsNullOrEmpty(this.Description) ? this.Description.Clean() : null;
             }
         }
                 
@@ -130,7 +130,7 @@
         {
             get
             {
-                return this.Start.ToDisplayDate();
+                return !string.IsNullOrEmpty(this.Start) ? this.Start.ToDisplayDate() : null;
             }
         }
         
@@ -141,7 +141,7 @@
         {
             get
             {
-                return this.End.ToDisplayDate();
+                return !string.IsNullOrEmpty(this.End) ? this.End.ToDisplayDate() : null;
             }
         }
     }

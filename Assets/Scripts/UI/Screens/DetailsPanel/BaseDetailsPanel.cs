@@ -16,16 +16,25 @@
         /// </summary>
         /// <param name="text">The Text object.</param>
         /// <param name="stringToDisplay">The string to display.</param>
-        protected void SetTextToDisplay(Text text, string stringToDisplay)
+        /// <param name="objectToDisable">The object to disable.</param>
+        protected void SetTextToDisplay(
+            Text text, 
+            string stringToDisplay,
+            GameObject objectToDisable = null)
         {
+            if (objectToDisable == null)
+            {
+                objectToDisable = text.gameObject;
+            }
+
             if (!string.IsNullOrEmpty(stringToDisplay))
             {
-                text.gameObject.SetActive(true);
+                objectToDisable.SetActive(true);
                 text.text = stringToDisplay;
             }
             else
             {
-                text.gameObject.SetActive(false);
+                objectToDisable.SetActive(false);
                 text.text = null;
             }
         }
