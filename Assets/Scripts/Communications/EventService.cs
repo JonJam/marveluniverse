@@ -20,7 +20,7 @@
         /// <summary>
         /// The event search request URL.
         /// </summary>
-        private const string EventSearchRequestUrl = "http://gateway.marvel.com:80/v1/public/events?nameStartsWith={0}";
+        private const string EventSearchRequestUrl = "http://gateway.marvel.com:80/v1/public/events?nameStartsWith={0}&orderBy=name";
 
         /// <summary>
         /// The web requestor.

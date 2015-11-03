@@ -20,7 +20,7 @@
         /// <summary>
         /// The series search request URL.
         /// </summary>
-        private const string SeriesSearchRequestUrl = "http://gateway.marvel.com:80/v1/public/series?titleStartsWith={0}";
+        private const string SeriesSearchRequestUrl = "http://gateway.marvel.com:80/v1/public/series?titleStartsWith={0}&orderBy=title";
 
         /// <summary>
         /// The web requestor.

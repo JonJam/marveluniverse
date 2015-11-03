@@ -19,7 +19,7 @@
         /// <summary>
         /// The character search request URL.
         /// </summary>
-        private const string CharacterSearchRequestUrl = "http://gateway.marvel.com:80/v1/public/characters?nameStartsWith={0}";
+        private const string CharacterSearchRequestUrl = "http://gateway.marvel.com:80/v1/public/characters?nameStartsWith={0}&orderBy=name";
 
         /// <summary>
         /// The web requestor.

@@ -19,7 +19,7 @@
         /// <summary>
         /// The creator search request URL.
         /// </summary>
-        private const string CreatorSearchRequestUrl = "http://gateway.marvel.com:80/v1/public/creators?nameStartsWith={0}";
+        private const string CreatorSearchRequestUrl = "http://gateway.marvel.com:80/v1/public/creators?nameStartsWith={0}&orderBy=firstName";
 
         /// <summary>
         /// The web requestor.

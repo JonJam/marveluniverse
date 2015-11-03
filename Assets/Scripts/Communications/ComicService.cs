@@ -19,7 +19,7 @@
         /// <summary>
         /// The comic search request URL.
         /// </summary>
-        private const string ComicSearchRequestUrl = "http://gateway.marvel.com:80/v1/public/comics?titleStartsWith={0}";
+        private const string ComicSearchRequestUrl = "http://gateway.marvel.com:80/v1/public/comics?titleStartsWith={0}&orderBy=title";
 
         /// <summary>
         /// The web requestor.
