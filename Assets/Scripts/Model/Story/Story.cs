@@ -117,10 +117,10 @@
                 switch (this.Type)
                 {
                     case "story":
-                        displayType = "Story Type: Story";
+                        displayType = "Story";
                         break;
                     case "cover":
-                        displayType = "Story Type: Cover";
+                        displayType = "Cover";
                         break;
                     default:
                         displayType = this.Type;

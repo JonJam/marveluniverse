@@ -33,7 +33,7 @@
             {
                 this.SetTextToDisplay(this.Title, story.Title);
                 this.SetTextToDisplay(this.Description, story.CleanDescription);
-                this.SetTextToDisplay(this.Type, story.DisplayType);
+                this.SetTextToDisplay(this.Type, story.DisplayType, this.Type.transform.parent.gameObject);
             }
         }
     }
