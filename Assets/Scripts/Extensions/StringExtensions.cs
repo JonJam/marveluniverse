@@ -27,7 +27,7 @@
             {
                 cleanedString = HttpUtility.HtmlDecode(stringToClean);
 
-                cleanedString = Regex.Replace(cleanedString, StringExtensions.HTMLTagRegex, string.Empty);
+                cleanedString = Regex.Replace(cleanedString.Trim(), StringExtensions.HTMLTagRegex, string.Empty);
             }
             else
             {
