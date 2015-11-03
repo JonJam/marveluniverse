@@ -40,9 +40,19 @@
         private bool isMovementEnabled;
 
         /// <summary>
+        /// The previous is movement enabled value.
+        /// </summary>
+        private bool previousIsMovementEnabled;
+
+        /// <summary>
         /// A value indicating whether this instance is focusing on an object.
         /// </summary>
         private bool isFocusing;
+
+        /// <summary>
+        /// The focused object.
+        /// </summary>
+        private GameObject focusObject;
 
         /// <summary>
         /// The focused game object's position to move to.
@@ -65,7 +75,7 @@
             this.eventManager = eventManager;
 
             this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().AddListener(this.OnIsCameraMovementEnabled);
-            this.eventManager.GetEvent<CameraFocusEvent>().AddListener(this.OnCameraFocus);
+            this.eventManager.GetEvent<CameraFocusOnEvent>().AddListener(this.OnCameraFocus);
         }
 
         /// <summary>
@@ -91,7 +101,7 @@
         private void OnDestory()
         {
             this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().RemoveListener(this.OnIsCameraMovementEnabled);
-            this.eventManager.GetEvent<CameraFocusEvent>().RemoveListener(this.OnCameraFocus);
+            this.eventManager.GetEvent<CameraFocusOnEvent>().RemoveListener(this.OnCameraFocus);
         }
 
         /// <summary>
@@ -109,10 +119,18 @@
         /// <param name="objectToFocusOn">The object to focus on.</param>
         private void OnCameraFocus(GameObject objectToFocusOn)
         {
-            this.isMovementEnabled = false;
-            this.isFocusing = true;
-            this.focusPositionToLookAt = objectToFocusOn.transform.position;
-            this.focusPositionToMoveTo = this.focusPositionToLookAt + this.CameraRestPosition;
+            if (!this.isFocusing &&
+                this.focusObject != objectToFocusOn)
+            {
+                this.isFocusing = true;
+                
+                this.previousIsMovementEnabled = this.isMovementEnabled;
+                this.isMovementEnabled = false;
+
+                this.focusObject = objectToFocusOn;
+                this.focusPositionToLookAt = objectToFocusOn.transform.position;
+                this.focusPositionToMoveTo = this.focusPositionToLookAt + this.CameraRestPosition;
+            }
         }
         
         /// <summary>
@@ -122,10 +140,14 @@
         {
             if (this.transform.position == this.focusPositionToMoveTo)
             {
-                this.isFocusing = false;
-                this.isMovementEnabled = true;
+                this.eventManager.GetEvent<CameraFocusedOnEvent>().Invoke(this.focusObject);
+
+                this.isMovementEnabled = this.previousIsMovementEnabled;
+                
                 this.focusPositionToMoveTo = new Vector3();
                 this.focusPositionToLookAt = new Vector3();
+                
+                this.isFocusing = false;
             }
             else
             {

@@ -94,7 +94,7 @@
 
             this.mainCameraTransform = mainCameraTransform;
 
-            this.eventManager.GetEvent<CameraFocusEvent>().AddListener(this.OnCameraFocusEvent);
+            this.eventManager.GetEvent<CameraFocusedOnEvent>().AddListener(this.OnCameraFocusedOnEvent);
         }
 
         /// <summary>
@@ -119,7 +119,7 @@
         /// </summary>
         private void OnDestroy()
         {
-            this.eventManager.GetEvent<CameraFocusEvent>().RemoveListener(this.OnCameraFocusEvent);
+            this.eventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
         }
         
         /// <summary>
@@ -134,15 +134,15 @@
             }
             else
             {
-                this.eventManager.GetEvent<CameraFocusEvent>().Invoke(this.gameObject);
+                this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject);
             }
         }
 
         /// <summary>
-        /// Handles the on camera focus event.
+        /// Handles the camera focused on event.
         /// </summary>
         /// <param name="objectBeingFocusedOn">The object being focused on.</param>
-        private void OnCameraFocusEvent(GameObject objectBeingFocusedOn)
+        private void OnCameraFocusedOnEvent(GameObject objectBeingFocusedOn)
         {
             this.isCameraFocusedOn = objectBeingFocusedOn == this.gameObject;
         }
