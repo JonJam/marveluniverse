@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using Templates;
     using UnityEngine;
+    using UnityEngine.UI;
     using Zenject;
 
     /// <summary>
@@ -10,6 +11,16 @@
     /// </summary>
     public class ListView : MonoBehaviour
     {
+        /// <summary>
+        /// The content panel.
+        /// </summary>
+        public Transform ContentPanel;
+
+        /// <summary>
+        /// The item template.
+        /// </summary>
+        public GameObject ItemTemplate;
+
         /// <summary>
         /// The instantiator.
         /// </summary>
@@ -21,14 +32,9 @@
         private IList<GameObject> listViewItems = new List<GameObject>();
 
         /// <summary>
-        /// The content panel.
+        /// The scroll rect.
         /// </summary>
-        public Transform ContentPanel;
-
-        /// <summary>
-        /// The item template.
-        /// </summary>
-        public GameObject ItemTemplate;
+        private ScrollRect scrollRect;
 
         /// <summary>
         /// Display the specified items.
@@ -60,7 +66,12 @@
             foreach (GameObject listItem in this.listViewItems)
             {
                 GameObject.Destroy(listItem);
-            }            
+            }
+
+            if (this.scrollRect != null)
+            {
+                this.scrollRect.verticalNormalizedPosition = 1;
+            }
 
             this.listViewItems = new List<GameObject>();                
         }
@@ -74,6 +85,14 @@
             IInstantiator instantiator)
         {
             this.instantiator = instantiator;
+        }
+
+        /// <summary>
+        /// Handles the awake event.
+        /// </summary>
+        private void Awake()
+        {
+            this.scrollRect = this.GetComponent<ScrollRect>();
         }
     }
 }
