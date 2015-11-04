@@ -6,7 +6,6 @@
     /// <summary>
     /// The loading event.
     /// </summary>
-    [Serializable]
     public class LoadingEvent : UnityEvent<bool>
     {
     }

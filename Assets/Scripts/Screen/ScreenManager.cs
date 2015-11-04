@@ -2,11 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Model.Character;
-    using Model.Comic;
-    using Model.Creator;
-    using Model.Series;
-    using Model.Story;
     using UI.Screens;
     using UnityEngine;
     using UnityEngine.EventSystems;
@@ -39,19 +34,27 @@
         private IScreen infoPanel;
 
         /// <summary>
+        /// The explorer panel.
+        /// </summary>
+        private IScreen explorerPanel;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ScreenManager"/>
         /// </summary>
         /// <param name="searchPanel">The search panel.</param>
         /// <param name="searchResultsPanel">The search results panel.</param>
         /// <param name="infoPanel">The info panel.</param>
+        /// <param name="explorerPanel">The explorer panel.</param>
         public ScreenManager(
             IScreen searchPanel,
             IScreen searchResultsPanel,
-            IScreen infoPanel)
+            IScreen infoPanel,
+            IScreen explorerPanel)
         {
             this.searchPanel = searchPanel;
             this.searchResultsPanel = searchResultsPanel;
             this.infoPanel = infoPanel;
+            this.explorerPanel = explorerPanel;
         }
 
         /// <summary>
@@ -80,6 +83,14 @@
         {
             this.OpenPanel(this.infoPanel.GameObject);
             this.infoPanel.OnOpen(openParameter);
+        }
+
+        /// <summary>
+        /// Open the explorer panel.
+        /// </summary>
+        public void OpenExplorerPanel()
+        {
+            this.OpenPanel(this.explorerPanel.GameObject);
         }
 
         /// <summary>

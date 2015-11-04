@@ -1,11 +1,11 @@
-﻿namespace MarvelUniverse.Behaviours.Planet
+﻿namespace MarvelUniverse.Behaviours.PlanetSystem
 {
     using Model.Comic;
 
     /// <summary>
-    /// The comic planet behaviour.
+    /// The comic planet system behaviour.
     /// </summary>
-    public class ComicPlanet : BasePlanet
+    public class ComicPlanetSystem : BasePlanetSystem
     {
         /// <summary>
         /// The comic.

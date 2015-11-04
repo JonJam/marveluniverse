@@ -294,6 +294,7 @@
                 this.screenManager.OpenSearchResults(result.Data.Select(c => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
+                    this.searchViewModel,
                     c.Name,
                     c.CleanDescription,
                     c.Thumbnail.Path,
@@ -315,6 +316,7 @@
                 this.screenManager.OpenSearchResults(result.Data.Select(c => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
+                    this.searchViewModel,
                     c.Title,
                     c.CleanDescription,
                     c.Thumbnail.Path,
@@ -336,6 +338,7 @@
                 this.screenManager.OpenSearchResults(result.Data.Select(c => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
+                    this.searchViewModel,
                     c.FullName,
                     null,
                     c.Thumbnail.Path,
@@ -357,6 +360,7 @@
                 this.screenManager.OpenSearchResults(result.Data.Select(s => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
+                    this.searchViewModel,
                     s.Title,
                     s.CleanDescription,
                     s.Thumbnail.Path,
@@ -378,6 +382,7 @@
                 this.screenManager.OpenSearchResults(result.Data.Select(e => new SearchResultViewModel(
                     this.screenManager,
                     this.eventManager,
+                    this.searchViewModel,
                     e.Title,
                     e.CleanDescription,
                     e.Thumbnail.Path,

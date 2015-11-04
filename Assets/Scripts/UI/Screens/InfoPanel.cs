@@ -155,10 +155,10 @@
         {
             this.previousOpenParameter = null;
 
-            this.screenManager.CloseCurrent();
+            this.screenManager.OpenExplorerPanel();
 
             this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(true);
-            this.eventManager.GetEvent<ClosedInfoPanelEvent>().Invoke(true);
+            this.eventManager.GetEvent<ClosedInfoPanelEvent>().Invoke();
         }
         
         /// <summary>

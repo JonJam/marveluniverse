@@ -1,5 +1,6 @@
 ﻿namespace MarvelUniverse.Behaviours.Camera
 {
+    using System;
     using Events;
     using UnityEngine;
     using Zenject;
@@ -33,6 +34,16 @@
         /// The camera rest position.
         /// </summary>
         public Vector3 CameraRestPosition;
+        
+        /// <summary>
+        /// The default position.
+        /// </summary>
+        private Vector3 defaultPosition;
+
+        /// <summary>
+        /// The default rotation.
+        /// </summary>
+        private Quaternion defaultRotation;
 
         /// <summary>
         /// A value indicating whether movement is enabled.
@@ -76,6 +87,16 @@
 
             this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().AddListener(this.OnIsCameraMovementEnabled);
             this.eventManager.GetEvent<CameraFocusOnEvent>().AddListener(this.OnCameraFocus);
+            this.eventManager.GetEvent<CameraResetEvent>().AddListener(this.OnCameraReset);
+        }
+
+        /// <summary>
+        /// Handles the awake event.
+        /// </summary>
+        private void Awake()
+        {
+            this.defaultPosition = this.transform.position;
+            this.defaultRotation = this.transform.rotation;
         }
 
         /// <summary>
@@ -98,10 +119,11 @@
         /// <summary>
         /// Handles the destroy event.
         /// </summary>
-        private void OnDestory()
+        private void OnDestroy()
         {
             this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().RemoveListener(this.OnIsCameraMovementEnabled);
             this.eventManager.GetEvent<CameraFocusOnEvent>().RemoveListener(this.OnCameraFocus);
+            this.eventManager.GetEvent<CameraResetEvent>().RemoveListener(this.OnCameraReset);
         }
 
         /// <summary>
@@ -131,7 +153,16 @@
                 this.focusPositionToMoveTo = this.focusPositionToLookAt + this.CameraRestPosition;
             }
         }
-        
+
+        /// <summary>
+        /// Handles the camera reset event.
+        /// </summary>
+        private void OnCameraReset()
+        {
+            this.transform.position = this.defaultPosition;
+            this.transform.rotation = this.defaultRotation;
+        }
+
         /// <summary>
         /// Focus on the specified game object.
         /// </summary>

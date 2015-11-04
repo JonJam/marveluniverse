@@ -30,5 +30,14 @@
             get;
             set;
         }
+        
+        /// <summary>
+        /// Reset this.
+        /// </summary>
+        public void Reset()
+        {
+            this.SearchTerms = string.Empty;
+            this.SearchTypeIndex = 0;
+        }
     }
 }

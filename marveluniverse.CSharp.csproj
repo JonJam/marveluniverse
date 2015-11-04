@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,17 +53,11 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -174,19 +170,20 @@
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\DecoratorInstaller.cs" />
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\SceneDecoratorCompositionRoot.cs" />
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\UnityUtil.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Camera\CameraResetEvent.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraFocusOnEvent.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraFocusedOnEvent.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\IsCameraMovementEnabledEvent.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Planet\BasePlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Planet\CharacterPlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Planet\ComicPlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Planet\CreatorPlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Planet\EventPlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Planet\PlanetImage.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Planet\PlanetName.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Planet\SeriesPlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Planet\StoryPlanet.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\BasePlanetSystem.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\CharacterPlanetSystem.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\ComicPlanetSystem.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\CreatorPlanetSystem.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\EventPlanetSystem.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\PlanetImage.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\PlanetName.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\SeriesPlanetSystem.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\StoryPlanetSystem.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite.cs" />
     <Compile Include="Assets\Scripts\Communications\BaseService.cs" />
     <Compile Include="Assets\Scripts\Communications\CharacterService.cs" />
@@ -242,6 +239,7 @@
     <Compile Include="Assets\Scripts\SceneSettings.cs" />
     <Compile Include="Assets\Scripts\Screen\IScreenManager.cs" />
     <Compile Include="Assets\Scripts\Screen\ScreenManager.cs" />
+    <Compile Include="Assets\Scripts\Spawner\DestroyPlanetSystemEvent.cs" />
     <Compile Include="Assets\Scripts\Spawner\IPlanetSystemSpawner.cs" />
     <Compile Include="Assets\Scripts\Spawner\PlanetSystemSpawner.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\BringToFront.cs" />
@@ -260,6 +258,7 @@
     <Compile Include="Assets\Scripts\UI\Screens\DetailsPanel\EventDetailsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\DetailsPanel\SeriesDetailsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\DetailsPanel\StoryDetailsPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Screens\ExplorerPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\IScreen.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\InfoPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\SearchPanel.cs" />

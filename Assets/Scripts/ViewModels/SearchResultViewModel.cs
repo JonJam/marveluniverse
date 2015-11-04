@@ -22,6 +22,11 @@
         private readonly IEventManager eventManager;
 
         /// <summary>
+        /// The search view model.
+        /// </summary>
+        private readonly SearchViewModel searchViewModel;
+
+        /// <summary>
         /// The name.
         /// </summary>
         private readonly string name;
@@ -51,6 +56,7 @@
         /// </summary>
         /// <param name="screenManager">The screen manager.</param>
         /// <param name="eventManager">The event manager.</param>
+        /// <param name="searchViewModel">The search view model.</param>
         /// <param name="name">The name.</param>
         /// <param name="description">The description.</param>
         /// <param name="imagePath">The image path.</param>
@@ -59,6 +65,7 @@
         public SearchResultViewModel(
             IScreenManager screenManager,
             IEventManager eventManager,
+            SearchViewModel searchViewModel,
             string name, 
             string description,
             string imagePath,
@@ -67,6 +74,8 @@
         {
             this.screenManager = screenManager;
             this.eventManager = eventManager;
+
+            this.searchViewModel = searchViewModel;
 
             this.name = name;
             this.description = description;
@@ -125,7 +134,9 @@
         /// </summary>
         public void SearchResultClicked()
         {
-            this.screenManager.CloseCurrent();
+            this.screenManager.OpenExplorerPanel();
+
+            this.searchViewModel.Reset();
 
             GameObject spawnedObject = this.spawnFunction();
             

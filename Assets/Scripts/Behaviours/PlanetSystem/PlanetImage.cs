@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Behaviours.Planet
+﻿namespace MarvelUniverse.Behaviours.PlanetSystem
 {
     using MarvelUniverse.Communications.Interfaces;
     using MarvelUniverse.Communications.Result;

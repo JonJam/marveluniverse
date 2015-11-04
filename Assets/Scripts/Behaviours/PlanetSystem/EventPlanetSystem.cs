@@ -1,11 +1,11 @@
-﻿namespace MarvelUniverse.Behaviours.Planet
+﻿namespace MarvelUniverse.Behaviours.PlanetSystem
 {
     using Model.Event;
 
     /// <summary>
-    /// The event planet behaviour.
+    /// The event planet system behaviour.
     /// </summary>
-    public class EventPlanet: BasePlanet
+    public class EventPlanetSystem: BasePlanetSystem
     {
         /// <summary>
         /// The comic event.

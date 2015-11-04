@@ -5,7 +5,7 @@
     /// <summary>
     /// The closed info panel event.
     /// </summary>
-    public class ClosedInfoPanelEvent : UnityEvent<bool>
+    public class ClosedInfoPanelEvent : UnityEvent
     {
     }
 }

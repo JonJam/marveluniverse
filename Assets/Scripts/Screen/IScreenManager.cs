@@ -1,12 +1,7 @@
 ﻿namespace MarvelUniverse.Screen
 {
     using System.Collections.Generic;
-    using Model.Comic;
-    using Model.Character;
     using ViewModels;
-    using Model.Creator;
-    using Model.Story;
-    using Model.Series;
 
     /// <summary>
     /// Interface for a screen manager.
@@ -29,6 +24,11 @@
         /// </summary>
         /// <param name="openParameter">The open parameter.</param>
         void OpenInfoPanel(object openParameter);
+
+        /// <summary>
+        /// Open the explorer panel.
+        /// </summary>
+        void OpenExplorerPanel();
 
         /// <summary>
         /// Close the currently open screen and reverting the selected element.

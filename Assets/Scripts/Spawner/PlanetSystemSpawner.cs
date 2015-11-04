@@ -1,6 +1,6 @@
 ﻿namespace MarvelUniverse.Spawner
 {
-    using Behaviours.Planet;
+    using Behaviours.PlanetSystem;
     using MarvelUniverse.Model.Character;
     using MarvelUniverse.Model.Comic;
     using MarvelUniverse.Model.Creator;
@@ -128,10 +128,10 @@
         {
             GameObject objectInstaniated = this.Instantiate(this.characterPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
-            CharacterPlanet characterPlanet = objectInstaniated.GetComponentInChildren<CharacterPlanet>();
-            characterPlanet.HookUp(character);
+            CharacterPlanetSystem characterPlanetSystem = objectInstaniated.GetComponentInChildren<CharacterPlanetSystem>();
+            characterPlanetSystem.HookUp(character);
 
-            return characterPlanet.gameObject;
+            return characterPlanetSystem.Planet;
         }
 
         /// <summary>
@@ -146,10 +146,10 @@
 
             GameObject objectInstaniated = this.Instantiate(this.characterPlanetSystemPrefab, randomSpawnPosition);
 
-            CharacterPlanet characterPlanet = objectInstaniated.GetComponentInChildren<CharacterPlanet>();
-            characterPlanet.HookUp(character);
+            CharacterPlanetSystem characterPlanetSystem = objectInstaniated.GetComponentInChildren<CharacterPlanetSystem>();
+            characterPlanetSystem.HookUp(character);
 
-            return characterPlanet.gameObject;
+            return characterPlanetSystem.Planet;
         }
 
         /// <summary>
@@ -161,10 +161,10 @@
         {
             GameObject objectInstaniated = this.Instantiate(this.comicPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
-            ComicPlanet comicPlanet = objectInstaniated.GetComponentInChildren<ComicPlanet>();
-            comicPlanet.HookUp(comic);
+            ComicPlanetSystem comicPlanetSystem = objectInstaniated.GetComponentInChildren<ComicPlanetSystem>();
+            comicPlanetSystem.HookUp(comic);
 
-            return comicPlanet.gameObject;
+            return comicPlanetSystem.Planet;
         }
 
         /// <summary>
@@ -179,10 +179,10 @@
 
             GameObject objectInstaniated = this.Instantiate(this.comicPlanetSystemPrefab, randomSpawnPosition);
 
-            ComicPlanet comicPlanet = objectInstaniated.GetComponentInChildren<ComicPlanet>();
-            comicPlanet.HookUp(comic);
+            ComicPlanetSystem comicPlanetSystem = objectInstaniated.GetComponentInChildren<ComicPlanetSystem>();
+            comicPlanetSystem.HookUp(comic);
 
-            return comicPlanet.gameObject;
+            return comicPlanetSystem.Planet;
         }
 
         /// <summary>
@@ -194,10 +194,10 @@
         {
             GameObject objectInstaniated = this.Instantiate(this.creatorPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
-            CreatorPlanet creatorPlanet = objectInstaniated.GetComponentInChildren<CreatorPlanet>();
-            creatorPlanet.HookUp(creator);
+            CreatorPlanetSystem creatorPlanetSystem = objectInstaniated.GetComponentInChildren<CreatorPlanetSystem>();
+            creatorPlanetSystem.HookUp(creator);
 
-            return creatorPlanet.gameObject;
+            return creatorPlanetSystem.Planet;
         }
 
         /// <summary>
@@ -212,10 +212,10 @@
 
             GameObject objectInstaniated = this.Instantiate(this.creatorPlanetSystemPrefab, randomSpawnPosition);
 
-            CreatorPlanet creatorPlanet = objectInstaniated.GetComponentInChildren<CreatorPlanet>();
-            creatorPlanet.HookUp(creator);
+            CreatorPlanetSystem creatorPlanetSystem = objectInstaniated.GetComponentInChildren<CreatorPlanetSystem>();
+            creatorPlanetSystem.HookUp(creator);
 
-            return creatorPlanet.gameObject;
+            return creatorPlanetSystem.Planet;
         }
 
         /// <summary>
@@ -227,10 +227,10 @@
         {
             GameObject objectInstaniated = this.Instantiate(this.eventPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
-            EventPlanet eventPlanet = objectInstaniated.GetComponentInChildren<EventPlanet>();
-            eventPlanet.HookUp(comicEvent);
+            EventPlanetSystem eventPlanetSystem = objectInstaniated.GetComponentInChildren<EventPlanetSystem>();
+            eventPlanetSystem.HookUp(comicEvent);
 
-            return eventPlanet.gameObject;
+            return eventPlanetSystem.Planet;
         }
 
         /// <summary>
@@ -245,10 +245,10 @@
 
             GameObject objectInstaniated = this.Instantiate(this.eventPlanetSystemPrefab, randomSpawnPosition);
 
-            EventPlanet eventPlanet = objectInstaniated.GetComponentInChildren<EventPlanet>();
-            eventPlanet.HookUp(comicEvent);
+            EventPlanetSystem eventPlanetSystem = objectInstaniated.GetComponentInChildren<EventPlanetSystem>();
+            eventPlanetSystem.HookUp(comicEvent);
 
-            return eventPlanet.gameObject;
+            return eventPlanetSystem.Planet;
         }
 
         /// <summary>
@@ -260,10 +260,10 @@
         {
             GameObject objectInstaniated = this.Instantiate(this.seriesPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
-            SeriesPlanet seriesPlanet = objectInstaniated.GetComponentInChildren<SeriesPlanet>();
-            seriesPlanet.HookUp(series);
+            SeriesPlanetSystem seriesPlanetSystem = objectInstaniated.GetComponentInChildren<SeriesPlanetSystem>();
+            seriesPlanetSystem.HookUp(series);
 
-            return seriesPlanet.gameObject;
+            return seriesPlanetSystem.Planet;
         }
 
         /// <summary>
@@ -278,10 +278,10 @@
 
             GameObject objectInstaniated = this.Instantiate(this.seriesPlanetSystemPrefab, randomSpawnPosition);
 
-            SeriesPlanet seriesPlanet = objectInstaniated.GetComponentInChildren<SeriesPlanet>();
-            seriesPlanet.HookUp(series);
+            SeriesPlanetSystem seriesPlanetSystem = objectInstaniated.GetComponentInChildren<SeriesPlanetSystem>();
+            seriesPlanetSystem.HookUp(series);
 
-            return seriesPlanet.gameObject;
+            return seriesPlanetSystem.Planet;
         }
 
         /// <summary>
@@ -293,10 +293,10 @@
         {
             GameObject objectInstaniated = this.Instantiate(this.storyPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
-            StoryPlanet storyPlanet = objectInstaniated.GetComponentInChildren<StoryPlanet>();
-            storyPlanet.HookUp(story);
+            StoryPlanetSystem storyPlanetSystem = objectInstaniated.GetComponentInChildren<StoryPlanetSystem>();
+            storyPlanetSystem.HookUp(story);
 
-            return storyPlanet.gameObject;
+            return storyPlanetSystem.Planet;
         }
 
         /// <summary>
@@ -309,11 +309,11 @@
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
             GameObject objectInstaniated = this.Instantiate(this.storyPlanetSystemPrefab, randomSpawnPosition);
-            
-            StoryPlanet storyPlanet = objectInstaniated.GetComponentInChildren<StoryPlanet>();
-            storyPlanet.HookUp(story);
 
-            return storyPlanet.gameObject;
+            StoryPlanetSystem storyPlanetSystem = objectInstaniated.GetComponentInChildren<StoryPlanetSystem>();
+            storyPlanetSystem.HookUp(story);
+
+            return storyPlanetSystem.Planet;
         }
 
         /// <summary>

@@ -1,9 +1,9 @@
 ﻿namespace MarvelUniverse
 {
+    using Behaviours.PlanetSystem;
     using Communications.Interfaces;
     using Communications.Result;
     using Events;
-    using Behaviours;
     using MarvelUniverse.Communications;
     using MarvelUniverse.Communications.Encryption;
     using MarvelUniverse.Communications.Serialization;
@@ -14,7 +14,6 @@
     using UnityEngine;
     using ViewModels;
     using Zenject;
-    using Behaviours.Planet;
 
     /// <summary>
     /// The installer.
@@ -80,7 +79,7 @@
                 this.SceneSettings.PlanetSize,
                 this.SceneSettings.MainCamera));
 
-            this.Container.Bind<Transform>().ToInstance(this.SceneSettings.MainCameraTransform).WhenInjectedInto<BasePlanet>();
+            this.Container.Bind<Transform>().ToInstance(this.SceneSettings.MainCameraTransform).WhenInjectedInto<BasePlanetSystem>();
         }
 
         /// <summary>
@@ -93,7 +92,8 @@
             this.Container.Bind<IScreenManager>().ToInstance(new ScreenManager(
                 this.SceneSettings.SearchPanel,
                 this.SceneSettings.SearchResultsPanel,
-                this.SceneSettings.InfoPanel));                
+                this.SceneSettings.InfoPanel,
+                this.SceneSettings.ExplorerPanel));                
         }
 
         /// <summary>

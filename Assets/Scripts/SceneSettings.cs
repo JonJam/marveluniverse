@@ -26,6 +26,11 @@
         public InfoPanel InfoPanel;
 
         /// <summary>
+        /// The explorer panel.
+        /// </summary>
+        public ExplorerPanel ExplorerPanel;
+
+        /// <summary>
         /// The initial planet system position.
         /// </summary>
         public Vector3 InitialPlanetSystemPosition;

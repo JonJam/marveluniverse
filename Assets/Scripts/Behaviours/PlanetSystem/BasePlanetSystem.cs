@@ -1,19 +1,34 @@
-﻿namespace MarvelUniverse.Behaviours.Planet
+﻿namespace MarvelUniverse.Behaviours.PlanetSystem
 {
-    using System;
     using Camera;
     using Events;
-    using UI.Screens;
     using Model.Image;
     using Screen;
+    using Spawner;
+    using UI.Screens;
     using UnityEngine;
     using Zenject;
 
     /// <summary>
-    /// The base planet.
+    /// The base planet system
     /// </summary>
-    public abstract class BasePlanet : MonoBehaviour
+    public abstract class BasePlanetSystem : MonoBehaviour
     {
+        /// <summary>
+        /// The planet.
+        /// </summary>
+        public GameObject Planet;
+
+        /// <summary>
+        /// The planet name.
+        /// </summary>
+        public PlanetName PlanetName;
+
+        /// <summary>
+        /// The planet image.
+        /// </summary>
+        public PlanetImage PlanetImage;
+
         /// <summary>
         /// The event manager.
         /// </summary>
@@ -30,20 +45,13 @@
         private Transform mainCameraTransform;
 
         /// <summary>
-        /// The planet name.
-        /// </summary>
-        private PlanetName planetName;
-
-        /// <summary>
-        /// The planet image.
-        /// </summary>
-        private PlanetImage planetImage;
-
-        /// <summary>
         /// A value indicating whether the camera is focused on this instance.
         /// </summary>
         private bool isCameraFocusedOn;
 
+        /// <summary>
+        /// A value indicating whether displaying information about this planet system.
+        /// </summary>
         private bool displayingInformation;
 
         /// <summary>
@@ -63,7 +71,7 @@
         /// <param name="name">The name.</param>
         protected void SetName(string name)
         {
-            this.planetName.SetName(name);
+            this.PlanetName.SetName(name);
         }
 
         /// <summary>
@@ -72,7 +80,7 @@
         /// <param name="image">The image.</param>
         protected void SetImage(Image image)
         {
-            this.planetImage.SetImage(image);
+            this.PlanetImage.SetImage(image);
         }
 
         /// <summary>
@@ -98,23 +106,17 @@
             this.mainCameraTransform = mainCameraTransform;
 
             this.eventManager.GetEvent<CameraFocusedOnEvent>().AddListener(this.OnCameraFocusedOnEvent);
+            this.eventManager.GetEvent<DestroyPlanetSystemEvent>().AddListener(this.OnDestroyPlanetSystemEvent);
         }
-
-        /// <summary>
-        /// Handles the awake event.
-        /// </summary>
-        private void Awake()
-        {
-            this.planetName = this.GetComponentInChildren<PlanetName>();
-            this.planetImage = this.GetComponentInChildren<PlanetImage>();
-        }
-
+        
         /// <summary>
         /// Handles the update event.
         /// </summary>
         private void Update()
         {
-            this.transform.LookAt(this.transform.position + (this.mainCameraTransform.rotation * Vector3.forward), mainCameraTransform.rotation * Vector3.up);
+            Transform planetTransform = this.Planet.transform;
+
+            planetTransform.LookAt(planetTransform.position + (this.mainCameraTransform.rotation * Vector3.forward), mainCameraTransform.rotation * Vector3.up);
         }
 
         /// <summary>
@@ -124,6 +126,7 @@
         {
             this.eventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
             this.eventManager.GetEvent<ClosedInfoPanelEvent>().RemoveListener(this.OnClosedInfoPanel);
+            this.eventManager.GetEvent<DestroyPlanetSystemEvent>().RemoveListener(this.OnDestroyPlanetSystemEvent);
         }
         
         /// <summary>
@@ -144,29 +147,37 @@
                 }
                 else
                 {
-                    this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject);
+                    this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.Planet);
                 }
             }
         }
+
         /// <summary>
         /// Handles the camera focused on event.
         /// </summary>
         /// <param name="objectBeingFocusedOn">The object being focused on.</param>
         private void OnCameraFocusedOnEvent(GameObject objectBeingFocusedOn)
         {
-            this.isCameraFocusedOn = objectBeingFocusedOn == this.gameObject;
+            this.isCameraFocusedOn = objectBeingFocusedOn == this.Planet;
         }
         
         /// <summary>
         /// Handles the closed information panel.
         /// </summary>
-        /// <param name="arg">The argument.</param>
-        private void OnClosedInfoPanel(bool arg)
+        private void OnClosedInfoPanel()
         {
             this.eventManager.GetEvent<ClosedInfoPanelEvent>().RemoveListener(this.OnClosedInfoPanel);
 
             this.displayingInformation = false;
             this.isCameraFocusedOn = false;
+        }
+
+        /// <summary>
+        /// Handles the on destory planet system event.
+        /// </summary>
+        private void OnDestroyPlanetSystemEvent()
+        {
+            GameObject.Destroy(this.gameObject);
         }
     }
 }
