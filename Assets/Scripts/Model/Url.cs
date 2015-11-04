@@ -32,13 +32,22 @@
                 switch (this.Type)
                 {
                     case "comiclink":
-                        displayText = "Comic link";
+                        displayText = "Comic";
                         break;
                     case "wiki":
-                        displayText = "Wiki link";
+                        displayText = "Wiki";
                         break;
                     case "detail":
-                        displayText = "Detail link";
+                        displayText = "Detail";
+                        break;
+                    case "purchase":
+                        displayText = "Purchase";
+                        break;
+                    case "reader":
+                        displayText = "Reader";
+                        break;
+                    case "inAppLink":
+                        displayText = "App";
                         break;
                     default:
                         displayText = this.Type;

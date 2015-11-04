@@ -32,7 +32,10 @@
                 switch (this.Type)
                 {
                     case "printPrice":
-                        displayType = "Print Price";
+                        displayType = "Print";
+                        break;
+                    case "digitalPurchasePrice":
+                        displayType = "Digital Purchase";
                         break;
                     default:
                         displayType = this.Type;

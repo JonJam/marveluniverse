@@ -53,6 +53,12 @@
                     case "focDate":
                         displayType = "Final Order Cut-off";
                         break;
+                    case "digitalPurchaseDate":
+                        displayType = "Digital Purchase";
+                        break;
+                    case "unlimitedDate":
+                        displayType = "Unlimited";
+                        break;
                     default:
                         displayType = this.Type;
                         break;
