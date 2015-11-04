@@ -129,6 +129,8 @@
 
             GameObject spawnedObject = this.spawnFunction();
             
+            this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(true);
+
             this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(spawnedObject);
         }
     }

@@ -97,6 +97,8 @@
                 }
 
                 this.currentlyOpenScreen.SetActive(false);
+
+                this.currentlyOpenScreen = null;
             }
         }
 
@@ -108,9 +110,6 @@
         {
             if (this.currentlyOpenScreen != newScreen)
             {
-                //Activate the new Screen hierarchy so we can animate it.
-                newScreen.SetActive(true);
-
                 //Save the currently selected button that was used to open this Screen. (CloseCurrent will modify it)
                 GameObject newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
 
@@ -119,10 +118,7 @@
                 {
                     this.currentlyOpenScreen = newPreviouslySelected.transform.parent.gameObject;
                 }
-
-                //Move the Screen to front.
-                newScreen.transform.SetAsLastSibling();
-
+                
                 this.CloseCurrent();
                 
                 //Set the new Screen as then open one.
@@ -131,6 +127,11 @@
                 //Set an element in the new screen as the new Selected one.
                 GameObject newSelectedGameObject = this.FindFirstEnabledSelectable(newScreen);
                 this.SetSelected(newSelectedGameObject);
+                
+                //Move the Screen to front.
+                newScreen.transform.SetAsLastSibling();
+
+                newScreen.SetActive(true);
             }
         }
 

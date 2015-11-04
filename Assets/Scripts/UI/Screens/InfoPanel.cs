@@ -1,14 +1,17 @@
 ﻿namespace MarvelUniverse.UI.Screens
 {
+    using Behaviours.Camera;
     using Communications.Interfaces;
     using Communications.Result;
     using DetailsPanel;
+    using Events;
     using Model.Character;
     using Model.Comic;
     using Model.Creator;
     using Model.Image;
     using Model.Series;
     using Model.Story;
+    using Screen;
     using UnityEngine;
     using UnityEngine.UI;
     using Zenject;
@@ -57,6 +60,16 @@
         /// The series details panel.
         /// </summary>
         public SeriesDetailsPanel SeriesDetailsPanel;
+
+        /// <summary>
+        /// The screen manager.
+        /// </summary>
+        private IScreenManager screenManager;
+        
+        /// <summary>
+        /// The event manager.
+        /// </summary>
+        private IEventManager eventManager;
 
         /// <summary>
         /// The image service.
@@ -134,15 +147,34 @@
 
             this.Reset();
         }
+
+        /// <summary>
+        /// Close click event handler.
+        /// </summary>
+        public void Close()
+        {
+            this.previousOpenParameter = null;
+
+            this.screenManager.CloseCurrent();
+
+            this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(true);
+            this.eventManager.GetEvent<ClosedInfoPanelEvent>().Invoke(true);
+        }
         
         /// <summary>
         /// Injection initialization.
         /// </summary>
+        /// <<param name="screenManager">The screen manager.</param>
         /// <param name="eventManager">The event manager.</param>
+        /// <param name="imageService">The image service.</param>
         [PostInject]
         private void InjectionInitialize(
+            IScreenManager screenManager,
+            IEventManager eventManager,
             IImageService imageService)
         {
+            this.screenManager = screenManager;
+            this.eventManager = eventManager;
             this.imageService = imageService;
         }
 

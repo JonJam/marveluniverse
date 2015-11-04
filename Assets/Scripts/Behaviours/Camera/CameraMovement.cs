@@ -119,8 +119,7 @@
         /// <param name="objectToFocusOn">The object to focus on.</param>
         private void OnCameraFocus(GameObject objectToFocusOn)
         {
-            if (!this.isFocusing &&
-                this.focusObject != objectToFocusOn)
+            if (!this.isFocusing)
             {
                 this.isFocusing = true;
                 
@@ -138,12 +137,14 @@
         /// </summary>
         private void FocusOn()
         {
-            if (this.transform.position == this.focusPositionToMoveTo)
+            if (this.transform.position == this.focusPositionToMoveTo &&
+                this.transform.rotation == Quaternion.identity)
             {
                 this.eventManager.GetEvent<CameraFocusedOnEvent>().Invoke(this.focusObject);
 
                 this.isMovementEnabled = this.previousIsMovementEnabled;
-                
+
+                this.focusObject = null;
                 this.focusPositionToMoveTo = new Vector3();
                 this.focusPositionToLookAt = new Vector3();
                 

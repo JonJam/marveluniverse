@@ -3,6 +3,7 @@
     using System;
     using Camera;
     using Events;
+    using UI.Screens;
     using Model.Image;
     using Screen;
     using UnityEngine;
@@ -42,6 +43,8 @@
         /// A value indicating whether the camera is focused on this instance.
         /// </summary>
         private bool isCameraFocusedOn;
+
+        private bool displayingInformation;
 
         /// <summary>
         /// Gets the screen manager.
@@ -120,6 +123,7 @@
         private void OnDestroy()
         {
             this.eventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
+            this.eventManager.GetEvent<ClosedInfoPanelEvent>().RemoveListener(this.OnClosedInfoPanel);
         }
         
         /// <summary>
@@ -127,17 +131,23 @@
         /// </summary>
         private void OnMouseDown()
         {
-            if (this.isCameraFocusedOn)
+            if (!this.displayingInformation)
             {
-                this.DisplayInformation();
-                this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(false);
-            }
-            else
-            {
-                this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject);
+                if (this.isCameraFocusedOn)
+                {
+                    this.displayingInformation = true;
+
+                    this.eventManager.GetEvent<ClosedInfoPanelEvent>().AddListener(this.OnClosedInfoPanel);
+                    this.DisplayInformation();
+
+                    this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(false);
+                }
+                else
+                {
+                    this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject);
+                }
             }
         }
-
         /// <summary>
         /// Handles the camera focused on event.
         /// </summary>
@@ -145,6 +155,18 @@
         private void OnCameraFocusedOnEvent(GameObject objectBeingFocusedOn)
         {
             this.isCameraFocusedOn = objectBeingFocusedOn == this.gameObject;
+        }
+        
+        /// <summary>
+        /// Handles the closed information panel.
+        /// </summary>
+        /// <param name="arg">The argument.</param>
+        private void OnClosedInfoPanel(bool arg)
+        {
+            this.eventManager.GetEvent<ClosedInfoPanelEvent>().RemoveListener(this.OnClosedInfoPanel);
+
+            this.displayingInformation = false;
+            this.isCameraFocusedOn = false;
         }
     }
 }
