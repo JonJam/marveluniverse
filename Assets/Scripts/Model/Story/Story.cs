@@ -62,37 +62,37 @@
         /// Gets or sets the comics.
         /// </summary>
         [DataMember(Name = "comics")]
-        public DataList<ComicSummary> Comics { get; set; }
+        public DataList<Summary> Comics { get; set; }
 
         /// <summary>
         /// Gets or sets the series.
         /// </summary>
         [DataMember(Name = "series")]
-        public DataList<SeriesSummary> Series { get; set; }
+        public DataList<Summary> Series { get; set; }
 
         /// <summary>
         /// Gets or sets the events.
         /// </summary>
         [DataMember(Name = "events")]
-        public DataList<EventSummary> Events { get; set; }
+        public DataList<Summary> Events { get; set; }
 
         /// <summary>
         /// Gets or sets the characters.
         /// </summary>
         [DataMember(Name = "characters")]
-        public DataList<CharacterSummary> Characters { get; set; }
+        public DataList<Summary> Characters { get; set; }
 
         /// <summary>
         /// Gets or sets the creators.
         /// </summary>
         [DataMember(Name = "creators")]
-        public DataList<CreatorSummary> Creators { get; set; }
+        public DataList<Summary> Creators { get; set; }
 
         /// <summary>
         /// Gets or sets the original issue.
         /// </summary>
         [DataMember(Name = "originalIssue")]
-        public ComicSummary OriginalIssue { get; set; }
+        public Summary OriginalIssue { get; set; }
 
         /// <summary>
         /// Gets the clean description.
@@ -121,6 +121,9 @@
                         break;
                     case "cover":
                         displayType = "Cover";
+                        break;
+                    case "interiorStory":
+                        displayType = "Interior story";
                         break;
                     default:
                         displayType = this.Type;

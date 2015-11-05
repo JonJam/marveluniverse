@@ -122,25 +122,25 @@
         /// Gets or sets the series.
         /// </summary>
         [DataMember(Name = "series")]
-        public SeriesSummary Series { get; set; }
+        public Summary Series { get; set; }
 
         /// <summary>
         /// Gets or sets the variants.
         /// </summary>
         [DataMember(Name = "variants")]
-        public ComicSummary[] Variants { get; set; }
+        public Summary[] Variants { get; set; }
 
         /// <summary>
         /// Gets or sets the collections.
         /// </summary>
         [DataMember(Name = "collections")]
-        public ComicSummary[] Collections { get; set; }
+        public Summary[] Collections { get; set; }
 
         /// <summary>
         /// Gets or sets the collected issues.
         /// </summary>
         [DataMember(Name = "collectedIssues")]
-        public ComicSummary[] CollectedIssues { get; set; }
+        public Summary[] CollectedIssues { get; set; }
 
         /// <summary>
         /// Gets or sets the dates.
@@ -170,25 +170,25 @@
         /// Gets or sets the creators.
         /// </summary>
         [DataMember(Name = "creators")]
-        public DataList<CreatorSummary> Creators { get; set; }
+        public DataList<Summary> Creators { get; set; }
 
         /// <summary>
         /// Gets or sets the characters.
         /// </summary>
         [DataMember(Name = "characters")]
-        public DataList<CharacterSummary> Characters { get; set; }
+        public DataList<Summary> Characters { get; set; }
 
         /// <summary>
         /// Gets or sets the stories.
         /// </summary>
         [DataMember(Name = "stories")]
-        public DataList<StorySummary> Stories { get; set; }
+        public DataList<Summary> Stories { get; set; }
 
         /// <summary>
         /// Gets or sets the events.
         /// </summary>
         [DataMember(Name = "events")]
-        public DataList<EventSummary> Events { get; set; }
+        public DataList<Summary> Events { get; set; }
 
         /// <summary>
         /// Gets the clean description.

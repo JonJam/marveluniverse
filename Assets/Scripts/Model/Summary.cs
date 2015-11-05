@@ -1,12 +1,12 @@
-﻿namespace MarvelUniverse.Model.Story
+﻿namespace MarvelUniverse.Model
 {
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// A story summary.
+    /// A summary.
     /// </summary>
     [DataContract]
-    public class StorySummary
+    public class Summary
     {
         /// <summary>
         /// Gets or sets the resource URI.
@@ -19,11 +19,5 @@
         /// </summary>
         [DataMember(Name = "name")]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the type.
-        /// </summary>
-        [DataMember(Name = "type")]
-        public string Type { get; set; }
     }
 }

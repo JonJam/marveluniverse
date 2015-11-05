@@ -55,6 +55,7 @@
             this.Container.Bind<ICreatorService>().ToSingle<CreatorService>();
             this.Container.Bind<ISeriesService>().ToSingle<SeriesService>();
             this.Container.Bind<IEventService>().ToSingle<EventService>();
+            this.Container.Bind<IStoryService>().ToSingle<StoryService>();
 
             this.Container.Bind<IImageService>().ToSingle<ImageService>();
         }

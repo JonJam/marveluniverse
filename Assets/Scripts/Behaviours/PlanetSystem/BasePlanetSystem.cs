@@ -1,7 +1,9 @@
 ﻿namespace MarvelUniverse.Behaviours.PlanetSystem
 {
+    using System.Linq;
     using Camera;
     using Events;
+    using Model;
     using Model.Image;
     using Screen;
     using Spawner;
@@ -81,6 +83,28 @@
         protected void SetImage(Image image)
         {
             this.PlanetImage.SetImage(image);
+        }
+
+        /// <summary>
+        /// Set summaries.
+        /// </summary>
+        /// <param name="satellite">The satellite.</param>
+        /// <param name="summariesDataList">The summaries data list.</param>
+        protected void SetSummaries(BaseSatellite satellite, DataList<Summary> summariesDataList)
+        {
+            if (summariesDataList != null &&
+                summariesDataList.Available > 0 &&
+                summariesDataList.Returned > 0 &&
+                summariesDataList.Items != null &&
+                summariesDataList.Items.Count() > 0)
+            {
+                satellite.gameObject.SetActive(true);
+                satellite.Hookup(summariesDataList);
+            }
+            else
+            {
+                satellite.gameObject.SetActive(false);
+            }
         }
 
         /// <summary>

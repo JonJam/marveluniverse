@@ -1,6 +1,7 @@
 ﻿namespace MarvelUniverse.UI.Screens
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Controls;
     using Screen;
     using UnityEngine;
@@ -45,9 +46,9 @@
         /// <param name="openParameter">The open parameter.</param>
         public void OnOpen(object openParameter)
         {
-            if (openParameter is IList<SearchResultViewModel>)
+            if (openParameter is IEnumerable<SearchResultViewModel>)
             {
-                this.DisplaySearchResults((IList<SearchResultViewModel>)openParameter);
+                this.DisplaySearchResults((IEnumerable<SearchResultViewModel>)openParameter);
             }
         }
 
@@ -84,12 +85,12 @@
         /// Display the search results.
         /// </summary>
         /// <param name="searchResults">The search results.</param>
-        private void DisplaySearchResults(IList<SearchResultViewModel> searchResults)
+        private void DisplaySearchResults(IEnumerable<SearchResultViewModel> searchResults)
         {
             this.ClearSearchResults();
 
             if (searchResults != null &&
-                searchResults.Count > 0)
+                searchResults.Count() > 0)
             {
                 this.SearchResultsListView.gameObject.SetActive(true);
                 this.SearchResultsListView.DisplayItems(searchResults);

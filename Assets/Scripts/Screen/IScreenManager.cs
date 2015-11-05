@@ -17,7 +17,7 @@
         /// Opens the search results.
         /// </summary>
         /// <param name="searchResults">The search results.</param>
-        void OpenSearchResults(IList<SearchResultViewModel> searchResults);
+        void OpenSearchResults(IEnumerable<SearchResultViewModel> searchResults);
 
         /// <summary>
         /// Open the info panel.

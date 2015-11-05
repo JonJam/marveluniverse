@@ -78,24 +78,24 @@
         /// Gets or sets the series.
         /// </summary>
         [DataMember(Name = "series")]
-        public DataList<SeriesSummary> Series { get; set; }
+        public DataList<Summary> Series { get; set; }
 
         /// <summary>
         /// Gets or sets the stories.
         /// </summary>
         [DataMember(Name = "stories")]
-        public DataList<StorySummary> Stories { get; set; }
+        public DataList<Summary> Stories { get; set; }
 
         /// <summary>
         /// Gets or sets the comics.
         /// </summary>
         [DataMember(Name = "comics")]
-        public DataList<ComicSummary> Comics { get; set; }
+        public DataList<Summary> Comics { get; set; }
 
         /// <summary>
         /// Gets or sets the events.
         /// </summary>
         [DataMember(Name = "events")]
-        public DataList<EventSummary> Events { get; set; }
+        public DataList<Summary> Events { get; set; }
     }
 }

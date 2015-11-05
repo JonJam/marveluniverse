@@ -69,7 +69,7 @@
         /// Opens the search results.
         /// </summary>
         /// <param name="searchResults">The search results.</param>
-        public void OpenSearchResults(IList<SearchResultViewModel> searchResults)
+        public void OpenSearchResults(IEnumerable<SearchResultViewModel> searchResults)
         {
             this.OpenPanel(this.searchResultsPanel.GameObject);
             this.searchResultsPanel.OnOpen(searchResults);

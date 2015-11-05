@@ -299,7 +299,7 @@
                     c.CleanDescription,
                     c.Thumbnail.Path,
                     c.Thumbnail.Extension,
-                    () => { return this.planetSystemSpawner.Instantiate(c); })).ToList());
+                    () => { return this.planetSystemSpawner.Instantiate(c); })));
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -321,7 +321,7 @@
                     c.CleanDescription,
                     c.Thumbnail.Path,
                     c.Thumbnail.Extension,
-                    () => { return this.planetSystemSpawner.Instantiate(c); })).ToList());
+                    () => { return this.planetSystemSpawner.Instantiate(c); })));
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -343,7 +343,7 @@
                     null,
                     c.Thumbnail.Path,
                     c.Thumbnail.Extension,
-                    () => { return this.planetSystemSpawner.Instantiate(c); })).ToList());
+                    () => { return this.planetSystemSpawner.Instantiate(c); })));
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -365,7 +365,7 @@
                     s.CleanDescription,
                     s.Thumbnail.Path,
                     s.Thumbnail.Extension,
-                    () => { return this.planetSystemSpawner.Instantiate(s); })).ToList());
+                    () => { return this.planetSystemSpawner.Instantiate(s); })));
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -387,7 +387,7 @@
                     e.CleanDescription,
                     e.Thumbnail.Path,
                     e.Thumbnail.Extension,
-                    () => { return this.planetSystemSpawner.Instantiate(e); })).ToList());
+                    () => { return this.planetSystemSpawner.Instantiate(e); })));
             }
 
             this.loadingManager.DecrementRunningOperationCount();

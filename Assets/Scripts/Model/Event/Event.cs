@@ -74,43 +74,43 @@
         /// Gets or sets the comics.
         /// </summary>
         [DataMember(Name = "comics")]
-        public DataList<ComicSummary> Comics { get; set; }
+        public DataList<Summary> Comics { get; set; }
 
         /// <summary>
         /// Gets or sets the stories.
         /// </summary>
         [DataMember(Name = "stories")]
-        public DataList<StorySummary> Stories { get; set; }
+        public DataList<Summary> Stories { get; set; }
 
         /// <summary>
         /// Gets or sets the series.
         /// </summary>
         [DataMember(Name = "series")]
-        public DataList<SeriesSummary> Series { get; set; }
+        public DataList<Summary> Series { get; set; }
 
         /// <summary>
         /// Gets or sets the characters.
         /// </summary>
         [DataMember(Name = "characters")]
-        public DataList<CharacterSummary> Characters { get; set; }
+        public DataList<Summary> Characters { get; set; }
 
         /// <summary>
         /// Gets or sets the creators.
         /// </summary>
         [DataMember(Name = "creators")]
-        public DataList<CreatorSummary> Creators { get; set; }
+        public DataList<Summary> Creators { get; set; }
 
         /// <summary>
         /// Gets or sets a summary of the next event.
         /// </summary>
         [DataMember(Name = "next")]
-        public EventSummary Next { get; set; }
+        public Summary Next { get; set; }
 
         /// <summary>
         /// Gets or sets a summary of the previous event.
         /// </summary>
         [DataMember(Name = "previous")]
-        public EventSummary Previous { get; set; }
+        public Summary Previous { get; set; }
 
         /// <summary>
         /// Gets the clean description.
