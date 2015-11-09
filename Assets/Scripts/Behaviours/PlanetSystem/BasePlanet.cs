@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Behaviours.PlanetSystem
+﻿namespace MarvelUniverse.Behaviours.Planet
 {
     using System.Linq;
     using Camera;
@@ -12,15 +12,10 @@
     using Zenject;
 
     /// <summary>
-    /// The base planet system
+    /// The base planet
     /// </summary>
-    public abstract class BasePlanetSystem : MonoBehaviour
+    public abstract class BasePlanet : MonoBehaviour
     {
-        /// <summary>
-        /// The planet.
-        /// </summary>
-        public GameObject Planet;
-
         /// <summary>
         /// The planet name.
         /// </summary>
@@ -68,7 +63,7 @@
         {
             get
             {
-                return this.Planet.transform.position + this.Planet.transform.forward.normalized * this.RestDistance;
+                return this.transform.position + this.transform.forward.normalized * this.RestDistance;
             }
         }
 
@@ -124,7 +119,7 @@
         }
 
         /// <summary>
-        /// Display information for this planet system.
+        /// Display information for this planet.
         /// </summary>
         protected abstract void DisplayInformation();
 
@@ -154,9 +149,7 @@
         /// </summary>
         private void Update()
         {
-            Transform planetTransform = this.Planet.transform;
-
-            planetTransform.LookAt(planetTransform.position + (this.mainCameraTransform.rotation * Vector3.forward), mainCameraTransform.rotation * Vector3.up);
+            this.transform.LookAt(this.transform.position + (this.mainCameraTransform.rotation * Vector3.forward), mainCameraTransform.rotation * Vector3.up);
         }
 
         /// <summary>
@@ -189,7 +182,7 @@
                 }
                 else
                 {
-                    this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.Planet, this.transform.position);
+                    this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.CameraRestPosition);
                 }
             }
         }
@@ -200,7 +193,7 @@
         /// <param name="objectBeingFocusedOn">The object being focused on.</param>
         private void OnCameraFocusedOnEvent(GameObject objectBeingFocusedOn)
         {
-            this.isCameraFocusedOn = objectBeingFocusedOn == this.Planet;
+            this.isCameraFocusedOn = objectBeingFocusedOn == this.gameObject;
 
             if (this.isCameraFocusedOn)
             {

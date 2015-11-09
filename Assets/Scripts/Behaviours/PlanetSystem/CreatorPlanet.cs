@@ -1,11 +1,11 @@
-﻿namespace MarvelUniverse.Behaviours.PlanetSystem
+﻿namespace MarvelUniverse.Behaviours.Planet
 {
     using Model.Creator;
 
     /// <summary>
-    /// The creator planet system behaviour.
+    /// The creator planet behaviour.
     /// </summary>
-    public class CreatorPlanetSystem : BasePlanetSystem
+    public class CreatorPlanet : BasePlanet
     {
         /// <summary>
         /// The creator.
@@ -25,7 +25,7 @@
         }
 
         /// <summary>
-        /// Display information for this planet system.
+        /// Display information for this planet.
         /// </summary>
         protected override void DisplayInformation()
         {

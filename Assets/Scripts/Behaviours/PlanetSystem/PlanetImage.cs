@@ -1,5 +1,5 @@
-﻿namespace MarvelUniverse.Behaviours.PlanetSystem
-{
+﻿namespace MarvelUniverse.Behaviours.Planet
+{ 
     using MarvelUniverse.Communications.Interfaces;
     using MarvelUniverse.Communications.Result;
     using MarvelUniverse.Model.Image;

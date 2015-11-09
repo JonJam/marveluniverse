@@ -1,11 +1,11 @@
-﻿namespace MarvelUniverse.Behaviours.PlanetSystem
+﻿namespace MarvelUniverse.Behaviours.Planet
 {
     using Model.Story;
 
     /// <summary>
-    /// The story planet system behaviour.
+    /// The story planet behaviour.
     /// </summary>
-    public class StoryPlanetSystem : BasePlanetSystem
+    public class StoryPlanet : BasePlanet
     {
         /// <summary>
         /// The story.
@@ -25,7 +25,7 @@
         }
 
         /// <summary>
-        /// Display information for this planet system.
+        /// Display information for this planet.
         /// </summary>
         protected override void DisplayInformation()
         {

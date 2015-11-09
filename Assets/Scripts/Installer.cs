@@ -1,6 +1,6 @@
 ﻿namespace MarvelUniverse
 {
-    using Behaviours.PlanetSystem;
+    using Behaviours.Planet;
     using Communications.Interfaces;
     using Communications.Result;
     using Events;
@@ -80,7 +80,7 @@
                 this.SceneSettings.PlanetSize,
                 this.SceneSettings.MainCamera));
 
-            this.Container.Bind<Transform>().ToInstance(this.SceneSettings.MainCameraTransform).WhenInjectedInto<BasePlanetSystem>();
+            this.Container.Bind<Transform>().ToInstance(this.SceneSettings.MainCameraTransform).WhenInjectedInto<BasePlanet>();
         }
 
         /// <summary>

@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -174,15 +176,15 @@
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraResetEvent.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\IsCameraMovementEnabledEvent.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\BasePlanetSystem.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\CharacterPlanetSystem.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\ComicPlanetSystem.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\CreatorPlanetSystem.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\EventPlanetSystem.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\BasePlanet.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\CharacterPlanet.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\ComicPlanet.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\CreatorPlanet.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\EventPlanet.cs" />
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\PlanetImage.cs" />
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\PlanetName.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\SeriesPlanetSystem.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\StoryPlanetSystem.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\SeriesPlanet.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\StoryPlanet.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\BaseSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\ComicsSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\EventsSatellite.cs" />

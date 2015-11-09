@@ -1,12 +1,12 @@
-﻿namespace MarvelUniverse.Behaviours.PlanetSystem
+﻿namespace MarvelUniverse.Behaviours.Planet
 {
     using Model.Character;
     using Satellite;
 
     /// <summary>
-    /// The character planet system behaviour.
+    /// The character planet behaviour.
     /// </summary>
-    public class CharacterPlanetSystem : BasePlanetSystem
+    public class CharacterPlanet : BasePlanet
     {
         /// <summary>
         /// The comics satellite.
@@ -51,7 +51,7 @@
         }
 
         /// <summary>
-        /// Display information for this planet system.
+        /// Display information for this planet.
         /// </summary>
         protected override void DisplayInformation()
         {
