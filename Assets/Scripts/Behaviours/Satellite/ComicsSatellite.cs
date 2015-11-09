@@ -16,30 +16,14 @@
         private IComicService comicService;
 
         /// <summary>
-        /// The loading manager.
-        /// </summary>
-        private ILoadingManager loadingManager;
-
-        /// <summary>
-        /// The result processor.
-        /// </summary>
-        private IResultProcessor resultProcessor;
-
-        /// <summary>
         /// Injection initialization.
         /// </summary>
         /// <param name="comicService">The comic service.</param>
-        /// <param name="loadingManager">The loading manager.</param>
-        /// <param name="resultProcessor">The result processor.</param>
         [PostInject]
         private void InjectionInitialize(
-            IComicService comicService,
-            ILoadingManager loadingManager,
-            IResultProcessor resultProcessor)
+            IComicService comicService)
         {
             this.comicService = comicService;
-            this.loadingManager = loadingManager;
-            this.resultProcessor = resultProcessor;
         }
     }
 }

@@ -16,16 +16,6 @@
         private IStoryService storyService;
 
         /// <summary>
-        /// The loading manager.
-        /// </summary>
-        private ILoadingManager loadingManager;
-
-        /// <summary>
-        /// The result processor.
-        /// </summary>
-        private IResultProcessor resultProcessor;
-
-        /// <summary>
         /// Injection initialization.
         /// </summary>
         /// <param name="storyService">The story service.</param>
@@ -33,13 +23,9 @@
         /// <param name="resultProcessor">The result processor.</param>
         [PostInject]
         private void InjectionInitialize(
-            IStoryService storyService,
-            ILoadingManager loadingManager,
-            IResultProcessor resultProcessor)
+            IStoryService storyService)
         {
             this.storyService = storyService;
-            this.loadingManager = loadingManager;
-            this.resultProcessor = resultProcessor;
         }
     }
 }

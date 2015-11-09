@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -172,6 +170,7 @@
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\UnityUtil.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraFocusOnEvent.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraFocusedOnEvent.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Camera\CameraLostFocusEvent.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraResetEvent.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\IsCameraMovementEnabledEvent.cs" />
@@ -184,12 +183,12 @@
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\PlanetName.cs" />
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\SeriesPlanetSystem.cs" />
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\StoryPlanetSystem.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\Satellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\ComicsSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\SeriesSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\EventsSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\StoriesSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\BaseSatellite.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Satellite\ComicsSatellite.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Satellite\EventsSatellite.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Satellite\Satellite.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Satellite\SeriesSatellite.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Satellite\StoriesSatellite.cs" />
     <Compile Include="Assets\Scripts\Communications\BaseService.cs" />
     <Compile Include="Assets\Scripts\Communications\CharacterService.cs" />
     <Compile Include="Assets\Scripts\Communications\ComicService.cs" />
@@ -200,19 +199,19 @@
     <Compile Include="Assets\Scripts\Communications\ImageService.cs" />
     <Compile Include="Assets\Scripts\Communications\Interfaces\ICharacterService.cs" />
     <Compile Include="Assets\Scripts\Communications\Interfaces\IComicService.cs" />
-    <Compile Include="Assets\Scripts\Communications\Interfaces\IStoryService.cs" />
     <Compile Include="Assets\Scripts\Communications\Interfaces\ICreatorService.cs" />
     <Compile Include="Assets\Scripts\Communications\Interfaces\IEventService.cs" />
     <Compile Include="Assets\Scripts\Communications\Interfaces\IImageService.cs" />
     <Compile Include="Assets\Scripts\Communications\Interfaces\ISeriesService.cs" />
+    <Compile Include="Assets\Scripts\Communications\Interfaces\IStoryService.cs" />
     <Compile Include="Assets\Scripts\Communications\Result\IResult.cs" />
     <Compile Include="Assets\Scripts\Communications\Result\IResultProcessor.cs" />
     <Compile Include="Assets\Scripts\Communications\Result\Result.cs" />
     <Compile Include="Assets\Scripts\Communications\Result\ResultProcessor.cs" />
     <Compile Include="Assets\Scripts\Communications\Serialization\IJsonSerializer.cs" />
     <Compile Include="Assets\Scripts\Communications\Serialization\JsonSerializer.cs" />
-    <Compile Include="Assets\Scripts\Communications\StoryService.cs" />
     <Compile Include="Assets\Scripts\Communications\SeriesService.cs" />
+    <Compile Include="Assets\Scripts\Communications\StoryService.cs" />
     <Compile Include="Assets\Scripts\Communications\Web\IWebRequestor.cs" />
     <Compile Include="Assets\Scripts\Communications\Web\WebRequestor.cs" />
     <Compile Include="Assets\Scripts\Events\EventManager.cs" />
@@ -274,6 +273,7 @@
     <Compile Include="Assets\Scripts\ViewModels\SearchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\DownloadedAssets\SciFiJumpGatesPack\CustomHardSurfaceShader.shader" />
     <None Include="Assets\Materials\GemShader\diamond shader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

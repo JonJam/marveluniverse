@@ -132,6 +132,7 @@
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Editor\ZenjectMenu.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\DownloadedAssets\SciFiJumpGatesPack\CustomHardSurfaceShader.shader" />
     <None Include="Assets\Materials\GemShader\diamond shader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

@@ -110,10 +110,33 @@
             }
             else if (this.isMovementEnabled)
             {
-                this.Rotate();
+                if (this.HasUserMoved() && 
+                    this.focusObject != null)
+                {
+                    this.eventManager.GetEvent<CameraLostFocusEvent>().Invoke(this.focusObject);
+                    this.ResetFocus();
+                }
+
+                if (Input.GetMouseButton(1))
+                {
+                    this.Rotate();
+                }
 
                 this.Move();
             }
+        }
+
+        private bool HasUserMoved()
+        {
+            float horizontalRotation = Input.GetAxis("Mouse X");
+            float verticalRotation = Input.GetAxis("Mouse Y");
+            float horizontalMovement = Input.GetAxis("Horizontal");
+            float verticalMovement = Input.GetAxis("Vertical");
+
+            bool rotated = Input.GetMouseButton(1) && (horizontalRotation != 0f || verticalRotation != 0f);
+            bool moved = horizontalMovement != 0f || verticalMovement != 0f;
+
+            return rotated || moved;
         }
 
         /// <summary>
@@ -174,11 +197,7 @@
                 this.eventManager.GetEvent<CameraFocusedOnEvent>().Invoke(this.focusObject);
 
                 this.isMovementEnabled = this.previousIsMovementEnabled;
-
-                this.focusObject = null;
-                this.focusPositionToMoveTo = new Vector3();
-                this.focusPositionToLookAt = new Vector3();
-                
+                               
                 this.isFocusing = false;
             }
             else
@@ -187,6 +206,13 @@
 
                 this.RotateTowardsFocusedPosition();
             }
+        }
+        
+        private void ResetFocus()
+        {
+            this.focusObject = null;
+            this.focusPositionToMoveTo = new Vector3();
+            this.focusPositionToLookAt = new Vector3();
         }
 
         /// <summary>

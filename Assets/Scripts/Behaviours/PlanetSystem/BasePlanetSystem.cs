@@ -150,6 +150,7 @@
         {
             this.eventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
             this.eventManager.GetEvent<ClosedInfoPanelEvent>().RemoveListener(this.OnClosedInfoPanel);
+            this.eventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
             this.eventManager.GetEvent<DestroyPlanetSystemEvent>().RemoveListener(this.OnDestroyPlanetSystemEvent);
         }
         
@@ -165,6 +166,7 @@
                     this.displayingInformation = true;
 
                     this.eventManager.GetEvent<ClosedInfoPanelEvent>().AddListener(this.OnClosedInfoPanel);
+
                     this.DisplayInformation();
 
                     this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(false);
@@ -183,6 +185,11 @@
         private void OnCameraFocusedOnEvent(GameObject objectBeingFocusedOn)
         {
             this.isCameraFocusedOn = objectBeingFocusedOn == this.Planet;
+
+            if (this.isCameraFocusedOn)
+            {
+                this.eventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
+            }
         }
         
         /// <summary>
@@ -193,6 +200,16 @@
             this.eventManager.GetEvent<ClosedInfoPanelEvent>().RemoveListener(this.OnClosedInfoPanel);
 
             this.displayingInformation = false;
+        }
+
+        /// <summary>
+        /// Handles the camera lost focus event.
+        /// </summary>
+        /// <param name="focusedObject">The focused object.</param>
+        private void OnCameraLostFocus(GameObject focusedObject)
+        {
+            this.eventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
+            
             this.isCameraFocusedOn = false;
         }
 
@@ -201,6 +218,8 @@
         /// </summary>
         private void OnDestroyPlanetSystemEvent()
         {
+            this.eventManager.GetEvent<DestroyPlanetSystemEvent>().RemoveListener(this.OnDestroyPlanetSystemEvent);
+
             GameObject.Destroy(this.gameObject);
         }
     }
