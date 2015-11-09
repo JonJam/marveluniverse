@@ -123,15 +123,15 @@
         /// Instantiates a character planet system.
         /// </summary>
         /// <param name="character">The character.</param>
-        /// <returns>The instantiated object.</returns>
-        public GameObject Instantiate(Character character)
+        /// <returns>The planet system.</returns>
+        public BasePlanetSystem Instantiate(Character character)
         {
             GameObject objectInstaniated = this.Instantiate(this.characterPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
             CharacterPlanetSystem characterPlanetSystem = objectInstaniated.GetComponentInChildren<CharacterPlanetSystem>();
             characterPlanetSystem.HookUp(character);
 
-            return characterPlanetSystem.Planet;
+            return characterPlanetSystem;
         }
 
         /// <summary>
@@ -139,8 +139,8 @@
         /// </summary>
         /// <param name="character">The character.</param>
         /// <param name="spawnOrigin">The spawn origin.</param>
-        /// <returns>The instantiated object.</returns>
-        public GameObject Instantiate(Character character, Vector3 spawnOrigin)
+        /// <returns>The planet system.</returns>
+        public BasePlanetSystem Instantiate(Character character, Vector3 spawnOrigin)
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
@@ -149,22 +149,22 @@
             CharacterPlanetSystem characterPlanetSystem = objectInstaniated.GetComponentInChildren<CharacterPlanetSystem>();
             characterPlanetSystem.HookUp(character);
 
-            return characterPlanetSystem.Planet;
+            return characterPlanetSystem;
         }
 
         /// <summary>
         /// Instantiates a comic planet system.
         /// </summary>
         /// <param name="comic">The comic.</param>
-        /// <returns>The instantiated object.</returns>
-        public GameObject Instantiate(Comic comic)
+        /// <returns>The planet system.</returns>
+        public BasePlanetSystem Instantiate(Comic comic)
         {
             GameObject objectInstaniated = this.Instantiate(this.comicPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
             ComicPlanetSystem comicPlanetSystem = objectInstaniated.GetComponentInChildren<ComicPlanetSystem>();
             comicPlanetSystem.HookUp(comic);
 
-            return comicPlanetSystem.Planet;
+            return comicPlanetSystem;
         }
 
         /// <summary>
@@ -172,8 +172,8 @@
         /// </summary>
         /// <param name="comic">The comic.</param>
         /// <param name="spawnOrigin">The spawn origin.</param>
-        /// <returns>The instantiated object.</returns>
-        public GameObject Instantiate(Comic comic, Vector3 spawnOrigin)
+        /// <returns>The planet system.</returns>
+        public BasePlanetSystem Instantiate(Comic comic, Vector3 spawnOrigin)
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
@@ -182,22 +182,22 @@
             ComicPlanetSystem comicPlanetSystem = objectInstaniated.GetComponentInChildren<ComicPlanetSystem>();
             comicPlanetSystem.HookUp(comic);
 
-            return comicPlanetSystem.Planet;
+            return comicPlanetSystem;
         }
 
         /// <summary>
         /// Instantiates a creator planet system.
         /// </summary>
         /// <param name="creator">The creator.</param>
-        /// <returns>The instantiated object.</returns>
-        public GameObject Instantiate(Creator creator)
+        /// <returns>The planet system.</returns>
+        public BasePlanetSystem Instantiate(Creator creator)
         {
             GameObject objectInstaniated = this.Instantiate(this.creatorPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
             CreatorPlanetSystem creatorPlanetSystem = objectInstaniated.GetComponentInChildren<CreatorPlanetSystem>();
             creatorPlanetSystem.HookUp(creator);
 
-            return creatorPlanetSystem.Planet;
+            return creatorPlanetSystem;
         }
 
         /// <summary>
@@ -205,8 +205,8 @@
         /// </summary>
         /// <param name="creator">The creator.</param>
         /// <param name="spawnOrigin">The spawn origin.</param>
-        /// <returns>The instantiated object.</returns>
-        public GameObject Instantiate(Creator creator, Vector3 spawnOrigin)
+        /// <returns>The planet system.</returns>
+        public BasePlanetSystem Instantiate(Creator creator, Vector3 spawnOrigin)
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
@@ -215,22 +215,22 @@
             CreatorPlanetSystem creatorPlanetSystem = objectInstaniated.GetComponentInChildren<CreatorPlanetSystem>();
             creatorPlanetSystem.HookUp(creator);
 
-            return creatorPlanetSystem.Planet;
+            return creatorPlanetSystem;
         }
 
         /// <summary>
         /// Instantiates an event planet system.
         /// </summary>
         /// <param name="comicEvent">The event.</param>
-        /// <returns>The instantiated object.</returns>
-        public GameObject Instantiate(MarvelUniverse.Model.Event.Event comicEvent)
+        /// <returns>The planet system.</returns>
+        public BasePlanetSystem Instantiate(MarvelUniverse.Model.Event.Event comicEvent)
         {
             GameObject objectInstaniated = this.Instantiate(this.eventPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
             EventPlanetSystem eventPlanetSystem = objectInstaniated.GetComponentInChildren<EventPlanetSystem>();
             eventPlanetSystem.HookUp(comicEvent);
 
-            return eventPlanetSystem.Planet;
+            return eventPlanetSystem;
         }
 
         /// <summary>
@@ -238,8 +238,8 @@
         /// </summary>
         /// <param name="comicEvent">The comic event.</param>
         /// <param name="spawnOrigin">The spawn origin.</param>
-        /// <returns>The instantiated object.</returns>
-        public GameObject Instantiate(MarvelUniverse.Model.Event.Event comicEvent, Vector3 spawnOrigin)
+        /// <returns>The planet system.</returns>
+        public BasePlanetSystem Instantiate(MarvelUniverse.Model.Event.Event comicEvent, Vector3 spawnOrigin)
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
@@ -248,22 +248,22 @@
             EventPlanetSystem eventPlanetSystem = objectInstaniated.GetComponentInChildren<EventPlanetSystem>();
             eventPlanetSystem.HookUp(comicEvent);
 
-            return eventPlanetSystem.Planet;
+            return eventPlanetSystem;
         }
 
         /// <summary>
         /// Instantiates a series planet system.
         /// </summary>
         /// <param name="series">The series.</param>
-        /// <returns>The instantiated object.</returns>
-        public GameObject Instantiate(Series series)
+        /// <returns>The planet system.</returns>
+        public BasePlanetSystem Instantiate(Series series)
         {
             GameObject objectInstaniated = this.Instantiate(this.seriesPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
             SeriesPlanetSystem seriesPlanetSystem = objectInstaniated.GetComponentInChildren<SeriesPlanetSystem>();
             seriesPlanetSystem.HookUp(series);
 
-            return seriesPlanetSystem.Planet;
+            return seriesPlanetSystem;
         }
 
         /// <summary>
@@ -271,8 +271,8 @@
         /// </summary>
         /// <param name="series">The series.</param>
         /// <param name="spawnOrigin">The spawn origin.</param>
-        /// <returns>The instantiated object.</returns>
-        public GameObject Instantiate(Series series, Vector3 spawnOrigin)
+        /// <returns>The planet system.</returns>
+        public BasePlanetSystem Instantiate(Series series, Vector3 spawnOrigin)
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
@@ -281,30 +281,30 @@
             SeriesPlanetSystem seriesPlanetSystem = objectInstaniated.GetComponentInChildren<SeriesPlanetSystem>();
             seriesPlanetSystem.HookUp(series);
 
-            return seriesPlanetSystem.Planet;
+            return seriesPlanetSystem;
         }
 
         /// <summary>
         /// Instantiates a story planet system.
         /// </summary>
         /// <param name="character">The story.</param>
-        /// <returns>The instantiated object.</returns>
-        public GameObject Instantiate(Story story)
+        /// <returns>The planet system.</returns>
+        public BasePlanetSystem Instantiate(Story story)
         {
             GameObject objectInstaniated = this.Instantiate(this.storyPlanetSystemPrefab, this.initialPlanetSystemPosition);
 
             StoryPlanetSystem storyPlanetSystem = objectInstaniated.GetComponentInChildren<StoryPlanetSystem>();
             storyPlanetSystem.HookUp(story);
 
-            return storyPlanetSystem.Planet;
+            return storyPlanetSystem;
         }
 
         /// <summary>
         /// Instantiate a story planet system based on the specified spawn origin.
         /// </summary>
         /// <param name="story">The story.</param>
-        /// <returns>The instantiated object.</returns>
-        public GameObject Instantiate(Story story, Vector3 spawnOrigin)
+        /// <returns>The planet system.</returns>
+        public BasePlanetSystem Instantiate(Story story, Vector3 spawnOrigin)
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
@@ -313,7 +313,7 @@
             StoryPlanetSystem storyPlanetSystem = objectInstaniated.GetComponentInChildren<StoryPlanetSystem>();
             storyPlanetSystem.HookUp(story);
 
-            return storyPlanetSystem.Planet;
+            return storyPlanetSystem;
         }
 
         /// <summary>

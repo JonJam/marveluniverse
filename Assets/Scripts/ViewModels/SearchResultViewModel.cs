@@ -3,6 +3,7 @@
     using System;
     using Behaviours.Camera;
     using Events;
+    using Behaviours.PlanetSystem;
     using Screen;
     using UnityEngine;
 
@@ -49,7 +50,7 @@
         /// <summary>
         /// The spawn function.
         /// </summary>
-        private readonly Func<GameObject> spawnFunction;
+        private readonly Func<BasePlanetSystem> spawnFunction;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchResultViewModel"/> class.
@@ -70,7 +71,7 @@
             string description,
             string imagePath,
             string imageExtension,
-            Func<GameObject> spawnFunction)
+            Func<BasePlanetSystem> spawnFunction)
         {
             this.screenManager = screenManager;
             this.eventManager = eventManager;
@@ -138,11 +139,11 @@
 
             this.searchViewModel.Reset();
 
-            GameObject spawnedObject = this.spawnFunction();
+            BasePlanetSystem planetSystem = this.spawnFunction();
             
             this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(true);
-
-            this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(spawnedObject);
+                    
+            this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(planetSystem.Planet, planetSystem.CameraRestPosition);
         }
     }
 }

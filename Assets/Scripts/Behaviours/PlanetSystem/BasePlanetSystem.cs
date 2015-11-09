@@ -32,6 +32,11 @@
         public PlanetImage PlanetImage;
 
         /// <summary>
+        /// The rest distance.
+        /// </summary>
+        public float RestDistance = -35;
+
+        /// <summary>
         /// The event manager.
         /// </summary>
         private IEventManager eventManager;
@@ -55,6 +60,17 @@
         /// A value indicating whether displaying information about this planet system.
         /// </summary>
         private bool displayingInformation;
+
+        /// <summary>
+        /// The camera rest position.
+        /// </summary>
+        public Vector3 CameraRestPosition
+        {
+            get
+            {
+                return this.Planet.transform.position + this.Planet.transform.forward.normalized * this.RestDistance;
+            }
+        }
 
         /// <summary>
         /// Gets the screen manager.
@@ -173,7 +189,7 @@
                 }
                 else
                 {
-                    this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.Planet);
+                    this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.Planet, this.transform.position);
                 }
             }
         }

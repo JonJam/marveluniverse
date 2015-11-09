@@ -29,12 +29,7 @@
         /// A value indicating whether to inverse vertical view direction.
         /// </summary>
         public bool InverseVertical = true;
-
-        /// <summary>
-        /// The camera rest position.
-        /// </summary>
-        public Vector3 CameraRestPosition;
-        
+                
         /// <summary>
         /// The default position.
         /// </summary>
@@ -162,7 +157,7 @@
         /// Handles the camera focus event.
         /// </summary>
         /// <param name="objectToFocusOn">The object to focus on.</param>
-        private void OnCameraFocus(GameObject objectToFocusOn)
+        private void OnCameraFocus(GameObject objectToFocusOn, Vector3 positionToMoveTo)
         {
             if (!this.isFocusing)
             {
@@ -173,7 +168,7 @@
 
                 this.focusObject = objectToFocusOn;
                 this.focusPositionToLookAt = objectToFocusOn.transform.position;
-                this.focusPositionToMoveTo = this.focusPositionToLookAt + this.CameraRestPosition;
+                this.focusPositionToMoveTo = positionToMoveTo;
             }
         }
 
@@ -191,8 +186,11 @@
         /// </summary>
         private void FocusOn()
         {
+            Vector3 lookDirection = this.focusPositionToLookAt - this.transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+
             if (this.transform.position == this.focusPositionToMoveTo &&
-                this.transform.rotation == Quaternion.identity)
+                this.transform.rotation == targetRotation)
             {
                 this.eventManager.GetEvent<CameraFocusedOnEvent>().Invoke(this.focusObject);
 
@@ -204,7 +202,7 @@
             {
                 this.MoveTowardsFocusedPosition();
 
-                this.RotateTowardsFocusedPosition();
+                this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this.LookSpeed * Time.deltaTime);
             }
         }
         
@@ -222,19 +220,7 @@
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, this.focusPositionToMoveTo, this.MovementSpeed * Time.deltaTime);
         }
-
-        /// <summary>
-        /// Rotate towards the focused position.
-        /// </summary>
-        private void RotateTowardsFocusedPosition()
-        {
-            Vector3 lookDirection = this.focusPositionToLookAt - this.transform.position;
-
-            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-
-            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this.LookSpeed * Time.deltaTime);
-        }
-
+        
         /// <summary>
         /// Rotates the camera according to the input.
         /// </summary>

@@ -29,6 +29,11 @@
         /// </summary>
         public float RotationSpeed = 20;
 
+        /// <summary>
+        /// The rest distance.
+        /// </summary>
+        public float RestDistance = 10f;
+
         private IEventManager eventManager;
 
         private ILoadingManager loadingManager;
@@ -43,7 +48,7 @@
         private ParticleSystem childParticleSystem;
 
         private bool isOrbitMovementEnabled = true;
-        private object comicService;
+        private bool isCameraFocusedOn;
 
         /// <summary>
         /// Hooks up the specified summary data list to the satellite.
@@ -64,6 +69,17 @@
         }
 
         /// <summary>
+        /// The camera rest position.
+        /// </summary>
+        private Vector3 CameraRestPosition
+        {
+            get
+            {
+                return this.transform.position - this.transform.right * this.RestDistance;
+            }
+        }
+
+        /// <summary>
         /// Injection initialization.
         /// </summary>
         /// <param name="eventManager">The event manager.</param>
@@ -78,6 +94,8 @@
             this.eventManager = eventManager;
             this.loadingManager = loadingManager;
             this.resultProcessor = resultProcessor;
+
+            this.eventManager.GetEvent<CameraFocusedOnEvent>().AddListener(this.OnCameraFocusedOnEvent);
         }
 
         private void Awake()
@@ -96,7 +114,7 @@
 
             this.rotationAxis = Vector3.Cross(this.PlanetTransform.position, this.transform.position);
         }
-        
+
         /// <summary>
         /// Handles the update event.
         /// </summary>
@@ -110,14 +128,57 @@
             }
         }
 
+
+        /// <summary>
+        /// Handles the destroy event.
+        /// </summary>
+        private void OnDestroy()
+        {
+            this.eventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
+            this.eventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
+        }
+
         /// <summary>
         /// Handles the mouse down event.
         /// </summary>
         private void OnMouseDown()
         {
-            this.isOrbitMovementEnabled = false;
+            if (!this.isCameraFocusedOn)
+            {
+                this.isOrbitMovementEnabled = false;
+                this.childParticleSystem.Play();
 
-            this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject);
+                this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.CameraRestPosition);
+            }
+        }
+
+        /// <summary>
+        /// Handles the camera focused on event.
+        /// </summary>
+        /// <param name="objectBeingFocusedOn">The object being focused on.</param>
+        private void OnCameraFocusedOnEvent(GameObject objectBeingFocusedOn)
+        {
+            this.isCameraFocusedOn = objectBeingFocusedOn == this.gameObject;
+
+            if (this.isCameraFocusedOn)
+            {
+                this.eventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
+            }
+        }
+
+        /// <summary>
+        /// Handles the camera lost focus event.
+        /// </summary>
+        /// <param name="focusedObject">The focused object.</param>
+        private void OnCameraLostFocus(GameObject focusedObject)
+        {
+            this.eventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
+
+            this.childParticleSystem.Stop();
+            this.childParticleSystem.Clear();
+
+            this.isCameraFocusedOn = false;
+            this.isOrbitMovementEnabled = true;
         }
     }
 }
