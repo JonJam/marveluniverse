@@ -1,5 +1,6 @@
 ﻿namespace MarvelUniverse.Model
 {
+    using System;
     using System.Runtime.Serialization;
 
     /// <summary>
@@ -19,5 +20,20 @@
         /// </summary>
         [DataMember(Name = "name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating whether has data.
+        /// </summary>
+        public bool HasData
+        {
+            get
+            {
+                Uri uri = null;
+
+                return !string.IsNullOrEmpty(this.Name) &&
+                    !string.IsNullOrEmpty(this.ResourceURI) &&
+                    Uri.TryCreate(this.ResourceURI, UriKind.Absolute, out uri);
+            }
+        }
     }
 }

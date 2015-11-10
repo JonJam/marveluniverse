@@ -15,9 +15,9 @@
     public abstract class BaseSatellite : MonoBehaviour
     {
         /// <summary>
-        /// The planet transform.
+        /// The planet system transform.
         /// </summary>
-        public Transform PlanetTransform;
+        public Transform PlanetSystemTransform;
 
         /// <summary>
         /// The orbit radius.
@@ -32,7 +32,7 @@
         /// <summary>
         /// The rest distance.
         /// </summary>
-        public float RestDistance = 10f;
+        public float RestDistance = 2f;
 
         private IEventManager eventManager;
 
@@ -75,7 +75,7 @@
         {
             get
             {
-                return this.transform.position - this.transform.right * this.RestDistance;
+                return this.transform.position + this.transform.forward.normalized * this.RestDistance;
             }
         }
 
@@ -110,9 +110,9 @@
         /// </summary>
         private void Start()
         {
-            this.transform.position = this.PlanetTransform.position + (Random.onUnitSphere * this.OrbitRadius);
+            this.transform.position = this.PlanetSystemTransform.position + (Random.onUnitSphere * this.OrbitRadius);
 
-            this.rotationAxis = Vector3.Cross(this.PlanetTransform.position, this.transform.position);
+            this.rotationAxis = Vector3.Cross(this.PlanetSystemTransform.position, this.transform.position);
         }
 
         /// <summary>
@@ -122,9 +122,8 @@
         {
             if (this.isOrbitMovementEnabled)
             {
-                this.transform.LookAt(this.PlanetTransform.position);
-                this.transform.Rotate(new Vector3(0, 90, 0));
-                this.transform.RotateAround(this.PlanetTransform.position, this.rotationAxis, this.RotationSpeed * Time.deltaTime);
+                this.transform.LookAt(this.PlanetSystemTransform.position);
+                this.transform.RotateAround(this.PlanetSystemTransform.position, this.rotationAxis, this.RotationSpeed * Time.deltaTime);
             }
         }
 
