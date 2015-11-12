@@ -195,6 +195,7 @@
     <Compile Include="Assets\Scripts\Behaviours\Satellite\Satellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\SeriesSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\StoriesSatellite.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Satellite\ToEventSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\ToSeriesSatellite.cs" />
     <Compile Include="Assets\Scripts\Communications\BaseService.cs" />
     <Compile Include="Assets\Scripts\Communications\CharacterService.cs" />
