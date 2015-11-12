@@ -11,11 +11,6 @@
     public class MessagePanel : MonoBehaviour
     {
         /// <summary>
-        /// The event manager.
-        /// </summary>
-        private IEventManager eventManager;
-
-        /// <summary>
         /// The title.
         /// </summary>
         public Text Title;
@@ -54,7 +49,12 @@
         /// The third button text.
         /// </summary>
         public Text Button3Text;
-        
+
+        /// <summary>
+        /// The event manager.
+        /// </summary>
+        private IEventManager eventManager;
+
         /// <summary>
         /// Injection initialization.
         /// </summary>

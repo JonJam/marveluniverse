@@ -20,5 +20,15 @@
         IEnumerator Search(
             string searchTerms,
             Action<IResult<IList<Event>>> callback);
+
+        /// <summary>
+        /// Get event.
+        /// </summary>
+        /// <param name="eventUri">The event URI.</param>
+        /// <param name="callback">The callback.</param>
+        /// <returns>A coroutine.</returns>
+        IEnumerator GetEvent(
+            string eventUri,
+            Action<IResult<Event>> callback);
     }
 }

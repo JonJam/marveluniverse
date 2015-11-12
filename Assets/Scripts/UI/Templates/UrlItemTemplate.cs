@@ -1,5 +1,6 @@
 ﻿namespace MarvelUniverse.UI.Templates
 {
+    using System;
     using Controls;
     using Model;
     using UnityEngine;
@@ -12,7 +13,7 @@
         /// <summary>
         /// The hyperlink.
         /// </summary>
-        public Hyperlink hyperlink;
+        public Hyperlink Hyperlink;
         
         /// <summary>
         /// Hook up item to template.
@@ -20,7 +21,7 @@
         /// <param name="item">The item to display.</param>
         public void Hookup(Url item)
         {
-            this.hyperlink.SetHyperlink(item.DisplayType, new System.Uri(item.Value));           
+            this.Hyperlink.SetHyperlink(item.DisplayType, new Uri(item.Value));           
         }        
     }
 }

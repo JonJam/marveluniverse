@@ -79,7 +79,7 @@
         /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <param name="IInstantiator">The instantiator.</param>
+        /// <param name="instantiator">The instantiator.</param>
         [PostInject]
         private void InjectionInitialize(
             IInstantiator instantiator)

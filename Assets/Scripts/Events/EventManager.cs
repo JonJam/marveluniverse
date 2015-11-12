@@ -15,7 +15,7 @@
         private readonly Dictionary<Type, UnityEventBase> events;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventManager"/>
+        /// Initializes a new instance of the <see cref="EventManager"/> class.
         /// </summary>
         public EventManager()
         {
@@ -29,15 +29,15 @@
         /// <returns>The specified event.</returns>
         public TEventType GetEvent<TEventType>() where TEventType : UnityEventBase, new()
         {
-            lock (events)
+            lock (this.events)
             {
                 UnityEventBase existingEvent = null;
                 TEventType eventToReturn = null;
 
-                if (!events.TryGetValue(typeof(TEventType), out existingEvent))
+                if (!this.events.TryGetValue(typeof(TEventType), out existingEvent))
                 {
                     TEventType newEvent = new TEventType();
-                    events[typeof(TEventType)] = newEvent;
+                    this.events[typeof(TEventType)] = newEvent;
 
                     eventToReturn = newEvent;
                 }

@@ -5,7 +5,7 @@
     /// <summary>
     /// The event planet behaviour.
     /// </summary>
-    public class EventPlanet: BasePlanet
+    public class EventPlanet : BasePlanet
     {
         /// <summary>
         /// The comic event.

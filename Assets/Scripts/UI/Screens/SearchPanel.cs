@@ -19,10 +19,25 @@
     using Event = MarvelUniverse.Model.Event.Event;
 
     /// <summary>
-    /// Search.
+    /// Search panel.
     /// </summary>
     public class SearchPanel : MonoBehaviour, IScreen
     {
+        /// <summary>
+        /// The search button.
+        /// </summary>
+        public Button SearchButton;
+
+        /// <summary>
+        /// The search type dropdown.
+        /// </summary>
+        public Dropdown SearchTypeDropdown;
+
+        /// <summary>
+        /// The search text input field.
+        /// </summary>
+        public InputField SearchTextInputField;
+
         /// <summary>
         /// The character service.
         /// </summary>
@@ -83,21 +98,6 @@
         /// </summary>
         private CanvasGroup canvasGroup;
 
-        /// <summary>
-        /// The search button.
-        /// </summary>
-        public Button SearchButton;
-
-        /// <summary>
-        /// The search type dropdown.
-        /// </summary>
-        public Dropdown SearchTypeDropdown;
-
-        /// <summary>
-        /// The search text input field.
-        /// </summary>
-        public InputField SearchTextInputField;
-        
         /// <summary>
         /// Gets the game object.
         /// </summary>
@@ -190,7 +190,7 @@
         /// <param name="seriesService">The series service.</param>
         /// <param name="eventService">The event service.</param>
         /// <param name="loadingManager">The loading manager.</param>
-        /// <param name="screenManager">The screen manaager.</param>
+        /// <param name="screenManager">The screen manager.</param>
         /// <param name="eventManager">The event manager.</param>
         /// <param name="resultProcessor">The result processor.</param>
         /// <param name="planetSystemSpawner">The planet system spawner.</param>
@@ -299,7 +299,10 @@
                     c.CleanDescription,
                     c.Thumbnail.Path,
                     c.Thumbnail.Extension,
-                    () => { return this.planetSystemSpawner.Instantiate(c); })));
+                    () => 
+                    {
+                        return this.planetSystemSpawner.Instantiate(c);
+                    })));
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -321,7 +324,10 @@
                     c.CleanDescription,
                     c.Thumbnail.Path,
                     c.Thumbnail.Extension,
-                    () => { return this.planetSystemSpawner.Instantiate(c); })));
+                    () => 
+                    {
+                        return this.planetSystemSpawner.Instantiate(c);
+                    })));
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -343,7 +349,10 @@
                     null,
                     c.Thumbnail.Path,
                     c.Thumbnail.Extension,
-                    () => { return this.planetSystemSpawner.Instantiate(c); })));
+                    () => 
+                    {
+                        return this.planetSystemSpawner.Instantiate(c);
+                    })));
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -365,7 +374,10 @@
                     s.CleanDescription,
                     s.Thumbnail.Path,
                     s.Thumbnail.Extension,
-                    () => { return this.planetSystemSpawner.Instantiate(s); })));
+                    () => 
+                    {
+                        return this.planetSystemSpawner.Instantiate(s);
+                    })));
             }
 
             this.loadingManager.DecrementRunningOperationCount();
@@ -387,7 +399,10 @@
                     e.CleanDescription,
                     e.Thumbnail.Path,
                     e.Thumbnail.Extension,
-                    () => { return this.planetSystemSpawner.Instantiate(e); })));
+                    () => 
+                    {
+                        return this.planetSystemSpawner.Instantiate(e);
+                    })));
             }
 
             this.loadingManager.DecrementRunningOperationCount();

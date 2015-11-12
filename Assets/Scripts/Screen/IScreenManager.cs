@@ -31,6 +31,12 @@
         void OpenExplorerPanel();
 
         /// <summary>
+        /// Open jump gate panel.
+        /// </summary>
+        /// <param name="jumpOptions">The jump options.</param>
+        void OpenJumpGatePanel(IEnumerable<JumpOptionViewModel> jumpOptions);
+
+        /// <summary>
         /// Close the currently open screen and reverting the selected element.
         /// </summary>
         void CloseCurrent();

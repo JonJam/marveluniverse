@@ -1,7 +1,7 @@
 ﻿namespace MarvelUniverse.UI.Controls
 {
-    using Loading;
     using Events;
+    using Loading;
     using UnityEngine;
     using Zenject;
 
@@ -33,7 +33,7 @@
         /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <param name="eventManager">The event mananger</param>
+        /// <param name="eventManager">The event manager</param>
         [PostInject]
         private void InjectionInitialize(
             IEventManager eventManager)

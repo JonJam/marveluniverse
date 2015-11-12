@@ -61,7 +61,7 @@
             if (request != null &&
                 string.IsNullOrEmpty(request.error))
             {
-                result = this.CreateSuccessfulSearchResult<Comic>(request.text);
+                result = this.CreateSuccessfulListResult<Comic>(request.text);
             }
             else
             {
@@ -70,6 +70,34 @@
 
             callback(result);
         }
-       
+
+        /// <summary>
+        /// Get comic.
+        /// </summary>
+        /// <param name="comicUri">The comic URI.</param>
+        /// <param name="callback">The callback.</param>
+        /// <returns>A coroutine.</returns>
+        public IEnumerator GetComic(
+            string comicUri,
+            Action<IResult<Comic>> callback)
+        {
+            WWW request = this.webRequestor.PerformAuthorizedGetRequest(comicUri);
+
+            yield return request;
+
+            IResult<Comic> result = null;
+
+            if (request != null &&
+                string.IsNullOrEmpty(request.error))
+            {
+                result = this.CreateSuccessfulResult<Comic>(request.text);
+            }
+            else
+            {
+                result = new Result<Comic>(request.error);
+            }
+
+            callback(result);
+        }
     }
 }

@@ -39,22 +39,30 @@
         private IScreen explorerPanel;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ScreenManager"/>
+        /// The jump gate panel.
+        /// </summary>
+        private IScreen jumpGatePanel;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScreenManager"/> class.
         /// </summary>
         /// <param name="searchPanel">The search panel.</param>
         /// <param name="searchResultsPanel">The search results panel.</param>
         /// <param name="infoPanel">The info panel.</param>
         /// <param name="explorerPanel">The explorer panel.</param>
+        /// <param name="jumpGatePanel">The jump gate panel.</param>
         public ScreenManager(
             IScreen searchPanel,
             IScreen searchResultsPanel,
             IScreen infoPanel,
-            IScreen explorerPanel)
+            IScreen explorerPanel,
+            IScreen jumpGatePanel)
         {
             this.searchPanel = searchPanel;
             this.searchResultsPanel = searchResultsPanel;
             this.infoPanel = infoPanel;
             this.explorerPanel = explorerPanel;
+            this.jumpGatePanel = jumpGatePanel;
         }
 
         /// <summary>
@@ -94,6 +102,16 @@
         }
 
         /// <summary>
+        /// Open jump gate panel.
+        /// </summary>
+        /// <param name="jumpOptions">The jump options.</param>
+        public void OpenJumpGatePanel(IEnumerable<JumpOptionViewModel> jumpOptions)
+        {
+            this.OpenPanel(this.jumpGatePanel.GameObject);
+            this.jumpGatePanel.OnOpen(jumpOptions);
+        }
+
+        /// <summary>
         /// Close the currently open screen and reverting the selected element.
         /// </summary>
         public void CloseCurrent()
@@ -121,7 +139,7 @@
         {
             if (this.currentlyOpenScreen != newScreen)
             {
-                //Save the currently selected button that was used to open this Screen. (CloseCurrent will modify it)
+                // Save the currently selected button that was used to open this Screen. (CloseCurrent will modify it)
                 GameObject newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
 
                 if (this.currentlyOpenScreen == null &&
@@ -132,14 +150,14 @@
                 
                 this.CloseCurrent();
                 
-                //Set the new Screen as then open one.
+                // Set the new Screen as then open one.
                 this.currentlyOpenScreen = newScreen;
 
-                //Set an element in the new screen as the new Selected one.
+                // Set an element in the new screen as the new Selected one.
                 GameObject newSelectedGameObject = this.FindFirstEnabledSelectable(newScreen);
                 this.SetSelected(newSelectedGameObject);
                 
-                //Move the Screen to front.
+                // Back the Screen to front.
                 newScreen.transform.SetAsLastSibling();
 
                 newScreen.SetActive(true);
@@ -168,7 +186,7 @@
         /// <summary>
         /// Set the specified game object as selected.
         /// </summary>
-        /// <param name="gameObject"></param>
+        /// <param name="gameObject">The game object.</param>
         private void SetSelected(GameObject gameObject)
         {
             EventSystem.current.SetSelectedGameObject(gameObject);

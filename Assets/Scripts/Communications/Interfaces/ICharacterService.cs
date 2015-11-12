@@ -20,5 +20,15 @@
         IEnumerator Search(
             string searchTerms,
             Action<IResult<IList<Character>>> callback);
+
+        /// <summary>
+        /// Get character.
+        /// </summary>
+        /// <param name="characterUri">The character URI.</param>
+        /// <param name="callback">The callback.</param>
+        /// <returns>A coroutine.</returns>
+        IEnumerator GetCharacter(
+            string characterUri,
+            Action<IResult<Character>> callback);
     }
 }

@@ -1,19 +1,8 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="Character.cs" company="">
-// Copyright (c) 2015 Microsoft Corporation. All rights reserved.
-// </copyright>
-//-----------------------------------------------------------------------
-
-namespace MarvelUniverse.Model.Character
+﻿namespace MarvelUniverse.Model.Character
 {
-    using System;
     using System.Runtime.Serialization;
-    using Comic;
-    using Event;
     using Extensions;
     using Image;
-    using Series;
-    using Story;
 
     /// <summary>
     /// A character

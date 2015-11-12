@@ -5,7 +5,7 @@
     /// <summary>
     /// The series planet behaviour.
     /// </summary>
-    public class SeriesPlanet: BasePlanet
+    public class SeriesPlanet : BasePlanet
     {
         /// <summary>
         /// The series.

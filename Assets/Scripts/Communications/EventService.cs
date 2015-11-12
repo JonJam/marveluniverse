@@ -62,12 +62,41 @@
             if (request != null &&
                 string.IsNullOrEmpty(request.error))
             {
-                result = this.CreateSuccessfulSearchResult<Event>(request.text);
+                result = this.CreateSuccessfulListResult<Event>(request.text);
             }
             else
             {
                 result = new Result<IList<Event>>(request.error);
             }           
+
+            callback(result);
+        }
+
+        /// <summary>
+        /// Get event.
+        /// </summary>
+        /// <param name="eventUri">The event URI.</param>
+        /// <param name="callback">The callback.</param>
+        /// <returns>A coroutine.</returns>
+        public IEnumerator GetEvent(
+            string eventUri,
+            Action<IResult<Event>> callback)
+        {
+            WWW request = this.webRequestor.PerformAuthorizedGetRequest(eventUri);
+
+            yield return request;
+
+            IResult<Event> result = null;
+
+            if (request != null &&
+                string.IsNullOrEmpty(request.error))
+            {
+                result = this.CreateSuccessfulResult<Event>(request.text);
+            }
+            else
+            {
+                result = new Result<Event>(request.error);
+            }
 
             callback(result);
         }

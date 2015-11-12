@@ -51,7 +51,7 @@
                 this.SetTextToDisplay(this.Title, series.Title);
                 this.SetTextToDisplay(this.Description, series.CleanDescription);
                 this.SetTextToDisplay(this.StartYear, series.StartYear > 0 ? series.StartYear.ToString() : null, this.StartYear.transform.parent.gameObject);
-                this.SetTextToDisplay(this.EndYear, series.EndYear> 0 ? series.EndYear.ToString() : null, this.EndYear.transform.parent.gameObject);
+                this.SetTextToDisplay(this.EndYear, series.EndYear > 0 ? series.EndYear.ToString() : null, this.EndYear.transform.parent.gameObject);
                 this.SetTextToDisplay(this.Rating, series.Rating, this.Rating.transform.parent.gameObject);
 
                 this.SetListItems(this.UrlListView, series.Urls != null ? series.Urls.OrderBy(u => u.DisplayType) : null);

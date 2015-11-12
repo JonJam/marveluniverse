@@ -40,7 +40,7 @@
         /// The screen manager.
         /// </summary>
         private IScreenManager screenManager;
-        
+
         /// <summary>
         /// The main camera transform.
         /// </summary>
@@ -57,13 +57,13 @@
         private bool displayingInformation;
 
         /// <summary>
-        /// The camera rest position.
+        /// Gets the camera rest position.
         /// </summary>
         public Vector3 CameraRestPosition
         {
             get
             {
-                return this.transform.position + this.transform.forward.normalized * this.RestDistance;
+                return this.transform.position + (this.transform.forward.normalized * this.RestDistance);
             }
         }
 
@@ -128,17 +128,17 @@
         /// </summary>
         /// <param name="eventManager">The event manager.</param>
         /// <param name="screenManager">The screen manager.</param>
-        /// <param name="mainCameraTransform">The main camera transform.</param>
+        /// <param name="mainCamera">The main camera.</param>
         [PostInject]
         private void InjectionInitialize(
             IEventManager eventManager,
             IScreenManager screenManager,
-            Transform mainCameraTransform)
+            Camera mainCamera)
         {
             this.eventManager = eventManager;
             this.screenManager = screenManager;
 
-            this.mainCameraTransform = mainCameraTransform;
+            this.mainCameraTransform = mainCamera.transform;
 
             this.eventManager.GetEvent<CameraFocusedOnEvent>().AddListener(this.OnCameraFocusedOnEvent);
             this.eventManager.GetEvent<DestroyPlanetSystemEvent>().AddListener(this.OnDestroyPlanetSystemEvent);
@@ -149,7 +149,7 @@
         /// </summary>
         private void Update()
         {
-            this.transform.LookAt(this.transform.position + (this.mainCameraTransform.rotation * Vector3.forward), mainCameraTransform.rotation * Vector3.up);
+            this.transform.LookAt(this.transform.position + (this.mainCameraTransform.rotation * Vector3.forward), this.mainCameraTransform.rotation * Vector3.up);
         }
 
         /// <summary>
@@ -223,7 +223,7 @@
         }
 
         /// <summary>
-        /// Handles the on destory planet system event.
+        /// Handles the on destroy planet system event.
         /// </summary>
         private void OnDestroyPlanetSystemEvent()
         {

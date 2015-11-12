@@ -1,7 +1,7 @@
 ﻿namespace MarvelUniverse.UI.Screens
 {
-    using Events;
     using Behaviours.Camera;
+    using Events;
     using Screen;
     using Spawner;
     using UnityEngine;
@@ -64,7 +64,8 @@
         /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <param name="screenManager">The screen manaager.</param>
+        /// <param name="screenManager">The screen manager.</param>
+        /// <param name="eventManager">The event manager.</param>
         [PostInject]
         private void InjectionInitialize(
             IScreenManager screenManager,

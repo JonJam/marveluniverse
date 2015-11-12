@@ -7,9 +7,7 @@
     using MarvelUniverse.Communications.Result;
     using MarvelUniverse.Communications.Serialization;
     using MarvelUniverse.Communications.Web;
-    using MarvelUniverse.Model;
     using Model.Series;
-    using Model.Creator;
     using UnityEngine;
 
     /// <summary>
@@ -62,12 +60,41 @@
             if (request != null &&
                 string.IsNullOrEmpty(request.error))
             {
-                result = this.CreateSuccessfulSearchResult<Series>(request.text);
+                result = this.CreateSuccessfulListResult<Series>(request.text);
             }
             else
             {
                 result = new Result<IList<Series>>(request.error);
             }           
+
+            callback(result);
+        }
+
+        /// <summary>
+        /// Get series.
+        /// </summary>
+        /// <param name="seriesUri">The series URI.</param>
+        /// <param name="callback">The callback.</param>
+        /// <returns>A coroutine.</returns>
+        public IEnumerator GetSeries(
+            string seriesUri,
+            Action<IResult<Series>> callback)
+        {
+            WWW request = this.webRequestor.PerformAuthorizedGetRequest(seriesUri);
+
+            yield return request;
+
+            IResult<Series> result = null;
+
+            if (request != null &&
+                string.IsNullOrEmpty(request.error))
+            {
+                result = this.CreateSuccessfulResult<Series>(request.text);
+            }
+            else
+            {
+                result = new Result<Series>(request.error);
+            }
 
             callback(result);
         }

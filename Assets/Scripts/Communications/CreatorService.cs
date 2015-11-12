@@ -61,12 +61,41 @@
             if (request != null &&
                 string.IsNullOrEmpty(request.error))
             {
-                result = this.CreateSuccessfulSearchResult<Creator>(request.text);
+                result = this.CreateSuccessfulListResult<Creator>(request.text);
             }
             else
             {
                 result = new Result<IList<Creator>>(request.error);
             }           
+
+            callback(result);
+        }
+
+        /// <summary>
+        /// Get creator.
+        /// </summary>
+        /// <param name="creatorUri">The creator URI.</param>
+        /// <param name="callback">The callback.</param>
+        /// <returns>A coroutine.</returns>
+        public IEnumerator GetCreator(
+            string creatorUri,
+            Action<IResult<Creator>> callback)
+        {
+            WWW request = this.webRequestor.PerformAuthorizedGetRequest(creatorUri);
+
+            yield return request;
+
+            IResult<Creator> result = null;
+
+            if (request != null &&
+                string.IsNullOrEmpty(request.error))
+            {
+                result = this.CreateSuccessfulResult<Creator>(request.text);
+            }
+            else
+            {
+                result = new Result<Creator>(request.error);
+            }
 
             callback(result);
         }

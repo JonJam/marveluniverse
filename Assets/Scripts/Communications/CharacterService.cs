@@ -61,12 +61,41 @@
             if (request != null &&
                 string.IsNullOrEmpty(request.error))
             {
-                result = this.CreateSuccessfulSearchResult<Character>(request.text);
+                result = this.CreateSuccessfulListResult<Character>(request.text);
             }
             else
             {
                 result = new Result<IList<Character>>(request.error);
             }           
+
+            callback(result);
+        }
+
+        /// <summary>
+        /// Get character.
+        /// </summary>
+        /// <param name="characterUri">The character URI.</param>
+        /// <param name="callback">The callback.</param>
+        /// <returns>A coroutine.</returns>
+        public IEnumerator GetCharacter(
+            string characterUri,
+            Action<IResult<Character>> callback)
+        {
+            WWW request = this.webRequestor.PerformAuthorizedGetRequest(characterUri);
+
+            yield return request;
+
+            IResult<Character> result = null;
+
+            if (request != null &&
+                string.IsNullOrEmpty(request.error))
+            {
+                result = this.CreateSuccessfulResult<Character>(request.text);
+            }
+            else
+            {
+                result = new Result<Character>(request.error);
+            }
 
             callback(result);
         }

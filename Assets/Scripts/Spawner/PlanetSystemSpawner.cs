@@ -77,6 +77,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PlanetSystemSpawner"/> class.
         /// </summary>
+        /// <param name="instantiator">The instantiator.</param>
         /// <param name="initialPlanetSystemPosition">The initial planet system position.</param>
         /// <param name="characterPlanetSystemPrefab">The character planet system prefab.</param>
         /// <param name="comicPlanetSystemPrefab">The comic planet system prefab.</param>
@@ -287,7 +288,7 @@
         /// <summary>
         /// Instantiates a story planet system.
         /// </summary>
-        /// <param name="character">The story.</param>
+        /// <param name="story">The story.</param>
         /// <returns>The planet.</returns>
         public BasePlanet Instantiate(Story story)
         {
@@ -303,6 +304,7 @@
         /// Instantiate a story planet system based on the specified spawn origin.
         /// </summary>
         /// <param name="story">The story.</param>
+        /// <param name="spawnOrigin">The spawn origin.</param>
         /// <returns>The planet.</returns>
         public BasePlanet Instantiate(Story story, Vector3 spawnOrigin)
         {

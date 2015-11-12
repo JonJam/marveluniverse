@@ -31,6 +31,11 @@
         public ExplorerPanel ExplorerPanel;
 
         /// <summary>
+        /// The jump gate panel;
+        /// </summary>
+        public JumpGatePanel JumpGatePanel;
+
+        /// <summary>
         /// The initial planet system position.
         /// </summary>
         public Vector3 InitialPlanetSystemPosition;
@@ -84,10 +89,5 @@
         /// The main camera.
         /// </summary>
         public Camera MainCamera;
-
-        /// <summary>
-        /// The main camera transform.
-        /// </summary>
-        public Transform MainCameraTransform;
     }
 }

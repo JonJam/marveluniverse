@@ -82,7 +82,7 @@
         private Coroutine imageDownloadCoroutine;
 
         /// <summary>
-        /// The previous openParameter.
+        /// The previous open parameter.
         /// </summary>
         private object previousOpenParameter;
 
@@ -103,7 +103,7 @@
         /// <param name="openParameter">The open parameter.</param>
         public void OnOpen(object openParameter)
         {
-            if (previousOpenParameter != openParameter)
+            if (this.previousOpenParameter != openParameter)
             {
                 if (openParameter is Character)
                 {
@@ -164,7 +164,7 @@
         /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <<param name="screenManager">The screen manager.</param>
+        /// <param name="screenManager">The screen manager.</param>
         /// <param name="eventManager">The event manager.</param>
         /// <param name="imageService">The image service.</param>
         [PostInject]

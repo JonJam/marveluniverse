@@ -21,6 +21,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="LoadingManager"/> class.
         /// </summary>
+        /// <param name="eventManager">The event manager.</param>
         public LoadingManager(IEventManager eventManager)
         {
             this.eventManager = eventManager;  

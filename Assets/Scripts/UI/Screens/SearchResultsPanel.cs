@@ -15,11 +15,6 @@
     public class SearchResultsPanel : MonoBehaviour, IScreen
     {
         /// <summary>
-        /// The screen manager.
-        /// </summary>
-        private IScreenManager screenManager;
-
-        /// <summary>
         /// The search results list view.
         /// </summary>
         public ListView SearchResultsListView;
@@ -28,7 +23,12 @@
         /// The no search results text.
         /// </summary>
         public Text NoSearchResultsText;
-        
+
+        /// <summary>
+        /// The screen manager.
+        /// </summary>
+        private IScreenManager screenManager;
+
         /// <summary>
         /// Gets the game object.
         /// </summary>
@@ -73,7 +73,7 @@
         /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <param name="screenManager">The screen manaager.</param>
+        /// <param name="screenManager">The screen manager.</param>
         [PostInject]
         private void InjectionInitialize(
             IScreenManager screenManager)

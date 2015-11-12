@@ -41,7 +41,7 @@
         /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <param name="eventManager">The event manager.</param>
+        /// <param name="imageService">The image service.</param>
         [PostInject]
         private void InjectionInitialize(
             IImageService imageService)

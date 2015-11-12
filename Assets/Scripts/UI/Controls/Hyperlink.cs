@@ -37,7 +37,7 @@
         /// </summary>
         public void OnHyperlinkClick()
         {
-            Application.OpenURL(uriToNavigateTo.AbsoluteUri);
+            Application.OpenURL(this.uriToNavigateTo.AbsoluteUri);
         }
     }
 }

@@ -1,13 +1,14 @@
 ﻿namespace MarvelUniverse.Behaviours
 {
-    using System.Collections.Generic;
+    using Camera;
+    using Communications.Result;
     using Events;
     using Loading;
-    using Communications.Result;
     using Model;
+    using Screen;
+    using Spawner;
     using UnityEngine;
     using Zenject;
-    using Camera;
 
     /// <summary>
     /// Base satellite behaviour.
@@ -34,29 +35,104 @@
         /// </summary>
         public float RestDistance = 2f;
 
+        /// <summary>
+        /// The event manager.
+        /// </summary>
         private IEventManager eventManager;
 
+        /// <summary>
+        /// The screen manager.
+        /// </summary>
+        private IScreenManager screenManager;
+
+        /// <summary>
+        /// The loading manager.
+        /// </summary>
         private ILoadingManager loadingManager;
 
+        /// <summary>
+        /// The result processor.
+        /// </summary>
         private IResultProcessor resultProcessor;
+
+        /// <summary>
+        /// The planet system spawner.
+        /// </summary>
+        private IPlanetSystemSpawner planetSystemSpawner;
 
         /// <summary>
         /// The rotation axis.
         /// </summary>
         private Vector3 rotationAxis;
 
+        /// <summary>
+        /// The child particle system.
+        /// </summary>
         private ParticleSystem childParticleSystem;
 
+        /// <summary>
+        ///  A value indicating whether orbit movement is enabled.
+        /// </summary>
         private bool isOrbitMovementEnabled = true;
+
+        /// <summary>
+        /// A value indicating whether the camera is focused on this.
+        /// </summary>
         private bool isCameraFocusedOn;
 
         /// <summary>
-        /// Hooks up the specified summary data list to the satellite.
+        /// Gets the event manager.
         /// </summary>
-        /// <param name="summaryDataList">The summary data list.</param>
-        public void Hookup(DataList<Summary> summaryDataList)
+        protected IEventManager EventManager
         {
-            this.SummaryDataList = summaryDataList;
+            get
+            {
+                return this.eventManager;
+            }
+        }
+
+        /// <summary>
+        /// Gets the screen manager.
+        /// </summary>
+        protected IScreenManager ScreenManager
+        {
+            get
+            {
+                return this.screenManager;
+            }
+        }
+
+        /// <summary>
+        /// Gets the loading manager.
+        /// </summary>
+        protected ILoadingManager LoadingManager
+        {
+            get
+            {
+                return this.loadingManager;
+            }
+        }
+
+        /// <summary>
+        /// Gets the result processor.
+        /// </summary>
+        protected IResultProcessor ResultProcessor
+        {
+            get
+            {
+                return this.resultProcessor;
+            }
+        }
+
+        /// <summary>
+        /// Gets the planet system spawner.
+        /// </summary>
+        protected IPlanetSystemSpawner PlanetSystemSpawner
+        {
+            get
+            {
+                return this.planetSystemSpawner;
+            }
         }
 
         /// <summary>
@@ -69,35 +145,58 @@
         }
 
         /// <summary>
-        /// The camera rest position.
+        /// Gets the camera rest position.
         /// </summary>
         private Vector3 CameraRestPosition
         {
             get
             {
-                return this.transform.position + this.transform.forward.normalized * this.RestDistance;
+                return this.transform.position + (this.transform.forward.normalized * this.RestDistance);
             }
         }
+
+        /// <summary>
+        /// Hooks up the specified summary data list to the satellite.
+        /// </summary>
+        /// <param name="summaryDataList">The summary data list.</param>
+        public void Hookup(DataList<Summary> summaryDataList)
+        {
+            this.SummaryDataList = summaryDataList;
+        }
+
+        /// <summary>
+        /// Display jump options.
+        /// </summary>
+        protected abstract void DisplayJumpOptions();
 
         /// <summary>
         /// Injection initialization.
         /// </summary>
         /// <param name="eventManager">The event manager.</param>
+        /// <param name="screenManager">The screen manager.</param>
         /// <param name="loadingManager">The loading manager.</param>
         /// <param name="resultProcessor">The result processor.</param>
+        /// <param name="planetSystemSpawner">The planet system spawner.</param>
         [PostInject]
         private void InjectionInitialize(
             IEventManager eventManager,
+            IScreenManager screenManager,
             ILoadingManager loadingManager,
-            IResultProcessor resultProcessor)
+            IResultProcessor resultProcessor,
+            IPlanetSystemSpawner planetSystemSpawner)
         {
             this.eventManager = eventManager;
+            this.screenManager = screenManager;
             this.loadingManager = loadingManager;
             this.resultProcessor = resultProcessor;
+            this.planetSystemSpawner = planetSystemSpawner;
 
-            this.eventManager.GetEvent<CameraFocusedOnEvent>().AddListener(this.OnCameraFocusedOnEvent);
+            this.EventManager.GetEvent<CameraFocusedOnEvent>().AddListener(this.OnCameraFocusedOnEvent);
         }
 
+        /// <summary>
+        /// Handles the awake event.
+        /// </summary>
         private void Awake()
         {
             this.childParticleSystem = this.GetComponentInChildren<ParticleSystem>();
@@ -106,7 +205,7 @@
         }
 
         /// <summary>
-        /// Handles the awake event.
+        /// Handles the start event.
         /// </summary>
         private void Start()
         {
@@ -127,14 +226,13 @@
             }
         }
 
-
         /// <summary>
         /// Handles the destroy event.
         /// </summary>
         private void OnDestroy()
         {
-            this.eventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
-            this.eventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
+            this.EventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
+            this.EventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
         }
 
         /// <summary>
@@ -145,9 +243,8 @@
             if (!this.isCameraFocusedOn)
             {
                 this.isOrbitMovementEnabled = false;
-                this.childParticleSystem.Play();
 
-                this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.CameraRestPosition);
+                this.EventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.CameraRestPosition);
             }
         }
 
@@ -161,7 +258,11 @@
 
             if (this.isCameraFocusedOn)
             {
-                this.eventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
+                this.EventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
+                
+                this.childParticleSystem.Play();
+
+                this.DisplayJumpOptions();
             }
         }
 
@@ -171,10 +272,11 @@
         /// <param name="focusedObject">The focused object.</param>
         private void OnCameraLostFocus(GameObject focusedObject)
         {
-            this.eventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
+            this.EventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
 
             this.childParticleSystem.Stop();
             this.childParticleSystem.Clear();
+            this.ScreenManager.CloseCurrent();
 
             this.isCameraFocusedOn = false;
             this.isOrbitMovementEnabled = true;

@@ -21,7 +21,7 @@
         public string Value { get; set; }
 
         /// <summary>
-        /// Get the type to display.
+        /// Gets the type to display.
         /// </summary>
         public string DisplayType
         {

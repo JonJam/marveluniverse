@@ -2,10 +2,9 @@
 {
     using System;
     using Behaviours.Camera;
-    using Events;
     using Behaviours.Planet;
+    using Events;
     using Screen;
-    using UnityEngine;
 
     /// <summary>
     /// The search results view model.

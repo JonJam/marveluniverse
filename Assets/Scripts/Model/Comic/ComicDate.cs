@@ -1,8 +1,8 @@
 ﻿namespace MarvelUniverse.Model.Comic
 {
-    using Extensions;
-    using System.Runtime.Serialization;
     using System;
+    using System.Runtime.Serialization;
+    using Extensions;
 
     /// <summary>
     /// A comic date.

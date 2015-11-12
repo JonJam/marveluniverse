@@ -34,9 +34,11 @@
 
             this.InstallInfrastructureBindings();
 
-            this.InstallViewModels();
+            this.InstallViewModelBindings();
 
-            this.InstallUIBindings();            
+            this.InstallUIBindings();
+
+            this.InstallGameObjectBindings();
         }
 
         /// <summary>
@@ -79,8 +81,6 @@
                 this.SceneSettings.PlanetSystemSize,
                 this.SceneSettings.PlanetSize,
                 this.SceneSettings.MainCamera));
-
-            this.Container.Bind<Transform>().ToInstance(this.SceneSettings.MainCameraTransform).WhenInjectedInto<BasePlanet>();
         }
 
         /// <summary>
@@ -94,15 +94,24 @@
                 this.SceneSettings.SearchPanel,
                 this.SceneSettings.SearchResultsPanel,
                 this.SceneSettings.InfoPanel,
-                this.SceneSettings.ExplorerPanel));                
+                this.SceneSettings.ExplorerPanel,
+                this.SceneSettings.JumpGatePanel));                
         }
 
         /// <summary>
-        /// Install view models.
+        /// Install view model bindings.
         /// </summary>
-        private void InstallViewModels()
+        private void InstallViewModelBindings()
         {
             this.Container.Bind<SearchViewModel>().ToSingle();
+        }
+
+        /// <summary>
+        /// Install game object bindings.
+        /// </summary>
+        private void InstallGameObjectBindings()
+        {
+            this.Container.Bind<Camera>().ToInstance(this.SceneSettings.MainCamera);
         }
     }
 }

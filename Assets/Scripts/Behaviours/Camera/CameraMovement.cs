@@ -11,11 +11,6 @@
     public class CameraMovement : MonoBehaviour
     {
         /// <summary>
-        /// The event manager.
-        /// </summary>
-        private IEventManager eventManager;
-
-        /// <summary>
         /// The look speed.
         /// </summary>
         public float LookSpeed = 10f;
@@ -29,7 +24,12 @@
         /// A value indicating whether to inverse vertical view direction.
         /// </summary>
         public bool InverseVertical = true;
-                
+
+        /// <summary>
+        /// The event manager.
+        /// </summary>
+        private IEventManager eventManager;
+
         /// <summary>
         /// The default position.
         /// </summary>
@@ -121,6 +121,10 @@
             }
         }
 
+        /// <summary>
+        /// Determines whether the user has moved.
+        /// </summary>
+        /// <returns>A value indicating whether the user has moved.</returns>
         private bool HasUserMoved()
         {
             float horizontalRotation = Input.GetAxis("Mouse X");
@@ -157,6 +161,7 @@
         /// Handles the camera focus event.
         /// </summary>
         /// <param name="objectToFocusOn">The object to focus on.</param>
+        /// <param name="positionToMoveTo">The position to move to.</param>
         private void OnCameraFocus(GameObject objectToFocusOn, Vector3 positionToMoveTo)
         {
             if (!this.isFocusing)
@@ -206,6 +211,9 @@
             }
         }
         
+        /// <summary>
+        /// Resets focus.
+        /// </summary>
         private void ResetFocus()
         {
             this.focusObject = null;

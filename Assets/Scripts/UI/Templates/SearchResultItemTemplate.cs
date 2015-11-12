@@ -14,16 +14,6 @@
     public class SearchResultItemTemplate : MonoBehaviour, IItemTemplate<SearchResultViewModel>
     {
         /// <summary>
-        /// The image service.
-        /// </summary>
-        private IImageService imageService;
-        
-        /// <summary>
-        /// The search result.
-        /// </summary>
-        private SearchResultViewModel searchResult;
-
-        /// <summary>
         /// The name.
         /// </summary>
         public Text Name;
@@ -42,20 +32,23 @@
         /// The button.
         /// </summary>
         public Button Button;
-        
+
+        /// <summary>
+        /// The image service.
+        /// </summary>
+        private IImageService imageService;
+
         /// <summary>
         /// Hook up item to template.
         /// </summary>
         /// <param name="item">The item to display.</param>
         public void Hookup(SearchResultViewModel item)
         {
-            this.searchResult = item;
-
             this.Name.text = item.Name;
             this.Description.text = item.Description;
             this.Button.onClick.AddListener(item.SearchResultClicked);
 
-            this.StartCoroutine(this.imageService.DownloadImage(searchResult.ImagePath, searchResult.ImageExtension, ImageSize.StandardXLarge, this.DownloadImageCompleted));
+            this.StartCoroutine(this.imageService.DownloadImage(item.ImagePath, item.ImageExtension, ImageSize.StandardXLarge, this.DownloadImageCompleted));
         }        
 
         /// <summary>

@@ -15,7 +15,7 @@
         /// <summary>
         /// Hooks up the specified story to the planet.
         /// </summary>
-        /// <param name="comicEvent">The story.</param>
+        /// <param name="story">The story.</param>
         public void HookUp(Story story)
         {
             this.story = story;

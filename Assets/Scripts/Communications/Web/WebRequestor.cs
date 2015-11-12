@@ -22,7 +22,7 @@
         /// <summary>
         /// The authentication query parameters.
         /// </summary>
-        private const string AuthenticationQueryParamters = "&ts={0}&apikey={1}&hash={2}";
+        private const string AuthenticationQueryParamters = "ts={0}&apikey={1}&hash={2}";
 
         /// <summary>
         /// EPOCH time.
@@ -56,12 +56,28 @@
             string hash = string.Concat(timestamp, WebRequestor.PrivateKey, WebRequestor.PublicKey);
             hash = this.encryptionService.MD5Hash(hash);
 
-            string completeRequestUri = string.Concat(requestUri, 
-                string.Format(
-                    WebRequestor.AuthenticationQueryParamters, 
-                    timestamp,
-                    WebRequestor.PublicKey,
-                    hash));
+            string completeRequestUri = null;
+            
+            string authenticationQueryString = string.Format(
+                WebRequestor.AuthenticationQueryParamters,
+                timestamp,
+                WebRequestor.PublicKey,
+                hash);
+
+            if (requestUri.Contains("?"))
+            {
+                completeRequestUri = string.Concat(
+                    requestUri,
+                    "&",
+                    authenticationQueryString);
+            }
+            else
+            {
+                completeRequestUri = string.Concat(
+                    requestUri,
+                    "?",
+                    authenticationQueryString);
+            }
             
             return new WWW(completeRequestUri);
         }
@@ -83,7 +99,7 @@
         /// <returns>A timestamp.</returns>
         private double GetTimestamp()
         {
-            TimeSpan timestamp = (DateTime.UtcNow - WebRequestor.EpochTime);
+            TimeSpan timestamp = DateTime.UtcNow - WebRequestor.EpochTime;
 
             return timestamp.TotalSeconds;
         }

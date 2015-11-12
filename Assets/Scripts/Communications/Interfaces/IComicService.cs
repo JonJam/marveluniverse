@@ -20,5 +20,15 @@
         IEnumerator Search(
             string searchTerms,
             Action<IResult<IList<Comic>>> callback);
+
+        /// <summary>
+        /// Get comic.
+        /// </summary>
+        /// <param name="comicUri">The comic URI.</param>
+        /// <param name="callback">The callback.</param>
+        /// <returns>A coroutine.</returns>
+        IEnumerator GetComic(
+            string comicUri,
+            Action<IResult<Comic>> callback);
     }
 }
