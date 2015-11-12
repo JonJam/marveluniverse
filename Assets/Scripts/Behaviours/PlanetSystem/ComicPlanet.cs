@@ -1,12 +1,39 @@
 ﻿namespace MarvelUniverse.Behaviours.Planet
 {
+    using Satellite;
     using Model.Comic;
+    using Model;
 
     /// <summary>
     /// The comic planet behaviour.
     /// </summary>
     public class ComicPlanet : BasePlanet
     {
+        /// <summary>
+        /// The characters satellite.
+        /// </summary>
+        public CharactersSatellite CharactersSatellite;
+
+        /// <summary>
+        /// The creators satellite.
+        /// </summary>
+        public CreatorsSatellite CreatorsSatellite;
+
+        /// <summary>
+        /// The events satellite.
+        /// </summary>
+        public EventsSatellite EventsSatellite;
+
+        /// <summary>
+        /// The series satellite.
+        /// </summary>
+        public SeriesSatellite SeriesSatellite;
+
+        /// <summary>
+        /// The stories satellite.
+        /// </summary>
+        public StoriesSatellite StoriesSatellite;
+
         /// <summary>
         /// The comic.
         /// </summary>
@@ -22,6 +49,26 @@
 
             this.SetName(this.comic.Title);
             this.SetImage(this.comic.Thumbnail);
+            
+            this.SetSummaries(this.CharactersSatellite, this.comic.Characters);
+            this.SetSummaries(this.CreatorsSatellite, this.comic.Creators);
+            this.SetSummaries(this.EventsSatellite, this.comic.Events);
+            this.SetSummaries(this.StoriesSatellite, this.comic.Stories);
+
+            DataList<Summary> series = null;
+
+            if (this.comic.Series != null &&
+                this.comic.Series.HasData)
+            {
+                series = new DataList<Summary>()
+                {
+                    Available = 1,
+                    Returned = 1,
+                    Items = new Summary[] { this.comic.Series }
+                };
+            }
+            
+            this.SetSummaries(this.SeriesSatellite, series);
         }
 
         /// <summary>
