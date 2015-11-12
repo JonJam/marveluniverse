@@ -188,11 +188,14 @@
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\SeriesPlanet.cs" />
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\StoryPlanet.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\BaseSatellite.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Satellite\CharactersSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\ComicsSatellite.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Satellite\CreatorsSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\EventsSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\Satellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\SeriesSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\StoriesSatellite.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\Satellite\ToSeriesSatellite.cs" />
     <Compile Include="Assets\Scripts\Communications\BaseService.cs" />
     <Compile Include="Assets\Scripts\Communications\CharacterService.cs" />
     <Compile Include="Assets\Scripts\Communications\ComicService.cs" />

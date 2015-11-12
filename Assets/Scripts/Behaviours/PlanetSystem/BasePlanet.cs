@@ -229,7 +229,7 @@
         {
             this.eventManager.GetEvent<DestroyPlanetSystemEvent>().RemoveListener(this.OnDestroyPlanetSystemEvent);
 
-            GameObject.Destroy(this.gameObject);
+            GameObject.Destroy(this.transform.parent.gameObject);
         }
     }
 }

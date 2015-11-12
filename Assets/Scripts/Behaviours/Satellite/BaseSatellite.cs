@@ -33,7 +33,7 @@
         /// <summary>
         /// The rest distance.
         /// </summary>
-        public float RestDistance = 2f;
+        public float RestDistance = 10f;
 
         /// <summary>
         /// The event manager.
@@ -165,6 +165,19 @@
         }
 
         /// <summary>
+        /// Handles the mouse down event.
+        /// </summary>
+        protected virtual void OnMouseDown()
+        {
+            if (!this.isCameraFocusedOn)
+            {
+                this.isOrbitMovementEnabled = false;
+
+                this.EventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.CameraRestPosition);
+            }
+        }
+
+        /// <summary>
         /// Display jump options.
         /// </summary>
         protected abstract void DisplayJumpOptions();
@@ -233,19 +246,6 @@
         {
             this.EventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
             this.EventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
-        }
-
-        /// <summary>
-        /// Handles the mouse down event.
-        /// </summary>
-        private void OnMouseDown()
-        {
-            if (!this.isCameraFocusedOn)
-            {
-                this.isOrbitMovementEnabled = false;
-
-                this.EventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.CameraRestPosition);
-            }
         }
 
         /// <summary>
