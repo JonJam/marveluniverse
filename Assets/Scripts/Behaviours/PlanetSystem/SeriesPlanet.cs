@@ -40,11 +40,6 @@
         public ToSeriesSatellite PreviousSeriesSatellite;
 
         /// <summary>
-        /// The stories satellite.
-        /// </summary>
-        public StoriesSatellite StoriesSatellite;
-
-        /// <summary>
         /// The series.
         /// </summary>
         private Series series;
@@ -64,7 +59,6 @@
             this.SetSummaries(this.ComicsSatellite, this.series.Comics);
             this.SetSummaries(this.CreatorsSatellite, this.series.Creators);
             this.SetSummaries(this.EventsSatellite, this.series.Events);
-            this.SetSummaries(this.StoriesSatellite, this.series.Stories);
 
             DataList<Summary> next = null;
 

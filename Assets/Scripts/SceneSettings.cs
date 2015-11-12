@@ -66,11 +66,6 @@
         public GameObject SeriesPlanetSystemPrefab;
 
         /// <summary>
-        /// The story planet system prefab.
-        /// </summary>
-        public GameObject StoryPlanetSystemPrefab;
-
-        /// <summary>
         /// The spawn sphere radius.
         /// </summary>
         public int SpawmSphereRadius;

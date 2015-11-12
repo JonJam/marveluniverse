@@ -1,14 +1,8 @@
 ﻿namespace MarvelUniverse.Model.Event
 {
-    using System;
     using System.Runtime.Serialization;
-    using Character;
-    using Comic;
-    using Creator;
     using Extensions;
     using Image;
-    using Series;
-    using Story;
 
     /// <summary>
     /// An event.

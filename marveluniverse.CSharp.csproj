@@ -186,7 +186,6 @@
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\PlanetImage.cs" />
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\PlanetName.cs" />
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\SeriesPlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\StoryPlanet.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\BaseSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\CharactersSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\ComicsSatellite.cs" />
@@ -194,7 +193,6 @@
     <Compile Include="Assets\Scripts\Behaviours\Satellite\EventsSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\Satellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\SeriesSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\StoriesSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\ToEventSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\ToSeriesSatellite.cs" />
     <Compile Include="Assets\Scripts\Communications\BaseService.cs" />
@@ -211,7 +209,6 @@
     <Compile Include="Assets\Scripts\Communications\Interfaces\IEventService.cs" />
     <Compile Include="Assets\Scripts\Communications\Interfaces\IImageService.cs" />
     <Compile Include="Assets\Scripts\Communications\Interfaces\ISeriesService.cs" />
-    <Compile Include="Assets\Scripts\Communications\Interfaces\IStoryService.cs" />
     <Compile Include="Assets\Scripts\Communications\Result\IResult.cs" />
     <Compile Include="Assets\Scripts\Communications\Result\IResultProcessor.cs" />
     <Compile Include="Assets\Scripts\Communications\Result\Result.cs" />
@@ -219,7 +216,6 @@
     <Compile Include="Assets\Scripts\Communications\Serialization\IJsonSerializer.cs" />
     <Compile Include="Assets\Scripts\Communications\Serialization\JsonSerializer.cs" />
     <Compile Include="Assets\Scripts\Communications\SeriesService.cs" />
-    <Compile Include="Assets\Scripts\Communications\StoryService.cs" />
     <Compile Include="Assets\Scripts\Communications\Web\IWebRequestor.cs" />
     <Compile Include="Assets\Scripts\Communications\Web\WebRequestor.cs" />
     <Compile Include="Assets\Scripts\Events\EventManager.cs" />
@@ -266,7 +262,6 @@
     <Compile Include="Assets\Scripts\UI\Screens\DetailsPanel\CreatorDetailsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\DetailsPanel\EventDetailsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\DetailsPanel\SeriesDetailsPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\Screens\DetailsPanel\StoryDetailsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\ExplorerPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\IScreen.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\InfoPanel.cs" />

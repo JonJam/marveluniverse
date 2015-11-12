@@ -1,8 +1,8 @@
 ﻿namespace MarvelUniverse.Behaviours.Planet
 {
-    using Satellite;
-    using Model.Comic;
     using Model;
+    using Model.Comic;
+    using Satellite;
 
     /// <summary>
     /// The comic planet behaviour.
@@ -30,11 +30,6 @@
         public SeriesSatellite SeriesSatellite;
 
         /// <summary>
-        /// The stories satellite.
-        /// </summary>
-        public StoriesSatellite StoriesSatellite;
-
-        /// <summary>
         /// The comic.
         /// </summary>
         private Comic comic;
@@ -53,7 +48,6 @@
             this.SetSummaries(this.CharactersSatellite, this.comic.Characters);
             this.SetSummaries(this.CreatorsSatellite, this.comic.Creators);
             this.SetSummaries(this.EventsSatellite, this.comic.Events);
-            this.SetSummaries(this.StoriesSatellite, this.comic.Stories);
 
             DataList<Summary> series = null;
 

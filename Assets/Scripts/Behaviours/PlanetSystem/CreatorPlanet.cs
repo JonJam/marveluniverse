@@ -1,7 +1,7 @@
 ﻿namespace MarvelUniverse.Behaviours.Planet
 {
-    using Satellite;
     using Model.Creator;
+    using Satellite;
 
     /// <summary>
     /// The creator planet behaviour.
@@ -24,11 +24,6 @@
         public SeriesSatellite SeriesSatellite;
 
         /// <summary>
-        /// The stories satellite.
-        /// </summary>
-        public StoriesSatellite StoriesSatellite;
-
-        /// <summary>
         /// The creator.
         /// </summary>
         private Creator creator;
@@ -47,7 +42,6 @@
             this.SetSummaries(this.ComicsSatellite, this.creator.Comics);
             this.SetSummaries(this.EventsSatellite, this.creator.Events);
             this.SetSummaries(this.SeriesSatellite, this.creator.Series);
-            this.SetSummaries(this.StoriesSatellite, this.creator.Stories);
         }
 
         /// <summary>

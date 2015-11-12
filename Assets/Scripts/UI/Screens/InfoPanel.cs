@@ -10,7 +10,6 @@
     using Model.Creator;
     using Model.Image;
     using Model.Series;
-    using Model.Story;
     using Screen;
     using UnityEngine;
     using UnityEngine.UI;
@@ -50,12 +49,7 @@
         /// The creator details panel.
         /// </summary>
         public CreatorDetailsPanel CreatorDetailsPanel;
-
-        /// <summary>
-        /// The story details panel.
-        /// </summary>
-        public StoryDetailsPanel StoryDetailsPanel;
-        
+       
         /// <summary>
         /// The series details panel.
         /// </summary>
@@ -120,10 +114,6 @@
                 else if (openParameter is Creator)
                 {
                     this.DisplayInformation((Creator)openParameter);
-                }
-                else if (openParameter is Story)
-                {
-                    this.DisplayInformation((Story)openParameter);
                 }
                 else if (openParameter is Series)
                 {
@@ -239,21 +229,6 @@
         }
 
         /// <summary>
-        /// Display information for the specified story.
-        /// </summary>
-        /// <param name="story">The story.</param>
-        private void DisplayInformation(Story story)
-        {
-            this.Reset();
-
-            this.StoryDetailsPanel.gameObject.SetActive(true);
-
-            this.SetImage(story.Thumbnail);
-
-            this.StoryDetailsPanel.HookUp(story);
-        }
-
-        /// <summary>
         /// Display information for the specified series.
         /// </summary>
         /// <param name="series">The series.</param>
@@ -281,7 +256,6 @@
             this.CreatorDetailsPanel.gameObject.SetActive(false);
             this.EventDetailsPanel.gameObject.SetActive(false);
             this.SeriesDetailsPanel.gameObject.SetActive(false);
-            this.StoryDetailsPanel.gameObject.SetActive(false);
         }
 
         /// <summary>

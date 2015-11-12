@@ -1,8 +1,8 @@
 ﻿namespace MarvelUniverse.Behaviours.Planet
 {
-    using Satellite;
-    using Model.Event;
     using Model;
+    using Model.Event;
+    using Satellite;
 
     /// <summary>
     /// The event planet behaviour.
@@ -40,11 +40,6 @@
         public SeriesSatellite SeriesSatellite;
 
         /// <summary>
-        /// The stories satellite.
-        /// </summary>
-        public StoriesSatellite StoriesSatellite;
-
-        /// <summary>
         /// The comic event.
         /// </summary>
         private Event comicEvent;
@@ -64,7 +59,6 @@
             this.SetSummaries(this.ComicsSatellite, this.comicEvent.Comics);
             this.SetSummaries(this.CreatorsSatellite, this.comicEvent.Creators);
             this.SetSummaries(this.SeriesSatellite, this.comicEvent.Series);
-            this.SetSummaries(this.StoriesSatellite, this.comicEvent.Stories);
 
             DataList<Summary> next = null;
 

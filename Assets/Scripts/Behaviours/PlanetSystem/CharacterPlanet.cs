@@ -24,11 +24,6 @@
         public SeriesSatellite SeriesSatellite;
 
         /// <summary>
-        /// The stories satellite.
-        /// </summary>
-        public StoriesSatellite StoriesSatellite;
-
-        /// <summary>
         /// The character.
         /// </summary>
         private Character character;
@@ -47,7 +42,6 @@
             this.SetSummaries(this.ComicsSatellite, this.character.Comics);
             this.SetSummaries(this.EventsSatellite, this.character.Events);
             this.SetSummaries(this.SeriesSatellite, this.character.Series);
-            this.SetSummaries(this.StoriesSatellite, this.character.Stories);
         }
 
         /// <summary>

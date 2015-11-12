@@ -5,7 +5,6 @@
     using MarvelUniverse.Model.Comic;
     using MarvelUniverse.Model.Creator;
     using MarvelUniverse.Model.Series;
-    using MarvelUniverse.Model.Story;
     using UnityEngine;
     using Zenject;
 
@@ -50,11 +49,6 @@
         private readonly GameObject seriesPlanetSystemPrefab;
 
         /// <summary>
-        /// The story planet system prefab.
-        /// </summary>
-        private readonly GameObject storyPlanetSystemPrefab;
-
-        /// <summary>
         /// The spawn sphere radius.
         /// </summary>
         private readonly int spawnSphereRadius;
@@ -84,7 +78,6 @@
         /// <param name="creatorPlanetSystemPrefab">The creator planet system prefab.</param>
         /// <param name="eventPlanetSystemPrefab">The event planet system prefab.</param>
         /// <param name="seriesPlanetSystemPrefab">The series planet system prefab.</param>
-        /// <param name="storyPlanetSystemPrefab">The story planet system prefab.</param>
         /// <param name="spawnSphereRadius">The spawn sphere radius.</param>
         /// <param name="planetSystemSize">The planet system size.</param>
         /// <param name="planetSize">The planet size.</param>
@@ -96,8 +89,7 @@
             GameObject comicPlanetSystemPrefab,
             GameObject creatorPlanetSystemPrefab,
             GameObject eventPlanetSystemPrefab,
-            GameObject seriesPlanetSystemPrefab,
-            GameObject storyPlanetSystemPrefab,            
+            GameObject seriesPlanetSystemPrefab,           
             int spawnSphereRadius,
             float planetSystemSize,
             Vector3 planetSize,
@@ -112,7 +104,6 @@
             this.creatorPlanetSystemPrefab = creatorPlanetSystemPrefab;
             this.eventPlanetSystemPrefab = eventPlanetSystemPrefab;
             this.seriesPlanetSystemPrefab = seriesPlanetSystemPrefab;
-            this.storyPlanetSystemPrefab = storyPlanetSystemPrefab;
             
             this.spawnSphereRadius = spawnSphereRadius;
             this.planetSystemSize = planetSystemSize;
@@ -283,39 +274,6 @@
             seriesPlanet.HookUp(series);
 
             return seriesPlanet;
-        }
-
-        /// <summary>
-        /// Instantiates a story planet system.
-        /// </summary>
-        /// <param name="story">The story.</param>
-        /// <returns>The planet.</returns>
-        public BasePlanet Instantiate(Story story)
-        {
-            GameObject objectInstaniated = this.Instantiate(this.storyPlanetSystemPrefab, this.initialPlanetSystemPosition);
-
-            StoryPlanet storyPlanet = objectInstaniated.GetComponentInChildren<StoryPlanet>();
-            storyPlanet.HookUp(story);
-
-            return storyPlanet;
-        }
-
-        /// <summary>
-        /// Instantiate a story planet system based on the specified spawn origin.
-        /// </summary>
-        /// <param name="story">The story.</param>
-        /// <param name="spawnOrigin">The spawn origin.</param>
-        /// <returns>The planet.</returns>
-        public BasePlanet Instantiate(Story story, Vector3 spawnOrigin)
-        {
-            Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
-
-            GameObject objectInstaniated = this.Instantiate(this.storyPlanetSystemPrefab, randomSpawnPosition);
-
-            StoryPlanet storyPlanet = objectInstaniated.GetComponentInChildren<StoryPlanet>();
-            storyPlanet.HookUp(story);
-
-            return storyPlanet;
         }
 
         /// <summary>

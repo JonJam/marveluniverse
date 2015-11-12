@@ -57,7 +57,6 @@
             this.Container.Bind<ICreatorService>().ToSingle<CreatorService>();
             this.Container.Bind<ISeriesService>().ToSingle<SeriesService>();
             this.Container.Bind<IEventService>().ToSingle<EventService>();
-            this.Container.Bind<IStoryService>().ToSingle<StoryService>();
 
             this.Container.Bind<IImageService>().ToSingle<ImageService>();
         }
@@ -76,7 +75,6 @@
                 this.SceneSettings.CreatorPlanetSystemPrefab,
                 this.SceneSettings.EventPlanetSystemPrefab,
                 this.SceneSettings.SeriesPlanetSystemPrefab,
-                this.SceneSettings.StoryPlanetSystemPrefab,
                 this.SceneSettings.SpawmSphereRadius,
                 this.SceneSettings.PlanetSystemSize,
                 this.SceneSettings.PlanetSize,

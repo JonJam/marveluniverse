@@ -5,7 +5,6 @@
     using MarvelUniverse.Model.Comic;
     using MarvelUniverse.Model.Creator;
     using MarvelUniverse.Model.Series;
-    using MarvelUniverse.Model.Story;
     using UnityEngine;
 
     /// <summary>
@@ -87,20 +86,5 @@
         /// <param name="spawnOrigin">The spawn origin.</param>
         /// <returns>The planet.</returns>
         BasePlanet Instantiate(Series series, Vector3 spawnOrigin);
-
-        /// <summary>
-        /// Instantiates a story planet system.
-        /// </summary>
-        /// <param name="story">The story.</param>
-        /// <returns>The planet.</returns>
-        BasePlanet Instantiate(Story story);
-
-        /// <summary>
-        /// Instantiate a story planet system based on the specified spawn origin.
-        /// </summary>
-        /// <param name="story">The story.</param>
-        /// <param name="spawnOrigin">The spawn origin.</param>
-        /// <returns>The planet.</returns>
-        BasePlanet Instantiate(Story story, Vector3 spawnOrigin);
     }
 }
