@@ -97,5 +97,16 @@
         /// </summary>
         [DataMember(Name = "events")]
         public DataList<Summary> Events { get; set; }
+
+        /// <summary>
+        /// Gets a unique identifier.
+        /// </summary>
+        public string UniqueId
+        {
+            get
+            {
+                return string.Format("creator-{0}", this.Id);
+            }
+        }
     }
 }

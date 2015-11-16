@@ -107,6 +107,17 @@
         public Summary Previous { get; set; }
 
         /// <summary>
+        /// Gets a unique identifier.
+        /// </summary>
+        public string UniqueId
+        {
+            get
+            {
+                return string.Format("event-{0}", this.Id);
+            }
+        }
+
+        /// <summary>
         /// Gets the clean description.
         /// </summary>
         public string CleanDescription

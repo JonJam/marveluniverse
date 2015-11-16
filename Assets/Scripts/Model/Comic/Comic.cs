@@ -185,6 +185,17 @@
         public DataList<Summary> Events { get; set; }
 
         /// <summary>
+        /// Gets a unique identifier.
+        /// </summary>
+        public string UniqueId
+        {
+            get
+            {
+                return string.Format("comic-{0}", this.Id);
+            }
+        }
+
+        /// <summary>
         /// Gets the clean description.
         /// </summary>
         public string CleanDescription

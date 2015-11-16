@@ -118,7 +118,7 @@
         /// <returns>The planet.</returns>
         public BasePlanet Instantiate(Character character)
         {
-            GameObject objectInstaniated = this.Instantiate(this.characterPlanetSystemPrefab, this.initialPlanetSystemPosition);
+            GameObject objectInstaniated = this.Instantiate(this.characterPlanetSystemPrefab, this.initialPlanetSystemPosition, character.UniqueId);
 
             CharacterPlanet characterPlanet = objectInstaniated.GetComponentInChildren<CharacterPlanet>();
             characterPlanet.HookUp(character);
@@ -136,7 +136,7 @@
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
-            GameObject objectInstaniated = this.Instantiate(this.characterPlanetSystemPrefab, randomSpawnPosition);
+            GameObject objectInstaniated = this.Instantiate(this.characterPlanetSystemPrefab, randomSpawnPosition, character.UniqueId);
 
             CharacterPlanet characterPlanet = objectInstaniated.GetComponentInChildren<CharacterPlanet>();
             characterPlanet.HookUp(character);
@@ -151,7 +151,7 @@
         /// <returns>The planet.</returns>
         public BasePlanet Instantiate(Comic comic)
         {
-            GameObject objectInstaniated = this.Instantiate(this.comicPlanetSystemPrefab, this.initialPlanetSystemPosition);
+            GameObject objectInstaniated = this.Instantiate(this.comicPlanetSystemPrefab, this.initialPlanetSystemPosition, comic.UniqueId);
 
             ComicPlanet comicPlanet = objectInstaniated.GetComponentInChildren<ComicPlanet>();
             comicPlanet.HookUp(comic);
@@ -169,7 +169,7 @@
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
-            GameObject objectInstaniated = this.Instantiate(this.comicPlanetSystemPrefab, randomSpawnPosition);
+            GameObject objectInstaniated = this.Instantiate(this.comicPlanetSystemPrefab, randomSpawnPosition, comic.UniqueId);
 
             ComicPlanet comicPlanet = objectInstaniated.GetComponentInChildren<ComicPlanet>();
             comicPlanet.HookUp(comic);
@@ -184,7 +184,7 @@
         /// <returns>The planet.</returns>
         public BasePlanet Instantiate(Creator creator)
         {
-            GameObject objectInstaniated = this.Instantiate(this.creatorPlanetSystemPrefab, this.initialPlanetSystemPosition);
+            GameObject objectInstaniated = this.Instantiate(this.creatorPlanetSystemPrefab, this.initialPlanetSystemPosition, creator.UniqueId);
 
             CreatorPlanet creatorPlanet = objectInstaniated.GetComponentInChildren<CreatorPlanet>();
             creatorPlanet.HookUp(creator);
@@ -202,7 +202,7 @@
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
-            GameObject objectInstaniated = this.Instantiate(this.creatorPlanetSystemPrefab, randomSpawnPosition);
+            GameObject objectInstaniated = this.Instantiate(this.creatorPlanetSystemPrefab, randomSpawnPosition, creator.UniqueId);
 
             CreatorPlanet creatorPlanet = objectInstaniated.GetComponentInChildren<CreatorPlanet>();
             creatorPlanet.HookUp(creator);
@@ -217,7 +217,7 @@
         /// <returns>The planet.</returns>
         public BasePlanet Instantiate(MarvelUniverse.Model.Event.Event comicEvent)
         {
-            GameObject objectInstaniated = this.Instantiate(this.eventPlanetSystemPrefab, this.initialPlanetSystemPosition);
+            GameObject objectInstaniated = this.Instantiate(this.eventPlanetSystemPrefab, this.initialPlanetSystemPosition, comicEvent.UniqueId);
 
             EventPlanet eventPlanet = objectInstaniated.GetComponentInChildren<EventPlanet>();
             eventPlanet.HookUp(comicEvent);
@@ -235,7 +235,7 @@
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
-            GameObject objectInstaniated = this.Instantiate(this.eventPlanetSystemPrefab, randomSpawnPosition);
+            GameObject objectInstaniated = this.Instantiate(this.eventPlanetSystemPrefab, randomSpawnPosition, comicEvent.UniqueId);
 
             EventPlanet eventPlanet = objectInstaniated.GetComponentInChildren<EventPlanet>();
             eventPlanet.HookUp(comicEvent);
@@ -250,7 +250,7 @@
         /// <returns>The planet.</returns>
         public BasePlanet Instantiate(Series series)
         {
-            GameObject objectInstaniated = this.Instantiate(this.seriesPlanetSystemPrefab, this.initialPlanetSystemPosition);
+            GameObject objectInstaniated = this.Instantiate(this.seriesPlanetSystemPrefab, this.initialPlanetSystemPosition, series.UniqueId);
 
             SeriesPlanet seriesPlanet = objectInstaniated.GetComponentInChildren<SeriesPlanet>();
             seriesPlanet.HookUp(series);
@@ -268,7 +268,7 @@
         {
             Vector3 randomSpawnPosition = this.CreateRandomSpawnPositionInView(spawnOrigin);
 
-            GameObject objectInstaniated = this.Instantiate(this.seriesPlanetSystemPrefab, randomSpawnPosition);
+            GameObject objectInstaniated = this.Instantiate(this.seriesPlanetSystemPrefab, randomSpawnPosition, series.UniqueId);
 
             SeriesPlanet seriesPlanet = objectInstaniated.GetComponentInChildren<SeriesPlanet>();
             seriesPlanet.HookUp(series);
@@ -281,14 +281,25 @@
         /// </summary>
         /// <param name="planetSystemPrefab">The planet system prefab.</param>
         /// <param name="spawnPosition">The spawn position.</param>
+        /// <param name="identifier">The identifier.</param>
         /// <returns>The position of the instantiated object.</returns>
-        private GameObject Instantiate(GameObject planetSystemPrefab, Vector3 spawnPosition)
+        private GameObject Instantiate(
+            GameObject planetSystemPrefab,
+            Vector3 spawnPosition,
+            string identifier)
         {
-            GameObject planetSystem = this.instantiator.InstantiatePrefab(planetSystemPrefab) as GameObject;
+            GameObject existingGameObject = GameObject.Find(identifier);
 
-            planetSystem.transform.position = spawnPosition;
+            if (existingGameObject == null)
+            {
+                GameObject planetSystem = this.instantiator.InstantiatePrefab(planetSystemPrefab) as GameObject;
+                planetSystem.transform.position = spawnPosition;
+                planetSystem.name = identifier;
 
-            return planetSystem;
+                existingGameObject = planetSystem;
+            }
+
+            return existingGameObject;
         }
 
         /// <summary>
