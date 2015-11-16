@@ -178,15 +178,6 @@
         }
 
         /// <summary>
-        /// Handles the camera reset event.
-        /// </summary>
-        private void OnCameraReset()
-        {
-            this.transform.position = this.defaultPosition;
-            this.transform.rotation = this.defaultRotation;
-        }
-
-        /// <summary>
         /// Focus on the specified game object.
         /// </summary>
         private void FocusOn()
@@ -210,12 +201,27 @@
                 this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this.LookSpeed * Time.deltaTime);
             }
         }
-        
+
+        /// <summary>
+        /// Handles the camera reset event.
+        /// </summary>
+        private void OnCameraReset()
+        {
+            this.isMovementEnabled = false;
+            this.previousIsMovementEnabled = false;
+
+            this.ResetFocus();
+
+            this.transform.position = this.defaultPosition;
+            this.transform.rotation = this.defaultRotation;
+        }
+
         /// <summary>
         /// Resets focus.
         /// </summary>
         private void ResetFocus()
         {
+            this.isFocusing = false;
             this.focusObject = null;
             this.focusPositionToMoveTo = new Vector3();
             this.focusPositionToLookAt = new Vector3();

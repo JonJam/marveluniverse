@@ -53,7 +53,6 @@
         /// </summary>
         public void OnBackToSearchClick()
         {
-            this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(false);
             this.eventManager.GetEvent<DestroyPlanetSystemEvent>().Invoke();
 
             this.screenManager.OpenSearchPanel();
