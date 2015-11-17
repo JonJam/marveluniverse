@@ -46,11 +46,6 @@
         private bool isMovementEnabled;
 
         /// <summary>
-        /// The previous is movement enabled value.
-        /// </summary>
-        private bool previousIsMovementEnabled;
-
-        /// <summary>
         /// A value indicating whether this instance is focusing on an object.
         /// </summary>
         private bool isFocusing;
@@ -99,11 +94,7 @@
         /// </summary>
         private void Update()
         {
-            if (this.isFocusing)
-            {
-                this.FocusOn();
-            }
-            else if (this.isMovementEnabled)
+            if (this.isMovementEnabled)
             {
                 if (this.HasUserMoved() && 
                     this.focusObject != null)
@@ -112,12 +103,19 @@
                     this.ResetFocus();
                 }
 
-                if (Input.GetMouseButton(1))
+                if (this.isFocusing)
                 {
-                    this.Rotate();
+                    this.FocusOn();
                 }
+                else
+                {
+                    if (Input.GetMouseButton(1))
+                    {
+                        this.Rotate();
+                    }
 
-                this.Move();
+                    this.Move();
+                }
             }
         }
 
@@ -164,13 +162,16 @@
         /// <param name="positionToMoveTo">The position to move to.</param>
         private void OnCameraFocus(GameObject objectToFocusOn, Vector3 positionToMoveTo)
         {
-            if (!this.isFocusing)
+            if (!this.isFocusing || 
+                (this.isFocusing && this.focusObject != objectToFocusOn))
             {
                 this.isFocusing = true;
-                
-                this.previousIsMovementEnabled = this.isMovementEnabled;
-                this.isMovementEnabled = false;
 
+                if (this.focusObject != null)
+                {
+                    this.eventManager.GetEvent<CameraLostFocusEvent>().Invoke(this.focusObject);
+                }
+                
                 this.focusObject = objectToFocusOn;
                 this.focusPositionToLookAt = objectToFocusOn.transform.position;
                 this.focusPositionToMoveTo = positionToMoveTo;
@@ -189,8 +190,6 @@
                 this.transform.rotation == targetRotation)
             {
                 this.eventManager.GetEvent<CameraFocusedOnEvent>().Invoke(this.focusObject);
-
-                this.isMovementEnabled = this.previousIsMovementEnabled;
                                
                 this.isFocusing = false;
             }
@@ -208,7 +207,6 @@
         private void OnCameraReset()
         {
             this.isMovementEnabled = false;
-            this.previousIsMovementEnabled = false;
 
             this.ResetFocus();
 

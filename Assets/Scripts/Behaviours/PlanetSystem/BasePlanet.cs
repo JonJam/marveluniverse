@@ -52,11 +52,6 @@
         private bool isCameraFocusedOn;
 
         /// <summary>
-        /// A value indicating whether displaying information about this planet system.
-        /// </summary>
-        private bool displayingInformation;
-
-        /// <summary>
         /// Gets the camera rest position.
         /// </summary>
         public Vector3 CameraRestPosition
@@ -77,7 +72,7 @@
                 return this.screenManager;
             }
         }
-        
+
         /// <summary>
         /// Sets the name.
         /// </summary>
@@ -141,9 +136,10 @@
             this.mainCameraTransform = mainCamera.transform;
 
             this.eventManager.GetEvent<CameraFocusedOnEvent>().AddListener(this.OnCameraFocusedOnEvent);
+            this.eventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
             this.eventManager.GetEvent<DestroyPlanetSystemEvent>().AddListener(this.OnDestroyPlanetSystemEvent);
         }
-        
+
         /// <summary>
         /// Handles the update event.
         /// </summary>
@@ -158,32 +154,22 @@
         private void OnDestroy()
         {
             this.eventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
-            this.eventManager.GetEvent<ClosedInfoPanelEvent>().RemoveListener(this.OnClosedInfoPanel);
             this.eventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
             this.eventManager.GetEvent<DestroyPlanetSystemEvent>().RemoveListener(this.OnDestroyPlanetSystemEvent);
         }
-        
+
         /// <summary>
         /// Handles the mouse down event.
         /// </summary>
         private void OnMouseDown()
         {
-            if (!this.displayingInformation)
+            if (!this.isCameraFocusedOn)
             {
-                if (this.isCameraFocusedOn)
-                {
-                    this.displayingInformation = true;
-
-                    this.eventManager.GetEvent<ClosedInfoPanelEvent>().AddListener(this.OnClosedInfoPanel);
-
-                    this.DisplayInformation();
-
-                    this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(false);
-                }
-                else
-                {
-                    this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.CameraRestPosition);
-                }
+                this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.CameraRestPosition);
+            }
+            else
+            {
+                this.DisplayInformation();
             }
         }
 
@@ -197,18 +183,8 @@
 
             if (this.isCameraFocusedOn)
             {
-                this.eventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
+                this.DisplayInformation();
             }
-        }
-        
-        /// <summary>
-        /// Handles the closed information panel.
-        /// </summary>
-        private void OnClosedInfoPanel()
-        {
-            this.eventManager.GetEvent<ClosedInfoPanelEvent>().RemoveListener(this.OnClosedInfoPanel);
-
-            this.displayingInformation = false;
         }
 
         /// <summary>
@@ -217,9 +193,12 @@
         /// <param name="focusedObject">The focused object.</param>
         private void OnCameraLostFocus(GameObject focusedObject)
         {
-            this.eventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
-            
-            this.isCameraFocusedOn = false;
+            if (this.gameObject == focusedObject)
+            {
+                this.isCameraFocusedOn = false;
+
+                this.screenManager.OpenExplorerPanel();
+            }
         }
 
         /// <summary>

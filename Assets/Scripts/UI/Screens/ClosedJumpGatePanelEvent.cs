@@ -3,9 +3,9 @@
     using UnityEngine.Events;
 
     /// <summary>
-    /// The closed info panel event.
+    /// The closed jump gate panel event.
     /// </summary>
-    public class ClosedInfoPanelEvent : UnityEvent
+    public class ClosedJumpGatePanelEvent : UnityEvent
     {
     }
 }

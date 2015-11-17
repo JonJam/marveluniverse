@@ -7,6 +7,7 @@
     using Model;
     using Screen;
     using Spawner;
+    using UI.Screens;
     using UnityEngine;
     using Zenject;
 
@@ -172,7 +173,8 @@
             if (!this.isCameraFocusedOn)
             {
                 this.isOrbitMovementEnabled = false;
-
+                
+                this.EventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
                 this.EventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.CameraRestPosition);
             }
         }
@@ -205,6 +207,7 @@
             this.planetSystemSpawner = planetSystemSpawner;
 
             this.EventManager.GetEvent<CameraFocusedOnEvent>().AddListener(this.OnCameraFocusedOnEvent);
+            this.EventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
         }
 
         /// <summary>
@@ -222,7 +225,7 @@
         /// </summary>
         private void Start()
         {
-            this.transform.position = this.PlanetSystemTransform.position + (Random.onUnitSphere * this.OrbitRadius);
+            this.transform.position = this.PlanetSystemTransform.position + (UnityEngine.Random.onUnitSphere * this.OrbitRadius);
 
             this.rotationAxis = Vector3.Cross(this.PlanetSystemTransform.position, this.transform.position);
         }
@@ -246,6 +249,7 @@
         {
             this.EventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
             this.EventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
+            this.EventManager.GetEvent<ClosedJumpGatePanelEvent>().RemoveListener(this.OnClosedJumpGatePanel);
         }
 
         /// <summary>
@@ -257,10 +261,10 @@
             this.isCameraFocusedOn = objectBeingFocusedOn == this.gameObject;
 
             if (this.isCameraFocusedOn)
-            {
-                this.EventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
-                
+            {                
                 this.childParticleSystem.Play();
+
+                this.EventManager.GetEvent<ClosedJumpGatePanelEvent>().AddListener(this.OnClosedJumpGatePanel);
 
                 this.DisplayJumpOptions();
             }
@@ -272,11 +276,30 @@
         /// <param name="focusedObject">The focused object.</param>
         private void OnCameraLostFocus(GameObject focusedObject)
         {
-            this.EventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
+            if (focusedObject == this.gameObject)
+            {
+                this.Reset();
+            }
+        }
 
+        /// <summary>
+        /// Handles the on closed jump gate panel event.
+        /// </summary>
+        private void OnClosedJumpGatePanel()
+        {
+            this.EventManager.GetEvent<ClosedJumpGatePanelEvent>().RemoveListener(this.OnClosedJumpGatePanel);
+
+            this.Reset();
+        }
+
+        /// <summary>
+        /// Resets this.
+        /// </summary>
+        private void Reset()
+        {
             this.childParticleSystem.Stop();
             this.childParticleSystem.Clear();
-            this.ScreenManager.CloseCurrent();
+            this.ScreenManager.OpenExplorerPanel();
 
             this.isCameraFocusedOn = false;
             this.isOrbitMovementEnabled = true;

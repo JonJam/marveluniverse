@@ -1,5 +1,6 @@
 ﻿namespace MarvelUniverse.UI.Screens
 {
+    using System.Collections;
     using Behaviours.Camera;
     using Communications.Interfaces;
     using Communications.Result;
@@ -59,11 +60,6 @@
         /// The screen manager.
         /// </summary>
         private IScreenManager screenManager;
-        
-        /// <summary>
-        /// The event manager.
-        /// </summary>
-        private IEventManager eventManager;
 
         /// <summary>
         /// The image service.
@@ -73,7 +69,7 @@
         /// <summary>
         /// The image download coroutine.
         /// </summary>
-        private Coroutine imageDownloadCoroutine;
+        private IEnumerator imageDownloadCoroutine;
 
         /// <summary>
         /// The previous open parameter.
@@ -143,28 +139,20 @@
         /// </summary>
         public void Close()
         {
-            this.previousOpenParameter = null;
-
             this.screenManager.OpenExplorerPanel();
-
-            this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(true);
-            this.eventManager.GetEvent<ClosedInfoPanelEvent>().Invoke();
         }
         
         /// <summary>
         /// Injection initialization.
         /// </summary>
         /// <param name="screenManager">The screen manager.</param>
-        /// <param name="eventManager">The event manager.</param>
         /// <param name="imageService">The image service.</param>
         [PostInject]
         private void InjectionInitialize(
             IScreenManager screenManager,
-            IEventManager eventManager,
             IImageService imageService)
         {
             this.screenManager = screenManager;
-            this.eventManager = eventManager;
             this.imageService = imageService;
         }
 
@@ -248,6 +236,8 @@
         /// </summary>
         private void Reset()
         {
+            this.previousOpenParameter = null;
+
             this.Image.color = this.DefaultImageColor;
             this.Image.texture = null;
 
@@ -267,11 +257,13 @@
             if (image != null &&
                 image.HasData)
             {
-                this.imageDownloadCoroutine = this.StartCoroutine(this.imageService.DownloadImage(
+                this.imageDownloadCoroutine = this.imageService.DownloadImage(
                     image.Path,
                     image.Extension,
                     ImageSize.PortaitUncanny,
-                    this.DownloadImageCompleted));
+                    this.DownloadImageCompleted);
+
+                this.StartCoroutine(this.imageDownloadCoroutine);
             }
         }        
 

@@ -255,7 +255,7 @@
     <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\MessageDialogDetails.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\MessagePanel.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\MessageDialog\ShowMessageDialogEvent.cs" />
-    <Compile Include="Assets\Scripts\UI\Screens\ClosedInfoPanelEvent.cs" />
+    <Compile Include="Assets\Scripts\UI\Screens\ClosedJumpGatePanelEvent.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\DetailsPanel\BaseDetailsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\DetailsPanel\CharacterDetailsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\DetailsPanel\ComicDetailsPanel.cs" />

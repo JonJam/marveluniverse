@@ -57,8 +57,6 @@
 
                 BasePlanet planet = this.PlanetSystemSpawner.Instantiate(result.Data, this.transform.position);
 
-                this.EventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(true);
-
                 this.EventManager.GetEvent<CameraFocusOnEvent>().Invoke(planet.gameObject, planet.CameraRestPosition);
             }
 
