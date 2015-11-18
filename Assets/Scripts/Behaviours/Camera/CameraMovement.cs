@@ -11,14 +11,24 @@
     public class CameraMovement : MonoBehaviour
     {
         /// <summary>
-        /// The look speed.
+        /// The player look speed.
         /// </summary>
-        public float LookSpeed = 10f;
+        public float PlayerLookSpeed = 20f;
 
         /// <summary>
-        /// The movement speed.
+        /// The player movement speed.
         /// </summary>
-        public float MovementSpeed = 10f;
+        public float PlayerMovementSpeed = 20f;
+
+        /// <summary>
+        /// The focus look speed.
+        /// </summary>
+        public float FocusLookSpeed = 100f;
+
+        /// <summary>
+        /// The focus movement speed.
+        /// </summary>
+        public float FocusMovementSpeed = 50f;
 
         /// <summary>
         /// A value indicating whether to inverse vertical view direction.
@@ -198,7 +208,7 @@
             {
                 this.MoveTowardsFocusedPosition();
 
-                this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this.LookSpeed * Time.deltaTime);
+                this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this.FocusLookSpeed * Time.deltaTime);
             }
         }
 
@@ -231,7 +241,7 @@
         /// </summary>
         private void MoveTowardsFocusedPosition()
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, this.focusPositionToMoveTo, this.MovementSpeed * Time.deltaTime);
+            this.transform.position = Vector3.MoveTowards(this.transform.position, this.focusPositionToMoveTo, this.FocusMovementSpeed * Time.deltaTime);
         }
         
         /// <summary>
@@ -245,7 +255,7 @@
             verticalRotation = this.InverseVertical ? -verticalRotation : verticalRotation;
 
             Vector3 rotation = new Vector3(verticalRotation, horizontalRotation, 0);
-            rotation = rotation.normalized * this.LookSpeed * Time.deltaTime;
+            rotation = rotation.normalized * this.PlayerLookSpeed * Time.deltaTime;
 
             this.transform.Rotate(verticalRotation, horizontalRotation, 0);
         }
@@ -259,7 +269,7 @@
             float verticalMovement = Input.GetAxis("Vertical");
 
             Vector3 movement = new Vector3(horizontalMovement, 0, verticalMovement);
-            movement = movement.normalized * this.MovementSpeed * Time.deltaTime;
+            movement = movement.normalized * this.PlayerMovementSpeed * Time.deltaTime;
 
             this.transform.Translate(movement);
         }
