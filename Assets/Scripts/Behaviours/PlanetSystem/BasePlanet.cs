@@ -52,14 +52,16 @@
         private bool isCameraFocusedOn;
 
         /// <summary>
-        /// Gets the camera rest position.
+        /// Calculates the focus position i.e. the position to move the camera to when focusing on this.
         /// </summary>
-        public Vector3 CameraRestPosition
+        /// <param name="cameraTransform">The camera transform.</param>
+        /// <returns>The focus position.</returns>
+        public Vector3 FocusPosition(Transform cameraTransform)
         {
-            get
-            {
-                return this.transform.position + (this.transform.forward.normalized * this.RestDistance);
-            }
+            Vector3 fromObjectToCamera = cameraTransform.position - this.transform.position;
+            Vector3 positionToMoveTo = this.transform.position + (fromObjectToCamera.normalized * this.RestDistance);
+
+            return positionToMoveTo;
         }
 
         /// <summary>
@@ -165,7 +167,7 @@
         {
             if (!this.isCameraFocusedOn)
             {
-                this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.CameraRestPosition);
+                this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.FocusPosition);
             }
             else
             {

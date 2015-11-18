@@ -146,23 +146,22 @@
         }
 
         /// <summary>
-        /// Gets the camera rest position.
-        /// </summary>
-        private Vector3 CameraRestPosition
-        {
-            get
-            {
-                return this.transform.position + (this.transform.forward.normalized * this.RestDistance);
-            }
-        }
-
-        /// <summary>
         /// Hooks up the specified summary data list to the satellite.
         /// </summary>
         /// <param name="summaryDataList">The summary data list.</param>
         public void Hookup(DataList<Summary> summaryDataList)
         {
             this.SummaryDataList = summaryDataList;
+        }
+
+        /// <summary>
+        /// Calculates the focus position i.e. the position to move the camera to when focusing on this.
+        /// </summary>
+        /// <param name="cameraTransform">The camera transform.</param>
+        /// <returns>The focus position.</returns>
+        public Vector3 FocusPosition(Transform cameraTransform)
+        {
+            return this.transform.position + (this.transform.forward.normalized * this.RestDistance);
         }
 
         /// <summary>
@@ -175,7 +174,7 @@
                 this.isOrbitMovementEnabled = false;
                 
                 this.EventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
-                this.EventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.CameraRestPosition);
+                this.EventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.FocusPosition);
             }
         }
 

@@ -159,8 +159,8 @@
         /// Handles the camera focus event.
         /// </summary>
         /// <param name="objectToFocusOn">The object to focus on.</param>
-        /// <param name="positionToMoveTo">The position to move to.</param>
-        private void OnCameraFocus(GameObject objectToFocusOn, Vector3 positionToMoveTo)
+        /// <param name="positionToMoveToFunc">A function to calculate the position to move to.</param>
+        private void OnCameraFocus(GameObject objectToFocusOn, Func<Transform, Vector3> positionToMoveToFunc)
         {
             if (!this.isFocusing || 
                 (this.isFocusing && this.focusObject != objectToFocusOn))
@@ -171,10 +171,11 @@
                 {
                     this.eventManager.GetEvent<CameraLostFocusEvent>().Invoke(this.focusObject);
                 }
-                
+
                 this.focusObject = objectToFocusOn;
                 this.focusPositionToLookAt = objectToFocusOn.transform.position;
-                this.focusPositionToMoveTo = positionToMoveTo;
+                
+                this.focusPositionToMoveTo = positionToMoveToFunc(this.transform);
             }
         }
 

@@ -142,7 +142,7 @@
             
             this.eventManager.GetEvent<IsCameraMovementEnabledEvent>().Invoke(true);
                     
-            this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(planet.gameObject, planet.CameraRestPosition);
+            this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(planet.gameObject, planet.FocusPosition);
         }
     }
 }

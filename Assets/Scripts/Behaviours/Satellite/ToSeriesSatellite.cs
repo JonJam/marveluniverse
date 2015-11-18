@@ -59,7 +59,7 @@
 
                 BasePlanet planet = this.PlanetSystemSpawner.Instantiate(result.Data, this.transform.position);
 
-                this.EventManager.GetEvent<CameraFocusOnEvent>().Invoke(planet.gameObject, planet.CameraRestPosition);
+                this.EventManager.GetEvent<CameraFocusOnEvent>().Invoke(planet.gameObject, planet.FocusPosition);
             }
 
             this.LoadingManager.DecrementRunningOperationCount();
