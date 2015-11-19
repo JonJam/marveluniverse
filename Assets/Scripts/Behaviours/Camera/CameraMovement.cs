@@ -1,6 +1,7 @@
 ﻿namespace MarvelUniverse.Behaviours.Camera
 {
     using System;
+    using System.Threading;
     using Events;
     using UnityEngine;
     using Zenject;
@@ -56,9 +57,9 @@
         private bool isMovementEnabled;
 
         /// <summary>
-        /// A value indicating whether this instance is focusing on an object.
+        /// The focus count, where > 0 means objects require focus.
         /// </summary>
-        private bool isFocusing;
+        private int focusCount;
 
         /// <summary>
         /// The focused object.
@@ -106,14 +107,14 @@
         {
             if (this.isMovementEnabled)
             {
-                if (this.HasUserMoved() && 
+                if (this.HasUserMoved() &&
                     this.focusObject != null)
                 {
                     this.eventManager.GetEvent<CameraLostFocusEvent>().Invoke(this.focusObject);
                     this.ResetFocus();
                 }
 
-                if (this.isFocusing)
+                if (this.focusCount > 0)
                 {
                     this.FocusOn();
                 }
@@ -127,23 +128,6 @@
                     this.Move();
                 }
             }
-        }
-
-        /// <summary>
-        /// Determines whether the user has moved.
-        /// </summary>
-        /// <returns>A value indicating whether the user has moved.</returns>
-        private bool HasUserMoved()
-        {
-            float horizontalRotation = Input.GetAxis("Mouse X");
-            float verticalRotation = Input.GetAxis("Mouse Y");
-            float horizontalMovement = Input.GetAxis("Horizontal");
-            float verticalMovement = Input.GetAxis("Vertical");
-
-            bool rotated = Input.GetMouseButton(1) && (horizontalRotation != 0f || verticalRotation != 0f);
-            bool moved = horizontalMovement != 0f || verticalMovement != 0f;
-
-            return rotated || moved;
         }
 
         /// <summary>
@@ -172,10 +156,10 @@
         /// <param name="positionToMoveToFunc">A function to calculate the position to move to.</param>
         private void OnCameraFocus(GameObject objectToFocusOn, Func<Transform, Vector3> positionToMoveToFunc)
         {
-            if (!this.isFocusing || 
-                (this.isFocusing && this.focusObject != objectToFocusOn))
+            if (this.focusCount == 0 ||
+                (this.focusCount > 0 && this.focusObject != objectToFocusOn))
             {
-                this.isFocusing = true;
+                Interlocked.Increment(ref this.focusCount);
 
                 if (this.focusObject != null)
                 {
@@ -184,31 +168,7 @@
 
                 this.focusObject = objectToFocusOn;
                 this.focusPositionToLookAt = objectToFocusOn.transform.position;
-                
                 this.focusPositionToMoveTo = positionToMoveToFunc(this.transform);
-            }
-        }
-
-        /// <summary>
-        /// Focus on the specified game object.
-        /// </summary>
-        private void FocusOn()
-        {
-            Vector3 lookDirection = this.focusPositionToLookAt - this.transform.position;
-            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-
-            if (this.transform.position == this.focusPositionToMoveTo &&
-                this.transform.rotation == targetRotation)
-            {
-                this.eventManager.GetEvent<CameraFocusedOnEvent>().Invoke(this.focusObject);
-                               
-                this.isFocusing = false;
-            }
-            else
-            {
-                this.MoveTowardsFocusedPosition();
-
-                this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this.FocusLookSpeed * Time.deltaTime);
             }
         }
 
@@ -226,24 +186,56 @@
         }
 
         /// <summary>
+        /// Determines whether the user has moved.
+        /// </summary>
+        /// <returns>A value indicating whether the user has moved.</returns>
+        private bool HasUserMoved()
+        {
+            float horizontalRotation = Input.GetAxis("Mouse X");
+            float verticalRotation = Input.GetAxis("Mouse Y");
+            float horizontalMovement = Input.GetAxis("Horizontal");
+            float verticalMovement = Input.GetAxis("Vertical");
+
+            bool rotated = Input.GetMouseButton(1) && (horizontalRotation != 0f || verticalRotation != 0f);
+            bool moved = horizontalMovement != 0f || verticalMovement != 0f;
+
+            return rotated || moved;
+        }
+
+        /// <summary>
+        /// Focus on the specified game object.
+        /// </summary>
+        private void FocusOn()
+        {
+            Vector3 lookDirection = this.focusPositionToLookAt - this.transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+
+            if (this.transform.position == this.focusPositionToMoveTo &&
+                this.transform.rotation == targetRotation)
+            {
+                this.eventManager.GetEvent<CameraFocusedOnEvent>().Invoke(this.focusObject);
+
+                Interlocked.Decrement(ref this.focusCount);
+            }
+            else
+            {
+                this.transform.position = Vector3.MoveTowards(this.transform.position, this.focusPositionToMoveTo, this.FocusMovementSpeed * Time.deltaTime);
+
+                this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this.FocusLookSpeed * Time.deltaTime);
+            }
+        }
+
+        /// <summary>
         /// Resets focus.
         /// </summary>
         private void ResetFocus()
         {
-            this.isFocusing = false;
+            this.focusCount = 0;
             this.focusObject = null;
             this.focusPositionToMoveTo = new Vector3();
             this.focusPositionToLookAt = new Vector3();
         }
 
-        /// <summary>
-        /// Move towards the focused position.
-        /// </summary>
-        private void MoveTowardsFocusedPosition()
-        {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, this.focusPositionToMoveTo, this.FocusMovementSpeed * Time.deltaTime);
-        }
-        
         /// <summary>
         /// Rotates the camera according to the input.
         /// </summary>

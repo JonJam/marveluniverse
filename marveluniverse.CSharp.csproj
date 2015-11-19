@@ -13,11 +13,15 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -187,10 +191,10 @@
     <Compile Include="Assets\Scripts\Behaviours\Satellite\ComicsSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\CreatorsSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\EventsSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\Satellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\SeriesSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\ToEventSatellite.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Satellite\ToSeriesSatellite.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\ThroughJumpgateTarget.cs" />
     <Compile Include="Assets\Scripts\Communications\BaseService.cs" />
     <Compile Include="Assets\Scripts\Communications\CharacterService.cs" />
     <Compile Include="Assets\Scripts\Communications\ComicService.cs" />

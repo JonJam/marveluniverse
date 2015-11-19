@@ -1,12 +1,10 @@
 ﻿namespace MarvelUniverse.Behaviours.Satellite
 {
-    using System.Linq;
-    using Camera;
+    using System.Collections;
     using Communications.Interfaces;
     using Communications.Result;
+    using Model;
     using Model.Series;
-    using Planet;
-    using ViewModels;
     using Zenject;
 
     /// <summary>
@@ -20,18 +18,13 @@
         private ISeriesService seriesService;
 
         /// <summary>
-        /// Display jump options.
+        /// Gets the data for the selected jump option.
         /// </summary>
-        protected override void DisplayJumpOptions()
+        /// <param name="selectedSummary">The selected summary.</param>
+        /// <returns>An enumerator.</returns>
+        protected override IEnumerator GetSelectedJumpOptionData(Summary selectedSummary)
         {
-            this.ScreenManager.OpenJumpGatePanel(this.SummaryDataList.Items.Select(s => new JumpOptionViewModel(
-                s.Name,
-                () =>
-                {
-                    this.LoadingManager.IncrementRunningOperationCount();
-
-                    this.StartCoroutine(this.seriesService.GetSeries(s.ResourceURI, this.GetSeriesCompleted));
-                })));
+            return this.seriesService.GetSeries(selectedSummary.ResourceURI, this.GetSeriesCompleted);
         }
 
         /// <summary>
@@ -51,16 +44,7 @@
         /// <param name="result">The result.</param>
         private void GetSeriesCompleted(IResult<Series> result)
         {
-            if (this.ResultProcessor.ProcessResult(result))
-            {
-                this.ScreenManager.OpenExplorerPanel();
-
-                BasePlanet planet = this.PlanetSystemSpawner.Instantiate(result.Data, this.transform.position);
-
-                this.EventManager.GetEvent<CameraFocusOnEvent>().Invoke(planet.gameObject, planet.FocusPosition);
-            }
-
-            this.LoadingManager.DecrementRunningOperationCount();
+            this.OnGetSelectedJumpOptionDataCompleted(result, () => { return this.PlanetSystemSpawner.Instantiate(result.Data, this.transform.position); });
         }
     }
 }

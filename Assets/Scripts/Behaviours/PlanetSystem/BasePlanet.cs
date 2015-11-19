@@ -52,6 +52,17 @@
         private bool isCameraFocusedOn;
 
         /// <summary>
+        /// Gets the screen manager.
+        /// </summary>
+        protected IScreenManager ScreenManager
+        {
+            get
+            {
+                return this.screenManager;
+            }
+        }
+
+        /// <summary>
         /// Calculates the focus position i.e. the position to move the camera to when focusing on this.
         /// </summary>
         /// <param name="cameraTransform">The camera transform.</param>
@@ -62,17 +73,6 @@
             Vector3 positionToMoveTo = this.transform.position + (fromObjectToCamera.normalized * this.RestDistance);
 
             return positionToMoveTo;
-        }
-
-        /// <summary>
-        /// Gets the screen manager.
-        /// </summary>
-        protected IScreenManager ScreenManager
-        {
-            get
-            {
-                return this.screenManager;
-            }
         }
 
         /// <summary>

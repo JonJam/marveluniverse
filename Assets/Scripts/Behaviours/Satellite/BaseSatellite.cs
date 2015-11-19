@@ -1,14 +1,19 @@
 ﻿namespace MarvelUniverse.Behaviours
 {
+    using System;
+    using System.Collections;
+    using System.Linq;
     using Camera;
     using Communications.Result;
     using Events;
     using Loading;
     using Model;
+    using Planet;
     using Screen;
     using Spawner;
     using UI.Screens;
     using UnityEngine;
+    using ViewModels;
     using Zenject;
 
     /// <summary>
@@ -35,6 +40,16 @@
         /// The rest distance.
         /// </summary>
         public float RestDistance = 10f;
+
+        /// <summary>
+        /// The through jump gate target prefab.
+        /// </summary>
+        public GameObject ThroughJumpgateTargetPrefab;
+
+        /// <summary>
+        /// The instantiator.
+        /// </summary>
+        private IInstantiator instantiator;
 
         /// <summary>
         /// The event manager.
@@ -80,29 +95,7 @@
         /// A value indicating whether the camera is focused on this.
         /// </summary>
         private bool isCameraFocusedOn;
-
-        /// <summary>
-        /// Gets the event manager.
-        /// </summary>
-        protected IEventManager EventManager
-        {
-            get
-            {
-                return this.eventManager;
-            }
-        }
-
-        /// <summary>
-        /// Gets the screen manager.
-        /// </summary>
-        protected IScreenManager ScreenManager
-        {
-            get
-            {
-                return this.screenManager;
-            }
-        }
-
+        
         /// <summary>
         /// Gets the loading manager.
         /// </summary>
@@ -111,17 +104,6 @@
             get
             {
                 return this.loadingManager;
-            }
-        }
-
-        /// <summary>
-        /// Gets the result processor.
-        /// </summary>
-        protected IResultProcessor ResultProcessor
-        {
-            get
-            {
-                return this.resultProcessor;
             }
         }
 
@@ -165,27 +147,71 @@
         }
 
         /// <summary>
-        /// Handles the mouse down event.
+        /// Gets the data for the selected jump option.
         /// </summary>
-        protected virtual void OnMouseDown()
-        {
-            if (!this.isCameraFocusedOn)
-            {
-                this.isOrbitMovementEnabled = false;
-                
-                this.EventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
-                this.EventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.FocusPosition);
-            }
-        }
+        /// <param name="selectedSummary">The selected summary.</param>
+        /// <returns>An enumerator.</returns>
+        protected abstract IEnumerator GetSelectedJumpOptionData(Summary selectedSummary);
 
         /// <summary>
         /// Display jump options.
         /// </summary>
-        protected abstract void DisplayJumpOptions();
+        protected virtual void DisplayJumpOptions()
+        {
+            this.screenManager.OpenJumpGatePanel(this.SummaryDataList.Items.Select(s => new JumpOptionViewModel(
+               s.Name,
+               () =>
+               {
+                   this.LoadingManager.IncrementRunningOperationCount();
+
+                   this.StartCoroutine(this.GetSelectedJumpOptionData(s));
+               })));
+        }
+
+        /// <summary>
+        /// Handles the completion of getting the selected jump option data.
+        /// </summary>
+        /// <typeparam name="T">The type of data obtained.</typeparam>
+        /// <param name="result">The result.</param>
+        /// <param name="planetSystemSpawn">A function to spawn a planet system</param>
+        protected void OnGetSelectedJumpOptionDataCompleted<T>(IResult<T> result, Func<BasePlanet> planetSystemSpawn)
+        {
+            if (this.resultProcessor.ProcessResult(result))
+            {
+                this.screenManager.OpenExplorerPanel();
+
+                BasePlanet planet = planetSystemSpawn();
+
+                Vector3 targetPosition = this.transform.position - this.transform.forward.normalized;
+
+                GameObject throughJumpgateTarget = this.instantiator.InstantiatePrefab(this.ThroughJumpgateTargetPrefab) as GameObject;
+                throughJumpgateTarget.transform.position = this.transform.position + (-this.transform.forward.normalized * 2f);
+                throughJumpgateTarget.GetComponent<ThroughJumpgateTarget>().PlanetToFocusOn = planet;
+
+                this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(throughJumpgateTarget, (cameraTransform) => { return targetPosition; });
+            }
+
+            this.LoadingManager.DecrementRunningOperationCount();
+        }
+
+        /// <summary>
+        /// Handles the mouse down event.
+        /// </summary>
+        private void OnMouseDown()
+        {
+            if (!this.isCameraFocusedOn)
+            {
+                this.isOrbitMovementEnabled = false;
+
+                this.eventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
+                this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.FocusPosition);
+            }
+        }
 
         /// <summary>
         /// Injection initialization.
         /// </summary>
+        /// <param name="instantiator">The instantiator.</param>
         /// <param name="eventManager">The event manager.</param>
         /// <param name="screenManager">The screen manager.</param>
         /// <param name="loadingManager">The loading manager.</param>
@@ -193,20 +219,22 @@
         /// <param name="planetSystemSpawner">The planet system spawner.</param>
         [PostInject]
         private void InjectionInitialize(
+            IInstantiator instantiator,
             IEventManager eventManager,
             IScreenManager screenManager,
             ILoadingManager loadingManager,
             IResultProcessor resultProcessor,
             IPlanetSystemSpawner planetSystemSpawner)
         {
+            this.instantiator = instantiator;
             this.eventManager = eventManager;
             this.screenManager = screenManager;
             this.loadingManager = loadingManager;
             this.resultProcessor = resultProcessor;
             this.planetSystemSpawner = planetSystemSpawner;
 
-            this.EventManager.GetEvent<CameraFocusedOnEvent>().AddListener(this.OnCameraFocusedOnEvent);
-            this.EventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
+            this.eventManager.GetEvent<CameraFocusedOnEvent>().AddListener(this.OnCameraFocusedOnEvent);
+            this.eventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
         }
 
         /// <summary>
@@ -246,9 +274,9 @@
         /// </summary>
         private void OnDestroy()
         {
-            this.EventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
-            this.EventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
-            this.EventManager.GetEvent<ClosedJumpGatePanelEvent>().RemoveListener(this.OnClosedJumpGatePanel);
+            this.eventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
+            this.eventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
+            this.eventManager.GetEvent<ClosedJumpGatePanelEvent>().RemoveListener(this.OnClosedJumpGatePanel);
         }
 
         /// <summary>
@@ -260,10 +288,10 @@
             this.isCameraFocusedOn = objectBeingFocusedOn == this.gameObject;
 
             if (this.isCameraFocusedOn)
-            {                
+            {
                 this.childParticleSystem.Play();
 
-                this.EventManager.GetEvent<ClosedJumpGatePanelEvent>().AddListener(this.OnClosedJumpGatePanel);
+                this.eventManager.GetEvent<ClosedJumpGatePanelEvent>().AddListener(this.OnClosedJumpGatePanel);
 
                 this.DisplayJumpOptions();
             }
@@ -286,7 +314,7 @@
         /// </summary>
         private void OnClosedJumpGatePanel()
         {
-            this.EventManager.GetEvent<ClosedJumpGatePanelEvent>().RemoveListener(this.OnClosedJumpGatePanel);
+            this.eventManager.GetEvent<ClosedJumpGatePanelEvent>().RemoveListener(this.OnClosedJumpGatePanel);
 
             this.Reset();
         }
@@ -298,7 +326,7 @@
         {
             this.childParticleSystem.Stop();
             this.childParticleSystem.Clear();
-            this.ScreenManager.OpenExplorerPanel();
+            this.screenManager.OpenExplorerPanel();
 
             this.isCameraFocusedOn = false;
             this.isOrbitMovementEnabled = true;
