@@ -68,7 +68,7 @@
         /// <summary>
         /// The spawn sphere radius.
         /// </summary>
-        public int SpawmSphereRadius;
+        public int SpawnSphereRadius;
 
         /// <summary>
         /// The planet system size.

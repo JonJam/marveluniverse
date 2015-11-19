@@ -75,7 +75,7 @@
                 this.SceneSettings.CreatorPlanetSystemPrefab,
                 this.SceneSettings.EventPlanetSystemPrefab,
                 this.SceneSettings.SeriesPlanetSystemPrefab,
-                this.SceneSettings.SpawmSphereRadius,
+                this.SceneSettings.SpawnSphereRadius,
                 this.SceneSettings.PlanetSystemSize,
                 this.SceneSettings.PlanetSize,
                 this.SceneSettings.MainCamera));
