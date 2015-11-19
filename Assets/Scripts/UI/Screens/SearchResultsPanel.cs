@@ -61,16 +61,6 @@
         }
 
         /// <summary>
-        /// Handles the on back button clicked event.
-        /// </summary>
-        public void OnBackButtonClicked()
-        {
-            this.screenManager.OpenSearchPanel();
-
-            this.ClearSearchResults();
-        }
-
-        /// <summary>
         /// Injection initialization.
         /// </summary>
         /// <param name="screenManager">The screen manager.</param>
