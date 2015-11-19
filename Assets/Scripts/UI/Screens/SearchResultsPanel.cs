@@ -25,11 +25,6 @@
         public Text NoSearchResultsText;
 
         /// <summary>
-        /// The screen manager.
-        /// </summary>
-        private IScreenManager screenManager;
-
-        /// <summary>
         /// Gets the game object.
         /// </summary>
         public GameObject GameObject
@@ -58,17 +53,6 @@
         public void OnClosing()
         {
             this.ClearSearchResults();
-        }
-
-        /// <summary>
-        /// Injection initialization.
-        /// </summary>
-        /// <param name="screenManager">The screen manager.</param>
-        [PostInject]
-        private void InjectionInitialize(
-            IScreenManager screenManager)
-        {
-            this.screenManager = screenManager;
         }
         
         /// <summary>
