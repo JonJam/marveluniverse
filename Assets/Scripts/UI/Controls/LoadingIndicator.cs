@@ -1,9 +1,6 @@
 ﻿namespace MarvelUniverse.UI.Controls
 {
-    using Events;
-    using Loading;
     using UnityEngine;
-    using Zenject;
 
     /// <summary>
     /// The loading indicator.
@@ -16,11 +13,6 @@
         private const string IsLoadingAnimatorParameterName = "IsLoading";
         
         /// <summary>
-        /// The event manager.
-        /// </summary>
-        private IEventManager eventManager;
-
-        /// <summary>
         /// The animator.
         /// </summary>
         private Animator animator;
@@ -31,19 +23,6 @@
         private int isLoadingAnimatorParameterId;
 
         /// <summary>
-        /// Injection initialization.
-        /// </summary>
-        /// <param name="eventManager">The event manager</param>
-        [PostInject]
-        private void InjectionInitialize(
-            IEventManager eventManager)
-        {
-            this.eventManager = eventManager;
-
-            this.eventManager.GetEvent<LoadingEvent>().AddListener(this.OnLoading);
-        }
-
-        /// <summary>
         /// Handles the awake event.
         /// </summary>
         private void Awake()
@@ -51,23 +30,13 @@
             this.animator = this.GetComponent<Animator>();
             this.isLoadingAnimatorParameterId = Animator.StringToHash(LoadingIndicator.IsLoadingAnimatorParameterName);            
         }
-        
-        /// <summary>
-        /// Handles the on destroy event.
-        /// </summary>
-        private void OnDestroy()
-        {
-            this.eventManager.GetEvent<LoadingEvent>().RemoveListener(this.OnLoading);
-        }
 
         /// <summary>
-        /// Handles the loading event.
+        /// Set animation.
         /// </summary>
-        /// <param name="isLoading">A value indicating whether is loading.</param>
-        private void OnLoading(bool isLoading)
-        {
-            this.gameObject.SetActive(isLoading);
-
+        /// <param name="isLoading">A value indicating whether the game is performing an operation.</param>
+        public void SetAnimation(bool isLoading)
+        {            
             this.animator.SetBool(this.isLoadingAnimatorParameterId, isLoading);
         }
     }

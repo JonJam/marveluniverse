@@ -265,6 +265,7 @@
     <Compile Include="Assets\Scripts\UI\Screens\IScreen.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\InfoPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\JumpGatePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\Screens\LoadingPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\SearchPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Screens\SearchResultsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Templates\ComicDateItemTemplate.cs" />
