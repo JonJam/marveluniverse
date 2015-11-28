@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -214,6 +216,7 @@
     <Compile Include="Assets\Scripts\Communications\SeriesService.cs" />
     <Compile Include="Assets\Scripts\Communications\Web\IWebRequestor.cs" />
     <Compile Include="Assets\Scripts\Communications\Web\WebRequestor.cs" />
+    <Compile Include="Assets\Scripts\DestroyUniverseEvent.cs" />
     <Compile Include="Assets\Scripts\Events\EventManager.cs" />
     <Compile Include="Assets\Scripts\Events\IEventManager.cs" />
     <Compile Include="Assets\Scripts\Extensions\StringExtensions.cs" />
@@ -240,7 +243,6 @@
     <Compile Include="Assets\Scripts\SceneSettings.cs" />
     <Compile Include="Assets\Scripts\Screen\IScreenManager.cs" />
     <Compile Include="Assets\Scripts\Screen\ScreenManager.cs" />
-    <Compile Include="Assets\Scripts\Spawner\DestroyPlanetSystemEvent.cs" />
     <Compile Include="Assets\Scripts\Spawner\IPlanetSystemSpawner.cs" />
     <Compile Include="Assets\Scripts\Spawner\PlanetSystemSpawner.cs" />
     <Compile Include="Assets\Scripts\UI\Controls\BringToFront.cs" />

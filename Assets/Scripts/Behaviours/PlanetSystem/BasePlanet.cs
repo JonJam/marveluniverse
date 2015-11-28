@@ -139,7 +139,7 @@
 
             this.eventManager.GetEvent<CameraFocusedOnEvent>().AddListener(this.OnCameraFocusedOnEvent);
             this.eventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
-            this.eventManager.GetEvent<DestroyPlanetSystemEvent>().AddListener(this.OnDestroyPlanetSystemEvent);
+            this.eventManager.GetEvent<DestroyUniverseEvent>().AddListener(this.OnDestroyUniverseEvent);
         }
 
         /// <summary>
@@ -157,7 +157,7 @@
         {
             this.eventManager.GetEvent<CameraFocusedOnEvent>().RemoveListener(this.OnCameraFocusedOnEvent);
             this.eventManager.GetEvent<CameraLostFocusEvent>().RemoveListener(this.OnCameraLostFocus);
-            this.eventManager.GetEvent<DestroyPlanetSystemEvent>().RemoveListener(this.OnDestroyPlanetSystemEvent);
+            this.eventManager.GetEvent<DestroyUniverseEvent>().RemoveListener(this.OnDestroyUniverseEvent);
         }
 
         /// <summary>
@@ -206,9 +206,9 @@
         /// <summary>
         /// Handles the on destroy planet system event.
         /// </summary>
-        private void OnDestroyPlanetSystemEvent()
+        private void OnDestroyUniverseEvent()
         {
-            this.eventManager.GetEvent<DestroyPlanetSystemEvent>().RemoveListener(this.OnDestroyPlanetSystemEvent);
+            this.eventManager.GetEvent<DestroyUniverseEvent>().RemoveListener(this.OnDestroyUniverseEvent);
 
             GameObject.Destroy(this.transform.parent.gameObject);
         }

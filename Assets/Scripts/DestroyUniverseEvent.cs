@@ -3,9 +3,9 @@
     using UnityEngine.Events;
 
     /// <summary>
-    /// The destroy planet system event.
+    /// The destroy universe event.
     /// </summary>
-    public class DestroyPlanetSystemEvent : UnityEvent
+    public class DestroyUniverseEvent : UnityEvent
     {
     }
 }

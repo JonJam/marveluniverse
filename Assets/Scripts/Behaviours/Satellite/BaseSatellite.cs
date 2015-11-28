@@ -47,6 +47,11 @@
         public GameObject ThroughJumpgateTargetPrefab;
 
         /// <summary>
+        /// The planet system link prefab.
+        /// </summary>
+        public GameObject PlanetSystemLinkPrefab;
+
+        /// <summary>
         /// The instantiator.
         /// </summary>
         private IInstantiator instantiator;
@@ -182,16 +187,42 @@
 
                 BasePlanet planet = planetSystemSpawn();
 
-                Vector3 targetPosition = this.transform.position - this.transform.forward.normalized;
+                this.MoveToNewPlantSystem(planet);
 
-                GameObject throughJumpgateTarget = this.instantiator.InstantiatePrefab(this.ThroughJumpgateTargetPrefab) as GameObject;
-                throughJumpgateTarget.transform.position = this.transform.position + (-this.transform.forward.normalized * 2f);
-                throughJumpgateTarget.GetComponent<ThroughJumpgateTarget>().PlanetToFocusOn = planet;
-
-                this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(throughJumpgateTarget, (cameraTransform) => { return targetPosition; });
+                this.SpawnPlanetSystemLink(planet.transform.position);
             }
 
             this.LoadingManager.DecrementRunningOperationCount();
+        }
+
+        /// <summary>
+        /// Move to new planet system.
+        /// </summary>
+        /// <param name="planet">The planet.</param>
+        private void MoveToNewPlantSystem(BasePlanet planet)
+        {
+            Vector3 targetPosition = this.transform.position - this.transform.forward.normalized;
+
+            GameObject throughJumpgateTarget = this.instantiator.InstantiatePrefab(this.ThroughJumpgateTargetPrefab) as GameObject;
+            throughJumpgateTarget.transform.position = this.transform.position + (-this.transform.forward.normalized * 2f);
+            throughJumpgateTarget.GetComponent<ThroughJumpgateTarget>().PlanetToFocusOn = planet;
+
+            this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(throughJumpgateTarget, (cameraTransform) => { return targetPosition; });
+        }
+
+        /// <summary>
+        /// Spawns a planet system link.
+        /// </summary>
+        /// <param name="targetPlanetPosition">The target planet position.</param>
+        private void SpawnPlanetSystemLink(Vector3 targetPlanetPosition)
+        {
+            GameObject planetSystemLink = GameObject.Instantiate(this.PlanetSystemLinkPrefab);
+            planetSystemLink.transform.SetParent(this.PlanetSystemTransform);
+
+            LineRenderer lineRenderer = planetSystemLink.GetComponent<LineRenderer>();
+
+            lineRenderer.SetPosition(0, this.PlanetSystemTransform.transform.position);
+            lineRenderer.SetPosition(1, targetPlanetPosition);
         }
 
         /// <summary>

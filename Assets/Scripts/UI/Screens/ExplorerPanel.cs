@@ -53,7 +53,7 @@
         /// </summary>
         public void OnBackToSearchClick()
         {
-            this.eventManager.GetEvent<DestroyPlanetSystemEvent>().Invoke();
+            this.eventManager.GetEvent<DestroyUniverseEvent>().Invoke();
 
             this.screenManager.OpenSearchPanel();
             
