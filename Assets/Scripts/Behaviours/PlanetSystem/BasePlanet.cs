@@ -42,11 +42,6 @@
         private IScreenManager screenManager;
 
         /// <summary>
-        /// The main camera transform.
-        /// </summary>
-        private Transform mainCameraTransform;
-
-        /// <summary>
         /// A value indicating whether the camera is focused on this instance.
         /// </summary>
         private bool isCameraFocusedOn;
@@ -125,29 +120,17 @@
         /// </summary>
         /// <param name="eventManager">The event manager.</param>
         /// <param name="screenManager">The screen manager.</param>
-        /// <param name="mainCamera">The main camera.</param>
         [PostInject]
         private void InjectionInitialize(
             IEventManager eventManager,
-            IScreenManager screenManager,
-            Camera mainCamera)
+            IScreenManager screenManager)
         {
             this.eventManager = eventManager;
             this.screenManager = screenManager;
 
-            this.mainCameraTransform = mainCamera.transform;
-
             this.eventManager.GetEvent<CameraFocusedOnEvent>().AddListener(this.OnCameraFocusedOnEvent);
             this.eventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
             this.eventManager.GetEvent<DestroyUniverseEvent>().AddListener(this.OnDestroyUniverseEvent);
-        }
-
-        /// <summary>
-        /// Handles the update event.
-        /// </summary>
-        private void Update()
-        {
-            this.transform.LookAt(this.transform.position + (this.mainCameraTransform.rotation * Vector3.forward), this.mainCameraTransform.rotation * Vector3.up);
         }
 
         /// <summary>

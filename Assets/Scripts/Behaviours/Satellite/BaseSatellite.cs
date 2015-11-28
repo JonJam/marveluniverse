@@ -52,6 +52,11 @@
         public GameObject PlanetSystemLinkPrefab;
 
         /// <summary>
+        /// The jump gate name.
+        /// </summary>
+        public GameObject JumpgateName;
+
+        /// <summary>
         /// The instantiator.
         /// </summary>
         private IInstantiator instantiator;
@@ -234,6 +239,8 @@
             {
                 this.isOrbitMovementEnabled = false;
 
+                this.JumpgateName.SetActive(false);
+
                 this.eventManager.GetEvent<CameraLostFocusEvent>().AddListener(this.OnCameraLostFocus);
                 this.eventManager.GetEvent<CameraFocusOnEvent>().Invoke(this.gameObject, this.FocusPosition);
             }
@@ -361,6 +368,7 @@
 
             this.isCameraFocusedOn = false;
             this.isOrbitMovementEnabled = true;
+            this.JumpgateName.SetActive(true);
         }
     }
 }

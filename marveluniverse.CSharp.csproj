@@ -176,6 +176,7 @@
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\CameraResetEvent.cs" />
     <Compile Include="Assets\Scripts\Behaviours\Camera\IsCameraMovementEnabledEvent.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\LookAtCamera.cs" />
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\BasePlanet.cs" />
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\CharacterPlanet.cs" />
     <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\ComicPlanet.cs" />
