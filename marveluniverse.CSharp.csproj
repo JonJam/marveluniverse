@@ -20,6 +20,8 @@
     <UnityVersion>5.2.1f1</UnityVersion>
     <RootNamespace>
     </RootNamespace>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -170,30 +172,6 @@
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\DecoratorInstaller.cs" />
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\SceneDecoratorCompositionRoot.cs" />
     <Compile Include="Assets\DownloadedAssets\Zenject\Main\Scripts\Util\UnityUtil.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Camera\CameraFocusOnEvent.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Camera\CameraFocusedOnEvent.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Camera\CameraLostFocusEvent.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Camera\CameraMovement.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Camera\CameraResetEvent.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Camera\IsCameraMovementEnabledEvent.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\LookAtCamera.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\BasePlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\CharacterPlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\ComicPlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\CreatorPlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\EventPlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\PlanetImage.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\PlanetName.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\PlanetSystem\SeriesPlanet.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\BaseSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\CharactersSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\ComicsSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\CreatorsSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\EventsSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\SeriesSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\ToEventSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\Satellite\ToSeriesSatellite.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\ThroughJumpgateTarget.cs" />
     <Compile Include="Assets\Scripts\Communications\BaseService.cs" />
     <Compile Include="Assets\Scripts\Communications\CharacterService.cs" />
     <Compile Include="Assets\Scripts\Communications\ComicService.cs" />
@@ -221,6 +199,30 @@
     <Compile Include="Assets\Scripts\Events\EventManager.cs" />
     <Compile Include="Assets\Scripts\Events\IEventManager.cs" />
     <Compile Include="Assets\Scripts\Extensions\StringExtensions.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Camera\CameraFocusOnEvent.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Camera\CameraFocusedOnEvent.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Camera\CameraLostFocusEvent.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Camera\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Camera\CameraResetEvent.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Camera\IsCameraMovementEnabledEvent.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\LookAtCamera.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\PlanetSystem\BasePlanet.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\PlanetSystem\CharacterPlanet.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\PlanetSystem\ComicPlanet.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\PlanetSystem\CreatorPlanet.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\PlanetSystem\EventPlanet.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\PlanetSystem\PlanetImage.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\PlanetSystem\PlanetName.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\PlanetSystem\SeriesPlanet.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Jumpgate\BaseJumpgate.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Jumpgate\CharactersJumpgate.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Jumpgate\ComicsJumpgate.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Jumpgate\CreatorsJumpgate.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Jumpgate\EventsJumpgate.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Jumpgate\SeriesJumpgate.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Jumpgate\ToEventJumpgate.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Jumpgate\ToSeriesJumpgate.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\ThroughJumpgateTarget.cs" />
     <Compile Include="Assets\Scripts\Installer.cs" />
     <Compile Include="Assets\Scripts\Loading\ILoadingManager.cs" />
     <Compile Include="Assets\Scripts\Loading\LoadingEvent.cs" />

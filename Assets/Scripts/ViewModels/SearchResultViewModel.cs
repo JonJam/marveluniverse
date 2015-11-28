@@ -1,9 +1,9 @@
 ﻿namespace MarvelUniverse.ViewModels
 {
     using System;
-    using Behaviours.Camera;
-    using Behaviours.Planet;
     using Events;
+    using GameObjects.Camera;
+    using GameObjects.Planet;
     using Screen;
 
     /// <summary>

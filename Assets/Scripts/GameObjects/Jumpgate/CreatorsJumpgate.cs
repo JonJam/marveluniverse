@@ -1,32 +1,21 @@
-﻿namespace MarvelUniverse.Behaviours.Satellite
+﻿namespace MarvelUniverse.GameObjects.Jumpgate
 {
-    using System;
     using System.Collections;
     using Communications.Interfaces;
     using Communications.Result;
     using Model;
-    using Model.Event;
+    using Model.Creator;
     using Zenject;
 
     /// <summary>
-    /// To event satellite behaviour.
+    /// Creators jumpgate behaviour.
     /// </summary>
-    public class ToEventSatellite : BaseSatellite
+    public class CreatorsJumpgate : BaseJumpgate
     {
         /// <summary>
-        /// The event service.
+        /// The creator service.
         /// </summary>
-        private IEventService eventService;
-
-        /// <summary>
-        /// Display jump options.
-        /// </summary>
-        protected override void DisplayJumpOptions()
-        {
-            this.LoadingManager.IncrementRunningOperationCount();
-
-            this.StartCoroutine(this.eventService.GetEvent(this.SummaryDataList.Items[0].ResourceURI, this.GetEventCompleted));
-        }
+        private ICreatorService creatorService;
 
         /// <summary>
         /// Gets the data for the selected jump option.
@@ -35,25 +24,25 @@
         /// <returns>An enumerator.</returns>
         protected override IEnumerator GetSelectedJumpOptionData(Summary selectedSummary)
         {
-            throw new NotImplementedException();
+            return this.creatorService.GetCreator(selectedSummary.ResourceURI, this.GetCreatorCompleted);
         }
 
         /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <param name="eventService">The event service.</param>
+        /// <param name="creatorService">The creator service.</param>
         [PostInject]
         private void InjectionInitialize(
-            IEventService eventService)
+            ICreatorService creatorService)
         {
-            this.eventService = eventService;
+            this.creatorService = creatorService;
         }
 
         /// <summary>
-        /// Handles the completion of get event
+        /// Handles the completion of get creator.
         /// </summary>
         /// <param name="result">The result.</param>
-        private void GetEventCompleted(IResult<Event> result)
+        private void GetCreatorCompleted(IResult<Creator> result)
         {
             this.OnGetSelectedJumpOptionDataCompleted(result, () => { return this.PlanetSystemSpawner.Instantiate(result.Data, this.transform.position); });
         }

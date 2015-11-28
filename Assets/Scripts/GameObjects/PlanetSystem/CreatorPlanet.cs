@@ -1,7 +1,7 @@
-﻿namespace MarvelUniverse.Behaviours.Planet
+﻿namespace MarvelUniverse.GameObjects.Planet
 {
+    using Jumpgate;
     using Model.Creator;
-    using Satellite;
 
     /// <summary>
     /// The creator planet behaviour.
@@ -9,19 +9,19 @@
     public class CreatorPlanet : BasePlanet
     {
         /// <summary>
-        /// The comics satellite.
+        /// The comics jumpgate.
         /// </summary>
-        public ComicsSatellite ComicsSatellite;
+        public ComicsJumpgate ComicsSatellite;
 
         /// <summary>
-        /// The events satellite.
+        /// The events jumpgate.
         /// </summary>
-        public EventsSatellite EventsSatellite;
+        public EventsJumpgate EventsSatellite;
 
         /// <summary>
-        /// The series satellite.
+        /// The series jumpgate.
         /// </summary>
-        public SeriesSatellite SeriesSatellite;
+        public SeriesJumpgate SeriesSatellite;
 
         /// <summary>
         /// The creator.

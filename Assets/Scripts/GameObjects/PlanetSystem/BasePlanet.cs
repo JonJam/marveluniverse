@@ -1,13 +1,13 @@
-﻿namespace MarvelUniverse.Behaviours.Planet
+﻿namespace MarvelUniverse.GameObjects.Planet
 {
     using System.Linq;
     using Camera;
     using Events;
+    using Jumpgate;
     using Model;
     using Model.Image;
     using Screen;
     using Spawner;
-    using UI.Screens;
     using UnityEngine;
     using Zenject;
 
@@ -93,7 +93,7 @@
         /// </summary>
         /// <param name="satellite">The satellite.</param>
         /// <param name="summariesDataList">The summaries data list.</param>
-        protected void SetSummaries(BaseSatellite satellite, DataList<Summary> summariesDataList)
+        protected void SetSummaries(BaseJumpgate satellite, DataList<Summary> summariesDataList)
         {
             if (summariesDataList != null &&
                 summariesDataList.Available > 0 &&

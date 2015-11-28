@@ -1,6 +1,5 @@
 ﻿namespace MarvelUniverse
 {
-    using Behaviours.Planet;
     using Communications.Interfaces;
     using Communications.Result;
     using Events;

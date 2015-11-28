@@ -1,7 +1,7 @@
 ﻿namespace MarvelUniverse.UI.Screens
 {
-    using Behaviours.Camera;
     using Events;
+    using GameObjects.Camera;
     using Screen;
     using Spawner;
     using UnityEngine;

@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Behaviours.Planet
+﻿namespace MarvelUniverse.GameObjects.Planet
 { 
     using MarvelUniverse.Communications.Interfaces;
     using MarvelUniverse.Communications.Result;

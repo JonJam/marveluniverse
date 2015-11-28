@@ -14,7 +14,7 @@
         /// <summary>
         /// The loading indicator control.
         /// </summary>
-        public LoadingIndicator loadingIndicator;
+        public LoadingIndicator LoadingIndicator;
         
         /// <summary>
         /// The event manager.
@@ -50,7 +50,7 @@
         {
             this.gameObject.SetActive(isLoading);
 
-            this.loadingIndicator.SetAnimation(isLoading);
+            this.LoadingIndicator.SetAnimation(isLoading);
         }
     }
 }

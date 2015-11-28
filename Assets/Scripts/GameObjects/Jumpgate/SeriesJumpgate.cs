@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Behaviours.Satellite
+﻿namespace MarvelUniverse.GameObjects.Jumpgate
 {
     using System.Collections;
     using Communications.Interfaces;
@@ -8,9 +8,9 @@
     using Zenject;
 
     /// <summary>
-    /// Series satellite behaviour.
+    /// Series Jumpgate behaviour.
     /// </summary>
-    public class SeriesSatellite : BaseSatellite
+    public class SeriesJumpgate : BaseJumpgate
     {
         /// <summary>
         /// The series service.

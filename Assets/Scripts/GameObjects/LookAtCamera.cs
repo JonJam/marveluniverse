@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Behaviours
+﻿namespace MarvelUniverse.GameObjects
 {
     using UnityEngine;
     using Zenject;
@@ -16,8 +16,7 @@
         /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <param name="eventManager">The event manager.</param>
-        /// <param name="screenManager">The screen manager.</param>
+        /// <param name="mainCamera">The main camera.</param>
         [PostInject]
         private void InjectionInitialize(
             UnityEngine.Camera mainCamera)

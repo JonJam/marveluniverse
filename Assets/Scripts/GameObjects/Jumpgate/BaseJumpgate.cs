@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Behaviours
+﻿namespace MarvelUniverse.GameObjects.Jumpgate
 {
     using System;
     using System.Collections;
@@ -17,9 +17,9 @@
     using Zenject;
 
     /// <summary>
-    /// Base satellite behaviour.
+    /// Base jumpgate behaviour.
     /// </summary>
-    public abstract class BaseSatellite : MonoBehaviour
+    public abstract class BaseJumpgate : MonoBehaviour
     {
         /// <summary>
         /// The planet system transform.
@@ -138,7 +138,7 @@
         }
 
         /// <summary>
-        /// Hooks up the specified summary data list to the satellite.
+        /// Hooks up the specified summary data list to the jumpgate.
         /// </summary>
         /// <param name="summaryDataList">The summary data list.</param>
         public void Hookup(DataList<Summary> summaryDataList)

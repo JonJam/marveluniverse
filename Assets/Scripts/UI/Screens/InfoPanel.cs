@@ -1,11 +1,9 @@
 ﻿namespace MarvelUniverse.UI.Screens
 {
     using System.Collections;
-    using Behaviours.Camera;
     using Communications.Interfaces;
     using Communications.Result;
     using DetailsPanel;
-    using Events;
     using Model.Character;
     using Model.Comic;
     using Model.Creator;

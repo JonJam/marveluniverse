@@ -1,8 +1,8 @@
-﻿namespace MarvelUniverse.Behaviours
+﻿namespace MarvelUniverse.GameObjects
 {
-    using MarvelUniverse.Behaviours.Camera;
-    using MarvelUniverse.Behaviours.Planet;
     using MarvelUniverse.Events;
+    using MarvelUniverse.GameObjects.Camera;
+    using MarvelUniverse.GameObjects.Planet;
     using UnityEngine;
     using Zenject;
 

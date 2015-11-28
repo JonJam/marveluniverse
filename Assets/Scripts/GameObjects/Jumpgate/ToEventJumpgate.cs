@@ -1,5 +1,6 @@
-﻿namespace MarvelUniverse.Behaviours.Satellite
+﻿namespace MarvelUniverse.GameObjects.Jumpgate
 {
+    using System;
     using System.Collections;
     using Communications.Interfaces;
     using Communications.Result;
@@ -8,14 +9,24 @@
     using Zenject;
 
     /// <summary>
-    /// Events satellite behaviour.
+    /// To event Jumpgate behaviour.
     /// </summary>
-    public class EventsSatellite : BaseSatellite
+    public class ToEventJumpgate : BaseJumpgate
     {
         /// <summary>
         /// The event service.
         /// </summary>
         private IEventService eventService;
+
+        /// <summary>
+        /// Display jump options.
+        /// </summary>
+        protected override void DisplayJumpOptions()
+        {
+            this.LoadingManager.IncrementRunningOperationCount();
+
+            this.StartCoroutine(this.eventService.GetEvent(this.SummaryDataList.Items[0].ResourceURI, this.GetEventCompleted));
+        }
 
         /// <summary>
         /// Gets the data for the selected jump option.
@@ -24,7 +35,7 @@
         /// <returns>An enumerator.</returns>
         protected override IEnumerator GetSelectedJumpOptionData(Summary selectedSummary)
         {
-            return this.eventService.GetEvent(selectedSummary.ResourceURI, this.GetEventCompleted);
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -39,7 +50,7 @@
         }
 
         /// <summary>
-        /// Handles the completion of get event.
+        /// Handles the completion of get event
         /// </summary>
         /// <param name="result">The result.</param>
         private void GetEventCompleted(IResult<Event> result)

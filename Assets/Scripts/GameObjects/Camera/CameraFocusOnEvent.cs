@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Behaviours.Camera
+﻿namespace MarvelUniverse.GameObjects.Camera
 {
     using System;
     using UnityEngine;

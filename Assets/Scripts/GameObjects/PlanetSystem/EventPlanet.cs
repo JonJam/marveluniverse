@@ -1,8 +1,8 @@
-﻿namespace MarvelUniverse.Behaviours.Planet
+﻿namespace MarvelUniverse.GameObjects.Planet
 {
+    using Jumpgate;
     using Model;
     using Model.Event;
-    using Satellite;
 
     /// <summary>
     /// The event planet behaviour.
@@ -10,34 +10,34 @@
     public class EventPlanet : BasePlanet
     {
         /// <summary>
-        /// The characters satellite.
+        /// The characters jumpgate.
         /// </summary>
-        public CharactersSatellite CharactersSatellite;
+        public CharactersJumpgate CharactersSatellite;
 
         /// <summary>
-        /// The events satellite.
+        /// The events jumpgate.
         /// </summary>
-        public ComicsSatellite ComicsSatellite;
+        public ComicsJumpgate ComicsSatellite;
 
         /// <summary>
-        /// The creators satellite.
+        /// The creators jumpgate.
         /// </summary>
-        public CreatorsSatellite CreatorsSatellite;
-        
-        /// <summary>
-        /// The next event satellite.
-        /// </summary>
-        public ToEventSatellite NextEventSatellite;
+        public CreatorsJumpgate CreatorsSatellite;
 
         /// <summary>
-        /// The previous event satellite.
+        /// The next event jumpgate.
         /// </summary>
-        public ToEventSatellite PreviousEventSatellite;
+        public ToEventJumpgate NextEventSatellite;
 
         /// <summary>
-        /// The series satellite.
+        /// The previous event jumpgate.
         /// </summary>
-        public SeriesSatellite SeriesSatellite;
+        public ToEventJumpgate PreviousEventSatellite;
+
+        /// <summary>
+        /// The series jumpgate.
+        /// </summary>
+        public SeriesJumpgate SeriesSatellite;
 
         /// <summary>
         /// The comic event.

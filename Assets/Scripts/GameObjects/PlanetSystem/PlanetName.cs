@@ -1,4 +1,4 @@
-﻿namespace MarvelUniverse.Behaviours.Planet
+﻿namespace MarvelUniverse.GameObjects.Planet
 {
     using UnityEngine;
 

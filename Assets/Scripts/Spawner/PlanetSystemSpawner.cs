@@ -1,6 +1,6 @@
 ﻿namespace MarvelUniverse.Spawner
 {
-    using Behaviours.Planet;
+    using GameObjects.Planet;
     using MarvelUniverse.Model.Character;
     using MarvelUniverse.Model.Comic;
     using MarvelUniverse.Model.Creator;

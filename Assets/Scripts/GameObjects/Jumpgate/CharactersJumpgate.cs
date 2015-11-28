@@ -1,32 +1,21 @@
-﻿namespace MarvelUniverse.Behaviours.Satellite
+﻿namespace MarvelUniverse.GameObjects.Jumpgate
 {
-    using System;
     using System.Collections;
     using Communications.Interfaces;
     using Communications.Result;
     using Model;
-    using Model.Series;
+    using Model.Character;
     using Zenject;
 
     /// <summary>
-    /// To series satellite behaviour.
+    /// Characters jumpgate behaviour.
     /// </summary>
-    public class ToSeriesSatellite : BaseSatellite
+    public class CharactersJumpgate : BaseJumpgate
     {
         /// <summary>
-        /// The series service.
+        /// The character service.
         /// </summary>
-        private ISeriesService seriesService;
-
-        /// <summary>
-        /// Display jump options.
-        /// </summary>
-        protected override void DisplayJumpOptions()
-        {
-            this.LoadingManager.IncrementRunningOperationCount();
-
-            this.StartCoroutine(this.seriesService.GetSeries(this.SummaryDataList.Items[0].ResourceURI, this.GetSeriesCompleted));
-        }
+        private ICharacterService characterService;
 
         /// <summary>
         /// Gets the data for the selected jump option.
@@ -35,26 +24,26 @@
         /// <returns>An enumerator.</returns>
         protected override IEnumerator GetSelectedJumpOptionData(Summary selectedSummary)
         {
-            throw new NotImplementedException();
+            return this.characterService.GetCharacter(selectedSummary.ResourceURI, this.GetCharacterCompleted);
         }
 
         /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <param name="seriesService">The series service.</param>
+        /// <param name="characterService">The character service.</param>
         [PostInject]
         private void InjectionInitialize(
-            ISeriesService seriesService)
+            ICharacterService characterService)
         {
-            this.seriesService = seriesService;
+            this.characterService = characterService;
         }
 
         /// <summary>
-        /// Handles the completion of get series.
+        /// Handles the completion of get character.
         /// </summary>
         /// <param name="result">The result.</param>
-        private void GetSeriesCompleted(IResult<Series> result)
-        {
+        private void GetCharacterCompleted(IResult<Character> result)
+        {           
             this.OnGetSelectedJumpOptionDataCompleted(result, () => { return this.PlanetSystemSpawner.Instantiate(result.Data, this.transform.position); });
         }
     }

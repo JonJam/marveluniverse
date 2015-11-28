@@ -1,21 +1,32 @@
-﻿namespace MarvelUniverse.Behaviours.Satellite
+﻿namespace MarvelUniverse.GameObjects.Jumpgate
 {
+    using System;
     using System.Collections;
     using Communications.Interfaces;
     using Communications.Result;
     using Model;
-    using Model.Comic;
+    using Model.Series;
     using Zenject;
 
     /// <summary>
-    /// Comics satellite behaviour.
+    /// To series jumpgate behaviour.
     /// </summary>
-    public class ComicsSatellite : BaseSatellite
+    public class ToSeriesJumpgate : BaseJumpgate
     {
         /// <summary>
-        /// The comic service.
+        /// The series service.
         /// </summary>
-        private IComicService comicService;
+        private ISeriesService seriesService;
+
+        /// <summary>
+        /// Display jump options.
+        /// </summary>
+        protected override void DisplayJumpOptions()
+        {
+            this.LoadingManager.IncrementRunningOperationCount();
+
+            this.StartCoroutine(this.seriesService.GetSeries(this.SummaryDataList.Items[0].ResourceURI, this.GetSeriesCompleted));
+        }
 
         /// <summary>
         /// Gets the data for the selected jump option.
@@ -24,25 +35,25 @@
         /// <returns>An enumerator.</returns>
         protected override IEnumerator GetSelectedJumpOptionData(Summary selectedSummary)
         {
-            return this.comicService.GetComic(selectedSummary.ResourceURI, this.GetComicCompleted);
+            throw new NotImplementedException();
         }
 
         /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <param name="comicService">The comic service.</param>
+        /// <param name="seriesService">The series service.</param>
         [PostInject]
         private void InjectionInitialize(
-            IComicService comicService)
+            ISeriesService seriesService)
         {
-            this.comicService = comicService;
+            this.seriesService = seriesService;
         }
 
         /// <summary>
-        /// Handles the completion of get comic.
+        /// Handles the completion of get series.
         /// </summary>
         /// <param name="result">The result.</param>
-        private void GetComicCompleted(IResult<Comic> result)
+        private void GetSeriesCompleted(IResult<Series> result)
         {
             this.OnGetSelectedJumpOptionDataCompleted(result, () => { return this.PlanetSystemSpawner.Instantiate(result.Data, this.transform.position); });
         }

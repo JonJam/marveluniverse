@@ -1,21 +1,21 @@
-﻿namespace MarvelUniverse.Behaviours.Satellite
+﻿namespace MarvelUniverse.GameObjects.Jumpgate
 {
     using System.Collections;
     using Communications.Interfaces;
     using Communications.Result;
     using Model;
-    using Model.Character;
+    using Model.Event;
     using Zenject;
 
     /// <summary>
-    /// Characters satellite behaviour.
+    /// Events Jumpgate behaviour.
     /// </summary>
-    public class CharactersSatellite : BaseSatellite
+    public class EventsJumpgate : BaseJumpgate
     {
         /// <summary>
-        /// The character service.
+        /// The event service.
         /// </summary>
-        private ICharacterService characterService;
+        private IEventService eventService;
 
         /// <summary>
         /// Gets the data for the selected jump option.
@@ -24,26 +24,26 @@
         /// <returns>An enumerator.</returns>
         protected override IEnumerator GetSelectedJumpOptionData(Summary selectedSummary)
         {
-            return this.characterService.GetCharacter(selectedSummary.ResourceURI, this.GetCharacterCompleted);
+            return this.eventService.GetEvent(selectedSummary.ResourceURI, this.GetEventCompleted);
         }
 
         /// <summary>
         /// Injection initialization.
         /// </summary>
-        /// <param name="characterService">The character service.</param>
+        /// <param name="eventService">The event service.</param>
         [PostInject]
         private void InjectionInitialize(
-            ICharacterService characterService)
+            IEventService eventService)
         {
-            this.characterService = characterService;
+            this.eventService = eventService;
         }
 
         /// <summary>
-        /// Handles the completion of get character.
+        /// Handles the completion of get event.
         /// </summary>
         /// <param name="result">The result.</param>
-        private void GetCharacterCompleted(IResult<Character> result)
-        {           
+        private void GetEventCompleted(IResult<Event> result)
+        {
             this.OnGetSelectedJumpOptionDataCompleted(result, () => { return this.PlanetSystemSpawner.Instantiate(result.Data, this.transform.position); });
         }
     }
